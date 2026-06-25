@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MapGame.MVVM.Models
 {
-    class Country
+    public class Country
     {
     }
 }

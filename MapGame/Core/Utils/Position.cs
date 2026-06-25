@@ -9,12 +9,11 @@ namespace MapGame.Core.Utils
     {
         public double X { get; private set; }
         public double Y { get; private set; }
-        public Position(ushort x, ushort y)
+        public Position(double x = 0, double y = 0)
         {
             X = x;
             Y = y;
         }
-
         public void MoveTo(double newX, double newY)
         {
             X = newX;

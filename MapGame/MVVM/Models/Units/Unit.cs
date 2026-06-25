@@ -5,7 +5,7 @@ using MapGame.MVVM.Models;
 
 namespace MapGame.MVVM.Models.Units
 {
-    class Unit {
-        public Country owner { get; private set; }
+    public abstract class Unit {
+        public Country Owner { get; protected set; }
     }
 }
