@@ -1,10 +1,70 @@
-﻿using System;
+﻿using MapGame.Core.Constants;
+using MapGame.Core.Engine;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
+
 
 namespace MapGame.MVVM.ViewModels
 {
-    class MapViewModel
+    public class MapViewModel : INotifyPropertyChanged
     {
+        private Core.Engine.Camera _camera;
+        private DateTime _lastFrameTime = DateTime.Now;
+
+        public Point3D CameraPosition => _camera.Position;
+        public Vector3D CameraLookDirection => _camera.LookDirection;
+        public Vector3D CameraUpDirection => _camera.UpDirection;
+        public GeometryModel3D TerrainModel { get; private set; }
+
+        public MapViewModel() 
+        {
+            InitializeCamera();
+            Initialize3DMap();
+
+            CompositionTarget.Rendering += OnGameUpdate;
+        }
+        private void InitializeCamera()
+        {
+            _camera = new Core.Engine.Camera(
+                new Point3D(3072, 2000, 2500),
+                new Vector3D(0, -1, -0.01),
+                new Vector3D(0, 1, 0)
+            );
+        }
+
+        private void Initialize3DMap()
+        {
+            TerrainModel = MapDisplay.GenerateTerrainMesh(Map.HeightMap, Map.Width, Map.Height);
+        }
+
+        public void ZoomCamera(double delta)
+        {
+            _camera.Zoom(delta);
+
+            OnPropertyChanged(nameof(CameraPosition));
+        }
+
+        private void OnGameUpdate(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            double deltaTime = (now - _lastFrameTime).TotalSeconds;
+            _lastFrameTime = now;
+
+            _camera.WASD(deltaTime);
+            _camera.Update();
+            OnPropertyChanged(nameof(CameraPosition));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

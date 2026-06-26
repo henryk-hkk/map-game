@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using MapGame.Core.Engine;
 
 namespace MapGame
 {
@@ -9,6 +10,13 @@ namespace MapGame
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            GameManager gm = new GameManager();
+            gm.Init();
+        }
+        
+        
     }
 
 }

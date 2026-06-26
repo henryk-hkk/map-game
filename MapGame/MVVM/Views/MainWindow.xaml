@@ -1,12 +1,46 @@
-﻿<Window x:Class="MapGame.MVVM.Views"
+﻿<Window x:Class="MapGame.MVVM.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MapGame"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        xmlns:local="clr-namespace:MapGame.MVVM.ViewModels"
+        Title="Map Engine 3D" Height="1080" Width="1920">
 
+    <Window.DataContext>
+        <local:MapViewModel />
+    </Window.DataContext>
+
+    <Grid Background="Black" PreviewMouseWheel="OnMouseWheel" MouseMove="OnMouseMove">
+        <Viewport3D x:Name="MainViewport">
+            <Viewport3D.Camera>
+                <PerspectiveCamera Position="{Binding CameraPosition, Mode=OneWay}" 
+                       LookDirection="{Binding CameraLookDirection, Mode=OneWay}" 
+                       UpDirection="{Binding CameraUpDirection, Mode=OneWay}" 
+                       FieldOfView="60" />
+            </Viewport3D.Camera>
+
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <Model3DGroup>
+                        <DirectionalLight Color="White" Direction="-1,-1,-1" />
+                        <AmbientLight Color="#404040" />
+                    </Model3DGroup>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+
+            <ModelUIElement3D Model="{Binding TerrainModel}" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+            
+
+        </Viewport3D>
+
+        <Canvas IsHitTestVisible="False">
+            <TextBlock x:Name="CursorCoordsText" 
+                   Foreground="Lime" 
+                   FontWeight="Bold" 
+                   FontSize="14"
+                   RenderTransformOrigin="0,0">
+                <TextBlock.RenderTransform>
+                    <TranslateTransform x:Name="CursorTransform" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Canvas>
     </Grid>
 </Window>
