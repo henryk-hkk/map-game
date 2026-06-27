@@ -7,18 +7,8 @@ namespace MapGame.Core.Utils
     public abstract class Area
     {
         public abstract bool Includes(Position pos);
-    }
-
-    public class AreaList : List<Area> 
-    {
-        public bool Includes(Position pos)
-        {
-            foreach (Area area in this)
-            {
-                if(area.Includes(pos)) return true;
-            }
-            return false;
-        }
+        public string? Name {  get; set; }
+        public int? parentRegionId { get; set; }
     }
 
     public class CircularArea : Area 

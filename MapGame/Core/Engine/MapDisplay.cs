@@ -84,7 +84,8 @@ namespace MapGame.Core.Engine
             //DiffuseMaterial bordersMaterial = GenerateBordersMaterial(Map.Gdansk, width, height);
             //materialGroup.Children.Add(bordersMaterial);
 
-            DiffuseMaterial bordersMaterial = GenerateBordersFromColorMap(Map.AreaPixels);
+            //DiffuseMaterial bordersMaterial = GenerateBordersFromColorMap(Map.AreaPixels);
+            DiffuseMaterial bordersMaterial = GenerateStateBorders();
             materialGroup.Children.Add(bordersMaterial);
 
             model.Material = materialGroup;
@@ -170,6 +171,82 @@ namespace MapGame.Core.Engine
             WriteableBitmap bitmap = new WriteableBitmap(Map.Width, Map.Height, 96, 96, PixelFormats.Bgra32, null);
 
             bitmap.WritePixels(new Int32Rect(0, 0, Map.Width, Map.Height), borderPixels, stride, 0);
+            bitmap.Freeze();
+
+            ImageBrush brush = new ImageBrush(bitmap);
+            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
+            brush.Freeze();
+
+            return new DiffuseMaterial(brush);
+        }
+        public static DiffuseMaterial GenerateStateBorders()
+        {
+            int width = Map.Width;
+            int height = Map.Height;
+            int stride = width * 4;
+            int totalPixels = width * height;
+
+            int[] regionMap = new int[totalPixels];
+
+            for (int i = 0; i < totalPixels; i++)
+            {
+                int byteIndex = i * 4;
+
+                // Jeśli to czarna woda, oznaczamy ją jako StateID = -1
+                if (Map.AreaPixels[byteIndex] == 0 && Map.AreaPixels[byteIndex + 1] == 0 && Map.AreaPixels[byteIndex + 2] == 0)
+                {
+                    regionMap[i] = -1;
+                    continue;
+                }
+
+                Color c = Color.FromRgb(Map.AreaPixels[byteIndex + 2], Map.AreaPixels[byteIndex + 1], Map.AreaPixels[byteIndex]);
+
+                if (Map.Areas.TryGetValue(c, out PixelArea area))
+                {
+                    regionMap[i] = (int)area.parentRegionId;
+                }
+                else
+                {
+                    regionMap[i] = -2; // Nieznany obszar (np. błąd w pliku JSON lub zapomniany kolor)
+                }
+            }
+
+            byte[] borderPixels = new byte[height * stride];
+
+            for (int y = 1; y < height - 1; y++)
+            {
+                for (int x = 1; x < width - 1; x++)
+                {
+                    int index1D = (y * width) + x;
+                    int currentState = regionMap[index1D];
+
+                    // Ignorujemy wodę przy sprawdzaniu bycia krawędzią od środka
+                    if (currentState == -1) continue;
+
+                    int stateUp = regionMap[index1D - width];
+                    int stateDown = regionMap[index1D + width];
+                    int stateLeft = regionMap[index1D - 1];
+                    int stateRight = regionMap[index1D + 1];
+
+                    bool isBorder =
+                        (stateUp != currentState) ||
+                        (stateDown != currentState) ||
+                        (stateLeft != currentState) ||
+                        (stateRight != currentState);
+
+                    if (isBorder)
+                    {
+                        int byteIndex = index1D * 4;
+                        borderPixels[byteIndex] = 0;       // Blue
+                        borderPixels[byteIndex + 1] = 0;   // Green
+                        borderPixels[byteIndex + 2] = 0;   // Red
+                        borderPixels[byteIndex + 3] = 255; // Alpha
+                    }
+                }
+            }
+
+            WriteableBitmap bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgra32, null);
+            bitmap.WritePixels(new Int32Rect(0, 0, width, height), borderPixels, stride, 0);
             bitmap.Freeze();
 
             ImageBrush brush = new ImageBrush(bitmap);

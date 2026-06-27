@@ -23,6 +23,7 @@ namespace MapGame.Core.Engine
             var AreasMapRead = MapDataLoader.LoadAreasFromColorMap("Assets/Map/Areas.bmp");
             Map.AreaPixels = AreasMapRead.Pixels;
             Map.Areas = AreasMapRead.Areas;
+            MapDataLoader.ReadJSONMapData();
         }
     }
 }

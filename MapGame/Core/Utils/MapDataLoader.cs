@@ -1,9 +1,11 @@
-﻿using System;
+﻿using MapGame.Core.Constants;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Text.Json;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using MapGame.Core.Constants;
 
 namespace MapGame.Core.Utils
 {
@@ -111,6 +113,52 @@ namespace MapGame.Core.Utils
             }
             System.Diagnostics.Debug.WriteLine($"Wczytano {areasDict.Count} unikalnych Areas.");
             return (areasDict, pixels);
+        }
+
+        public static void ReadJSONMapData()
+        {
+            string jsonPath = "Assets/Config/mapData.json";
+
+            if (!File.Exists(jsonPath))
+            {
+                System.Diagnostics.Debug.WriteLine($"BŁĄD: Nie znaleziono pliku konfiguracyjnego w {jsonPath}");
+                return;
+            }
+
+            string jsonContent = File.ReadAllText(jsonPath);
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            MapJSONData config = JsonSerializer.Deserialize<MapJSONData>(jsonContent, options);
+
+            if (config?.Regions == null) return;
+
+            foreach (var region in config.Regions)
+            {
+                if (region.Areas == null) continue;
+                Region mapRegion = new Region(region.RegionId);
+                Map.Regions.Add(mapRegion);
+
+                foreach (var areaDef in region.Areas)
+                {
+                    Color targetColor = areaDef.GetColor();
+
+                    if (Map.Areas.ContainsKey(targetColor))
+                    {
+                        PixelArea actualArea = Map.Areas[targetColor];
+                        actualArea.Name = areaDef.Name;
+                        actualArea.parentRegionId = region.RegionId;
+                        Map.Regions.Last().Add(actualArea);
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine($"OSTRZEŻENIE: Kolor {targetColor} zdefiniowany w JSON nie istnieje na mapie rastrowej!");
+                    }
+                }
+            }
         }
     }
 }
