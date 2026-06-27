@@ -211,8 +211,8 @@
         {
           "Name": "Semigalia",
           "R": 38,
-          "B": 128,
-          "G": 0
+          "G": 128,
+          "B": 0
         },
         {
           "Name": "Łatgalia",
@@ -395,7 +395,58 @@
       "Name": "Sieradz",
       "Areas": [
         {
-          "Name": 
+          "Name": "Częstochowa",
+          "R": 255,
+          "G": 143,
+          "B": 116
+        }
+      ]
+    },
+    {
+      "RegionId": 23,
+      "Name": "Mazowsze",
+      "Areas": [
+        {
+          "Name": "Warszawa",
+          "R": 255,
+          "G": 62,
+          "B": 43
+        }
+      ]
+    },
+    {
+      "RegionId": 24,
+      "Name": "Pomorze Polskie",
+      "Areas": [
+        {
+          "Name": "Gdynia",
+          "R": 255,
+          "G": 99,
+          "B": 43
+        }
+      ]
+    },
+    {
+      "RegionId": 25,
+      "Name": "Białoruś",
+      "Areas": [
+        {
+          "Name": "Mińsk",
+          "R": 255,
+          "G": 205,
+          "B": 174
+        },
+        {
+          "Name": "Połock",
+          "R": 255,
+          "G": 143,
+          "B": 174
+        },
+        {
+          "Name": "Mohylew",
+          "R": 255,
+          "G": 143,
+          "B": 62
         }
       ]
     }

@@ -81,11 +81,18 @@ namespace MapGame.Core.Utils
 
         public static (Dictionary<Color, PixelArea> Areas, byte[] Pixels) LoadAreasFromColorMap(string imagePath)
         {
-            BitmapImage colorMap = new BitmapImage(new Uri(imagePath, UriKind.Relative));
+            BitmapImage colorMap = new BitmapImage();
+            colorMap.BeginInit();
+            colorMap.UriSource = new Uri(imagePath, UriKind.Relative);
+            colorMap.CreateOptions = BitmapCreateOptions.IgnoreColorProfile;
+            colorMap.EndInit();
+
+            FormatConvertedBitmap convertedBitmap = new FormatConvertedBitmap(colorMap, PixelFormats.Bgra32, null, 0);
 
             int stride = Map.Width * 4;
-            byte[] pixels = new byte[Map.Width * stride];
-            colorMap.CopyPixels(pixels, stride, 0);
+
+            byte[] pixels = new byte[Map.Height * stride];
+            convertedBitmap.CopyPixels(pixels, stride, 0);
 
             Dictionary<Color, PixelArea> areasDict = new Dictionary<Color, PixelArea>();
 
@@ -111,14 +118,16 @@ namespace MapGame.Core.Utils
                     areasDict[pixelColor].AddPixel(x, y);
                 }
             }
+
             System.Diagnostics.Debug.WriteLine($"Wczytano {areasDict.Count} unikalnych Areas.");
             return (areasDict, pixels);
         }
 
         public static void ReadJSONMapData()
         {
-            string jsonPath = "Assets/Config/mapData.json";
 
+            Uri fileUri = new Uri("Assets/Map/mapData.json", UriKind.Relative);
+            string jsonPath = fileUri.ToString();
             if (!File.Exists(jsonPath))
             {
                 System.Diagnostics.Debug.WriteLine($"BŁĄD: Nie znaleziono pliku konfiguracyjnego w {jsonPath}");
@@ -146,12 +155,11 @@ namespace MapGame.Core.Utils
                 {
                     Color targetColor = areaDef.GetColor();
 
-                    if (Map.Areas.ContainsKey(targetColor))
+                    if (Map.Areas.TryGetValue(targetColor, out PixelArea? actualArea))
                     {
-                        PixelArea actualArea = Map.Areas[targetColor];
                         actualArea.Name = areaDef.Name;
                         actualArea.parentRegionId = region.RegionId;
-                        Map.Regions.Last().Add(actualArea);
+                        mapRegion.Add(actualArea);
                     }
                     else
                     {

@@ -14,6 +14,7 @@
     <None Remove="Assets\Map\Contour.png" />
     <None Remove="Assets\Map\Heightmap.png" />
     <None Remove="Assets\Map\Heightmap_Fullres.png" />
+    <None Remove="Assets\Map\mapData.json" />
     <None Remove="Contour.png" />
     <None Remove="Heightmap.png" />
   </ItemGroup>
@@ -29,6 +30,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Map\Heightmap.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Map\mapData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

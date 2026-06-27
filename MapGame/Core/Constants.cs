@@ -26,7 +26,7 @@ namespace MapGame.Core.Constants
         public static Dictionary<Color, PixelArea> Areas;
         public static byte[] AreaPixels;
 
-        public static List<Region> Regions;
+        public static List<Region> Regions = new List<Region>();
 
         //public static Position Pos1 = new Position(3180, 966), Pos2 = new Position(3167, 1000), Pos3 = new Position(3186, 1002);
         //public static Position[] posList = {Pos1,Pos2,Pos3 };

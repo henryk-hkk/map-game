@@ -203,11 +203,18 @@ namespace MapGame.Core.Engine
 
                 if (Map.Areas.TryGetValue(c, out PixelArea area))
                 {
-                    regionMap[i] = (int)area.parentRegionId;
+                    if (area.parentRegionId.HasValue)
+                    {
+                        regionMap[i] = (int)area.parentRegionId;
+                    }
+                    else
+                    {
+                        regionMap[i] = -Math.Abs(c.GetHashCode());
+                    }
                 }
                 else
                 {
-                    regionMap[i] = -2; // Nieznany obszar (np. błąd w pliku JSON lub zapomniany kolor)
+                    regionMap[i] = -2;
                 }
             }
 
