@@ -59,6 +59,7 @@ namespace MapGame.MVVM.ViewModels
             _camera.WASD(deltaTime);
             _camera.Update();
             OnPropertyChanged(nameof(CameraPosition));
+            OnPropertyChanged(nameof(CameraLookDirection));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

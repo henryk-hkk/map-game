@@ -109,7 +109,7 @@ namespace MapGame.Core.Utils
                     areasDict[pixelColor].AddPixel(x, y);
                 }
             }
-            System.Diagnostics.Debug.WriteLine($"Sukces! Wczytano dokładnie {areasDict.Count} unikalnych regionów (Areas).");
+            System.Diagnostics.Debug.WriteLine($"Wczytano {areasDict.Count} unikalnych Areas.");
             return (areasDict, pixels);
         }
     }

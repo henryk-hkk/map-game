@@ -78,7 +78,7 @@ namespace MapGame.Core.Engine
 
             MaterialGroup materialGroup = new MaterialGroup();
 
-            BitmapImage baseTexture = Map.TextureMap;
+            BitmapImage baseTexture = Map.TextureMap; //Map.TextureMap is not null, this function is called after the game engine does its thing and loads the maps.
             materialGroup.Children.Add(new DiffuseMaterial(new ImageBrush(baseTexture)));
 
             //DiffuseMaterial bordersMaterial = GenerateBordersMaterial(Map.Gdansk, width, height);
@@ -103,7 +103,6 @@ namespace MapGame.Core.Engine
                 StreamGeometry geometry = new StreamGeometry();
                 using (StreamGeometryContext ctx = geometry.Open())
                 {
-                    // Zaczynamy w pierwszym punkcie (X, Y)
                     Point startPoint = new Point(area.Vertices[0].X * _scale, area.Vertices[0].Y * _scale);
                     ctx.BeginFigure(startPoint, isFilled: false, isClosed: true);
 
@@ -124,7 +123,6 @@ namespace MapGame.Core.Engine
 
             RenderOptions.SetBitmapScalingMode(bordersBrush, BitmapScalingMode.NearestNeighbor);
             bordersBrush.Freeze();
-            // Zwracamy to jako gotowy materiał 3D
             return new DiffuseMaterial(new ImageBrush(rtb));
         }
 
@@ -140,21 +138,19 @@ namespace MapGame.Core.Engine
                 {
                     int index = (y * stride) + (x * 4);
 
-                    // Ignorujemy wodę/tło (zakładam czysty czarny R:0 G:0 B:0)
-                    if (colorPixels[index] == 0 && colorPixels[index + 1] == 0 && colorPixels[index + 2] == 0)
+                    if (colorPixels[index] == 0 && colorPixels[index + 1] == 0 && colorPixels[index + 2] == 0) // Ignore #000 (Water)
                         continue;
 
                     byte b = colorPixels[index];
                     byte g = colorPixels[index + 1];
                     byte r = colorPixels[index + 2];
 
-                    // Wyliczamy adresy w pamięci dla wszystkich 4 kierunków
                     int indexUp = index - stride;
                     int indexDown = index + stride;
                     int indexLeft = index - 4;
                     int indexRight = index + 4;
 
-                    // Krawędź istnieje, jeśli JAKIKOLWIEK z 4 sąsiadów ma inny kolor
+                    // Is a border if any of the surrounding pixels has a different color.
                     bool isBorder =
                         (colorPixels[indexUp] != b || colorPixels[indexUp + 1] != g || colorPixels[indexUp + 2] != r) ||
                         (colorPixels[indexDown] != b || colorPixels[indexDown + 1] != g || colorPixels[indexDown + 2] != r) ||
@@ -165,7 +161,7 @@ namespace MapGame.Core.Engine
                     {
                         borderPixels[index] = 0;       // Blue
                         borderPixels[index + 1] = 0;   // Green
-                        borderPixels[index + 2] = 255; // Red (Czerwona granica)
+                        borderPixels[index + 2] = 255; // Red
                         borderPixels[index + 3] = 255; // Alpha
                     }
                 }

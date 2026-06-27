@@ -11,7 +11,6 @@
   <ItemGroup>
     <None Remove="Assets\Map\Areas.bmp" />
     <None Remove="Assets\Map\Colored.png" />
-    <None Remove="Assets\Map\Colored_Fullres.png" />
     <None Remove="Assets\Map\Contour.png" />
     <None Remove="Assets\Map\Heightmap.png" />
     <None Remove="Assets\Map\Heightmap_Fullres.png" />
@@ -26,16 +25,10 @@
     <Content Include="Assets\Map\Colored.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Map\Colored_Fullres.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Map\Contour.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Map\Heightmap.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Map\Heightmap_Fullres.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
