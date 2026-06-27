@@ -449,6 +449,54 @@
           "B": 62
         }
       ]
+    },
+    {
+      "RegionId": 26,
+      "Name": "Rumunia",
+      "Areas": [
+        {
+          "Name": "Bukareszt",
+          "R": 255,
+          "G": 174,
+          "B": 55
+        },
+        {
+          "Name": "North Bucovina",
+          "R": 255,
+          "G": 221,
+          "B": 173
+        },
+        {
+          "Name": "North Dobrudja",
+          "R": 128,
+          "G": 174,
+          "B": 55
+        },
+        {
+          "Name": "Moldova",
+          "R": 255,
+          "G": 151,
+          "B": 255
+        },
+        {
+          "Name": "Budzhak",
+          "R": 89,
+          "G": 132,
+          "B": 167
+        }
+      ]
+    },
+    {
+      "RegionId": 27,
+      "Name": "Moldovan ASSR",
+      "Areas": [
+        {
+          "Name": "Transnistria",
+          "R": 255,
+          "G": 24,
+          "B": 255
+        }
+      ]
     }
   ]
 }

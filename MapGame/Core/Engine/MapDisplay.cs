@@ -18,6 +18,21 @@ namespace MapGame.Core.Engine
         private const double _heightScale = 0.3;
         private const byte _seaLevel = 143;
         private const int _landPixelHeightOffset = 0;
+
+        private static void ColorPixel(ref byte[] pixels, int pixelIndex, Color color)
+        {
+            byte blue = color.B, green = color.G, red = color.R, alpha = color.A;
+            ColorPixel(ref pixels, pixelIndex, blue, green, red, alpha);
+        }
+
+        private static void ColorPixel(ref byte[] pixels, int pixelIndex, byte blue, byte green, byte red, byte alpha)
+        {
+            pixels[pixelIndex] = blue;
+            pixels[pixelIndex + 1] = green;
+            pixels[pixelIndex + 2] = red;
+            pixels[pixelIndex + 3] = alpha;
+        }
+
         public static GeometryModel3D GenerateTerrainMesh(byte[] heightmap, int width, int height)
         {
             MeshGeometry3D mesh = new MeshGeometry3D();
@@ -81,11 +96,7 @@ namespace MapGame.Core.Engine
             BitmapImage baseTexture = Map.TextureMap; //Map.TextureMap is not null, this function is called after the game engine does its thing and loads the maps.
             materialGroup.Children.Add(new DiffuseMaterial(new ImageBrush(baseTexture)));
 
-            //DiffuseMaterial bordersMaterial = GenerateBordersMaterial(Map.Gdansk, width, height);
-            //materialGroup.Children.Add(bordersMaterial);
-
-            //DiffuseMaterial bordersMaterial = GenerateBordersFromColorMap(Map.AreaPixels);
-            DiffuseMaterial bordersMaterial = GenerateStateBorders();
+            DiffuseMaterial bordersMaterial = GenerateRegionBorders();
             materialGroup.Children.Add(bordersMaterial);
 
             model.Material = materialGroup;
@@ -93,8 +104,9 @@ namespace MapGame.Core.Engine
             return model;
         }
 
-        private static DiffuseMaterial GenerateBordersMaterial(PolygonArea area, int mapWidth, int mapHeight)
+        private static DiffuseMaterial GenerateAreaBorder(PolygonArea area)
         {
+            var (width, height, stride) = MapUtils.GetBitmapParams();
             DrawingVisual visual = new DrawingVisual();
 
             using (DrawingContext dc = visual.RenderOpen())
@@ -116,7 +128,7 @@ namespace MapGame.Core.Engine
                 dc.DrawGeometry(null, borderPen, geometry);
             }
 
-            RenderTargetBitmap rtb = new RenderTargetBitmap(mapWidth * _scale, mapHeight * _scale, 96, 96, PixelFormats.Pbgra32);
+            RenderTargetBitmap rtb = new RenderTargetBitmap(width * _scale, height * _scale, 96, 96, PixelFormats.Pbgra32);
             rtb.Render(visual);
             rtb.Freeze();
 
@@ -127,24 +139,24 @@ namespace MapGame.Core.Engine
             return new DiffuseMaterial(new ImageBrush(rtb));
         }
 
-        public static DiffuseMaterial GenerateBordersFromColorMap(byte[] colorPixels)
+        private static DiffuseMaterial GenerateAreaBorders()
         {
-            int stride = Map.Width * 4;
+            var (width, height, stride) = MapUtils.GetBitmapParams();
 
-            byte[] borderPixels = new byte[Map.Height * stride];
+            byte[] borderPixels = new byte[height * stride];
 
-            for (int y = 1; y < Map.Height - 1; y++)
+            for (int y = 1; y < height - 1; y++)
             {
-                for (int x = 1; x < Map.Width - 1; x++)
+                for (int x = 1; x < width - 1; x++)
                 {
                     int index = (y * stride) + (x * 4);
 
-                    if (colorPixels[index] == 0 && colorPixels[index + 1] == 0 && colorPixels[index + 2] == 0) // Ignore #000 (Water)
+                    if (Map.AreaPixels[index] == 0 && Map.AreaPixels[index + 1] == 0 && Map.AreaPixels[index + 2] == 0) // Ignore #000 (Water)
                         continue;
 
-                    byte b = colorPixels[index];
-                    byte g = colorPixels[index + 1];
-                    byte r = colorPixels[index + 2];
+                    byte b = Map.AreaPixels[index];
+                    byte g = Map.AreaPixels[index + 1];
+                    byte r = Map.AreaPixels[index + 2];
 
                     int indexUp = index - stride;
                     int indexDown = index + stride;
@@ -153,17 +165,14 @@ namespace MapGame.Core.Engine
 
                     // Is a border if any of the surrounding pixels has a different color.
                     bool isBorder =
-                        (colorPixels[indexUp] != b || colorPixels[indexUp + 1] != g || colorPixels[indexUp + 2] != r) ||
-                        (colorPixels[indexDown] != b || colorPixels[indexDown + 1] != g || colorPixels[indexDown + 2] != r) ||
-                        (colorPixels[indexLeft] != b || colorPixels[indexLeft + 1] != g || colorPixels[indexLeft + 2] != r) ||
-                        (colorPixels[indexRight] != b || colorPixels[indexRight + 1] != g || colorPixels[indexRight + 2] != r);
+                        (Map.AreaPixels[indexUp] != b || Map.AreaPixels[indexUp + 1] != g || Map.AreaPixels[indexUp + 2] != r) ||
+                        (Map.AreaPixels[indexDown] != b || Map.AreaPixels[indexDown + 1] != g || Map.AreaPixels[indexDown + 2] != r) ||
+                        (Map.AreaPixels[indexLeft] != b || Map.AreaPixels[indexLeft + 1] != g || Map.AreaPixels[indexLeft + 2] != r) ||
+                        (Map.AreaPixels[indexRight] != b || Map.AreaPixels[indexRight + 1] != g || Map.AreaPixels[indexRight + 2] != r);
 
                     if (isBorder)
                     {
-                        borderPixels[index] = 0;       // Blue
-                        borderPixels[index + 1] = 0;   // Green
-                        borderPixels[index + 2] = 255; // Red
-                        borderPixels[index + 3] = 255; // Alpha
+                        ColorPixel(ref borderPixels, index, 0, 0, 255, 255);
                     }
                 }
             }
@@ -179,78 +188,13 @@ namespace MapGame.Core.Engine
 
             return new DiffuseMaterial(brush);
         }
-        public static DiffuseMaterial GenerateStateBorders()
+        private static DiffuseMaterial GenerateRegionBorders()
         {
-            int width = Map.Width;
-            int height = Map.Height;
-            int stride = width * 4;
+            var (width, height, stride) = MapUtils.GetBitmapParams();
             int totalPixels = width * height;
 
-            int[] regionMap = new int[totalPixels];
-
-            for (int i = 0; i < totalPixels; i++)
-            {
-                int byteIndex = i * 4;
-
-                // Jeśli to czarna woda, oznaczamy ją jako StateID = -1
-                if (Map.AreaPixels[byteIndex] == 0 && Map.AreaPixels[byteIndex + 1] == 0 && Map.AreaPixels[byteIndex + 2] == 0)
-                {
-                    regionMap[i] = -1;
-                    continue;
-                }
-
-                Color c = Color.FromRgb(Map.AreaPixels[byteIndex + 2], Map.AreaPixels[byteIndex + 1], Map.AreaPixels[byteIndex]);
-
-                if (Map.Areas.TryGetValue(c, out PixelArea area))
-                {
-                    if (area.parentRegionId.HasValue)
-                    {
-                        regionMap[i] = (int)area.parentRegionId;
-                    }
-                    else
-                    {
-                        regionMap[i] = -Math.Abs(c.GetHashCode());
-                    }
-                }
-                else
-                {
-                    regionMap[i] = -2;
-                }
-            }
-
-            byte[] borderPixels = new byte[height * stride];
-
-            for (int y = 1; y < height - 1; y++)
-            {
-                for (int x = 1; x < width - 1; x++)
-                {
-                    int index1D = (y * width) + x;
-                    int currentState = regionMap[index1D];
-
-                    // Ignorujemy wodę przy sprawdzaniu bycia krawędzią od środka
-                    if (currentState == -1) continue;
-
-                    int stateUp = regionMap[index1D - width];
-                    int stateDown = regionMap[index1D + width];
-                    int stateLeft = regionMap[index1D - 1];
-                    int stateRight = regionMap[index1D + 1];
-
-                    bool isBorder =
-                        (stateUp != currentState) ||
-                        (stateDown != currentState) ||
-                        (stateLeft != currentState) ||
-                        (stateRight != currentState);
-
-                    if (isBorder)
-                    {
-                        int byteIndex = index1D * 4;
-                        borderPixels[byteIndex] = 0;       // Blue
-                        borderPixels[byteIndex + 1] = 0;   // Green
-                        borderPixels[byteIndex + 2] = 0;   // Red
-                        borderPixels[byteIndex + 3] = 255; // Alpha
-                    }
-                }
-            }
+            var regionMap = MapUtils.GetRegionMap(width, height);
+            var borderPixels = GetRegionBorderPixels(regionMap, width, height, stride);
 
             WriteableBitmap bitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgra32, null);
             bitmap.WritePixels(new Int32Rect(0, 0, width, height), borderPixels, stride, 0);
@@ -261,6 +205,42 @@ namespace MapGame.Core.Engine
             brush.Freeze();
 
             return new DiffuseMaterial(brush);
+        }
+
+        private static byte[] GetRegionBorderPixels(int[] regionMap, int width, int height, int stride)
+        {
+            byte[] borderPixels = new byte[height * stride];
+
+            for (int y = 1; y < height - 1; y++)
+            {
+                for (int x = 1; x < width - 1; x++)
+                {
+                    int index1D = (y * width) + x;
+                    int currentRegion = regionMap[index1D];
+
+                    // Ignorujemy wodę przy sprawdzaniu bycia krawędzią od środka
+                    if (currentRegion == -1) continue;
+
+                    int regionUp = regionMap[index1D - width];
+                    int regionDown = regionMap[index1D + width];
+                    int regionLeft = regionMap[index1D - 1];
+                    int regionRight = regionMap[index1D + 1];
+
+                    bool isBorder =
+                        (regionUp != currentRegion)
+                        || (regionDown != currentRegion)
+                        || (regionLeft != currentRegion)
+                        || (regionRight != currentRegion);
+
+                    if (isBorder)
+                    {
+                        int byteIndex = index1D * 4;
+                        ColorPixel(ref borderPixels, byteIndex, 0, 0, 0, 255);
+                    }
+                }
+            }
+
+            return borderPixels;
         }
     }
 }
