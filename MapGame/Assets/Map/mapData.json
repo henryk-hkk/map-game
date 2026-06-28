@@ -47,7 +47,7 @@
           "B": 0
         },
         {
-          "Name": "Kraków",
+          "Name": "Sącz",
           "R": 255,
           "G": 0,
           "B": 0
@@ -57,6 +57,18 @@
           "R": 112,
           "G": 119,
           "B": 160
+        },
+        {
+          "Name": "Kraków",
+          "R": 201,
+          "G": 70,
+          "B": 74
+        },
+        {
+          "Name": "Chrzanów",
+          "R": 89,
+          "G": 0,
+          "B": 0
         }
       ]
     },
@@ -93,6 +105,12 @@
           "R": 0,
           "G": 38,
           "B": 255
+        },
+        {
+          "Name": "Transcarpathia",
+          "R": 43,
+          "G": 43,
+          "B": 89
         }
       ]
     },
@@ -211,7 +229,7 @@
         {
           "Name": "Semigalia",
           "R": 38,
-          "G": 128,
+          "G": 127,
           "B": 0
         },
         {
@@ -236,25 +254,19 @@
     },
     {
       "RegionId": 15,
-      "Name": "Białostockie",
+      "Name": "Podlasie",
       "Areas": [
         {
-          "Name": "Suwałki",
-          "R": 88,
-          "G": 0,
-          "B": 130
-        },
-        {
-          "Name": "Augustów",
-          "R": 175,
-          "G": 78,
-          "B": 224
-        },
-        {
           "Name": "Białystok",
-          "R": 52,
-          "G": 99,
-          "B": 99
+          "R": 85,
+          "G": 170,
+          "B": 155
+        },
+        {
+          "Name": "Biała Podlaska",
+          "R": 28,
+          "G": 109,
+          "B": 43
         }
       ]
     },
@@ -281,7 +293,7 @@
           "B": 178
         },
         {
-          "Name": "Druskieniki",
+          "Name": "Ejszyszki",
           "R": 107,
           "G": 89,
           "B": 0
@@ -291,6 +303,48 @@
           "R": 173,
           "G": 102,
           "B": 102
+        },
+        {
+          "Name": "Sokółka",
+          "R": 52,
+          "G": 99,
+          "B": 99
+        },
+        {
+          "Name": "Nowogródek",
+          "R": 120,
+          "G": 151,
+          "B": 136
+        },
+        {
+          "Name": "Wołkowysk",
+          "R": 113,
+          "G": 217,
+          "B": 180
+        },
+        {
+          "Name": "Alekszyce",
+          "R": 101,
+          "G": 128,
+          "B": 170
+        },
+        {
+          "Name": "Świsłocz",
+          "R": 140,
+          "G": 66,
+          "B": 140
+        },
+        {
+          "Name": "Wysokie Litewskie",
+          "R": 205,
+          "G": 99,
+          "B": 99
+        },
+        {
+          "Name": "Druskieniki",
+          "R": 35,
+          "G": 132,
+          "B": 128
         }
       ]
     },
@@ -313,14 +367,20 @@
         {
           "Name": "Dukszty",
           "R": 107,
-          "B": 101,
-          "G": 76
+          "G": 101,
+          "B": 76
         },
         {
           "Name": "Brasław",
           "R": 112,
           "G": 25,
           "B": 25
+        },
+        {
+          "Name": "Marcinkańce",
+          "R": 163,
+          "G": 120,
+          "B": 155
         }
       ]
     },
@@ -329,10 +389,40 @@
       "Name": "Polesie",
       "Areas": [
         {
-          "Name": "Wilejka",
-          "R": 211,
-          "G": 179,
-          "B": 179
+          "Name": "Brześć",
+          "R": 143,
+          "G": 136,
+          "B": 58
+        },
+        {
+          "Name": "Pińsk",
+          "R": 35,
+          "G": 70,
+          "B": 132
+        },
+        {
+          "Name": "Kowel",
+          "R": 147,
+          "G": 132,
+          "B": 186
+        },
+        {
+          "Name": "Pohost Zarzeczny",
+          "R": 151,
+          "G": 120,
+          "B": 66
+        },
+        {
+          "Name": "Prużana",
+          "R": 101,
+          "G": 93,
+          "B": 128
+        },
+        {
+          "Name": "Bereza Kartuska",
+          "R": 116,
+          "G": 151,
+          "B": 113
         }
       ]
     },
@@ -350,7 +440,7 @@
     },
     {
       "RegionId": 20,
-      "Name": "Galicja",
+      "Name": "Małopolska Wschodnia",
       "Areas": [
         {
           "Name": "Rzeszów",
@@ -387,6 +477,12 @@
           "R": 116,
           "G": 224,
           "B": 172
+        },
+        {
+          "Name": "Lublin",
+          "R": 232,
+          "G": 82,
+          "B": 132
         }
       ]
     },
@@ -399,6 +495,24 @@
           "R": 255,
           "G": 143,
           "B": 116
+        },
+        {
+          "Name": "Piotrków",
+          "R": 255,
+          "G": 62,
+          "B": 43
+        },
+        {
+          "Name": "Łódź",
+          "R": 113,
+          "G": 93,
+          "B": 160
+        },
+        {
+          "Name": "Kalisz",
+          "R": 143,
+          "G": 62,
+          "B": 78
         }
       ]
     },
@@ -408,9 +522,27 @@
       "Areas": [
         {
           "Name": "Warszawa",
-          "R": 255,
-          "G": 62,
-          "B": 43
+          "R": 137,
+          "G": 42,
+          "B": 69
+        },
+        {
+          "Name": "Płock",
+          "R": 198,
+          "G": 140,
+          "B": 160
+        },
+        {
+          "Name": "Inowrocław",
+          "R": 113,
+          "G": 155,
+          "B": 159
+        },
+        {
+          "Name": "Łomża",
+          "R": 120,
+          "G": 186,
+          "B": 128
         }
       ]
     },
@@ -423,6 +555,12 @@
           "R": 255,
           "G": 99,
           "B": 43
+        },
+        {
+          "Name": "Bydgoszcz",
+          "R": 109,
+          "G": 47,
+          "B": 97
         }
       ]
     },
@@ -447,6 +585,12 @@
           "R": 255,
           "G": 143,
           "B": 62
+        },
+        {
+          "Name": "Mozyrz",
+          "R": 151,
+          "G": 186,
+          "B": 101
         }
       ]
     },
@@ -483,6 +627,18 @@
           "R": 89,
           "G": 132,
           "B": 167
+        },
+        {
+          "Name": "Khotin",
+          "R": 160,
+          "G": 111,
+          "B": 174
+        },
+        {
+          "Name": "North Transylvania",
+          "R": 160,
+          "G": 124,
+          "B": 66
         }
       ]
     },
@@ -495,6 +651,120 @@
           "R": 255,
           "G": 24,
           "B": 255
+        }
+      ]
+    },
+    {
+      "RegionId": 28,
+      "Name": "Suwalszczyzna",
+      "Areas": [
+        {
+          "Name": "Suwałki",
+          "R": 88,
+          "G": 0,
+          "B": 130
+        },
+        {
+          "Name": "Augustów",
+          "R": 175,
+          "G": 78,
+          "B": 224
+        }
+      ]
+    },
+    {
+      "RegionId": 29,
+      "Name": "Wielkopolska",
+      "Areas": [
+        {
+          "Name": "Poznań",
+          "R": 221,
+          "G": 211,
+          "B": 95
+        },
+        {
+          "Name": "Kępno",
+          "R": 178,
+          "G": 205,
+          "B": 93
+        }
+      ]
+    },
+    {
+      "RegionId": 30,
+      "Name": "Świętokrzyskie",
+      "Areas": [
+        {
+          "Name": "Zawiercie",
+          "R": 163,
+          "G": 101,
+          "B": 0
+        },
+        {
+          "Name": "Kielce",
+          "R": 183,
+          "G": 88,
+          "B": 131
+        }
+      ]
+    },
+    {
+      "RegionId": 31,
+      "Name": "Grenzmark",
+      "Areas": [
+        {
+          "Name": "Meseritz",
+          "R": 182,
+          "G": 116,
+          "B": 52
+        },
+        {
+          "Name": "Schneidemüll",
+          "R": 78,
+          "G": 85,
+          "B": 140
+        },
+        {
+          "Name": "Deutsch Krone",
+          "R": 143,
+          "G": 51,
+          "B": 23
+        },
+        {
+          "Name": "Konitz",
+          "R": 124,
+          "G": 144,
+          "B": 139
+        },
+        {
+          "Name": "Lauenburg-Büttow",
+          "R": 194,
+          "G": 144,
+          "B": 139
+        }
+      ]
+    },
+    {
+      "RegionId": 32,
+      "Name": "Galicja",
+      "Areas": [
+        {
+          "Name": "Stanisławów",
+          "R": 101,
+          "G": 97,
+          "B": 120
+        }
+      ]
+    },
+    {
+      "RegionId": 33,
+      "Name": "Nowogródek",
+      "Areas": [
+        {
+          "Name": "Wilejka",
+          "R": 211,
+          "G": 179,
+          "B": 179
         }
       ]
     }
