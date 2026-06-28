@@ -6,5 +6,6 @@ namespace MapGame.MVVM.Models
 {
     public class Country
     {
+
     }
 }

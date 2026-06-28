@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MapGame.Core.Constants;
 
-namespace MapGame.Core.Utils
+namespace MapGame.Core.Utils.Geographic
 {
     public class Position
     {

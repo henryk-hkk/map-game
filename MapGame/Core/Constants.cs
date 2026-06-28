@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using MapGame.Core.Utils;
+using MapGame.Core.Utils.Geographic;
 
 namespace MapGame.Core.Constants
 {

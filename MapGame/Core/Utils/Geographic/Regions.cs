@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MapGame.MVVM.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MapGame.Core.Utils
+namespace MapGame.Core.Utils.Geographic
 {
     public class Region : List<Area>
     {
@@ -13,6 +14,7 @@ namespace MapGame.Core.Utils
         }
         public int Id { get; private set; }
         public string? Name { get; private set; }
+        Country Owner {  get; set; }
         public bool Includes(Position pos)
         {
             foreach (Area area in this)
