@@ -14,7 +14,7 @@ namespace MapGame.Core.Engine
 {
     public static class MapDisplay
     {
-        private const int _scale = 2;
+        
 
         public static GeometryModel3D GetMapDisplay(byte[] heightmap, int width, int height)
         {
@@ -25,34 +25,15 @@ namespace MapGame.Core.Engine
             BitmapImage baseTexture = Map.TextureMap; //Map.TextureMap is not null, this function is called after the game engine does its thing and loads the maps.
             materialGroup.Children.Add(new DiffuseMaterial(new ImageBrush(baseTexture)));
 
-            DiffuseMaterial bordersMaterial = GenerateRegionBorders();
-            materialGroup.Children.Add(bordersMaterial);
+            DiffuseMaterial riversMaterial = RiverTexturesGenerator.GenerateAnimatedRivers(Map.RiverMask, Map.WaterTexture);
+            materialGroup.Children.Add(riversMaterial);
 
+            DiffuseMaterial bordersMaterial = BorderTexturesGenerator.GenerateRegionBorders();
+            materialGroup.Children.Add(bordersMaterial);
+            
             model.Material = materialGroup;
 
             return model;
-        }
-
-        private static DiffuseMaterial GenerateRegionBorders()
-        {
-            var (width, height, stride) = MapUtils.GetBitmapParams();
-            var regionMap = MapUtils.GetRegionMap(width, height);
-
-            int scaledWidth = width * _scale;
-            int scaledHeight = height * _scale;
-            int scaledStride = scaledWidth * 4;
-
-            var borderPixels = SDFAgent.GetSmoothSDFBorders(regionMap, width, height, _scale);
-
-            WriteableBitmap bitmap = new WriteableBitmap(scaledWidth, scaledHeight, 96, 96, PixelFormats.Bgra32, null);
-            bitmap.WritePixels(new Int32Rect(0, 0, scaledWidth, scaledHeight), borderPixels, scaledStride, 0);
-            bitmap.Freeze();
-
-            ImageBrush brush = new ImageBrush(bitmap);
-            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.HighQuality);
-            brush.Freeze();
-
-            return new DiffuseMaterial(brush);
         }
     }
 }

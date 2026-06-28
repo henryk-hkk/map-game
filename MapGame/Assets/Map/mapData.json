@@ -2,6 +2,7 @@
   "Regions": [
     {
       "RegionId": 1,
+      "Identifier": "Danzig",
       "Name": "Gdańsk",
       "Areas": [
         {
@@ -14,6 +15,7 @@
     },
     {
       "RegionId": 2,
+      "Identifier": "PolishSilesia",
       "Name": "Polski Śląsk",
       "Areas": [
         {
@@ -38,6 +40,7 @@
     },
     {
       "RegionId": 3,
+      "Identifier": "LesserPoland",
       "Name": "Małopolska",
       "Areas": [
         {
@@ -74,6 +77,7 @@
     },
     {
       "RegionId": 4,
+      "Identifier": "Czechia",
       "Name": "Czechy",
       "Areas": [
         {
@@ -92,6 +96,7 @@
     },
     {
       "RegionId": 5,
+      "Identifier": "Slovakia",
       "Name": "Słowacja",
       "Areas": [
         {
@@ -116,6 +121,7 @@
     },
     {
       "RegionId": 6,
+      "Identifier": "UpperSilesia",
       "Name": "Górny Śląsk",
       "Areas": [
         {
@@ -134,6 +140,7 @@
     },
     {
       "RegionId": 7,
+      "Identifier": "LowerSilesia",
       "Name": "Dolny Śląsk",
       "Areas": [
         {
@@ -146,6 +153,7 @@
     },
     {
       "RegionId": 8,
+      "Identifier": "Pomerania",
       "Name": "Pomorze",
       "Areas": [
         {
@@ -158,6 +166,7 @@
     },
     {
       "RegionId": 9,
+      "Identifier": "Brandenburg",
       "Name": "Środkowe Niemcy",
       "Areas": [
         {
@@ -170,6 +179,7 @@
     },
     {
       "RegionId": 10,
+      "Identifier": "Masuria",
       "Name": "Warmia-Mazury",
       "Areas": [
         {
@@ -182,6 +192,7 @@
     },
     {
       "RegionId": 11,
+      "Identifier": "Konigsberg",
       "Name": "Królewiec",
       "Areas": [
         {
@@ -194,6 +205,7 @@
     },
     {
       "RegionId": 12,
+      "Identifier": "Lithuania",
       "Name": "Litwa",
       "Areas": [
         {
@@ -218,6 +230,7 @@
     },
     {
       "RegionId": 13,
+      "Identifier": "Latvia",
       "Name": "Łotwa",
       "Areas": [
         {
@@ -242,6 +255,7 @@
     },
     {
       "RegionId": 14,
+      "Identifier": "Estonia",
       "Name": "Estonia",
       "Areas": [
         {
@@ -254,6 +268,7 @@
     },
     {
       "RegionId": 15,
+      "Identifier": "Podlachia",
       "Name": "Podlasie",
       "Areas": [
         {
@@ -272,6 +287,7 @@
     },
     {
       "RegionId": 16,
+      "Identifier": "GrodnoRegion",
       "Name": "Grodzieńszczyzna",
       "Areas": [
         {
@@ -350,6 +366,7 @@
     },
     {
       "RegionId": 17,
+      "Identifier": "WilnoRegion",
       "Name": "Wileńszczyzna",
       "Areas": [
         {
@@ -386,6 +403,7 @@
     },
     {
       "RegionId": 18,
+      "Identifier": "Polesia",
       "Name": "Polesie",
       "Areas": [
         {
@@ -428,6 +446,7 @@
     },
     {
       "RegionId": 19,
+      "Identifier": "Volyhnia",
       "Name": "Wołyń",
       "Areas": [
         {
@@ -440,6 +459,7 @@
     },
     {
       "RegionId": 20,
+      "Identifier": "EasternLesserPoland",
       "Name": "Małopolska Wschodnia",
       "Areas": [
         {
@@ -470,6 +490,7 @@
     },
     {
       "RegionId": 21,
+      "Identifier": "LublinRegion",
       "Name": "Lubelszczyzna",
       "Areas": [
         {
@@ -488,6 +509,7 @@
     },
     {
       "RegionId": 22,
+      "Identifier": "Lodz",
       "Name": "Sieradz",
       "Areas": [
         {
@@ -518,6 +540,7 @@
     },
     {
       "RegionId": 23,
+      "Identifier": "Masovia",
       "Name": "Mazowsze",
       "Areas": [
         {
@@ -548,6 +571,7 @@
     },
     {
       "RegionId": 24,
+      "Identifier": "Pomerelia",
       "Name": "Pomorze Polskie",
       "Areas": [
         {
@@ -566,6 +590,7 @@
     },
     {
       "RegionId": 25,
+      "Identifier": "Belarus",
       "Name": "Białoruś",
       "Areas": [
         {
@@ -596,6 +621,7 @@
     },
     {
       "RegionId": 26,
+      "Identifier": "Romania",
       "Name": "Rumunia",
       "Areas": [
         {
@@ -644,6 +670,7 @@
     },
     {
       "RegionId": 27,
+      "Identifier": "Moldova",
       "Name": "Moldovan ASSR",
       "Areas": [
         {
@@ -656,6 +683,7 @@
     },
     {
       "RegionId": 28,
+      "Identifier": "SuwalkiRegion",
       "Name": "Suwalszczyzna",
       "Areas": [
         {
@@ -674,6 +702,7 @@
     },
     {
       "RegionId": 29,
+      "Identifier": "GreaterPoland",
       "Name": "Wielkopolska",
       "Areas": [
         {
@@ -692,6 +721,7 @@
     },
     {
       "RegionId": 30,
+      "Identifier": "HolyCross",
       "Name": "Świętokrzyskie",
       "Areas": [
         {
@@ -710,6 +740,7 @@
     },
     {
       "RegionId": 31,
+      "Identifier": "Grenzmark",
       "Name": "Grenzmark",
       "Areas": [
         {
@@ -746,6 +777,7 @@
     },
     {
       "RegionId": 32,
+      "Identifier": "Galicia",
       "Name": "Galicja",
       "Areas": [
         {
@@ -758,6 +790,7 @@
     },
     {
       "RegionId": 33,
+      "Identifier": "NowogrodekArea",
       "Name": "Nowogródek",
       "Areas": [
         {

@@ -22,6 +22,7 @@ namespace MapGame.Core.Utils
 
             int[] regionMap = new int[totalPixels];
 
+
             for (int i = 0; i < totalPixels; i++)
             {
                 int byteIndex = i * 4;
@@ -34,7 +35,6 @@ namespace MapGame.Core.Utils
                 }
 
                 Color c = Color.FromRgb(Map.AreaPixels[byteIndex + 2], Map.AreaPixels[byteIndex + 1], Map.AreaPixels[byteIndex]);
-
                 if (Map.Areas.TryGetValue(c, out PixelArea area))
                 {
                     if (area.parentRegionId.HasValue)

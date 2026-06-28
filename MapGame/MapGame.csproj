@@ -9,27 +9,35 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Map\Areas.bmp" />
-    <None Remove="Assets\Map\Colored.png" />
-    <None Remove="Assets\Map\Contour.png" />
-    <None Remove="Assets\Map\Heightmap.png" />
     <None Remove="Assets\Map\Heightmap_Fullres.png" />
+    <None Remove="Assets\Map\img\Areas.bmp" />
+    <None Remove="Assets\Map\img\Colored.png" />
+    <None Remove="Assets\Map\img\Heightmap.png" />
+    <None Remove="Assets\Map\img\LandMask.png" />
+    <None Remove="Assets\Map\img\RiverMask.png" />
+    <None Remove="Assets\Map\img\water.png" />
     <None Remove="Assets\Map\mapData.json" />
     <None Remove="Contour.png" />
     <None Remove="Heightmap.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Map\Areas.bmp">
+    <Content Include="Assets\Map\img\Areas.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Map\Colored.png">
+    <Content Include="Assets\Map\img\Colored.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Map\Contour.png">
+    <Content Include="Assets\Map\img\Heightmap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Map\Heightmap.png">
+    <Content Include="Assets\Map\img\LandMask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Map\img\RiverMask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Map\img\water.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Map\mapData.json">

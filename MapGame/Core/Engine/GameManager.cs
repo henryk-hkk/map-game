@@ -16,14 +16,18 @@ namespace MapGame.Core.Engine
 
         private void loadMaps()
         {
-            Map.HeightMap = MapDataLoader.LoadGrayscaleMap("Assets/Map/Heightmap.png");
+            Map.HeightMap = MapDataLoader.LoadGrayscaleMap("Assets/Map/img/Heightmap.png");
             //Map.HeightMap = MapDataLoader.LoadGrayscaleMap("Assets/Map/Heightmap_Fullres.png");
-            Map.LandMask = MapDataLoader.LoadLandMask("Assets/Map/Contour.png");
-            Map.TextureMap = MapDataLoader.LoadTextureMap("Assets/Map/Colored.png");
-            var AreasMapRead = MapDataLoader.LoadAreasFromColorMap("Assets/Map/Areas.bmp");
+            Map.LandMask = MapDataLoader.LoadMask("Assets/Map/img/LandMask.png");
+            Map.RiverMask = MapDataLoader.LoadMask("Assets/Map/img/RiverMask.png");
+            Map.TextureMap = MapDataLoader.LoadTexture("Assets/Map/img/Colored.png");
+            Map.WaterTexture = MapDataLoader.LoadTexture("Assets/Map/img/water.png");
+            var AreasMapRead = MapDataLoader.LoadAreasFromColorMap("Assets/Map/img/Areas.bmp");
             Map.AreaPixels = AreasMapRead.Pixels;
             Map.Areas = AreasMapRead.Areas;
-            MapDataLoader.ReadJSONMapData();
+            var JSONMapRead = MapDataLoader.ReadJSONMapData();
+            Map.Regions = JSONMapRead.Regions;
+            Map.RegionNames = JSONMapRead.RegionDict;
         }
     }
 }

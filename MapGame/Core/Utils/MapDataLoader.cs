@@ -12,9 +12,9 @@ namespace MapGame.Core.Utils
 {
     public static class MapDataLoader
     {
-        public static BitmapImage LoadTextureMap(string relativePath)
+        public static BitmapImage LoadTexture(string relativePath)
         {
-            Uri fileUri = new Uri("Assets/Map/Colored.png", UriKind.Relative);
+            Uri fileUri = new Uri(relativePath, UriKind.Relative);
             return new BitmapImage(fileUri);
         }
         public static byte[] LoadGrayscaleMap(string relativePath, bool validateSize = false)
@@ -46,19 +46,19 @@ namespace MapGame.Core.Utils
             return pixelData;
         }
 
-        public static bool[] LoadHeightbasedLandMask(byte[] grayscaleHeightmap)
+        public static bool[] GetGrayscaleMaskPixels(byte[] grayscaleMask)
         {
-            bool[] pixelData = new bool[grayscaleHeightmap.Length];
+            bool[] pixelData = new bool[grayscaleMask.Length];
             
-            for(int i= 0; i < grayscaleHeightmap.Length; i++)
+            for(int i= 0; i < grayscaleMask.Length; i++)
             {
-                if (grayscaleHeightmap[i] < 143) pixelData[i] = true;
+                if (grayscaleMask[i] < 128) pixelData[i] = true;
                 else pixelData[i] = false;
             }
 
             return pixelData;
         }
-        public static bool[] LoadLandMask(string relativePath)
+        public static bool[] LoadMask(string relativePath)
         {
             Uri fileUri = new Uri(relativePath, UriKind.Relative);
 
@@ -77,7 +77,7 @@ namespace MapGame.Core.Utils
 
             grayBitmap.CopyPixels(pixelData, stride, 0);
 
-            return LoadHeightbasedLandMask(pixelData);
+            return GetGrayscaleMaskPixels(pixelData);
         }
 
         public static (Dictionary<Color, PixelArea> Areas, byte[] Pixels) LoadAreasFromColorMap(string imagePath)
@@ -124,7 +124,7 @@ namespace MapGame.Core.Utils
             return (areasDict, pixels);
         }
 
-        public static void ReadJSONMapData()
+        public static (BidirectionalMap<int, string>? RegionDict, List<Region>? Regions) ReadJSONMapData()
         {
 
             Uri fileUri = new Uri("Assets/Map/mapData.json", UriKind.Relative);
@@ -132,7 +132,7 @@ namespace MapGame.Core.Utils
             if (!File.Exists(jsonPath))
             {
                 System.Diagnostics.Debug.WriteLine($"BŁĄD: Nie znaleziono pliku konfiguracyjnego w {jsonPath}");
-                return;
+                return (null, null);
             }
 
             string jsonContent = File.ReadAllText(jsonPath);
@@ -144,13 +144,18 @@ namespace MapGame.Core.Utils
 
             MapJSONData config = JsonSerializer.Deserialize<MapJSONData>(jsonContent, options);
 
-            if (config?.Regions == null) return;
+            if (config?.Regions == null) return (null, null);
+
+            BidirectionalMap<int, string> regionsDict = new();
+            List<Region> regions = [];
 
             foreach (var region in config.Regions)
             {
                 if (region.Areas == null) continue;
-                Region mapRegion = new Region(region.RegionId);
-                Map.Regions.Add(mapRegion);
+
+                Region mapRegion = new Region(region.RegionId, region.Identifier);
+                regionsDict.Add(region.RegionId, region.Identifier);
+                regions.Add(mapRegion);
 
                 foreach (var areaDef in region.Areas)
                 {
@@ -168,6 +173,7 @@ namespace MapGame.Core.Utils
                     }
                 }
             }
+            return (regionsDict , regions);
         }
     }
 }

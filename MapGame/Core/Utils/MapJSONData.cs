@@ -13,6 +13,7 @@ namespace MapGame.Core.Utils
     public class RegionData
     {
         public int RegionId { get; set; }
+        public string Identifier { get; set; }
         public string Name { get; set; }
         public List<AreaDefinition> Areas { get; set; }
     }

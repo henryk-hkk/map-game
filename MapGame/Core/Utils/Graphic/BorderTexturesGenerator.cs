@@ -6,15 +6,41 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
 
 namespace MapGame.Core.Utils.Graphic
 {
-    public static class BorderDisplayGenerator
+    public static class BorderTexturesGenerator
     {
-        public static byte[] GetRegionBorderPixels(int[] regionMap, int width, int height, int stride)
+        public static DiffuseMaterial GenerateRegionBorders(int scale = 4)
         {
+            var (width, height, stride) = MapUtils.GetBitmapParams();
+            var regionMap = MapUtils.GetRegionMap(width, height);
+
+            int scaledWidth = width * scale;
+            int scaledHeight = height * scale;
+            int scaledStride = scaledWidth * 4;
+
+            var borderPixels = SDFAgent.GetSmoothSDFBorders(regionMap, width, height, scale);
+
+            WriteableBitmap bitmap = new WriteableBitmap(scaledWidth, scaledHeight, 96, 96, PixelFormats.Bgra32, null);
+            bitmap.WritePixels(new Int32Rect(0, 0, scaledWidth, scaledHeight), borderPixels, scaledStride, 0);
+            bitmap.Freeze();
+
+            ImageBrush brush = new ImageBrush(bitmap);
+            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.HighQuality);
+            brush.Freeze();
+
+            return new DiffuseMaterial(brush);
+        }
+
+        public static byte[] GetRegionBorderPixels(int[] regionMap)
+        {
+            var (width, height, stride) = MapUtils.GetBitmapParams();
+
             byte[] borderPixels = new byte[height * stride];
 
             for (int y = 1; y < height - 1; y++)
@@ -49,8 +75,9 @@ namespace MapGame.Core.Utils.Graphic
             return borderPixels;
         }
 
-        public static byte[] GetScaledRegionBorderPixels(int[] regionMap, int width, int height, int scale)
+        public static byte[] GetScaledRegionBorderPixels(int[] regionMap, int scale)
         {
+            var (width, height, stride) = MapUtils.GetBitmapParams();
             int scaledWidth = width * scale;
             int scaledHeight = height * scale;
             int scaledStride = scaledWidth * 4;
