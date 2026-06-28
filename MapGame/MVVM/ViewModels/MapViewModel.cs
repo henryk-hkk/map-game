@@ -40,7 +40,7 @@ namespace MapGame.MVVM.ViewModels
 
         private void Initialize3DMap()
         {
-            TerrainModel = MapDisplay.GenerateTerrainMesh(Map.HeightMap, Map.Width, Map.Height);
+            TerrainModel = MapDisplay.GetMapDisplay(Map.HeightMap, Map.Width, Map.Height);
         }
 
         public void ZoomCamera(double delta)

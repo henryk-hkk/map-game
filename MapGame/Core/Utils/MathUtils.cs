@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MapGame.Core.Utils.Geographic;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
