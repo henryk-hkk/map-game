@@ -16,7 +16,6 @@
     <None Remove="Assets\Map\img\LandMask.png" />
     <None Remove="Assets\Map\img\RiverMask.png" />
     <None Remove="Assets\Map\img\water.png" />
-    <None Remove="Assets\Map\mapData.json" />
     <None Remove="Contour.png" />
     <None Remove="Heightmap.png" />
   </ItemGroup>
@@ -40,7 +39,7 @@
     <Content Include="Assets\Map\img\water.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Map\mapData.json">
+    <Content Include="Assets\Map\regionData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

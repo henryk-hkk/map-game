@@ -12,6 +12,9 @@ namespace MapGame.Core.Utils
 {
     public static class MapDataLoader
     {
+
+
+
         public static BitmapImage LoadTexture(string relativePath)
         {
             Uri fileUri = new Uri(relativePath, UriKind.Relative);
@@ -124,10 +127,10 @@ namespace MapGame.Core.Utils
             return (areasDict, pixels);
         }
 
-        public static (BidirectionalMap<int, string>? RegionDict, List<Region>? Regions) ReadJSONMapData()
+        public static (BidirectionalMap<int, string>? RegionDict, List<Region>? Regions) ReadJSONRegionData(string relativePath)
         {
 
-            Uri fileUri = new Uri("Assets/Map/mapData.json", UriKind.Relative);
+            Uri fileUri = new Uri(relativePath, UriKind.Relative);
             string jsonPath = fileUri.ToString();
             if (!File.Exists(jsonPath))
             {

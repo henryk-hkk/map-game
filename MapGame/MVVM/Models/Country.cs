@@ -5,13 +5,19 @@ using System.Text;
 using System.Windows.Media;
 using MapGame.Core.Utils.Geographic;
 
+
+
 namespace MapGame.MVVM.Models
 {
+
     public class Country
     {
-        Country(string identifier)
+        private static int DefaultCountryIdentifier = 0;
+
+        Country(string? identifier)
         {
-            Identifier = identifier;
+            if (identifier != null) Identifier = identifier;
+            else Identifier = $"Default{DefaultCountryIdentifier++}";
         }
         public List<Region> OwnedRegions { get; set; } = [];
         public string Identifier { get; private set; } = "Default"; 

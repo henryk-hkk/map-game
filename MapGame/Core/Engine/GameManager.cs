@@ -25,7 +25,7 @@ namespace MapGame.Core.Engine
             var AreasMapRead = MapDataLoader.LoadAreasFromColorMap("Assets/Map/img/Areas.bmp");
             Map.AreaPixels = AreasMapRead.Pixels;
             Map.Areas = AreasMapRead.Areas;
-            var JSONMapRead = MapDataLoader.ReadJSONMapData();
+            var JSONMapRead = MapDataLoader.ReadJSONRegionData("Assets/Map/regionData.json");
             Map.Regions = JSONMapRead.Regions;
             Map.RegionNames = JSONMapRead.RegionDict;
         }

@@ -8,7 +8,7 @@
         <local:MapViewModel />
     </Window.DataContext>
 
-    <Grid Background="Black" PreviewMouseWheel="OnMouseWheel" MouseMove="OnMouseMove">
+    <Grid Background="Black" PreviewMouseWheel="OnMouseWheel" MouseMove="OnMouseMove" MouseLeftButtonDown="OnViewportMouseDown">
         <Viewport3D x:Name="MainViewport">
             <Viewport3D.Camera>
                 <PerspectiveCamera Position="{Binding CameraPosition, Mode=OneWay}" 

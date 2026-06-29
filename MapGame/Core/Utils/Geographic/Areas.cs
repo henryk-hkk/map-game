@@ -88,6 +88,7 @@ namespace MapGame.Core.Utils.Geographic
             Pixel pixel = new Pixel(x, y);
             Pixels.Add(pixel);
         }
+        public List<BorderPixelSegment> BorderPixelSegments { get; set; } = new List<BorderPixelSegment>();
         public override bool Includes(Position pos) { return true; }
 
     }

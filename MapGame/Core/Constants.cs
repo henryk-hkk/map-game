@@ -1,11 +1,12 @@
 ﻿
+using MapGame.Core.Utils;
+using MapGame.Core.Utils.Geographic;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using MapGame.Core.Utils;
-using MapGame.Core.Utils.Geographic;
+using System.Windows.Media.Media3D;
 
 namespace MapGame.Core.Constants
 {
@@ -32,11 +33,26 @@ namespace MapGame.Core.Constants
 
         public static List<Region> Regions = new List<Region>();
         public static BidirectionalMap<int, string> RegionNames;
+        public static int[] GlobalRegionMap;
+
+        public static Dictionary<(Color, Color), BorderPixelSegment> BorderGraph;
+
+        public static byte[] BorderPixelData;
+        public static WriteableBitmap BordersBitmap;
+        public static DiffuseMaterial BordersMaterial;
+
+        public static int CurrentlySelectedRegionId = -1;
+
+        public static byte[] SelectionPixelData;
+        public static WriteableBitmap SelectionBitmap;
+        public static DiffuseMaterial SelectionMaterial;
+
+        
 
         //public static Position Pos1 = new Position(3180, 966), Pos2 = new Position(3167, 1000), Pos3 = new Position(3186, 1002);
         //public static Position[] posList = {Pos1,Pos2,Pos3 };
         //public static PolygonArea Gdansk = new PolygonArea(posList);
-        
+
     }
     
 
