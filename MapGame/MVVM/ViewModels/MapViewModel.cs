@@ -76,6 +76,13 @@ namespace MapGame.MVVM.ViewModels
             OnPropertyChanged(nameof(TerrainModel));
         }
 
+        public void DeselectRegion()
+        {
+            SelectedRegionName = "Brak wyboru";
+
+            SelectionTexturesGenerator.ClearSelection();
+        }
+
         public void AnnexSelectedArea(Color areaColor, int newRegionId)
         {
             MapDisplay.ChangeAreaOwner(areaColor, newRegionId);

@@ -1,5 +1,6 @@
 ﻿using MapGame.Core.Constants;
-using MapGame.Core.Utils;
+using MapGame.Core.Utils.JSON;
+using MapGame.Core.Utils.Geographic;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,9 +26,10 @@ namespace MapGame.Core.Engine
             var AreasMapRead = MapDataLoader.LoadAreasFromColorMap("Assets/Map/img/Areas.bmp");
             Map.AreaPixels = AreasMapRead.Pixels;
             Map.Areas = AreasMapRead.Areas;
-            var JSONMapRead = MapDataLoader.ReadJSONRegionData("Assets/Map/regionData.json");
+            var JSONMapRead = JSONLoader.ReadJSONRegionData("Assets/Databases/regionData.json");
             Map.Regions = JSONMapRead.Regions;
             Map.RegionNames = JSONMapRead.RegionDict;
+            Map.Countries = JSONLoader.ReadJSONCountryData("Assets/Databases/countryData.json");
         }
     }
 }

@@ -9,8 +9,8 @@ namespace MapGame.Core.Utils.Graphic
     public static class SDFAgent
     {
 
-        public const float BorderThickness = 0.1f;
-        public const float SmoothRadiusMultiplier = 1f;
+        public static float BorderThickness = 0.1f;
+        public static float SmoothRadiusMultiplier = 1f;
 
         public static List<(int Index, byte Alpha)> ComputeLocalSDF(
             int[] regionMap,

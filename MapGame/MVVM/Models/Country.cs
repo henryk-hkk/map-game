@@ -14,14 +14,14 @@ namespace MapGame.MVVM.Models
     {
         private static int DefaultCountryIdentifier = 0;
 
-        Country(string? identifier)
+        public Country(string? identifier)
         {
             if (identifier != null) Identifier = identifier;
             else Identifier = $"Default{DefaultCountryIdentifier++}";
         }
         public List<Region> OwnedRegions { get; set; } = [];
         public string Identifier { get; private set; } = "Default"; 
-        string? DisplayName;
-        Color? DisplayColor = Color.FromArgb(255,0,0,0);
+        public string? DisplayName;
+        public Color? DisplayColor = Color.FromArgb(255,0,0,0);
     }
 }

@@ -16,7 +16,7 @@ namespace MapGame.Core.Utils.Geographic
         public int Id { get; private set; }
         public string Identifier { get; private set; }
         public string? Name { get; private set; }
-        Country Owner { get; set; }
+        public Country Owner { get; set; }
         public bool Includes(Position pos)
         {
             foreach (Area area in this)

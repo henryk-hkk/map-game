@@ -1,6 +1,7 @@
 ﻿
 using MapGame.Core.Utils;
 using MapGame.Core.Utils.Geographic;
+using MapGame.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,13 +34,20 @@ namespace MapGame.Core.Constants
 
         public static List<Region> Regions = new List<Region>();
         public static BidirectionalMap<int, string> RegionNames;
-        public static int[] GlobalRegionMap;
+
+        public static List<Country> Countries;
 
         public static Dictionary<(Color, Color), BorderPixelSegment> BorderGraph;
 
-        public static byte[] BorderPixelData;
-        public static WriteableBitmap BordersBitmap;
-        public static DiffuseMaterial BordersMaterial;
+        public static byte[] RegionBorderPixelData;
+        public static WriteableBitmap RegionBordersBitmap;
+        public static DiffuseMaterial RegionBordersMaterial;
+        public static int[] GlobalRegionMap;
+        
+        public static byte[] CountryPixelData;
+        public static WriteableBitmap CountryBitmap;
+        public static DiffuseMaterial CountryMaterial;
+        public static int[] GlobalCountryMap;
 
         public static int CurrentlySelectedRegionId = -1;
 
@@ -47,7 +55,6 @@ namespace MapGame.Core.Constants
         public static WriteableBitmap SelectionBitmap;
         public static DiffuseMaterial SelectionMaterial;
 
-        
 
         //public static Position Pos1 = new Position(3180, 966), Pos2 = new Position(3167, 1000), Pos3 = new Position(3186, 1002);
         //public static Position[] posList = {Pos1,Pos2,Pos3 };

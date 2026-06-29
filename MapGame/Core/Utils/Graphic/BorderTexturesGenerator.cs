@@ -15,7 +15,7 @@ namespace MapGame.Core.Utils.Graphic
 {
     public static class BorderTexturesGenerator
     {
-        private const int SdfScale = 2;
+        private const int SdfScale = 4;
 
         public static void InitializeBorderRendering(Dictionary<(Color, Color), BorderPixelSegment> borderGraph)
         {
@@ -25,20 +25,20 @@ namespace MapGame.Core.Utils.Graphic
             int scaledHeight = height * SdfScale;
             int scaledStride = scaledWidth * 4;
 
-            Map.BorderPixelData = new byte[scaledHeight * scaledStride];
-            Map.BordersBitmap = new WriteableBitmap(scaledWidth, scaledHeight, 96, 96, PixelFormats.Bgra32, null);
+            Map.RegionBorderPixelData = new byte[scaledHeight * scaledStride];
+            Map.RegionBordersBitmap = new WriteableBitmap(scaledWidth, scaledHeight, 96, 96, PixelFormats.Bgra32, null);
 
             Map.GlobalRegionMap = MapUtils.GetRegionMap(width, height);
 
             Int32Rect fullMapRect = new Int32Rect(0, 0, width, height);
             RefreshDirtyRectSDF(fullMapRect);
 
-            ImageBrush brush = new ImageBrush(Map.BordersBitmap);
+            ImageBrush brush = new ImageBrush(Map.RegionBordersBitmap);
 
             RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
 
             //brush.Freeze();
-            Map.BordersMaterial = new DiffuseMaterial(brush);
+            Map.RegionBordersMaterial = new DiffuseMaterial(brush);
         }
 
         public static void UpdateBorders(IEnumerable<BorderPixelSegment> segmentsToUpdate)
@@ -99,33 +99,29 @@ namespace MapGame.Core.Utils.Graphic
                 for (int x = startX_scaled; x < endX_scaled; x++)
                 {
                     int idx = (y * scaledStride) + (x * 4);
-                    Map.BorderPixelData[idx] = 0;
-                    Map.BorderPixelData[idx + 1] = 0;
-                    Map.BorderPixelData[idx + 2] = 0;
-                    Map.BorderPixelData[idx + 3] = 0; // Alpha na 0
+                    Map.RegionBorderPixelData[idx] = 0;
+                    Map.RegionBorderPixelData[idx + 1] = 0;
+                    Map.RegionBorderPixelData[idx + 2] = 0;
+                    Map.RegionBorderPixelData[idx + 3] = 0; // Alpha na 0
                 }
             }
 
-            // 2. OBLICZENIA MATEMATYCZNE SDF (Przekazujemy nowo skonstruowany regionMap)
             var sdfPixels = SDFAgent.ComputeLocalSDF(Map.GlobalRegionMap, width, height, SdfScale, dirtyRect);
 
-            // 3. NAKŁADANIE WYNIKÓW SDF NA RAM
             foreach (var pixel in sdfPixels)
             {
                 int idx = pixel.Index;
                 byte alpha = pixel.Alpha;
 
-                // Bezpieczny zapis z nałożeniem koloru czarnego (0,0,0) i siły rozmycia
-                if (idx >= 0 && idx + 3 < Map.BorderPixelData.Length)
+                if (idx >= 0 && idx + 3 < Map.RegionBorderPixelData.Length)
                 {
-                    Map.BorderPixelData[idx] = 0;     // B
-                    Map.BorderPixelData[idx + 1] = 0; // G
-                    Map.BorderPixelData[idx + 2] = 0; // R
-                    Map.BorderPixelData[idx + 3] = alpha;
+                    Map.RegionBorderPixelData[idx] = 50;     // B
+                    Map.RegionBorderPixelData[idx + 1] = 50; // G
+                    Map.RegionBorderPixelData[idx + 2] = 50; // R
+                    Map.RegionBorderPixelData[idx + 3] = (byte)(alpha * 0.8);
                 }
             }
 
-            // 4. WYSYŁKA PAKIETU DO KARTY GRAFICZNEJ (VRAM)
             Int32Rect scaledDirtyRect = new Int32Rect(
                 startX_scaled,
                 startY_scaled,
@@ -134,7 +130,7 @@ namespace MapGame.Core.Utils.Graphic
 
             int offset = (startY_scaled * scaledStride) + (startX_scaled * 4);
 
-            Map.BordersBitmap.WritePixels(scaledDirtyRect, Map.BorderPixelData, scaledStride, offset);
+            Map.RegionBordersBitmap.WritePixels(scaledDirtyRect, Map.RegionBorderPixelData, scaledStride, offset);
         }
 
 

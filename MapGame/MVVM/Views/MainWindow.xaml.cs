@@ -103,7 +103,6 @@ namespace MapGame.MVVM.Views
                     {
                         Color clickedColor = Color.FromRgb(r, g, b);
 
-                        // ARCHITEKTURA MVVM: Przekazujemy zdarzenie do ViewModelu
                         if (this.DataContext is MapViewModel viewModel)
                         {
                             viewModel.SelectRegion(clickedColor);
@@ -113,6 +112,15 @@ namespace MapGame.MVVM.Views
                 return HitTestResultBehavior.Stop;
             }
             return HitTestResultBehavior.Continue;
+        }
+
+        private void OnViewportRightMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // ARCHITEKTURA MVVM: Przekazujemy zdarzenie odznaczenia do ViewModelu
+            if (this.DataContext is MapViewModel viewModel)
+            {
+                viewModel.DeselectRegion();
+            }
         }
     }
 }
