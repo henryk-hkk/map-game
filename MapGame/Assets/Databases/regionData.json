@@ -121,9 +121,34 @@
     },
     {
       "RegionId": 6,
-      "Identifier": "UpperSilesia",
-      "Name": "Górny Śląsk",
+      "Identifier": "Saxony",
+      "Name": "Saksonia",
       "Areas": [
+        {
+          "Name": "Dresden",
+          "R": 120,
+          "G": 163,
+          "B": 174
+        },
+        {
+          "Name": "Reichenau",
+          "R": 76,
+          "G": 155,
+          "B": 147
+        }
+      ]
+    },
+    {
+      "RegionId": 7,
+      "Identifier": "Silesia",
+      "Name": "Śląsk",
+      "Areas": [
+        {
+          "Name": "Wrocław",
+          "R": 76,
+          "G": 255,
+          "B": 0
+        },
         {
           "Name": "Gliwice",
           "R": 195,
@@ -135,19 +160,12 @@
           "R": 124,
           "G": 120,
           "B": 0
-        }
-      ]
-    },
-    {
-      "RegionId": 7,
-      "Identifier": "LowerSilesia",
-      "Name": "Dolny Śląsk",
-      "Areas": [
+        },
         {
-          "Name": "Wrocław",
+          "Name": "Hoyerswerda",
           "R": 76,
-          "G": 255,
-          "B": 0
+          "G": 78,
+          "B": 128
         }
       ]
     },
@@ -161,19 +179,31 @@
           "R": 178,
           "G": 0,
           "B": 255
+        },
+        {
+          "Name": "Stralsund",
+          "R": 116,
+          "G": 105,
+          "B": 167
         }
       ]
     },
     {
       "RegionId": 9,
       "Identifier": "Brandenburg",
-      "Name": "Środkowe Niemcy",
+      "Name": "Brandenburgia",
       "Areas": [
         {
           "Name": "Brandenburgia",
           "R": 255,
           "G": 0,
           "B": 110
+        },
+        {
+          "Name": "Küstrin-Oder",
+          "R": 147,
+          "G": 101,
+          "B": 151
         }
       ]
     },
@@ -205,64 +235,58 @@
     },
     {
       "RegionId": 12,
-      "Identifier": "Lithuania",
-      "Name": "Litwa",
+      "Identifier": "Aukstaitija",
+      "Name": "Auksztota",
       "Areas": [
-        {
-          "Name": "Kłajpeda",
-          "R": 127,
-          "G": 106,
-          "B": 0
-        },
         {
           "Name": "Auksztota",
           "R": 255,
           "G": 216,
           "B": 0
-        },
-        {
-          "Name": "Jaćwież",
-          "R": 255,
-          "G": 35,
-          "B": 163
         }
       ]
     },
     {
       "RegionId": 13,
-      "Identifier": "Latvia",
-      "Name": "Łotwa",
+      "Identifier": "Zemaitija",
+      "Name": "Żmudź",
       "Areas": [
         {
-          "Name": "Kurlandia",
-          "R": 87,
-          "G": 0,
-          "B": 127
+          "Name": "Żmudź",
+          "R": 205,
+          "G": 170,
+          "B": 147
         },
         {
-          "Name": "Semigalia",
-          "R": 38,
-          "G": 127,
-          "B": 0
-        },
-        {
-          "Name": "Łatgalia",
-          "R": 16,
-          "G": 53,
+          "Name": "Kłajpeda",
+          "R": 127,
+          "G": 106,
           "B": 0
         }
       ]
     },
     {
       "RegionId": 14,
-      "Identifier": "Estonia",
-      "Name": "Estonia",
+      "Identifier": "Dzukija",
+      "Name": "Dajnawa",
       "Areas": [
         {
-          "Name": "Talinn",
-          "R": 0,
-          "G": 255,
-          "B": 255
+          "Name": "Jaćwież",
+          "R": 255,
+          "G": 35,
+          "B": 163
+        },
+        {
+          "Name": "Olita",
+          "R": 255,
+          "G": 120,
+          "B": 163
+        },
+        {
+          "Name": "Dzukia",
+          "R": 205,
+          "G": 167,
+          "B": 0
         }
       ]
     },
@@ -757,8 +781,8 @@
     },
     {
       "RegionId": 30,
-      "Identifier": "Grenzmark",
-      "Name": "Grenzmark",
+      "Identifier": "Ostmark",
+      "Name": "Ostmark",
       "Areas": [
         {
           "Name": "Meseritz",
@@ -789,6 +813,24 @@
           "R": 194,
           "G": 144,
           "B": 139
+        },
+        {
+          "Name": "Lubusch",
+          "R": 57,
+          "G": 50,
+          "B": 255
+        },
+        {
+          "Name": "Cottbus",
+          "R": 145,
+          "G": 255,
+          "B": 158
+        },
+        {
+          "Name": "Angermünde",
+          "R": 39,
+          "G": 140,
+          "B": 74
         }
       ]
     },
@@ -815,6 +857,57 @@
           "R": 211,
           "G": 179,
           "B": 179
+        }
+      ]
+    },
+    {
+      "RegionId": 33,
+      "Identifier": "Latvia",
+      "Name": "Łotwa",
+      "Areas": [
+        {
+          "Name": "Kurlandia",
+          "R": 87,
+          "G": 0,
+          "B": 127
+        },
+        {
+          "Name": "Semigalia",
+          "R": 38,
+          "G": 127,
+          "B": 0
+        },
+        {
+          "Name": "Łatgalia",
+          "R": 16,
+          "G": 53,
+          "B": 0
+        }
+      ]
+    },
+    {
+      "RegionId": 34,
+      "Identifier": "Estonia",
+      "Name": "Estonia",
+      "Areas": [
+        {
+          "Name": "Talinn",
+          "R": 0,
+          "G": 255,
+          "B": 255
+        }
+      ]
+    },
+    {
+      "RegionId": 35,
+      "Identifier": "Halle",
+      "Name": "Halle-Merseburg",
+      "Areas": [
+        {
+          "Name": "Halle-Merseburg",
+          "R": 255,
+          "G": 214,
+          "B": 165
         }
       ]
     }

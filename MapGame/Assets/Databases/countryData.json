@@ -32,7 +32,9 @@
       "G": 187,
       "B": 51,
       "OwnedRegionIds": [
-        "Lithuania"
+        "Aukstaitija",
+        "Zemaitija",
+        "Dzukija"
       ]
     },
     {
@@ -55,11 +57,12 @@
       "OwnedRegionIds": [
         "Masuria",
         "Konigsberg",
-        "Grenzmark",
-        "UpperSilesia",
-        "LowerSilesia",
+        "Ostmark",
+        "Saxony",
+        "Silesia",
         "Pomerania",
-        "Brandenburg"
+        "Brandenburg",
+        "Halle"
       ]
     },
     {
