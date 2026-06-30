@@ -38,13 +38,23 @@
       ]
     },
     {
-      "Identifier": "USSR",
-      "DisplayName": "Union of Soviet Socialist Republics",
+      "Identifier": "BSSR",
+      "DisplayName": "Belarussian SSR",
       "R": 82,
       "G": 0,
       "B": 0,
       "OwnedRegionIds": [
-        "Belarus",
+        "Belarus"
+      ]
+    },
+    {
+      "Identifier": "UkSSR",
+      "DisplayName": "Ukrainian SSR",
+      "R": 82,
+      "G": 0,
+      "B": 0,
+      "OwnedRegionIds": [
+        "WesternUkraine",
         "MoldovanASSR"
       ]
     },
@@ -56,13 +66,15 @@
       "B": 36,
       "OwnedRegionIds": [
         "Masuria",
-        "Konigsberg",
+        "EastPrussia",
         "Ostmark",
         "Saxony",
         "Silesia",
         "Pomerania",
         "Brandenburg",
-        "Halle"
+        "Halle",
+        "Mecklenburg",
+        "Berlin"
       ]
     },
     {
@@ -82,18 +94,22 @@
       "G": 64,
       "B": 166,
       "OwnedRegionIds": [
-        "Czechia",
-        "Slovakia"
+        "Bohemia",
+        "MoraviaSilesia",
+        "Slovakia",
+        "Transcarpathia"
       ]
     },
     {
       "Identifier": "LATVIA",
       "DisplayName": "Republic of Latvia",
-      "R": 67,
-      "G": 0,
-      "B": 25,
+      "R": 94,
+      "G": 50,
+      "B": 168,
       "OwnedRegionIds": [
-        "Latvia"
+        "Zemgale",
+        "Latgale",
+        "Kurzeme"
       ]
     },
     {
