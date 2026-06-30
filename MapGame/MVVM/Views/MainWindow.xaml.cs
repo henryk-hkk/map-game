@@ -10,6 +10,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MapGame.Core.Constants;
+using MapGame.Core.Utils.Geographic;
 
 namespace MapGame.MVVM.Views
 {
@@ -44,7 +46,27 @@ namespace MapGame.MVVM.Views
                 int mapX = (int)hitPoint.X;
                 int mapY = (int)hitPoint.Z;
 
-                CursorCoordsText.Text = $"X: {mapX} | Y: {mapY}";
+                Position mousePosition = new Position(hitPoint.X, hitPoint.Z);
+
+                Region? hoveredRegion = null;
+
+                foreach (Region region in Map.Regions)
+                {
+                    if (region.Includes(mousePosition))
+                    {
+                        hoveredRegion = region;
+                        break;
+                    }
+                }
+
+                if (hoveredRegion != null)
+                {
+                    CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {hoveredRegion.Id}";
+                }
+                else
+                {
+                    CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: brak";
+                }
             }
             else
             {

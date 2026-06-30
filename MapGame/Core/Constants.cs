@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MapGame.Core.Utils.Geographic;
 
+
 namespace MapGame.Core.Constants
 {
     public static class Map
