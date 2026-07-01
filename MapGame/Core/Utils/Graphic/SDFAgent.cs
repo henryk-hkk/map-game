@@ -1,76 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Media.Media3D;
 
 namespace MapGame.Core.Utils.Graphic
 {
     public static class SDFAgent
     {
-        public static byte[] GetSmoothSDFBorders(int[] regionMap, int width, int height, int scale)
+
+        public static float BorderThickness = 0.1f;
+        public static float SmoothRadiusMultiplier = 1f;
+
+        public static List<(int Index, byte Alpha)> ComputeLocalSDF(
+            int[] regionMap,
+            int mapWidth,
+            int mapHeight,
+            int scale,
+            Int32Rect updateRect)
         {
-            int scaledWidth = width * scale;
-            int scaledHeight = height * scale;
-            int totalScaledPixels = scaledWidth * scaledHeight;
+            float maxDistance = BorderThickness + (scale * SmoothRadiusMultiplier);
+            int margin = (int)Math.Ceiling(maxDistance) + scale;
 
-            float[] distances = new float[totalScaledPixels];
-            Array.Fill(distances, float.MaxValue); // At first the distance to border is maximum everywhere.
+            int startX = Math.Max(0, updateRect.X - margin);
+            int startY = Math.Max(0, updateRect.Y - margin);
+            int endX = Math.Min(mapWidth - 1, updateRect.X + updateRect.Width + margin);
+            int endY = Math.Min(mapHeight - 1, updateRect.Y + updateRect.Height + margin);
 
-            MarkBorderPixels(regionMap, distances, width, height, scale);
+            int localWidth = endX - startX;
+            int localHeight = endY - startY;
 
-            ChamferDistanceTransform(distances, width, height, scale);
+            int scaledLocalWidth = localWidth * scale;
+            int scaledLocalHeight = localHeight * scale;
+            int scaledTotal = scaledLocalWidth * scaledLocalHeight;
 
-            ApplyBlur(distances, totalScaledPixels, width, height, scale);
-            byte[] borderPixels = new byte[totalScaledPixels * 4];
+            float[] localDistances = new float[scaledTotal];
+            Array.Fill(localDistances, float.MaxValue);
 
-            ApplySmoothstep(borderPixels, distances, totalScaledPixels, scale);
+            MarkLocalBorderPixels(regionMap, localDistances, mapWidth, startX, startY, endX, endY, scale, scaledLocalWidth);
 
-            return borderPixels;
+            ChamferDistanceTransform(localDistances, scaledLocalWidth, scaledLocalHeight);
+
+            ApplyBlur(localDistances, scaledTotal, scaledLocalWidth, scaledLocalHeight, scale);
+
+            return ExtractSDFPixels(localDistances, startX, startY, mapWidth, scale, scaledLocalWidth, scaledLocalHeight);
         }
 
-            
-        private static void MarkBorderPixels(int[] regionMap, float[] distances, int width, int height, int scale)
+
+        private static void MarkLocalBorderPixels(int[] regionMap, float[] distances, int globalWidth, int startX, int startY, int endX, int endY, int scale, int scaledLocalWidth)
         { //Marks the border pixels as distance = 0
-            int scaledWidth = width * scale;
-            int scaledHeight = height * scale;
-        
-            for (int y = 0; y < height - 1; y++)
+            for (int y = startY; y < endY - 1; y++)
             {
-                for (int x = 0; x < width - 1; x++)
+                for (int x = startX; x < endX - 1; x++)
                 {
-                    int index1D = (y * width) + x;
+                    int index1D = (y * globalWidth) + x;
                     int currentRegion = regionMap[index1D];
 
-                    if (currentRegion == -1) continue; // Ignoring water
+                    if (currentRegion == -1) continue; // Woda
 
                     int rightRegion = regionMap[index1D + 1];
-                    int bottomRegion = regionMap[index1D + width];
+                    int bottomRegion = regionMap[index1D + globalWidth];
+
+                    int localX = x - startX;
+                    int localY = y - startY;
 
                     if (currentRegion != rightRegion)
                     {
-                        int sx = (x + 1) * scale;
+                        int sx = (localX + 1) * scale;
                         for (int dy = 0; dy < scale; dy++)
-                        {
-                            distances[(y * scale + dy) * scaledWidth + sx] = 0f;
-                        }
+                            distances[(localY * scale + dy) * scaledLocalWidth + sx] = 0f;
                     }
 
                     if (currentRegion != bottomRegion)
                     {
-                        int sy = (y + 1) * scale;
+                        int sy = (localY + 1) * scale;
                         for (int dx = 0; dx < scale; dx++)
-                        {
-                            distances[sy * scaledWidth + (x * scale + dx)] = 0f;
-                        }
+                            distances[sy * scaledLocalWidth + (localX * scale + dx)] = 0f;
                     }
                 }
             }
         }
 
-        private static void ChamferDistanceTransform(float[] distances, int width, int height, int scale)
+        private static void ChamferDistanceTransform(float[] distances, int scaledWidth, int scaledHeight)
         {
-            int scaledWidth = width * scale;
-            int scaledHeight = height * scale;
 
             // Top to bottom, left to right
             for (int y = 0; y < scaledHeight; y++)
@@ -118,10 +130,8 @@ namespace MapGame.Core.Utils.Graphic
             }
         }
 
-        private static void ApplyBlur(float[] distances, int totalScaledPixels, int width, int height, int scale)
+        private static void ApplyBlur(float[] distances, int totalScaledPixels, int scaledWidth, int scaledHeight, int scale)
         {
-            int scaledWidth = width * scale;
-            int scaledHeight = height * scale;
 
             int blurRadius = scale;
             float[] blurredDistances = new float[totalScaledPixels];
@@ -196,39 +206,49 @@ namespace MapGame.Core.Utils.Graphic
                 }
             });
         }
-        private static void ApplySmoothstep(byte[] borderPixels, float[] distances, int totalScaledPixels, int scale)
+        private static List<(int, byte)> ExtractSDFPixels(float[] distances, int startX, int startY, int globalWidth, int scale, int scaledLocalWidth, int scaledLocalHeight)
         {
-            float borderThickness = 0.1f;
-            float smoothRadius = scale * 1f;
+            List<(int, byte)> sdfResults = new List<(int, byte)>();
 
-            float maxDistance = borderThickness + smoothRadius;
+            float smoothRadius = scale * SmoothRadiusMultiplier;
+            float maxDistance = BorderThickness + smoothRadius;
 
-            Parallel.For(0, totalScaledPixels, i =>
+            for (int y = 0; y < scaledLocalHeight; y++)
             {
-                float dist = distances[i];
-
-                if (dist >= maxDistance) return;
-
-                byte alpha = 0;
-
-                if (dist <= borderThickness)
+                for (int x = 0; x < scaledLocalWidth; x++)
                 {
-                    alpha = 255;
-                }
-                else
-                {
-                    // Smoothstep
-                    float t = (dist - borderThickness) / smoothRadius;
-                    float smoothT = t * t * (3f - 2f * t);
-                    alpha = (byte)(255f * (1f - smoothT));
-                }
+                    int i = y * scaledLocalWidth + x;
+                    float dist = distances[i];
 
-                if (alpha > 0)
-                {
-                    int byteIndex = i * 4;
-                    GraphicUtils.ColorPixel(borderPixels, byteIndex, 0, 0, 0, alpha);
+                    if (dist >= maxDistance) continue;
+
+                    byte alpha = 0;
+
+                    if (dist <= BorderThickness)
+                    {
+                        alpha = 255;
+                    }
+                    else
+                    {
+                        float t = (dist - BorderThickness) / smoothRadius;
+                        float smoothT = t * t * (3f - 2f * t);
+                        alpha = (byte)(255f * (1f - smoothT));
+                    }
+
+                    if (alpha > 0)
+                    {
+                        // local window index -> global index
+                        int globalY = (startY * scale) + y;
+                        int globalX = (startX * scale) + x;
+
+                        int globalScaledWidth = globalWidth * scale;
+                        int globalByteIndex = ((globalY * globalScaledWidth) + globalX) * 4;
+
+                        sdfResults.Add((globalByteIndex, alpha));
+                    }
                 }
-            });
+            }
+            return sdfResults;
         }
     }
 }

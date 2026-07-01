@@ -20,7 +20,7 @@ namespace MapGame.Core.Utils.Graphic
             pixels[index] = b;
             pixels[index + 1] = g;
             pixels[index + 2] = r;
-            pixels[index + 3] = (byte)(a * 0.5);
+            pixels[index + 3] = a;
         }
     }
 }

@@ -8,7 +8,13 @@
         <local:MapViewModel />
     </Window.DataContext>
 
-    <Grid Background="Black" PreviewMouseWheel="OnMouseWheel" MouseMove="OnMouseMove">
+    <Grid 
+        Background="Black" 
+        PreviewMouseWheel="OnMouseWheel" 
+        MouseMove="OnMouseMove" 
+        MouseLeftButtonDown="OnViewportMouseDown" 
+        MouseRightButtonDown="OnViewportRightMouseDown"
+    >
         <Viewport3D x:Name="MainViewport">
             <Viewport3D.Camera>
                 <PerspectiveCamera Position="{Binding CameraPosition, Mode=OneWay}" 
@@ -26,7 +32,7 @@
                 </ModelVisual3D.Content>
             </ModelVisual3D>
 
-            <ModelUIElement3D Model="{Binding TerrainModel}" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+            <ModelUIElement3D Model="{Binding TerrainModel}" />
             
 
         </Viewport3D>

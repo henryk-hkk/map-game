@@ -1,5 +1,6 @@
 ﻿using MapGame.Core.Constants;
 using MapGame.Core.Utils;
+using MapGame.Core.Utils.Geographic;
 using MapGame.Core.Utils.Graphic;
 using System;
 using System.Collections.Generic;
@@ -14,45 +15,85 @@ namespace MapGame.Core.Engine
 {
     public static class MapDisplay
     {
-        private const int _scale = 2;
 
-        public static GeometryModel3D GetMapDisplay(byte[] heightmap, int width, int height)
+        public static void ChangeAreaOwner(Color areaColor, int newRegionId)
         {
-            var model = MeshGenerator.Generate3DMapModel(heightmap, width, height);
+            PixelArea targetArea = Map.Areas[areaColor];
 
-            MaterialGroup materialGroup = new MaterialGroup();
+            int oldRegionId = (int)targetArea.parentRegionId;
+            Region oldRegion = Map.Regions.Find(r => r.Id == oldRegionId);
+            oldRegion?.Remove(targetArea);
 
-            BitmapImage baseTexture = Map.TextureMap; //Map.TextureMap is not null, this function is called after the game engine does its thing and loads the maps.
-            materialGroup.Children.Add(new DiffuseMaterial(new ImageBrush(baseTexture)));
+            targetArea.parentRegionId = newRegionId;
+            Region newRegion = Map.Regions.Find(r => r.Id == newRegionId);
+            newRegion?.Add(targetArea);
 
-            DiffuseMaterial bordersMaterial = GenerateRegionBorders();
-            materialGroup.Children.Add(bordersMaterial);
+            int newCountryId = newRegion?.Owner != null ? newRegion.Owner.Identifier.GetHashCode() : -2;
 
-            model.Material = materialGroup;
+            int minX = int.MaxValue, minY = int.MaxValue;
+            int maxX = int.MinValue, maxY = int.MinValue;
 
-            return model;
+            foreach (var pixel in targetArea.Pixels)
+            {
+                int index1D = (pixel.Y * Map.Width) + pixel.X;
+                Map.GlobalRegionMap[index1D] = newRegionId;
+                Map.GlobalCountryMap[index1D] = newCountryId;
+
+                if (pixel.X < minX) minX = pixel.X;
+                if (pixel.X > maxX) maxX = pixel.X;
+                if (pixel.Y < minY) minY = pixel.Y;
+                if (pixel.Y > maxY) maxY = pixel.Y;
+            }
+
+            int margin = 6;
+            minX = Math.Max(0, minX - margin);
+            minY = Math.Max(0, minY - margin);
+            maxX = Math.Min(Map.Width - 1, maxX + margin);
+            maxY = Math.Min(Map.Height - 1, maxY + margin);
+            Int32Rect dirtyRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
+
+            BorderTexturesGenerator.UpdateBorders(targetArea.BorderPixelSegments);
+
+            CountryTexturesGenerator.RefreshCountryDirtyRect(dirtyRect);
         }
 
-        private static DiffuseMaterial GenerateRegionBorders()
+        public static Model3DGroup GetMapDisplay(byte[] heightmap, int width, int height)
         {
-            var (width, height, stride) = MapUtils.GetBitmapParams();
-            var regionMap = MapUtils.GetRegionMap(width, height);
+            Model3DGroup mapGroup = new Model3DGroup();
 
-            int scaledWidth = width * _scale;
-            int scaledHeight = height * _scale;
-            int scaledStride = scaledWidth * 4;
+            var landModel = TerrainMeshGenerator.Generate3DMapModel(heightmap, width, height);
+            MaterialGroup landMaterials = new MaterialGroup();
 
-            var borderPixels = SDFAgent.GetSmoothSDFBorders(regionMap, width, height, _scale);
+            BitmapImage baseTexture = Map.TextureMap;
+            landMaterials.Children.Add(new DiffuseMaterial(new ImageBrush(baseTexture)));
 
-            WriteableBitmap bitmap = new WriteableBitmap(scaledWidth, scaledHeight, 96, 96, PixelFormats.Bgra32, null);
-            bitmap.WritePixels(new Int32Rect(0, 0, scaledWidth, scaledHeight), borderPixels, scaledStride, 0);
-            bitmap.Freeze();
+            if (Map.CountryMaterial == null)
+            {
+                CountryTexturesGenerator.InitializeCountryRendering();
+            }
+            landMaterials.Children.Add(Map.CountryMaterial);
 
-            ImageBrush brush = new ImageBrush(bitmap);
-            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.HighQuality);
-            brush.Freeze();
+            if (Map.SelectionMaterial == null)
+            {
+                SelectionTexturesGenerator.InitializeSelectionRendering();
+            }
+            landMaterials.Children.Add(Map.SelectionMaterial);
 
-            return new DiffuseMaterial(brush);
+            if (Map.RegionBordersMaterial == null)
+            {
+                BorderTexturesGenerator.InitializeBorderRendering(Map.BorderGraph);
+            }
+            landMaterials.Children.Add(Map.RegionBordersMaterial);
+
+            landModel.Material = landMaterials;
+
+            mapGroup.Children.Add(landModel);
+
+            GeometryModel3D riversModel = RiverMeshGenerator.GenerateAnimatedRivers(Map.RiverMask, Map.WaterTexture, heightmap);
+
+            mapGroup.Children.Add(riversModel);
+
+            return mapGroup;
         }
     }
 }
