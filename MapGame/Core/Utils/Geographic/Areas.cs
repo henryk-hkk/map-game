@@ -8,7 +8,9 @@ namespace MapGame.Core.Utils.Geographic
     {
         public abstract bool Includes(Position pos);
         public string? Name {  get; set; }
-        public int? parentRegionId { get; set; }
+        public int? ParentRegionId { get; set; }
+        public int? Population { get; set; }
+
     }
 
     public class CircularArea : Area 

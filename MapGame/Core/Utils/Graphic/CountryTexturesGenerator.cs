@@ -55,7 +55,7 @@ namespace MapGame.Core.Utils.Graphic
                     Color c = Color.FromRgb(Map.AreaPixels[byteIdx + 2], Map.AreaPixels[byteIdx + 1], Map.AreaPixels[byteIdx]);
                     if (Map.Areas.TryGetValue(c, out PixelArea area))
                     {
-                        var region = Map.Regions.Find(r => r.Id == area.parentRegionId);
+                        var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
                         if (region?.Owner != null)
                         {
                             Map.GlobalCountryMap[idx] = region.Owner.Identifier.GetHashCode();
@@ -106,7 +106,7 @@ namespace MapGame.Core.Utils.Graphic
 
                     if (Map.Areas.TryGetValue(areaColor, out PixelArea area))
                     {
-                        var region = Map.Regions.Find(r => r.Id == area.parentRegionId);
+                        var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
                         if (region?.Owner != null && region.Owner.DisplayColor.HasValue)
                         {
                             fillColor = region.Owner.DisplayColor.Value;

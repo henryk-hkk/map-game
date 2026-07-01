@@ -58,7 +58,7 @@ namespace MapGame.Core.Utils.JSON
                     if (Map.Areas.TryGetValue(targetColor, out PixelArea? actualArea))
                     {
                         actualArea.Name = areaDef.Name;
-                        actualArea.parentRegionId = region.RegionId;
+                        actualArea.ParentRegionId = region.RegionId;
                         mapRegion.Add(actualArea);
                     }
                     else

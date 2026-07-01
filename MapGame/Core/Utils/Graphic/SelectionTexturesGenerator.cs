@@ -28,7 +28,7 @@ namespace MapGame.Core.Utils.Graphic
         {
             if (!Map.Areas.TryGetValue(areaColor, out PixelArea clickedArea)) return;
 
-            int targetRegionId = (int)clickedArea.parentRegionId;
+            int targetRegionId = (int)clickedArea.ParentRegionId;
 
             if (targetRegionId == Map.CurrentlySelectedRegionId) return;
 
@@ -42,7 +42,7 @@ namespace MapGame.Core.Utils.Graphic
             {
                 foreach (var area in Map.Areas.Values)
                 {
-                    if (area.parentRegionId == Map.CurrentlySelectedRegionId)
+                    if (area.ParentRegionId == Map.CurrentlySelectedRegionId)
                     {
                         foreach (var pixel in area.Pixels)
                         {
@@ -66,7 +66,7 @@ namespace MapGame.Core.Utils.Graphic
 
             foreach (var area in Map.Areas.Values)
             {
-                if (area.parentRegionId == targetRegionId)
+                if (area.ParentRegionId == targetRegionId)
                 {
                     foreach (var pixel in area.Pixels)
                     {
@@ -112,7 +112,7 @@ namespace MapGame.Core.Utils.Graphic
 
             foreach (var area in Map.Areas.Values)
             {
-                if (area.parentRegionId == Map.CurrentlySelectedRegionId)
+                if (area.ParentRegionId == Map.CurrentlySelectedRegionId)
                 {
                     foreach (var pixel in area.Pixels)
                     {

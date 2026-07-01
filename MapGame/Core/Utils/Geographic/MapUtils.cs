@@ -36,9 +36,9 @@ namespace MapGame.Core.Utils.Geographic
                 Color c = Color.FromRgb(Map.AreaPixels[byteIndex + 2], Map.AreaPixels[byteIndex + 1], Map.AreaPixels[byteIndex]);
                 if (Map.Areas.TryGetValue(c, out PixelArea area))
                 {
-                    if (area.parentRegionId.HasValue)
+                    if (area.ParentRegionId.HasValue)
                     {
-                        regionMap[i] = (int)area.parentRegionId;
+                        regionMap[i] = (int)area.ParentRegionId;
                     }
                     else
                     {

@@ -20,11 +20,11 @@ namespace MapGame.Core.Engine
         {
             PixelArea targetArea = Map.Areas[areaColor];
 
-            int oldRegionId = (int)targetArea.parentRegionId;
+            int oldRegionId = (int)targetArea.ParentRegionId;
             Region oldRegion = Map.Regions.Find(r => r.Id == oldRegionId);
             oldRegion?.Remove(targetArea);
 
-            targetArea.parentRegionId = newRegionId;
+            targetArea.ParentRegionId = newRegionId;
             Region newRegion = Map.Regions.Find(r => r.Id == newRegionId);
             newRegion?.Add(targetArea);
 

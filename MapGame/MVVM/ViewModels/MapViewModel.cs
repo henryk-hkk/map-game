@@ -69,7 +69,7 @@ namespace MapGame.MVVM.ViewModels
 
             if (Map.Areas.TryGetValue(areaColor, out var area))
             {
-                var region = Map.Regions.Find(r => r.Id == area.parentRegionId);
+                var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
                 SelectedRegionName = region != null ? region.Name : "Nieznany Region";
             }
 
