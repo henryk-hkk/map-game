@@ -7,7 +7,7 @@ using System.Windows.Media.Media3D;
 
 namespace MapGame.Core.Utils.Graphic
 {
-    public static class MeshGenerator
+    public static class TerrainMeshGenerator
     {
 
         private const int _step = 8;
@@ -30,6 +30,28 @@ namespace MapGame.Core.Utils.Graphic
 
             return model;
         }
+
+        public static double GetTerrainHeight(byte[] heightmap, int x, int y, int width, int height)
+        {
+            int index = y * width + x;
+            byte z = heightmap[index];
+            bool isLand = Map.LandMask[index];
+
+            double finalPixelHeight;
+
+            if (isLand)
+            {
+                finalPixelHeight = (z - _seaLevel) * _heightScale + _landPixelHeightOffset;
+                if (finalPixelHeight < _seaLevelPixelHeight) finalPixelHeight = _seaLevelPixelHeight;
+            }
+            else
+            {
+                finalPixelHeight = _seaLevelPixelHeight;
+            }
+
+            return finalPixelHeight;
+        }
+
         private static void LoadPixelHeights(ref MeshGeometry3D mesh, byte[] heightmap, int width, int height)
         {
 
@@ -43,23 +65,9 @@ namespace MapGame.Core.Utils.Graphic
                     int x = Math.Min(c * _step, width - 1);
                     int y = Math.Min(r * _step, height - 1);
 
-                    int index = y * width + x;
-                    byte z = heightmap[index];
-                    bool isLand = Map.LandMask[index];
+                    var pixelHeight = GetTerrainHeight(heightmap, x, y, width, height);
 
-                    double finalPixelHeight;
-
-                    if (isLand)
-                    {
-                        finalPixelHeight = (z - _seaLevel) * _heightScale + _landPixelHeightOffset;
-                        if (finalPixelHeight < _seaLevelPixelHeight) finalPixelHeight = _seaLevelPixelHeight;
-                    }
-                    else
-                    {
-                        finalPixelHeight = _seaLevelPixelHeight;
-                    }
-
-                    mesh.Positions.Add(new Point3D(x, finalPixelHeight, y));
+                    mesh.Positions.Add(new Point3D(x, pixelHeight, y));
 
                     mesh.TextureCoordinates.Add(new Point((double)x / width, (double)y / height));
                 }

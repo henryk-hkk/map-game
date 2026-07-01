@@ -49,7 +49,7 @@ namespace MapGame.Core.Utils.Graphic
             int maxX = int.MinValue, maxY = int.MinValue;
             bool anyChanges = false;
 
-            // 1. OBLICZAMY BOUNDING BOX ZMIENIONYCH SEGMENTÓW
+            // Bounding box of changed segments
             foreach (var segment in segmentsToUpdate)
             {
                 foreach (int index in segment.PixelIndices)
@@ -78,7 +78,6 @@ namespace MapGame.Core.Utils.Graphic
 
             Int32Rect dirtyRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
 
-            // 3. PRZEKAZANIE DO LOKALNEGO RENDERERA
             RefreshDirtyRectSDF(dirtyRect);
         }
 
@@ -93,7 +92,7 @@ namespace MapGame.Core.Utils.Graphic
             int endX_scaled = (dirtyRect.X + dirtyRect.Width) * SdfScale;
             int endY_scaled = (dirtyRect.Y + dirtyRect.Height) * SdfScale;
 
-            // 1. ZMAZYWANIE STARYCH GRANIC (Czyścimy cały prostokąt do przezroczystości)
+            // Erasing
             for (int y = startY_scaled; y < endY_scaled; y++)
             {
                 for (int x = startX_scaled; x < endX_scaled; x++)
@@ -147,7 +146,7 @@ namespace MapGame.Core.Utils.Graphic
                     int index1D = (y * width) + x;
                     int currentRegion = regionMap[index1D];
 
-                    // Ignorujemy wodę przy sprawdzaniu bycia krawędzią od środka
+                    // Ignoring water
                     if (currentRegion == -1) continue;
 
                     int regionUp = regionMap[index1D - width];

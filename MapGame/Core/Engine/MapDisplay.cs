@@ -57,41 +57,43 @@ namespace MapGame.Core.Engine
             CountryTexturesGenerator.RefreshCountryDirtyRect(dirtyRect);
         }
 
-        public static GeometryModel3D GetMapDisplay(byte[] heightmap, int width, int height)
+        public static Model3DGroup GetMapDisplay(byte[] heightmap, int width, int height)
         {
-            var model = MeshGenerator.Generate3DMapModel(heightmap, width, height);
+            Model3DGroup mapGroup = new Model3DGroup();
 
-            MaterialGroup materialGroup = new MaterialGroup();
+            var landModel = TerrainMeshGenerator.Generate3DMapModel(heightmap, width, height);
+            MaterialGroup landMaterials = new MaterialGroup();
 
-            BitmapImage baseTexture = Map.TextureMap; //Map.TextureMap is not null, this function is called after the game engine does its thing and loads the maps.
-            materialGroup.Children.Add(new DiffuseMaterial(new ImageBrush(baseTexture)));
-
-            DiffuseMaterial riversMaterial = RiverTexturesGenerator.GenerateAnimatedRivers(Map.RiverMask, Map.WaterTexture);
-            materialGroup.Children.Add(riversMaterial);
+            BitmapImage baseTexture = Map.TextureMap;
+            landMaterials.Children.Add(new DiffuseMaterial(new ImageBrush(baseTexture)));
 
             if (Map.CountryMaterial == null)
             {
                 CountryTexturesGenerator.InitializeCountryRendering();
             }
-            materialGroup.Children.Add(Map.CountryMaterial);
+            landMaterials.Children.Add(Map.CountryMaterial);
 
             if (Map.SelectionMaterial == null)
             {
                 SelectionTexturesGenerator.InitializeSelectionRendering();
             }
-            materialGroup.Children.Add(Map.SelectionMaterial);
-
+            landMaterials.Children.Add(Map.SelectionMaterial);
 
             if (Map.RegionBordersMaterial == null)
             {
                 BorderTexturesGenerator.InitializeBorderRendering(Map.BorderGraph);
             }
+            landMaterials.Children.Add(Map.RegionBordersMaterial);
 
-            materialGroup.Children.Add(Map.RegionBordersMaterial);
+            landModel.Material = landMaterials;
 
-            model.Material = materialGroup;
+            mapGroup.Children.Add(landModel);
 
-            return model;
+            GeometryModel3D riversModel = RiverMeshGenerator.GenerateAnimatedRivers(Map.RiverMask, Map.WaterTexture, heightmap);
+
+            mapGroup.Children.Add(riversModel);
+
+            return mapGroup;
         }
     }
 }

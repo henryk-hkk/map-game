@@ -24,17 +24,14 @@ namespace MapGame.Core.Utils.Graphic
             Map.CountryPixelData = new byte[scaledHeight * scaledStride];
             Map.CountryBitmap = new WriteableBitmap(scaledWidth, scaledHeight, 96, 96, PixelFormats.Bgra32, null);
 
-            // Budujemy mapę logiczną państw na start
             Map.GlobalCountryMap = new int[width * height];
             BuildGlobalCountryMap(width, height);
 
-            // Pierwsze pełne rysowanie całej mapy świata
             RefreshCountryDirtyRect(new Int32Rect(0, 0, width, height));
 
             ImageBrush brush = new ImageBrush(Map.CountryBitmap);
             RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
 
-            // Pędzel dynamiczny - nie zamrażamy!
             Map.CountryMaterial = new DiffuseMaterial(brush);
         }
 
@@ -61,12 +58,11 @@ namespace MapGame.Core.Utils.Graphic
                         var region = Map.Regions.Find(r => r.Id == area.parentRegionId);
                         if (region?.Owner != null)
                         {
-                            // Jako unikalne ID państwa wykorzystujemy hash z jego string Identifier
                             Map.GlobalCountryMap[idx] = region.Owner.Identifier.GetHashCode();
                         }
                         else
                         {
-                            Map.GlobalCountryMap[idx] = -2; // Brak właściciela
+                            Map.GlobalCountryMap[idx] = -2; // No owner
                         }
                     }
                 }

@@ -72,7 +72,7 @@ namespace MapGame.MVVM.Views
                 if (mesh.TextureCoordinates == null || mesh.TextureCoordinates.Count == 0)
                     return HitTestResultBehavior.Stop;
 
-                // Logika wag barycentrycznych (zostaje bez zmian)
+                // Logika wag barycentrycznych
                 int v1 = hitResult.VertexIndex1;
                 int v2 = hitResult.VertexIndex2;
                 int v3 = hitResult.VertexIndex3;
@@ -116,7 +116,6 @@ namespace MapGame.MVVM.Views
 
         private void OnViewportRightMouseDown(object sender, MouseButtonEventArgs e)
         {
-            // ARCHITEKTURA MVVM: Przekazujemy zdarzenie odznaczenia do ViewModelu
             if (this.DataContext is MapViewModel viewModel)
             {
                 viewModel.DeselectRegion();

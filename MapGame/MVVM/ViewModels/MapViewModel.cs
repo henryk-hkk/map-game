@@ -17,13 +17,13 @@ namespace MapGame.MVVM.ViewModels
     {
         private Core.Engine.Camera _camera;
         private DateTime _lastFrameTime = DateTime.Now;
-        private GeometryModel3D _terrainModel;
+        private Model3DGroup _terrainModel;
         private string _selectedRegionName = "Brak wyboru";
 
         public Point3D CameraPosition => _camera.Position;
         public Vector3D CameraLookDirection => _camera.LookDirection;
         public Vector3D CameraUpDirection => _camera.UpDirection;
-        public GeometryModel3D TerrainModel
+        public Model3DGroup TerrainModel
         {
             get => _terrainModel;
             private set

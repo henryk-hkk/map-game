@@ -32,7 +32,7 @@
                 </ModelVisual3D.Content>
             </ModelVisual3D>
 
-            <ModelUIElement3D Model="{Binding TerrainModel}" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+            <ModelUIElement3D Model="{Binding TerrainModel}" />
             
 
         </Viewport3D>

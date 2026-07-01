@@ -17,12 +17,11 @@ namespace MapGame.Core.Utils.Graphic
             int mapWidth,
             int mapHeight,
             int scale,
-            Int32Rect updateRect) // Obszar oryginalnej (nieskalowanej) mapy!
+            Int32Rect updateRect)
         {
             float maxDistance = BorderThickness + (scale * SmoothRadiusMultiplier);
-            int margin = (int)Math.Ceiling(maxDistance) + scale; // Zapas na rozmycie
+            int margin = (int)Math.Ceiling(maxDistance) + scale;
 
-            // Obliczamy "okno robocze" w oryginalnej rozdzielczości z marginesem bezpieczeństwa
             int startX = Math.Max(0, updateRect.X - margin);
             int startY = Math.Max(0, updateRect.Y - margin);
             int endX = Math.Min(mapWidth - 1, updateRect.X + updateRect.Width + margin);
@@ -31,26 +30,20 @@ namespace MapGame.Core.Utils.Graphic
             int localWidth = endX - startX;
             int localHeight = endY - startY;
 
-            // Przechodzimy na rozdzielczość "skalowaną" (jak u Ciebie w starym kodzie)
             int scaledLocalWidth = localWidth * scale;
             int scaledLocalHeight = localHeight * scale;
             int scaledTotal = scaledLocalWidth * scaledLocalHeight;
 
-            // Alokujemy znacznie mniejsze tablice robocze (np. 300x300 zamiast 12000x8000!)
             float[] localDistances = new float[scaledTotal];
             Array.Fill(localDistances, float.MaxValue);
 
-            // KROK 1: Lokalizacja krawędzi (tylko w oknie)
             MarkLocalBorderPixels(regionMap, localDistances, mapWidth, startX, startY, endX, endY, scale, scaledLocalWidth);
 
-            // KROK 2: Chamfer Distance Transform (na małym fragmencie)
             ChamferDistanceTransform(localDistances, scaledLocalWidth, scaledLocalHeight);
 
-            // KROK 3: Rozmycie lokalne
             ApplyBlur(localDistances, scaledTotal, scaledLocalWidth, scaledLocalHeight, scale);
 
-            // KROK 4: Smoothstep i wyciągnięcie wyników wprost do postaci listy dla segmentów
-            return ExtractSdfPixels(localDistances, startX, startY, mapWidth, scale, scaledLocalWidth, scaledLocalHeight);
+            return ExtractSDFPixels(localDistances, startX, startY, mapWidth, scale, scaledLocalWidth, scaledLocalHeight);
         }
 
 
@@ -68,7 +61,6 @@ namespace MapGame.Core.Utils.Graphic
                     int rightRegion = regionMap[index1D + 1];
                     int bottomRegion = regionMap[index1D + globalWidth];
 
-                    // Tłumaczenie współrzędnych globalnych na nasze okno lokalne
                     int localX = x - startX;
                     int localY = y - startY;
 
@@ -214,14 +206,13 @@ namespace MapGame.Core.Utils.Graphic
                 }
             });
         }
-        private static List<(int, byte)> ExtractSdfPixels(float[] distances, int startX, int startY, int globalWidth, int scale, int scaledLocalWidth, int scaledLocalHeight)
+        private static List<(int, byte)> ExtractSDFPixels(float[] distances, int startX, int startY, int globalWidth, int scale, int scaledLocalWidth, int scaledLocalHeight)
         {
             List<(int, byte)> sdfResults = new List<(int, byte)>();
 
             float smoothRadius = scale * SmoothRadiusMultiplier;
             float maxDistance = BorderThickness + smoothRadius;
 
-            // Używamy standardowej pętli, gdyż ConcurrentBag (dla Parallel) powoduje alokacje i nie zachowuje kolejności
             for (int y = 0; y < scaledLocalHeight; y++)
             {
                 for (int x = 0; x < scaledLocalWidth; x++)
@@ -246,11 +237,11 @@ namespace MapGame.Core.Utils.Graphic
 
                     if (alpha > 0)
                     {
-                        // Przeliczenie z okna lokalnego na PRAWDZIWY globalny indeks 1D na płótnie!
+                        // local window index -> global index
                         int globalY = (startY * scale) + y;
                         int globalX = (startX * scale) + x;
 
-                        int globalScaledWidth = globalWidth * scale; // Zakładam, że Twoja docelowa tekstura borderPixels jest przeskalowana
+                        int globalScaledWidth = globalWidth * scale;
                         int globalByteIndex = ((globalY * globalScaledWidth) + globalX) * 4;
 
                         sdfResults.Add((globalByteIndex, alpha));

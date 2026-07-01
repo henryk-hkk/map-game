@@ -12,11 +12,23 @@ namespace MapGame.Core.Utils.Geographic
 {
     public static class MapDataLoader
     {
+
+        private static bool IsCorrectSize(BitmapImage bitmap)
+        {
+            if (Map.Width != bitmap.PixelWidth || Map.Height != bitmap.PixelHeight)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public static BitmapImage LoadTexture(string relativePath)
         {
             Uri fileUri = new Uri(relativePath, UriKind.Relative);
             return new BitmapImage(fileUri);
         }
+
+        
         public static byte[] LoadGrayscaleMap(string relativePath, bool validateSize = false)
         {
             Uri fileUri = new Uri(relativePath, UriKind.Relative);
@@ -24,8 +36,7 @@ namespace MapGame.Core.Utils.Geographic
             BitmapImage bitmap = new BitmapImage(fileUri);
             if(validateSize)
             {
-                if (Map.Width != bitmap.PixelWidth || Map.Height != bitmap.PixelHeight)
-                {
+                if (!IsCorrectSize(bitmap)) {
                     throw new Exception("Wymiary mapy w silniku nie pokrywają się z wymiarem assetów");
                 }
             }
@@ -64,7 +75,7 @@ namespace MapGame.Core.Utils.Geographic
 
             BitmapImage bitmap = new BitmapImage(fileUri);
 
-            if (Map.Width != bitmap.PixelWidth || Map.Height != bitmap.PixelHeight)
+            if (!IsCorrectSize(bitmap))
             {
                 throw new Exception("Wymiary mapy w silniku nie pokrywają się z wymiarem assetów");
             }
