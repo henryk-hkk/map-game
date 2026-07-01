@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 
+
 namespace MapGame.Core.Constants
 {
     public static class Map
