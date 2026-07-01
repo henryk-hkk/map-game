@@ -88,7 +88,21 @@ namespace MapGame.Core.Utils.Geographic
             Pixel pixel = new Pixel(x, y);
             Pixels.Add(pixel);
         }
-        public override bool Includes(Position pos) { return true; }
+        public override bool Includes(Position pos)
+        {
+            int pxX = (int)Math.Ceiling(pos.X);
+            int pxY = (int)Math.Ceiling(pos.Y);
+
+            foreach (Pixel pixel in Pixels)
+            {
+                if (pixel.X == pxX && pixel.Y == pxY)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
     }
 
