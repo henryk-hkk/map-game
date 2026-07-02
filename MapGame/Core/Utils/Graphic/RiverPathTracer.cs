@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+using System.Numerics;
 
 namespace MapGame.Core.Utils.Graphic
 {
@@ -10,9 +9,9 @@ namespace MapGame.Core.Utils.Graphic
         private static readonly int[] Dx = { 0, 1, 1, 1, 0, -1, -1, -1 };
         private static readonly int[] Dy = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
-        public static List<List<Point>> TraceAllRivers(bool[] thinnedMask, int width, int height)
+        public static List<List<Vector2>> TraceAllRivers(bool[] thinnedMask, int width, int height)
         {
-            List<List<Point>> allRivers = new List<List<Point>>();
+            List<List<Vector2>> allRivers = new List<List<Vector2>>();
 
             bool[] visited = new bool[thinnedMask.Length];
             Array.Copy(thinnedMask, visited, thinnedMask.Length);
@@ -28,7 +27,7 @@ namespace MapGame.Core.Utils.Graphic
 
                     if (neighborCount == 1)
                     {
-                        List<Point> currentRiverPath = TraceSingleRiver(visited, thinnedMask, x, y, width, height);
+                        List<Vector2> currentRiverPath = TraceSingleRiver(visited, thinnedMask, x, y, width, height);
                         if (currentRiverPath.Count > 1)
                         {
                             allRivers.Add(currentRiverPath);
@@ -44,7 +43,7 @@ namespace MapGame.Core.Utils.Graphic
                     int idx = y * width + x;
                     if (visited[idx])
                     {
-                        List<Point> currentRiverPath = TraceSingleRiver(visited, thinnedMask, x, y, width, height);
+                        List<Vector2> currentRiverPath = TraceSingleRiver(visited, thinnedMask, x, y, width, height);
                         if (currentRiverPath.Count > 1) allRivers.Add(currentRiverPath);
                     }
                 }
@@ -53,16 +52,16 @@ namespace MapGame.Core.Utils.Graphic
             return allRivers;
         }
 
-        private static List<Point> TraceSingleRiver(bool[] visited, bool[] originalMask, int startX, int startY, int width, int height)
+        private static List<Vector2> TraceSingleRiver(bool[] visited, bool[] originalMask, int startX, int startY, int width, int height)
         {
-            List<Point> path = new List<Point>();
+            List<Vector2> path = new List<Vector2>();
             int cx = startX;
             int cy = startY;
             bool pathContinues = true;
 
             while (pathContinues)
             {
-                path.Add(new Point(cx, cy));
+                path.Add(new Vector2(cx, cy));
                 visited[cy * width + cx] = false;
 
                 int nextX = -1;
@@ -94,7 +93,6 @@ namespace MapGame.Core.Utils.Graphic
                 else
                 {
                     bool snapped = false;
-
                     for (int r = 1; r <= 2; r++)
                     {
                         for (int dy = -r; dy <= r; dy++)
@@ -113,13 +111,13 @@ namespace MapGame.Core.Utils.Graphic
                                         bool isRecentPixel = false;
                                         for (int p = 1; p <= Math.Min(3, path.Count); p++)
                                         {
-                                            Point prev = path[path.Count - p];
+                                            Vector2 prev = path[path.Count - p];
                                             if (prev.X == nx && prev.Y == ny) { isRecentPixel = true; break; }
                                         }
 
                                         if (!isRecentPixel)
                                         {
-                                            path.Add(new Point(nx, ny));
+                                            path.Add(new Vector2(nx, ny));
                                             snapped = true;
                                             break;
                                         }
@@ -141,10 +139,7 @@ namespace MapGame.Core.Utils.Graphic
             int count = 0;
             for (int i = 0; i < 8; i++)
             {
-                if (mask[(y + Dy[i]) * width + (x + Dx[i])])
-                {
-                    count++;
-                }
+                if (mask[(y + Dy[i]) * width + (x + Dx[i])]) count++;
             }
             return count;
         }

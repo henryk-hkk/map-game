@@ -1,66 +1,97 @@
-﻿using MapGame.Core.Constants;
+﻿using HelixToolkit.SharpDX;
+using HelixToolkit.Wpf.SharpDX;
+using MapGame.Core.Constants;
 using MapGame.Core.Engine;
 using MapGame.Core.Utils.Graphic;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
+using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Media3D;
-
 
 namespace MapGame.MVVM.ViewModels
 {
     public class MapViewModel : INotifyPropertyChanged
     {
-        private Core.Engine.Camera _camera;
-        private DateTime _lastFrameTime = DateTime.Now;
-        private Model3DGroup _terrainModel;
         private string _selectedRegionName = "Brak wyboru";
+        private float _riverScrollY = 0f;
 
-        public Point3D CameraPosition => _camera.Position;
-        public Vector3D CameraLookDirection => _camera.LookDirection;
-        public Vector3D CameraUpDirection => _camera.UpDirection;
-        public Model3DGroup TerrainModel
+        public IEffectsManager EffectsManager { get; }
+
+        private HelixToolkit.SharpDX.MeshGeometry3D _terrainGeometry;
+        public HelixToolkit.SharpDX.MeshGeometry3D TerrainGeometry
         {
-            get => _terrainModel;
-            private set
-            {
-                _terrainModel = value;
-                OnPropertyChanged();
-            }
+            get => _terrainGeometry;
+            set { _terrainGeometry = value; OnPropertyChanged(); }
         }
+
+        private HelixToolkit.SharpDX.MeshGeometry3D _riverGeometry;
+        public HelixToolkit.SharpDX.MeshGeometry3D RiverGeometry
+        {
+            get => _riverGeometry;
+            set { _riverGeometry = value; OnPropertyChanged(); }
+        }
+
+        private HelixToolkit.Wpf.SharpDX.Material _terrainBaseMaterial;
+        public HelixToolkit.Wpf.SharpDX.Material TerrainBaseMaterial
+        {
+            get => _terrainBaseMaterial;
+            set { _terrainBaseMaterial = value; OnPropertyChanged(); }
+        }
+
+        private HelixToolkit.Wpf.SharpDX.Material _countryMaterial;
+        public HelixToolkit.Wpf.SharpDX.Material CountryMaterial
+        {
+            get => _countryMaterial;
+            set { _countryMaterial = value; OnPropertyChanged(); }
+        }
+
+        private HelixToolkit.Wpf.SharpDX.Material _bordersMaterial;
+        public HelixToolkit.Wpf.SharpDX.Material BordersMaterial
+        {
+            get => _bordersMaterial;
+            set { _bordersMaterial = value; OnPropertyChanged(); }
+        }
+
+        private HelixToolkit.Wpf.SharpDX.Material _selectionMaterial;
+        public HelixToolkit.Wpf.SharpDX.Material SelectionMaterial
+        {
+            get => _selectionMaterial;
+            set { _selectionMaterial = value; OnPropertyChanged(); }
+        }
+
+        private HelixToolkit.Wpf.SharpDX.Material _riverMaterial;
+        public HelixToolkit.Wpf.SharpDX.Material RiverMaterial
+        {
+            get => _riverMaterial;
+            set { _riverMaterial = value; OnPropertyChanged(); }
+        }
+
         public string SelectedRegionName
         {
             get => _selectedRegionName;
-            set
-            {
-                _selectedRegionName = value;
-                OnPropertyChanged();
-            }
+            set { _selectedRegionName = value; OnPropertyChanged(); }
         }
 
-        public MapViewModel() 
+        public MapViewModel()
         {
-            InitializeCamera();
+            EffectsManager = new DefaultEffectsManager();
+
             Initialize3DMap();
-
             CompositionTarget.Rendering += OnGameUpdate;
-        }
-        private void InitializeCamera()
-        {
-            _camera = new Core.Engine.Camera(
-                new Point3D(3072, 2000, 2500),
-                new Vector3D(0, -1, -0.01),
-                new Vector3D(0, 1, 0)
-            );
         }
 
         private void Initialize3DMap()
         {
-            TerrainModel = MapDisplay.GetMapDisplay(Map.HeightMap, Map.Width, Map.Height);
+            var mapData = MapDisplay.GetMapDisplay(Map.HeightMap, Map.Width, Map.Height);
+
+            TerrainGeometry = mapData.TerrainGeometry;
+            RiverGeometry = mapData.RiverGeometry;
+
+            TerrainBaseMaterial = mapData.BaseMaterial;
+            CountryMaterial = mapData.CountryMaterial;
+            SelectionMaterial = mapData.SelectionMaterial;
+            BordersMaterial = mapData.BordersMaterial;
+            RiverMaterial = mapData.RiverMaterial;
         }
 
         public void SelectRegion(Color areaColor)
@@ -72,40 +103,36 @@ namespace MapGame.MVVM.ViewModels
                 var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
                 SelectedRegionName = region != null ? region.Name : "Nieznany Region";
             }
+            // Ważne: w SharpDX aktualizacja tekstury w tle (np. zmapowanego bufora) 
+            // często od razu odświeża widok bez konieczności robienia OnPropertyChanged całego modelu!
+        }
 
-            OnPropertyChanged(nameof(TerrainModel));
+        private void OnGameUpdate(object sender, EventArgs e)
+        {
+            _riverScrollY -= 0.002f;
+
+            if (_riverScrollY < -1.0f) _riverScrollY += 1.0f;
+
+            if (RiverMaterial is PhongMaterial phong)
+            {
+                phong.UVTransform = new HelixToolkit.SharpDX.UVTransform()
+                {
+                    Rotation = 0f,
+                    Scaling = new Vector2(1f, 1f),
+                    Translation = new Vector2(0f, _riverScrollY)
+                };
+            }
         }
 
         public void DeselectRegion()
         {
             SelectedRegionName = "Brak wyboru";
-
             SelectionTexturesGenerator.ClearSelection();
         }
 
         public void AnnexSelectedArea(Color areaColor, int newRegionId)
         {
             MapDisplay.ChangeAreaOwner(areaColor, newRegionId);
-
-            OnPropertyChanged(nameof(TerrainModel));
-        }
-
-        public void ZoomCamera(double delta)
-        {
-            _camera.Zoom(delta);
-            OnPropertyChanged(nameof(CameraPosition));
-        }
-
-        private void OnGameUpdate(object sender, EventArgs e)
-        {
-            DateTime now = DateTime.Now;
-            double deltaTime = (now - _lastFrameTime).TotalSeconds;
-            _lastFrameTime = now;
-
-            _camera.WASD(deltaTime);
-            _camera.Update();
-            OnPropertyChanged(nameof(CameraPosition));
-            OnPropertyChanged(nameof(CameraLookDirection));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

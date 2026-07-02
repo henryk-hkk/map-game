@@ -1,76 +1,57 @@
-﻿using MapGame.Core.Constants;
-using MapGame.Core.Engine;
-using MapGame.Core.Utils.Graphic;
-using MapGame.MVVM.Models.Units;
-using MapGame.MVVM.ViewModels;
-using System.Reflection;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using HelixToolkit.SharpDX;
+using HelixToolkit.Wpf.SharpDX;
 using MapGame.Core.Constants;
 using MapGame.Core.Utils.Geographic;
+using MapGame.MVVM.ViewModels;
+using System.Numerics;
+using System.Windows;
+using System.Windows.Input;
 
 namespace MapGame.MVVM.Views
 {
     public partial class MainWindow : Window
     {
+        private DateTime _lastMouseMoveTime;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void OnMouseWheel(object sender, MouseWheelEventArgs e)
+        private void OnTerrainMouseMove(object sender, RoutedEventArgs e)
         {
-            if (DataContext is MapViewModel viewModel)
+            if (e is Mouse3DEventArgs mouseArgs && mouseArgs.HitTestResult != null)
             {
-                viewModel.ZoomCamera(e.Delta);
-            }
-        }
+                Point mousePos = mouseArgs.Position;
+                CursorTransform.X = mousePos.X + 15;
+                CursorTransform.Y = mousePos.Y + 15;
 
-        private void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            Point mousePos = e.GetPosition(MainViewport);
-
-            CursorTransform.X = mousePos.X + 15;
-            CursorTransform.Y = mousePos.Y + 15;
-
-            HitTestResult result = VisualTreeHelper.HitTest(MainViewport, mousePos);
-
-            if (result is RayMeshGeometry3DHitTestResult meshResult)
-            {
-                Point3D hitPoint = meshResult.PointHit;
-
+                var hitPoint = mouseArgs.HitTestResult.PointHit;
                 int mapX = (int)hitPoint.X;
                 int mapY = (int)hitPoint.Z;
 
                 Position mousePosition = new Position(hitPoint.X, hitPoint.Z);
+                //Region? hoveredRegion = Map.Regions.FirstOrDefault(r => r.Includes(mousePosition));
 
-                Region? hoveredRegion = null;
+                //CursorCoordsText.Text = hoveredRegion != null
+                //    ? $"X: {mapX} | Y: {mapY} | Region: {hoveredRegion.Id}"
+                //    : $"X: {mapX} | Y: {mapY} | Region: brak";
 
-                foreach (Region region in Map.Regions)
+                int index1D = (mapY * Map.Width) + mapX;
+
+                if (index1D >= 0 && Map.GlobalRegionMap != null && index1D < Map.GlobalRegionMap.Length)
                 {
-                    if (region.Includes(mousePosition))
+                    int hoveredRegionId = Map.GlobalRegionMap[index1D];
+                    if (hoveredRegionId == -1)
                     {
-                        hoveredRegion = region;
-                        break;
+                        CursorCoordsText.Text = string.Empty;
+                        return;
                     }
-                }
-
-                if (hoveredRegion != null)
-                {
-                    CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {hoveredRegion.Id}";
-                }
-                else
-                {
-                    CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: brak";
+                    string? regionName = Map.RegionNames[hoveredRegionId];
+                    if (regionName != null)
+                    {
+                        CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {regionName} ({hoveredRegionId})";
+                    }
                 }
             }
             else
@@ -78,69 +59,89 @@ namespace MapGame.MVVM.Views
                 CursorCoordsText.Text = string.Empty;
             }
         }
-        private void OnViewportMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point mousePosition = e.GetPosition(MainViewport);
 
-            PointHitTestParameters hitParams = new PointHitTestParameters(mousePosition);
-
-            VisualTreeHelper.HitTest(MainViewport, null, HitTestResultCallback, hitParams);
-        }
-        private HitTestResultBehavior HitTestResultCallback(HitTestResult result)
+        private void OnTerrainMouseDown(object sender, RoutedEventArgs e)
         {
-            if (result is RayMeshGeometry3DHitTestResult hitResult)
+            if ((DateTime.Now - _lastMouseMoveTime).TotalMilliseconds < 33) return;
+            _lastMouseMoveTime = DateTime.Now;
+
+            if (e is Mouse3DEventArgs mouseArgs && mouseArgs.HitTestResult != null)
             {
-                MeshGeometry3D mesh = hitResult.MeshHit;
-                if (mesh.TextureCoordinates == null || mesh.TextureCoordinates.Count == 0)
-                    return HitTestResultBehavior.Stop;
-
-                // Logika wag barycentrycznych
-                int v1 = hitResult.VertexIndex1;
-                int v2 = hitResult.VertexIndex2;
-                int v3 = hitResult.VertexIndex3;
-                double w1 = hitResult.VertexWeight1;
-                double w2 = hitResult.VertexWeight2;
-                double w3 = hitResult.VertexWeight3;
-
-                Point uv1 = mesh.TextureCoordinates[v1];
-                Point uv2 = mesh.TextureCoordinates[v2];
-                Point uv3 = mesh.TextureCoordinates[v3];
-
-                double hitU = (uv1.X * w1) + (uv2.X * w2) + (uv3.X * w3);
-                double hitV = (uv1.Y * w1) + (uv2.Y * w2) + (uv3.Y * w3);
-
-                int x = (int)(hitU * Map.Width);
-                int y = (int)(hitV * Map.Height);
-
-                if (x >= 0 && x < Map.Width && y >= 0 && y < Map.Height)
+                if (mouseArgs.OriginalInputEventArgs is MouseButtonEventArgs btnArgs && btnArgs.LeftButton == MouseButtonState.Pressed)
                 {
-                    int stride = Map.Width * 4;
-                    int index = (y * stride) + (x * 4);
+                    var hit = mouseArgs.HitTestResult;
 
-                    byte b = Map.AreaPixels[index];
-                    byte g = Map.AreaPixels[index + 1];
-                    byte r = Map.AreaPixels[index + 2];
+                    var mesh = hit.Geometry as MeshGeometry3D;
 
-                    if (!(r == 0 && g == 0 && b == 0))
+                    if (mesh != null && mesh.TextureCoordinates != null && hit.TriangleIndices != null)
                     {
-                        Color clickedColor = Color.FromRgb(r, g, b);
+                        int i1 = hit.TriangleIndices.Item1;
+                        int i2 = hit.TriangleIndices.Item2;
+                        int i3 = hit.TriangleIndices.Item3;
 
-                        if (this.DataContext is MapViewModel viewModel)
+                        Vector3 p1 = mesh.Positions[i1];
+                        Vector3 p2 = mesh.Positions[i2];
+                        Vector3 p3 = mesh.Positions[i3];
+
+                        Vector3 p = hit.PointHit;
+
+                        Vector3 v0 = p2 - p1;
+                        Vector3 v1 = p3 - p1;
+                        Vector3 v2 = p - p1;
+
+                        float d00 = Vector3.Dot(v0, v0);
+                        float d01 = Vector3.Dot(v0, v1);
+                        float d11 = Vector3.Dot(v1, v1);
+                        float d20 = Vector3.Dot(v2, v0);
+                        float d21 = Vector3.Dot(v2, v1);
+
+                        float denom = d00 * d11 - d01 * d01;
+
+                        if (Math.Abs(denom) > 0.000001f)
                         {
-                            viewModel.SelectRegion(clickedColor);
+                            float v = (d11 * d20 - d01 * d21) / denom;
+                            float w = (d00 * d21 - d01 * d20) / denom;
+                            float u = 1.0f - v - w;
+
+                            Vector2 uv1 = mesh.TextureCoordinates[i1];
+                            Vector2 uv2 = mesh.TextureCoordinates[i2];
+                            Vector2 uv3 = mesh.TextureCoordinates[i3];
+
+                            float hitU = (uv1.X * u) + (uv2.X * v) + (uv3.X * w);
+                            float hitV = (uv1.Y * u) + (uv2.Y * v) + (uv3.Y * w);
+
+                            int x = (int)(hitU * Map.Width);
+                            int y = (int)(hitV * Map.Height);
+
+                            if (x >= 0 && x < Map.Width && y >= 0 && y < Map.Height)
+                            {
+                                int stride = Map.Width * 4;
+                                int index = (y * stride) + (x * 4);
+
+                                byte b = Map.AreaPixels[index];
+                                byte g = Map.AreaPixels[index + 1];
+                                byte r = Map.AreaPixels[index + 2];
+
+                                if (!(r == 0 && g == 0 && b == 0))
+                                {
+                                    System.Windows.Media.Color clickedColor = System.Windows.Media.Color.FromRgb(r, g, b);
+
+                                    if (this.DataContext is MapViewModel viewModel)
+                                    {
+                                        viewModel.SelectRegion(clickedColor);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-                return HitTestResultBehavior.Stop;
-            }
-            return HitTestResultBehavior.Continue;
-        }
-
-        private void OnViewportRightMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (this.DataContext is MapViewModel viewModel)
-            {
-                viewModel.DeselectRegion();
+                else if (mouseArgs.OriginalInputEventArgs is MouseButtonEventArgs rightBtnArgs && rightBtnArgs.RightButton == MouseButtonState.Pressed)
+                {
+                    if (this.DataContext is MapViewModel viewModel)
+                    {
+                        viewModel.DeselectRegion();
+                    }
+                }
             }
         }
     }

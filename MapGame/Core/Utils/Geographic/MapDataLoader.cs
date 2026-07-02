@@ -24,8 +24,17 @@ namespace MapGame.Core.Utils.Geographic
 
         public static BitmapImage LoadTexture(string relativePath)
         {
-            Uri fileUri = new Uri(relativePath, UriKind.Relative);
-            return new BitmapImage(fileUri);
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(relativePath, UriKind.Relative);
+
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+
+            bitmap.EndInit();
+
+            bitmap.Freeze();
+
+            return bitmap;
         }
 
         

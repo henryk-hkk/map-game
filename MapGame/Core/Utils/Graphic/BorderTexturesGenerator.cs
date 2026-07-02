@@ -2,20 +2,16 @@
 using MapGame.Core.Utils.Geographic;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Shapes;
+using HelixToolkit.Wpf.SharpDX;
 
 namespace MapGame.Core.Utils.Graphic
 {
     public static class BorderTexturesGenerator
     {
-        private const int SdfScale = 4;
+        private const int SdfScale = 2;
 
         public static void InitializeBorderRendering(Dictionary<(Color, Color), BorderPixelSegment> borderGraph)
         {
@@ -28,17 +24,14 @@ namespace MapGame.Core.Utils.Graphic
             Map.RegionBorderPixelData = new byte[scaledHeight * scaledStride];
             Map.RegionBordersBitmap = new WriteableBitmap(scaledWidth, scaledHeight, 96, 96, PixelFormats.Bgra32, null);
 
-            Map.GlobalRegionMap = MapUtils.GetRegionMap(width, height);
-
             Int32Rect fullMapRect = new Int32Rect(0, 0, width, height);
             RefreshDirtyRectSDF(fullMapRect);
 
-            ImageBrush brush = new ImageBrush(Map.RegionBordersBitmap);
-
-            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
-
-            //brush.Freeze();
-            Map.RegionBordersMaterial = new DiffuseMaterial(brush);
+            Map.RegionBordersMaterial = new PhongMaterial()
+            {
+                DiffuseMap = Map.RegionBordersBitmap.ToDynamicTextureModel(),
+                AmbientColor = new HelixToolkit.Maths.Color4(1,1,1,0)
+            };
         }
 
         public static void UpdateBorders(IEnumerable<BorderPixelSegment> segmentsToUpdate)
@@ -130,8 +123,12 @@ namespace MapGame.Core.Utils.Graphic
             int offset = (startY_scaled * scaledStride) + (startX_scaled * 4);
 
             Map.RegionBordersBitmap.WritePixels(scaledDirtyRect, Map.RegionBorderPixelData, scaledStride, offset);
-        }
 
+            if (Map.RegionBordersMaterial is PhongMaterial phong)
+            {
+                phong.DiffuseMap = Map.RegionBordersBitmap.ToDynamicTextureModel();
+            }
+        }
 
         public static byte[] GetRegionBorderPixels(int[] regionMap)
         {
@@ -224,7 +221,7 @@ namespace MapGame.Core.Utils.Graphic
             return borderPixels;
         }
 
-        private static DiffuseMaterial GenerateAreaBorder(PolygonArea area, int scale = 4)
+        private static Material GenerateAreaBorder(PolygonArea area, int scale = 4)
         {
             var (width, height, stride) = MapUtils.GetBitmapParams();
             DrawingVisual visual = new DrawingVisual();
@@ -252,14 +249,15 @@ namespace MapGame.Core.Utils.Graphic
             rtb.Render(visual);
             rtb.Freeze();
 
-            ImageBrush bordersBrush = new ImageBrush(rtb);
-
-            RenderOptions.SetBitmapScalingMode(bordersBrush, BitmapScalingMode.NearestNeighbor);
-            bordersBrush.Freeze();
-            return new DiffuseMaterial(new ImageBrush(rtb));
+            // RenderTargetBitmap dziedziczy z BitmapSource, więc używamy klasycznego ToTextureModel z PNG w pamięci
+            return new PhongMaterial()
+            {
+                DiffuseMap = rtb.ToTextureModel(),
+                AmbientColor = HelixToolkit.Maths.Color4.White
+            };
         }
 
-        private static DiffuseMaterial GenerateAreaBorders()
+        private static Material GenerateAreaBorders()
         {
             var (width, height, stride) = MapUtils.GetBitmapParams();
 
@@ -302,11 +300,11 @@ namespace MapGame.Core.Utils.Graphic
             bitmap.WritePixels(new Int32Rect(0, 0, Map.Width, Map.Height), borderPixels, stride, 0);
             bitmap.Freeze();
 
-            ImageBrush brush = new ImageBrush(bitmap);
-            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
-            brush.Freeze();
-
-            return new DiffuseMaterial(brush);
+            return new PhongMaterial()
+            {
+                DiffuseMap = bitmap.ToDynamicTextureModel(),
+                AmbientColor = HelixToolkit.Maths.Color4.White
+            };
         }
     }
 }

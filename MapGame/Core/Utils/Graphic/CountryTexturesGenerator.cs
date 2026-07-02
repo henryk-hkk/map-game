@@ -1,4 +1,6 @@
-﻿using MapGame.Core.Constants;
+﻿using HelixToolkit.SharpDX.Utilities;
+using HelixToolkit.Wpf.SharpDX;
+using MapGame.Core.Constants;
 using MapGame.Core.Utils.Geographic;
 using System;
 using System.Collections.Generic;
@@ -29,10 +31,11 @@ namespace MapGame.Core.Utils.Graphic
 
             RefreshCountryDirtyRect(new Int32Rect(0, 0, width, height));
 
-            ImageBrush brush = new ImageBrush(Map.CountryBitmap);
-            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
-
-            Map.CountryMaterial = new DiffuseMaterial(brush);
+            Map.CountryMaterial = new PhongMaterial()
+            {
+                DiffuseMap = Map.CountryBitmap.ToDynamicTextureModel(),
+                AmbientColor = HelixToolkit.Maths.Color4.White
+            };
         }
 
         private static void BuildGlobalCountryMap(int width, int height)
@@ -150,6 +153,11 @@ namespace MapGame.Core.Utils.Graphic
             Int32Rect scaledDirtyRect = new Int32Rect(startX_scaled, startY_scaled, endX_scaled - startX_scaled, endY_scaled - startY_scaled);
             int offset = (startY_scaled * scaledStride) + (startX_scaled * 4);
             Map.CountryBitmap.WritePixels(scaledDirtyRect, Map.CountryPixelData, scaledStride, offset);
+
+            if (Map.CountryMaterial is PhongMaterial phong)
+            {
+                phong.DiffuseMap = Map.CountryBitmap.ToDynamicTextureModel();
+            }
         }
     }
 }

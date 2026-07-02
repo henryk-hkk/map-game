@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
+using HelixToolkit.Wpf.SharpDX; // Wymagane dla PhongMaterial
 
 namespace MapGame.Core.Utils.Graphic
 {
@@ -18,10 +18,11 @@ namespace MapGame.Core.Utils.Graphic
             Map.SelectionPixelData = new byte[height * stride];
             Map.SelectionBitmap = new WriteableBitmap(width, height, 96, 96, PixelFormats.Bgra32, null);
 
-            ImageBrush brush = new ImageBrush(Map.SelectionBitmap);
-            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
-            //brush.Freeze();
-            Map.SelectionMaterial = new DiffuseMaterial(brush);
+            Map.SelectionMaterial = new PhongMaterial()
+            {
+                DiffuseMap = Map.SelectionBitmap.ToDynamicTextureModel(),
+                AmbientColor = HelixToolkit.Maths.Color4.White
+            };
         }
 
         public static void SelectRegionByAreaColor(Color areaColor)
@@ -97,6 +98,11 @@ namespace MapGame.Core.Utils.Graphic
                 int offset = (minY * stride) + (minX * 4);
 
                 Map.SelectionBitmap.WritePixels(updateRect, Map.SelectionPixelData, stride, offset);
+
+                if (Map.SelectionMaterial is PhongMaterial phong)
+                {
+                    phong.DiffuseMap = Map.SelectionBitmap.ToDynamicTextureModel();
+                }
             }
         }
 
@@ -143,6 +149,11 @@ namespace MapGame.Core.Utils.Graphic
                 int offset = (minY * stride) + (minX * 4);
 
                 Map.SelectionBitmap.WritePixels(updateRect, Map.SelectionPixelData, stride, offset);
+
+                if (Map.SelectionMaterial is PhongMaterial phong)
+                {
+                    phong.DiffuseMap = Map.SelectionBitmap.ToDynamicTextureModel();
+                }
             }
 
             Map.CurrentlySelectedRegionId = -1;
