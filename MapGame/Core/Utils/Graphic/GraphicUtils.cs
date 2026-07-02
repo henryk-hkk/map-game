@@ -53,5 +53,11 @@ namespace MapGame.Core.Utils.Graphic
 
             return new TextureModel(stream);
         }
+        public static TextureModel ToFastDynamicTextureModel(this byte[] bgraPixels, int width, int height)
+        {
+            var fakeStream = new FastDdsStream(bgraPixels, width, height);
+
+            return TextureModel.Create(fakeStream);
+        }
     }
 }

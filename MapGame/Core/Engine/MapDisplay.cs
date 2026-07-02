@@ -18,9 +18,8 @@ namespace MapGame.Core.Engine
         public MeshGeometry3D TerrainGeometry { get; set; }
         public MeshGeometry3D RiverGeometry { get; set; }
         public Material BaseMaterial { get; set; }
-        public Material CountryMaterial { get; set; }
-        public Material SelectionMaterial { get; set; }
-        public Material BordersMaterial { get; set; }
+        public Material OverlayMaterial { get; set; }
+
         public Material RiverMaterial { get; set; }
     }
 
@@ -63,8 +62,9 @@ namespace MapGame.Core.Engine
             Int32Rect dirtyRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
 
             BorderTexturesGenerator.UpdateBorders(targetArea.BorderPixelSegments);
-
             CountryTexturesGenerator.RefreshCountryDirtyRect(dirtyRect);
+
+            OverlayCompositor.ComposeAndApply(dirtyRect);
         }
 
         public static MapRenderData GetMapDisplay(byte[] heightmap, int width, int height)
@@ -73,19 +73,6 @@ namespace MapGame.Core.Engine
 
             data.TerrainGeometry = TerrainMeshGenerator.Generate3DMapModel(heightmap, width, height);
             data.RiverGeometry = RiverMeshGenerator.GenerateRiverMesh(Map.RiverMask, heightmap);
-
-            //TextureModel directXTexture = null;
-            //string texturePath = "Assets/Map/img/Colored.png";
-
-            //if (File.Exists(texturePath))
-            //{
-            //    using var stream = File.OpenRead(texturePath);
-            //    directXTexture = TextureModel.Create(stream);
-            //}
-            //else
-            //{
-            //    System.Diagnostics.Debug.WriteLine("UWAGA: Nie odnaleziono pliku tekstury na dysku!");
-            //}
 
             data.BaseMaterial = new PhongMaterial()
             {
@@ -100,20 +87,18 @@ namespace MapGame.Core.Engine
             if (Map.TextureMap.PixelWidth == 0)
                 throw new Exception("Tekstura ma wymiar 0!");
 
-            //data.BaseMaterial = new PhongMaterial()
-            //{
-            //    DiffuseColor = new Color4(1, 0, 0, 1), // Czerwony kolor
-            //    AmbientColor = new Color4(0.2f, 0.2f, 0.2f, 1)
-            //};
+            if (Map.OverlayMaterial == null)
+            {
+                CountryTexturesGenerator.InitializeCountryRendering();
+                BorderTexturesGenerator.InitializeBorderRendering(Map.BorderGraph);
+                SelectionTexturesGenerator.InitializeSelectionRendering();
 
-            //if (Map.CountryMaterial == null) CountryTexturesGenerator.InitializeCountryRendering();
-            //data.CountryMaterial = Map.CountryMaterial;
+                OverlayCompositor.InitializeCompositor();
 
-            //if (Map.SelectionMaterial == null) SelectionTexturesGenerator.InitializeSelectionRendering();
-            //data.SelectionMaterial = Map.SelectionMaterial;
+                OverlayCompositor.ComposeAndApply(new Int32Rect(0, 0, width, height));
+            }
 
-            if (Map.RegionBordersMaterial == null) BorderTexturesGenerator.InitializeBorderRendering(Map.BorderGraph);
-            data.BordersMaterial = Map.RegionBordersMaterial;
+            data.OverlayMaterial = Map.OverlayMaterial;
 
             data.RiverMaterial = new PhongMaterial()
             {

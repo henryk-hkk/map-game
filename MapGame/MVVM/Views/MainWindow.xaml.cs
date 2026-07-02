@@ -12,45 +12,56 @@ namespace MapGame.MVVM.Views
     public partial class MainWindow : Window
     {
         private DateTime _lastMouseMoveTime;
+        private readonly TimeSpan _mouseMoveThrottle = TimeSpan.FromMilliseconds(33);
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void OnTerrainMouseMove(object sender, RoutedEventArgs e)
+        private int _lastHoveredRegionId = -2;
+
+        private void OnViewportMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (e is Mouse3DEventArgs mouseArgs && mouseArgs.HitTestResult != null)
+            if ((DateTime.Now - _lastMouseMoveTime).TotalMilliseconds < 33) return;
+            _lastMouseMoveTime = DateTime.Now;
+
+            Point mousePos = e.GetPosition(MainViewport);
+
+            var hits = MainViewport.FindHits(mousePos);
+
+            if (hits != null && hits.Count > 0)
             {
-                Point mousePos = mouseArgs.Position;
-                CursorTransform.X = mousePos.X + 15;
-                CursorTransform.Y = mousePos.Y + 15;
+                var firstHit = hits[0];
 
-                var hitPoint = mouseArgs.HitTestResult.PointHit;
-                int mapX = (int)hitPoint.X;
-                int mapY = (int)hitPoint.Z;
-
-                Position mousePosition = new Position(hitPoint.X, hitPoint.Z);
-                //Region? hoveredRegion = Map.Regions.FirstOrDefault(r => r.Includes(mousePosition));
-
-                //CursorCoordsText.Text = hoveredRegion != null
-                //    ? $"X: {mapX} | Y: {mapY} | Region: {hoveredRegion.Id}"
-                //    : $"X: {mapX} | Y: {mapY} | Region: brak";
-
-                int index1D = (mapY * Map.Width) + mapX;
-
-                if (index1D >= 0 && Map.GlobalRegionMap != null && index1D < Map.GlobalRegionMap.Length)
+                if (firstHit.ModelHit is MeshGeometryModel3D hitModel)
                 {
-                    int hoveredRegionId = Map.GlobalRegionMap[index1D];
-                    if (hoveredRegionId == -1)
+                    CursorTransform.X = mousePos.X + 15;
+                    CursorTransform.Y = mousePos.Y + 15;
+
+                    var hitPoint = firstHit.PointHit;
+                    int mapX = (int)hitPoint.X;
+                    int mapY = (int)hitPoint.Z;
+
+                    int index1D = (mapY * Map.Width) + mapX;
+
+                    if (index1D >= 0 && Map.GlobalRegionMap != null && index1D < Map.GlobalRegionMap.Length)
                     {
-                        CursorCoordsText.Text = string.Empty;
-                        return;
-                    }
-                    string? regionName = Map.RegionNames[hoveredRegionId];
-                    if (regionName != null)
-                    {
-                        CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {regionName} ({hoveredRegionId})";
+                        int hoveredRegionId = Map.GlobalRegionMap[index1D];
+                        if (hoveredRegionId == -1)
+                        {
+                            CursorCoordsText.Text = string.Empty;
+                            return;
+                        }
+
+                        if (hoveredRegionId >= 0 && hoveredRegionId < Map.RegionNames.Count)
+                        {
+                            string? regionName = Map.RegionNames[hoveredRegionId];
+                            if (regionName != null)
+                            {
+                                CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {regionName} ({hoveredRegionId})";
+                            }
+                        }
                     }
                 }
             }
@@ -62,8 +73,8 @@ namespace MapGame.MVVM.Views
 
         private void OnTerrainMouseDown(object sender, RoutedEventArgs e)
         {
-            if ((DateTime.Now - _lastMouseMoveTime).TotalMilliseconds < 33) return;
-            _lastMouseMoveTime = DateTime.Now;
+            //if ((DateTime.Now - _lastMouseMoveTime).TotalMilliseconds < 33) return;
+            //_lastMouseMoveTime = DateTime.Now;
 
             if (e is Mouse3DEventArgs mouseArgs && mouseArgs.HitTestResult != null)
             {
@@ -142,6 +153,16 @@ namespace MapGame.MVVM.Views
                         viewModel.DeselectRegion();
                     }
                 }
+            }
+        }
+
+        private void OnViewportMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            if (this.DataContext is MapGame.MVVM.ViewModels.MapViewModel viewModel)
+            {
+                viewModel.CameraController.Zoom(e.Delta);
+
+                e.Handled = true;
             }
         }
     }

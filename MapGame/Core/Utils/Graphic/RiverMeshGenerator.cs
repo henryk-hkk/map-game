@@ -30,13 +30,13 @@ namespace MapGame.Core.Utils.Graphic
             {
                 if (rawRiverPath.Count < 4) continue;
 
-                Vector2 punktStartowy = rawRiverPath[0];
-                Vector2 punktKoncowy = rawRiverPath[rawRiverPath.Count - 1];
+                Vector2 pStart = rawRiverPath[0];
+                Vector2 pEnd = rawRiverPath[rawRiverPath.Count - 1];
 
-                double wysokoscStartu = TerrainMeshGenerator.GetTerrainHeight(heightmap, (int)punktStartowy.X, (int)punktStartowy.Y, width, height);
-                double wysokoscKonca = TerrainMeshGenerator.GetTerrainHeight(heightmap, (int)punktKoncowy.X, (int)punktKoncowy.Y, width, height);
+                double hStart = TerrainMeshGenerator.GetTerrainHeight(heightmap, (int)pStart.X, (int)pStart.Y, width, height);
+                double hEnd = TerrainMeshGenerator.GetTerrainHeight(heightmap, (int)pEnd.X, (int)pEnd.Y, width, height);
 
-                if (wysokoscStartu < wysokoscKonca)
+                if (hStart < hEnd)
                 {
                     rawRiverPath.Reverse();
                 }

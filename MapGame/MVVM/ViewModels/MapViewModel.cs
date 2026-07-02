@@ -3,6 +3,7 @@ using HelixToolkit.Wpf.SharpDX;
 using MapGame.Core.Constants;
 using MapGame.Core.Engine;
 using MapGame.Core.Utils.Graphic;
+using System;
 using System.ComponentModel;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -16,6 +17,10 @@ namespace MapGame.MVVM.ViewModels
         private float _riverScrollY = 0f;
 
         public IEffectsManager EffectsManager { get; }
+
+        public PerspectiveCamera MainCamera { get; }
+        public MapCameraController CameraController { get; }
+        private TimeSpan _lastRenderTime = TimeSpan.Zero;
 
         private HelixToolkit.SharpDX.MeshGeometry3D _terrainGeometry;
         public HelixToolkit.SharpDX.MeshGeometry3D TerrainGeometry
@@ -38,25 +43,12 @@ namespace MapGame.MVVM.ViewModels
             set { _terrainBaseMaterial = value; OnPropertyChanged(); }
         }
 
-        private HelixToolkit.Wpf.SharpDX.Material _countryMaterial;
-        public HelixToolkit.Wpf.SharpDX.Material CountryMaterial
+        // Zastępuje CountryMaterial, BordersMaterial i SelectionMaterial
+        private HelixToolkit.Wpf.SharpDX.Material _overlayMaterial;
+        public HelixToolkit.Wpf.SharpDX.Material OverlayMaterial
         {
-            get => _countryMaterial;
-            set { _countryMaterial = value; OnPropertyChanged(); }
-        }
-
-        private HelixToolkit.Wpf.SharpDX.Material _bordersMaterial;
-        public HelixToolkit.Wpf.SharpDX.Material BordersMaterial
-        {
-            get => _bordersMaterial;
-            set { _bordersMaterial = value; OnPropertyChanged(); }
-        }
-
-        private HelixToolkit.Wpf.SharpDX.Material _selectionMaterial;
-        public HelixToolkit.Wpf.SharpDX.Material SelectionMaterial
-        {
-            get => _selectionMaterial;
-            set { _selectionMaterial = value; OnPropertyChanged(); }
+            get => _overlayMaterial;
+            set { _overlayMaterial = value; OnPropertyChanged(); }
         }
 
         private HelixToolkit.Wpf.SharpDX.Material _riverMaterial;
@@ -76,6 +68,16 @@ namespace MapGame.MVVM.ViewModels
         {
             EffectsManager = new DefaultEffectsManager();
 
+            MainCamera = new PerspectiveCamera()
+            {
+                Position = new System.Windows.Media.Media3D.Point3D(3072, 2500, 2000),
+                LookDirection = new System.Windows.Media.Media3D.Vector3D(0, -1, -0.01),
+                UpDirection = new System.Windows.Media.Media3D.Vector3D(0, 1, 0),
+                FarPlaneDistance = 15000
+            };
+
+            CameraController = new MapCameraController(MainCamera);
+
             Initialize3DMap();
             CompositionTarget.Rendering += OnGameUpdate;
         }
@@ -87,10 +89,11 @@ namespace MapGame.MVVM.ViewModels
             TerrainGeometry = mapData.TerrainGeometry;
             RiverGeometry = mapData.RiverGeometry;
 
+            TerrainGeometry.UpdateOctree();
+            if (RiverGeometry != null) RiverGeometry.UpdateOctree();
+
             TerrainBaseMaterial = mapData.BaseMaterial;
-            CountryMaterial = mapData.CountryMaterial;
-            SelectionMaterial = mapData.SelectionMaterial;
-            BordersMaterial = mapData.BordersMaterial;
+            OverlayMaterial = mapData.OverlayMaterial; // Nowy materiał
             RiverMaterial = mapData.RiverMaterial;
         }
 
@@ -103,19 +106,26 @@ namespace MapGame.MVVM.ViewModels
                 var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
                 SelectedRegionName = region != null ? region.Name : "Nieznany Region";
             }
-            // Ważne: w SharpDX aktualizacja tekstury w tle (np. zmapowanego bufora) 
-            // często od razu odświeża widok bez konieczności robienia OnPropertyChanged całego modelu!
         }
 
         private void OnGameUpdate(object sender, EventArgs e)
         {
-            _riverScrollY -= 0.002f;
+            if (e is RenderingEventArgs args)
+            {
+                if (_lastRenderTime == TimeSpan.Zero) _lastRenderTime = args.RenderingTime;
+                double deltaTime = (args.RenderingTime - _lastRenderTime).TotalSeconds;
+                _lastRenderTime = args.RenderingTime;
 
+                CameraController.Update(deltaTime);
+            }
+
+            _riverScrollY -= 0.002f;
             if (_riverScrollY < -1.0f) _riverScrollY += 1.0f;
 
-            if (RiverMaterial is PhongMaterial phong)
+            if (RiverMaterial is HelixToolkit.Wpf.SharpDX.PhongMaterial wpfMaterial &&
+                wpfMaterial.Core is HelixToolkit.SharpDX.Model.PhongMaterialCore coreMaterial)
             {
-                phong.UVTransform = new HelixToolkit.SharpDX.UVTransform()
+                coreMaterial.UVTransform = new HelixToolkit.SharpDX.UVTransform()
                 {
                     Rotation = 0f,
                     Scaling = new Vector2(1f, 1f),

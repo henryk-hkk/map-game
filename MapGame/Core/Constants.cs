@@ -60,6 +60,8 @@ namespace MapGame.Core.Constants
         public static WriteableBitmap SelectionBitmap;
         public static HelixToolkit.Wpf.SharpDX.Material SelectionMaterial;
 
+        public static byte[] MasterOverlayPixelData;
+        public static PhongMaterial OverlayMaterial;
 
         //public static Position Pos1 = new Position(3180, 966), Pos2 = new Position(3167, 1000), Pos3 = new Position(3186, 1002);
         //public static Position[] posList = {Pos1,Pos2,Pos3 };

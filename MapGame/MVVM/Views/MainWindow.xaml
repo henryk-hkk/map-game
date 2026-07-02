@@ -10,15 +10,16 @@
 
     <Grid Background="Black">
         <hx:Viewport3DX x:Name="MainViewport" 
+                MouseMove="OnViewportMouseMove"
+                MouseWheel="OnViewportMouseWheel"
+                Camera="{Binding MainCamera}"
                 EffectsManager="{Binding EffectsManager}"
                 BackgroundColor="#1a1a1a"
-                CameraMode="Inspect" IsRotationEnabled="False" 
-                IsMoveEnabled="True" 
-                IsPanEnabled="True">
-
-            <hx:Viewport3DX.Camera>
-                <hx:PerspectiveCamera Position="3072,2500,2000" LookDirection="0,-2500,-10" UpDirection="0,1,0" FarPlaneDistance="15000" />
-            </hx:Viewport3DX.Camera>
+                IsRotationEnabled="False" 
+                IsMoveEnabled="False"
+                IsPanEnabled="False"
+                IsZoomEnabled="False"
+         >
 
             <hx:DirectionalLight3D Direction="-1,-1,-1" Color="White" />
             <hx:AmbientLight3D Color="#404040" />
@@ -26,29 +27,14 @@
             <hx:MeshGeometryModel3D Geometry="{Binding TerrainGeometry}" 
                             Material="{Binding TerrainBaseMaterial}"
                             MouseDown3D="OnTerrainMouseDown"
-                            MouseMove3D="OnTerrainMouseMove"
-                            CullMode="None" />
+                            CullMode="Back" />
 
             <hx:MeshGeometryModel3D Geometry="{Binding TerrainGeometry}" 
-                            Material="{Binding CountryMaterial}" 
+                            Material="{Binding OverlayMaterial}" 
                             IsHitTestVisible="False"
                             IsTransparent="True" 
                             DepthBias="-10"
-                            CullMode="None" />
-
-            <hx:MeshGeometryModel3D Geometry="{Binding TerrainGeometry}" 
-                            Material="{Binding BordersMaterial}" 
-                            IsHitTestVisible="False"
-                            IsTransparent="True" 
-                            DepthBias="-20"
-                            CullMode="None" />
-
-            <hx:MeshGeometryModel3D Geometry="{Binding TerrainGeometry}" 
-                            Material="{Binding SelectionMaterial}" 
-                            IsHitTestVisible="False"
-                            IsTransparent="True" 
-                            DepthBias="-30"
-                            CullMode="None" />
+                            CullMode="Back" />
 
             <hx:MeshGeometryModel3D Geometry="{Binding RiverGeometry}" 
                             Material="{Binding RiverMaterial}" 
@@ -56,11 +42,11 @@
                             IsTransparent="True" 
                             DepthBias="-50"
                             CullMode="None" />
-
         </hx:Viewport3DX>
 
         <Canvas IsHitTestVisible="False">
-            <TextBlock x:Name="CursorCoordsText" Foreground="Lime" FontWeight="Bold" FontSize="14">
+            <TextBlock x:Name="CursorCoordsText" Foreground="Lime" FontWeight="Bold" FontSize="14"
+           Width="400" TextWrapping="NoWrap">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="CursorTransform" />
                 </TextBlock.RenderTransform>
