@@ -43,7 +43,6 @@ namespace MapGame.MVVM.ViewModels
             set { _terrainBaseMaterial = value; OnPropertyChanged(); }
         }
 
-        // Zastępuje CountryMaterial, BordersMaterial i SelectionMaterial
         private HelixToolkit.Wpf.SharpDX.Material _overlayMaterial;
         public HelixToolkit.Wpf.SharpDX.Material OverlayMaterial
         {
@@ -93,7 +92,7 @@ namespace MapGame.MVVM.ViewModels
             if (RiverGeometry != null) RiverGeometry.UpdateOctree();
 
             TerrainBaseMaterial = mapData.BaseMaterial;
-            OverlayMaterial = mapData.OverlayMaterial; // Nowy materiał
+            OverlayMaterial = mapData.OverlayMaterial;
             RiverMaterial = mapData.RiverMaterial;
         }
 

@@ -43,26 +43,49 @@ namespace MapGame.MVVM.Views
                     int mapX = (int)hitPoint.X;
                     int mapY = (int)hitPoint.Z;
 
-                    int index1D = (mapY * Map.Width) + mapX;
+                    Position mousePosition = new Position(hitPoint.X, hitPoint.Z);
 
-                    if (index1D >= 0 && Map.GlobalRegionMap != null && index1D < Map.GlobalRegionMap.Length)
+                    Region? hoveredRegion = null;
+
+                    foreach (Region region in Map.Regions)
                     {
-                        int hoveredRegionId = Map.GlobalRegionMap[index1D];
-                        if (hoveredRegionId == -1)
+                        if (region.Includes(mousePosition))
                         {
-                            CursorCoordsText.Text = string.Empty;
-                            return;
-                        }
-
-                        if (hoveredRegionId >= 0 && hoveredRegionId < Map.RegionNames.Count)
-                        {
-                            string? regionName = Map.RegionNames[hoveredRegionId];
-                            if (regionName != null)
-                            {
-                                CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {regionName} ({hoveredRegionId})";
-                            }
+                            hoveredRegion = region;
+                            break;
                         }
                     }
+
+                    if (hoveredRegion != null)
+                    {
+                        CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {Map.RegionNames[hoveredRegion.Id]} ({hoveredRegion.Id})";
+                    }
+                    else
+                    {
+                        CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: brak";
+                    }
+
+                    //int index1D = (mapY * Map.Width) + mapX;
+
+
+                    //if (index1D >= 0 && Map.GlobalRegionMap != null && index1D < Map.GlobalRegionMap.Length)
+                    //{
+                    //    int hoveredRegionId = Map.GlobalRegionMap[index1D];
+                    //    if (hoveredRegionId == -1)
+                    //    {
+                    //        CursorCoordsText.Text = string.Empty;
+                    //        return;
+                    //    }
+
+                    //    if (hoveredRegionId >= 0 && hoveredRegionId < Map.RegionNames.Count)
+                    //    {
+                    //        string? regionName = Map.RegionNames[hoveredRegionId];
+                    //        if (regionName != null)
+                    //        {
+                    //            CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {regionName} ({hoveredRegionId})";
+                    //        }
+                    //    }
+                    //}
                 }
             }
             else

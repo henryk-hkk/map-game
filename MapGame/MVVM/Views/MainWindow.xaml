@@ -19,6 +19,8 @@
                 IsMoveEnabled="False"
                 IsPanEnabled="False"
                 IsZoomEnabled="False"
+                ShowViewCube="False"
+                ShowCoordinateSystem="False"
          >
 
             <hx:DirectionalLight3D Direction="-1,-1,-1" Color="White" />
