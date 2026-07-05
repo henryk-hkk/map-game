@@ -47,7 +47,7 @@ namespace MapGame.Core.Utils.JSON
             {
                 if (region.Areas == null) continue;
 
-                Region mapRegion = new Region(region.RegionId, region.Identifier);
+                Region mapRegion = new Region(region.RegionId, region.Identifier,region.Name);
                 regionsDict.Add(region.RegionId, region.Identifier);
                 regions.Add(mapRegion);
 

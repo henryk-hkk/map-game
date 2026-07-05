@@ -48,5 +48,73 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
         </Canvas>
+
+        <Border x:Name="RegionInfoPanel"
+        Width="340"
+        Height="190"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"
+        Margin="18,0,0,90"
+        Background="#263026"
+        BorderBrush="#0B0E0B"
+        BorderThickness="3"
+        CornerRadius="6"
+        Padding="16"
+        Visibility="Collapsed">
+
+            <Border.RenderTransform>
+                <TranslateTransform x:Name="RegionInfoPanelTransform" X="-360" />
+            </Border.RenderTransform>
+
+            <Border.Effect>
+                <DropShadowEffect Color="Black"
+                          BlurRadius="12"
+                          ShadowDepth="4"
+                          Opacity="0.55" />
+            </Border.Effect>
+
+            <Border.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#D0C6A6" />
+                    <Setter Property="Foreground" Value="#161A14" />
+                    <Setter Property="BorderBrush" Value="#11140F" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                    <Setter Property="Margin" Value="6" />
+                    <Setter Property="Height" Value="34" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </Style>
+            </Border.Resources>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="RegionNameText"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Text="Kraj"
+                   Foreground="#E8DEC0"
+                   FontSize="22"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,14" />
+
+                <Button Grid.Row="1" Grid.Column="0" Content="Pop." />
+                <Button Grid.Row="2" Grid.Column="0" Content="Narod" />
+                <Button Grid.Row="1" Grid.Column="1" Content="Owner" />
+                <Button Grid.Row="2" Grid.Column="1" Content="Rosze." />
+            </Grid>
+        </Border>
+
     </Grid>
 </Window>
