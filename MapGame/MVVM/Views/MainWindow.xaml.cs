@@ -58,14 +58,6 @@ namespace MapGame.MVVM.Views
 
             RegionInfoPanelTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
         }
-
-        private void OnMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (DataContext is MapViewModel viewModel)
-            {
-                viewModel.ZoomCamera(e.Delta);
-            }
-        }
         private int _lastHoveredRegionId = -2;
 
         private void OnViewportMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -152,7 +144,7 @@ namespace MapGame.MVVM.Views
                 {
                     var hit = mouseArgs.HitTestResult;
 
-                    var mesh = hit.Geometry as MeshGeometry3D;
+                    var mesh = hit.Geometry as HelixToolkit.SharpDX.MeshGeometry3D;
 
                     if (mesh != null && mesh.TextureCoordinates != null && hit.TriangleIndices != null)
                     {
