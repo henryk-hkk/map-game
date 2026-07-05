@@ -6,11 +6,20 @@ using MapGame.MVVM.ViewModels;
 using System.Numerics;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using MapGame.Core.Utils.Geographic;
+using System.Windows.Media.Animation;
+using System.Linq;
 
 namespace MapGame.MVVM.Views
 {
     public partial class MainWindow : Window
     {
+        private Color? _currentPanelRegionColor = null;
         private DateTime _lastMouseMoveTime;
         private readonly TimeSpan _mouseMoveThrottle = TimeSpan.FromMilliseconds(33);
 
@@ -19,6 +28,44 @@ namespace MapGame.MVVM.Views
             InitializeComponent();
         }
 
+        private void ShowRegionPanel()
+        {
+            RegionInfoPanel.Visibility = Visibility.Visible;
+
+            DoubleAnimation slideIn = new DoubleAnimation
+            {
+                From = -340,
+                To = 0,
+                Duration = TimeSpan.FromMilliseconds(100)
+            };
+
+            RegionInfoPanelTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
+        }
+
+        private void HideRegionPanel()
+        {
+            DoubleAnimation slideOut = new DoubleAnimation
+            {
+                From = 0,
+                To = -340,
+                Duration = TimeSpan.FromMilliseconds(100)
+            };
+
+            slideOut.Completed += (sender, e) =>
+            {
+                RegionInfoPanel.Visibility = Visibility.Collapsed;
+            };
+
+            RegionInfoPanelTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
+        }
+
+        private void OnMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (DataContext is MapViewModel viewModel)
+            {
+                viewModel.ZoomCamera(e.Delta);
+            }
+        }
         private int _lastHoveredRegionId = -2;
 
         private void OnViewportMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -163,6 +210,23 @@ namespace MapGame.MVVM.Views
                                     if (this.DataContext is MapViewModel viewModel)
                                     {
                                         viewModel.SelectRegion(clickedColor);
+
+                                        _currentPanelRegionColor = clickedColor;
+
+                                        if (Map.Areas.TryGetValue(clickedColor, out PixelArea clickedArea) &&
+                                            clickedArea.ParentRegionId.HasValue)
+                                        {
+                                            Region? clickedRegion = Map.Regions
+                                            .FirstOrDefault(region => region.Id == clickedArea.ParentRegionId.Value);
+
+                                            RegionNameText.Text = clickedRegion?.Name ?? "Nieznany region";
+                                        }   
+                                        else
+                                        {
+                                            RegionNameText.Text = "Nieznany region";
+                                        }
+
+                                        ShowRegionPanel();
                                     }
                                 }
                             }
@@ -187,6 +251,9 @@ namespace MapGame.MVVM.Views
 
                 e.Handled = true;
             }
+
+            _currentPanelRegionColor = null;
+            HideRegionPanel();
         }
     }
 }
