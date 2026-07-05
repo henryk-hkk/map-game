@@ -56,20 +56,34 @@ namespace MapGame.Core.Utils.Graphic
 
                 for (int i = startIdx; i < endIdx; i += 4)
                 {
-                    float rC = countries[i + 2], gC = countries[i + 1], bC = countries[i], aC = countries[i + 3] / 255f;
+                    // Warstwa bazowa: Countries
+                    float bC = countries[i], gC = countries[i + 1], rC = countries[i + 2], aC = countries[i + 3] / 255f;
 
+                    // Mieszanie Borders na Countries
                     float aB = borders[i + 3] / 255f;
-                    float r1 = (borders[i + 2] * aB) + (rC * (1 - aB));
-                    float g1 = (borders[i + 1] * aB) + (gC * (1 - aB));
-                    float b1 = (borders[i] * aB) + (bC * (1 - aB));
-                    float alpha1 = aC + aB - (aC * aB);
+                    float alpha1 = aB + aC * (1 - aB);
 
+                    float r1 = 0, g1 = 0, b1 = 0;
+                    if (alpha1 > 0) // Zabezpieczenie przed dzieleniem przez zero i wyciekiem bieli
+                    {
+                        r1 = (borders[i + 2] * aB + rC * aC * (1 - aB)) / alpha1;
+                        g1 = (borders[i + 1] * aB + gC * aC * (1 - aB)) / alpha1;
+                        b1 = (borders[i] * aB + bC * aC * (1 - aB)) / alpha1;
+                    }
+
+                    // Mieszanie Selections
                     float aS = selections[i + 3] / 255f;
-                    float rFinal = (selections[i + 2] * aS) + (r1 * (1 - aS));
-                    float gFinal = (selections[i + 1] * aS) + (g1 * (1 - aS));
-                    float bFinal = (selections[i] * aS) + (b1 * (1 - aS));
-                    float alphaFinal = alpha1 + aS - (alpha1 * aS);
+                    float alphaFinal = aS + alpha1 * (1 - aS);
 
+                    float rFinal = 0, gFinal = 0, bFinal = 0;
+                    if (alphaFinal > 0)
+                    {
+                        rFinal = (selections[i + 2] * aS + r1 * alpha1 * (1 - aS)) / alphaFinal;
+                        gFinal = (selections[i + 1] * aS + g1 * alpha1 * (1 - aS)) / alphaFinal;
+                        bFinal = (selections[i] * aS + b1 * alpha1 * (1 - aS)) / alphaFinal;
+                    }
+
+                    // Zapis do tablicy docelowej
                     dest[i] = (byte)bFinal;
                     dest[i + 1] = (byte)gFinal;
                     dest[i + 2] = (byte)rFinal;
