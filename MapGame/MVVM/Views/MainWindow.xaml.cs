@@ -230,6 +230,8 @@ namespace MapGame.MVVM.Views
                     if (this.DataContext is MapViewModel viewModel)
                     {
                         viewModel.DeselectRegion();
+                        _currentPanelRegionColor = null;
+                        HideRegionPanel();
                     }
                 }
             }
@@ -243,9 +245,6 @@ namespace MapGame.MVVM.Views
 
                 e.Handled = true;
             }
-
-            _currentPanelRegionColor = null;
-            HideRegionPanel();
         }
     }
 }
