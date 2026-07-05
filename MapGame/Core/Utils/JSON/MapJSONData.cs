@@ -20,6 +20,7 @@ namespace MapGame.Core.Utils.JSON
 
     public class AreaDefinition
     {
+        public string Identifier { get; set; }
         public string Name { get; set; }
         public byte R { get; set; }
         public byte G { get; set; }

@@ -7,6 +7,7 @@ namespace MapGame.Core.Utils.Geographic
     public abstract class Area
     {
         public abstract bool Includes(Position pos);
+        public string? Identifier { get; set; }
         public string? Name {  get; set; }
         public int? ParentRegionId { get; set; }
         public int? Population { get; set; }

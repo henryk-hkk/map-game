@@ -1,21 +1,17 @@
-﻿using MapGame.Core.Constants;
+﻿using HelixToolkit.SharpDX;
+using HelixToolkit.Wpf.SharpDX;
+using MapGame.Core.Constants;
 using MapGame.Core.Utils.Geographic;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Shapes;
 
 namespace MapGame.Core.Utils.Graphic
 {
     public static class BorderTexturesGenerator
     {
-        private const int SdfScale = 4;
+        private const int SdfScale = 2;
 
         public static void InitializeBorderRendering(Dictionary<(Color, Color), BorderPixelSegment> borderGraph)
         {
@@ -26,19 +22,9 @@ namespace MapGame.Core.Utils.Graphic
             int scaledStride = scaledWidth * 4;
 
             Map.RegionBorderPixelData = new byte[scaledHeight * scaledStride];
-            Map.RegionBordersBitmap = new WriteableBitmap(scaledWidth, scaledHeight, 96, 96, PixelFormats.Bgra32, null);
-
-            Map.GlobalRegionMap = MapUtils.GetRegionMap(width, height);
 
             Int32Rect fullMapRect = new Int32Rect(0, 0, width, height);
             RefreshDirtyRectSDF(fullMapRect);
-
-            ImageBrush brush = new ImageBrush(Map.RegionBordersBitmap);
-
-            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
-
-            //brush.Freeze();
-            Map.RegionBordersMaterial = new DiffuseMaterial(brush);
         }
 
         public static void UpdateBorders(IEnumerable<BorderPixelSegment> segmentsToUpdate)
@@ -49,7 +35,6 @@ namespace MapGame.Core.Utils.Graphic
             int maxX = int.MinValue, maxY = int.MinValue;
             bool anyChanges = false;
 
-            // Bounding box of changed segments
             foreach (var segment in segmentsToUpdate)
             {
                 foreach (int index in segment.PixelIndices)
@@ -85,6 +70,7 @@ namespace MapGame.Core.Utils.Graphic
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
             int scaledWidth = width * SdfScale;
+            int scaledHeight = height * SdfScale;
             int scaledStride = scaledWidth * 4;
 
             int startX_scaled = dirtyRect.X * SdfScale;
@@ -92,51 +78,33 @@ namespace MapGame.Core.Utils.Graphic
             int endX_scaled = (dirtyRect.X + dirtyRect.Width) * SdfScale;
             int endY_scaled = (dirtyRect.Y + dirtyRect.Height) * SdfScale;
 
-            // Erasing
+            int rowByteLength = (endX_scaled - startX_scaled) * 4;
             for (int y = startY_scaled; y < endY_scaled; y++)
             {
-                for (int x = startX_scaled; x < endX_scaled; x++)
-                {
-                    int idx = (y * scaledStride) + (x * 4);
-                    Map.RegionBorderPixelData[idx] = 0;
-                    Map.RegionBorderPixelData[idx + 1] = 0;
-                    Map.RegionBorderPixelData[idx + 2] = 0;
-                    Map.RegionBorderPixelData[idx + 3] = 0; // Alpha na 0
-                }
+                int startByteIdx = (y * scaledStride) + (startX_scaled * 4);
+                Array.Clear(Map.RegionBorderPixelData, startByteIdx, rowByteLength);
             }
 
             var sdfPixels = SDFAgent.ComputeLocalSDF(Map.GlobalRegionMap, width, height, SdfScale, dirtyRect);
 
             foreach (var pixel in sdfPixels)
             {
-                int idx = pixel.Index;
+                int byteIdx = pixel.Index;
                 byte alpha = pixel.Alpha;
 
-                if (idx >= 0 && idx + 3 < Map.RegionBorderPixelData.Length)
+                if (byteIdx >= 0 && byteIdx + 3 < Map.RegionBorderPixelData.Length)
                 {
-                    Map.RegionBorderPixelData[idx] = 50;     // B
-                    Map.RegionBorderPixelData[idx + 1] = 50; // G
-                    Map.RegionBorderPixelData[idx + 2] = 50; // R
-                    Map.RegionBorderPixelData[idx + 3] = (byte)(alpha * 0.8);
+                    Map.RegionBorderPixelData[byteIdx] = 50;     // B
+                    Map.RegionBorderPixelData[byteIdx + 1] = 50; // G
+                    Map.RegionBorderPixelData[byteIdx + 2] = 50; // R
+                    Map.RegionBorderPixelData[byteIdx + 3] = (byte)(alpha * 0.8f); // Alpha
                 }
             }
-
-            Int32Rect scaledDirtyRect = new Int32Rect(
-                startX_scaled,
-                startY_scaled,
-                endX_scaled - startX_scaled,
-                endY_scaled - startY_scaled);
-
-            int offset = (startY_scaled * scaledStride) + (startX_scaled * 4);
-
-            Map.RegionBordersBitmap.WritePixels(scaledDirtyRect, Map.RegionBorderPixelData, scaledStride, offset);
         }
-
 
         public static byte[] GetRegionBorderPixels(int[] regionMap)
         {
             var (width, height, stride) = MapUtils.GetBitmapParams();
-
             byte[] borderPixels = new byte[height * stride];
 
             for (int y = 1; y < height - 1; y++)
@@ -146,7 +114,6 @@ namespace MapGame.Core.Utils.Graphic
                     int index1D = (y * width) + x;
                     int currentRegion = regionMap[index1D];
 
-                    // Ignoring water
                     if (currentRegion == -1) continue;
 
                     int regionUp = regionMap[index1D - width];
@@ -167,7 +134,6 @@ namespace MapGame.Core.Utils.Graphic
                     }
                 }
             }
-
             return borderPixels;
         }
 
@@ -220,93 +186,7 @@ namespace MapGame.Core.Utils.Graphic
                     }
                 }
             }
-
             return borderPixels;
-        }
-
-        private static DiffuseMaterial GenerateAreaBorder(PolygonArea area, int scale = 4)
-        {
-            var (width, height, stride) = MapUtils.GetBitmapParams();
-            DrawingVisual visual = new DrawingVisual();
-
-            using (DrawingContext dc = visual.RenderOpen())
-            {
-                Pen borderPen = new Pen(Brushes.Red, 1);
-
-                StreamGeometry geometry = new StreamGeometry();
-                using (StreamGeometryContext ctx = geometry.Open())
-                {
-                    Point startPoint = new Point(area.Vertices[0].X * scale, area.Vertices[0].Y * scale);
-                    ctx.BeginFigure(startPoint, isFilled: false, isClosed: true);
-
-                    for (int i = 1; i < area.Vertices.Count; i++)
-                    {
-                        ctx.LineTo(new Point(area.Vertices[i].X * scale, area.Vertices[i].Y * scale), isStroked: true, isSmoothJoin: true);
-                    }
-                }
-
-                dc.DrawGeometry(null, borderPen, geometry);
-            }
-
-            RenderTargetBitmap rtb = new RenderTargetBitmap(width * scale, height * scale, 96, 96, PixelFormats.Pbgra32);
-            rtb.Render(visual);
-            rtb.Freeze();
-
-            ImageBrush bordersBrush = new ImageBrush(rtb);
-
-            RenderOptions.SetBitmapScalingMode(bordersBrush, BitmapScalingMode.NearestNeighbor);
-            bordersBrush.Freeze();
-            return new DiffuseMaterial(new ImageBrush(rtb));
-        }
-
-        private static DiffuseMaterial GenerateAreaBorders()
-        {
-            var (width, height, stride) = MapUtils.GetBitmapParams();
-
-            byte[] borderPixels = new byte[height * stride];
-
-            for (int y = 1; y < height - 1; y++)
-            {
-                for (int x = 1; x < width - 1; x++)
-                {
-                    int index = (y * stride) + (x * 4);
-
-                    if (Map.AreaPixels[index] == 0 && Map.AreaPixels[index + 1] == 0 && Map.AreaPixels[index + 2] == 0) // Ignore #000 (Water)
-                        continue;
-
-                    byte b = Map.AreaPixels[index];
-                    byte g = Map.AreaPixels[index + 1];
-                    byte r = Map.AreaPixels[index + 2];
-
-                    int indexUp = index - stride;
-                    int indexDown = index + stride;
-                    int indexLeft = index - 4;
-                    int indexRight = index + 4;
-
-                    // Is a border if any of the surrounding pixels has a different color.
-                    bool isBorder =
-                        (Map.AreaPixels[indexUp] != b || Map.AreaPixels[indexUp + 1] != g || Map.AreaPixels[indexUp + 2] != r) ||
-                        (Map.AreaPixels[indexDown] != b || Map.AreaPixels[indexDown + 1] != g || Map.AreaPixels[indexDown + 2] != r) ||
-                        (Map.AreaPixels[indexLeft] != b || Map.AreaPixels[indexLeft + 1] != g || Map.AreaPixels[indexLeft + 2] != r) ||
-                        (Map.AreaPixels[indexRight] != b || Map.AreaPixels[indexRight + 1] != g || Map.AreaPixels[indexRight + 2] != r);
-
-                    if (isBorder)
-                    {
-                        GraphicUtils.ColorPixel(borderPixels, index, 0, 0, 255, 255);
-                    }
-                }
-            }
-
-            WriteableBitmap bitmap = new WriteableBitmap(Map.Width, Map.Height, 96, 96, PixelFormats.Bgra32, null);
-
-            bitmap.WritePixels(new Int32Rect(0, 0, Map.Width, Map.Height), borderPixels, stride, 0);
-            bitmap.Freeze();
-
-            ImageBrush brush = new ImageBrush(bitmap);
-            RenderOptions.SetBitmapScalingMode(brush, BitmapScalingMode.NearestNeighbor);
-            brush.Freeze();
-
-            return new DiffuseMaterial(brush);
         }
     }
 }
