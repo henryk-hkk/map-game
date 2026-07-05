@@ -130,6 +130,107 @@
       "OwnedRegionIds": [
         "Estonia"
       ]
+    },
+    {
+      "Identifier": "ITALY",
+      "DisplayName": "Kingdom of Italy",
+      "R": 0,
+      "G": 89,
+      "B": 9,
+      "OwnedRegionIds": [
+        "AdriaticIslands",
+        "ItalianDalmatia"
+      ]
+    },
+    {
+      "Identifier": "AUSTRIA",
+      "DisplayName": "Republic of Austria",
+      "R": 210,
+      "G": 210,
+      "B": 210,
+      "OwnedRegionIds": [
+        "LowerAustria",
+        "Styria",
+        "Carinthia",
+        "UpperAustria",
+        "Salzburg",
+        "Tyrol",
+        "Vienna"
+      ]
+    },
+    {
+      "Identifier": "LIECHTENSTEIN",
+      "DisplayName": "Duchy of Liechtenstein",
+      "R": 85,
+      "G": 51,
+      "B": 221,
+      "OwnedRegionIds": [
+        "Liechtenstein"
+      ]
+    },
+    {
+      "Identifier": "SWITZERLAND",
+      "DisplayName": "Republic of Switzerland",
+      "R": 255,
+      "G": 0,
+      "B": 0,
+      "OwnedRegionIds": [
+        "Switzerland"
+      ]
+    },
+    {
+      "Identifier": "HUNGARY",
+      "DisplayName": "Kingdom of Hungary",
+      "R": 57,
+      "G": 84,
+      "B": 39,
+      "OwnedRegionIds": [
+        "Hungary"
+      ]
+    },
+    {
+      "Identifier": "YUGOSLAVIA",
+      "DisplayName": "Kingdom of Yugoslavia",
+      "R": 34,
+      "G": 0,
+      "B": 84,
+      "OwnedRegionIds": [
+        "Dravska",
+        "Savska",
+        "Vrbaska",
+        "Primorska",
+        "Dunavska",
+        "Drinska",
+        "Zetska",
+        "Moravska",
+        "Vardarska"
+      ]
+    },
+    {
+      "Identifier": "BULGARIA",
+      "DisplayName": "Tsardom of Bulgaria",
+      "R": 0,
+      "G": 48,
+      "B": 12,
+      "OwnedRegionIds": [
+        "Vrachan",
+        "Sofiya",
+        "Pleven",
+        "Plovdiv",
+        "StaraZagora",
+        "Shumen",
+        "Burgas"
+      ]
+    },
+    {
+      "Identifier": "ALBANIA",
+      "DisplayName": "Kingdom of Albania",
+      "R": 46,
+      "G": 0,
+      "B": 12,
+      "OwnedRegionIds": [
+        "Tirana"
+      ]
     }
   ]
 }

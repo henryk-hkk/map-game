@@ -340,6 +340,20 @@
           "R": 175,
           "G": 78,
           "B": 224
+        },
+        {
+          "Identifier": "DabrowaBialostocka",
+          "Name": "Dąbrowa Białostocka",
+          "R": 132,
+          "G": 78,
+          "B": 163
+        },
+        {
+          "Identifier": "Sopockinie",
+          "Name": "Sopoćkinie",
+          "R": 143,
+          "G": 167,
+          "B": 78
         }
       ]
     },
@@ -937,7 +951,7 @@
           "B": 127
         },
         {
-          "Identifier": "Novy Jicin",
+          "Identifier": "NovyJicin",
           "Name": "Nowy Jiczyn",
           "R": 124,
           "G": 62,
@@ -951,14 +965,14 @@
           "B": 102
         },
         {
-          "Identifier": "Ceske Slezsko",
+          "Identifier": "CeskeSlezsko",
           "Name": "Czeski Śląsk",
           "R": 178,
           "G": 163,
           "B": 143
         },
         {
-          "Identifier": "Frydek-Mistek",
+          "Identifier": "FrydekMistek",
           "Name": "Frydek-Mistek",
           "R": 93,
           "G": 132,
@@ -977,6 +991,13 @@
           "R": 74,
           "G": 159,
           "B": 178
+        },
+        {
+          "Identifier": "Hlucin",
+          "Name": "Hulczyn",
+          "R": 105,
+          "G": 120,
+          "B": 101
         }
       ]
     },
@@ -986,7 +1007,7 @@
       "Name": "Słowacja",
       "Areas": [
         {
-          "Identifier": "Slovenske Zaolzie",
+          "Identifier": "SlovenskeZaolzie",
           "Name": "Słowackie Zaolzie",
           "R": 175,
           "G": 148,
@@ -998,6 +1019,27 @@
           "R": 0,
           "G": 38,
           "B": 255
+        },
+        {
+          "Identifier": "Trencin",
+          "Name": "Trenczyn",
+          "R": 109,
+          "G": 89,
+          "B": 205
+        },
+        {
+          "Identifier": "Kosice",
+          "Name": "Koszyce",
+          "R": 170,
+          "G": 178,
+          "B": 186
+        },
+        {
+          "Identifier": "Sobrance",
+          "Name": "Sobrance",
+          "R": 174,
+          "G": 182,
+          "B": 97
         }
       ]
     },
@@ -1012,6 +1054,13 @@
           "R": 43,
           "G": 43,
           "B": 89
+        },
+        {
+          "Identifier": "Uzhorod",
+          "Name": "Użhorod",
+          "R": 97,
+          "G": 101,
+          "B": 147
         }
       ]
     },
@@ -1294,11 +1343,18 @@
           "B": 55
         },
         {
-          "Identifier": "SfantuGheorghe",
-          "Name": "Sfântu Gheorghe",
+          "Identifier": "TarguSecuiesc",
+          "Name": "Târgu Secuiesc",
           "R": 160,
           "G": 124,
           "B": 66
+        },
+        {
+          "Identifier": "Brasov",
+          "Name": "Braszów",
+          "R": 140,
+          "G": 89,
+          "B": 78
         }
       ]
     },
@@ -1362,6 +1418,13 @@
           "R": 85,
           "G": 155,
           "B": 59
+        },
+        {
+          "Identifier": "MiercureaCiuc",
+          "Name": "Miercurea Ciuc",
+          "R": 186,
+          "G": 209,
+          "B": 174
         }
       ]
     },
@@ -1418,6 +1481,13 @@
           "R": 213,
           "G": 43,
           "B": 124
+        },
+        {
+          "Identifier": "IntorsuraBuzaului",
+          "Name": "Întorsura Buzăului",
+          "R": 186,
+          "G": 51,
+          "B": 198
         }
       ]
     },
@@ -1446,6 +1516,544 @@
           "R": 198,
           "G": 55,
           "B": 89
+        },
+        {
+          "Identifier": "Silistra",
+          "Name": "Silistra",
+          "R": 120,
+          "G": 51,
+          "B": 66
+        }
+      ]
+    },
+    {
+      "RegionId": 51,
+      "Identifier": "AdriaticIslands",
+      "Name": "Włoskie Wyspy Adriatyckie",
+      "Areas": [
+        {
+          "Identifier": "Lastovo",
+          "Name": "Lagosta",
+          "R": 155,
+          "G": 201,
+          "B": 137
+        },
+        {
+          "Identifier": "CresLosinj",
+          "Name": "Cherso-Lussino",
+          "R": 159,
+          "G": 105,
+          "B": 28
+        }
+      ]
+    },
+    {
+      "RegionId": 52,
+      "Identifier": "ItalianDalmatia",
+      "Name": "Zara",
+      "Areas": [
+        {
+          "Identifier": "Zara",
+          "Name": "Zara",
+          "R": 162,
+          "G": 188,
+          "B": 145
+        }
+      ]
+    },
+    {
+      "RegionId": 53,
+      "Identifier": "LowerAustria",
+      "Name": "Dolna Austria",
+      "Areas": [
+        {
+          "Identifier": "Eisenstadt",
+          "Name": "Eisenstadt",
+          "R": 163,
+          "G": 113,
+          "B": 35
+        },
+        {
+          "Identifier": "SanktPolten",
+          "Name": "Sankt Pölten",
+          "R": 62,
+          "G": 70,
+          "B": 58
+        }
+      ]
+    },
+    {
+      "RegionId": 54,
+      "Identifier": "Styria",
+      "Name": "Styria",
+      "Areas": [
+        {
+          "Identifier": "Graz",
+          "Name": "Graz",
+          "R": 66,
+          "G": 55,
+          "B": 128
+        },
+        {
+          "Identifier": "Oberwart",
+          "R": 89,
+          "G": 39,
+          "B": 35
+        }
+      ]
+    },
+    {
+      "RegionId": 55,
+      "Identifier": "Carinthia",
+      "Name": "Karyntia",
+      "Areas": [
+        {
+          "Identifier": "Klagenfurt",
+          "Name": "Klagenfurt",
+          "R": 58,
+          "G": 78,
+          "B": 78
+        }
+      ]
+    },
+    {
+      "RegionId": 56,
+      "Identifier": "UpperAustria",
+      "Name": "Górna Austria",
+      "Areas": [
+        {
+          "Identifier": "Linz",
+          "Name": "Linz",
+          "R": 89,
+          "G": 105,
+          "B": 109
+        }
+      ]
+    },
+    {
+      "RegionId": 57,
+      "Identifier": "Salzburg",
+      "Name": "Salzburg",
+      "Areas": [
+        {
+          "Identifier": "Salzburg",
+          "Name": "Salzburg",
+          "R": 78,
+          "G": 51,
+          "B": 16
+        }
+      ]
+    },
+    {
+      "RegionId": 58,
+      "Identifier": "Tyrol",
+      "Name": "Tyrol-Voralberg",
+      "Areas": [
+        {
+          "Identifier": "Lienz",
+          "Name": "Lienz",
+          "R": 186,
+          "G": 140,
+          "B": 1
+        },
+        {
+          "Identifier": "Innsbruck",
+          "Name": "Innsbruck",
+          "R": 163,
+          "G": 85,
+          "B": 93
+        },
+        {
+          "Identifier": "Voralberg",
+          "Name": "Voralberg",
+          "R": 254,
+          "G": 254,
+          "B": 233
+        }
+      ]
+    },
+    {
+      "RegionId": 59,
+      "Identifier": "Vienna",
+      "Name": "Wiedeń",
+      "Areas": [
+        {
+          "Identifier": "Wien",
+          "Name": "Wiedeń",
+          "R": 140,
+          "G": 93,
+          "B": 16
+        }
+      ]
+    },
+    {
+      "RegionId": 60,
+      "Identifier": "Liechtenstein",
+      "Name": "Liechtenstein",
+      "Areas": [
+        {
+          "Identifier": "Liechtenstein",
+          "Name": "Liechtenstein",
+          "R": 85,
+          "G": 51,
+          "B": 221
+        }
+      ]
+    },
+    {
+      "RegionId": 61,
+      "Identifier": "Switzerland",
+      "Name": "Szwajcaria",
+      "Areas": [
+        {
+          "Identifier": "Schweiz",
+          "Name": "Szwajcaria",
+          "R": 85,
+          "G": 51,
+          "B": 62
+        }
+      ]
+    },
+    {
+      "RegionId": 62,
+      "Identifier": "Hungary",
+      "Name": "Węgry",
+      "Areas": [
+        {
+          "Identifier": "Alfold",
+          "Name": "Wielka Nizina Węgierska",
+          "R": 174,
+          "G": 170,
+          "B": 85
+        },
+        {
+          "Identifier": "Transdanubia",
+          "Name": "Kraj Zadunajski",
+          "R": 78,
+          "G": 167,
+          "B": 170
+        },
+        {
+          "Identifier": "Tiszantul",
+          "Name": "Kraj Zacisański",
+          "R": 136,
+          "G": 109,
+          "B": 85
+        }
+      ]
+    },
+    {
+      "RegionId": 63,
+      "Identifier": "Dravska",
+      "Name": "Banowina Drawska",
+      "Areas": [
+        {
+          "Identifier": "Ljubljana",
+          "Name": "Lublana",
+          "R": 140,
+          "G": 140,
+          "B": 178
+        },
+        {
+          "Identifier": "Prekmurje",
+          "Name": "Prekmurje",
+          "R": 93,
+          "G": 82,
+          "B": 70
+        }
+      ]
+    },
+    {
+      "RegionId": 64,
+      "Identifier": "Savska",
+      "Name": "Banowina Sawska",
+      "Areas": [
+        {
+          "Identifier": "Zagreb",
+          "Name": "Zagrzeb",
+          "R": 101,
+          "G": 66,
+          "B": 163
+        },
+        {
+          "Identifier": "Medimurje",
+          "Name": "Żupania medzimurska",
+          "R": 51,
+          "G": 39,
+          "B": 128
+        }
+      ]
+    },
+    {
+      "RegionId": 65,
+      "Identifier": "Vrbaska",
+      "Name": "Banowina Vrbaska",
+      "Areas": [
+        {
+          "Identifier": "BanjaLuka",
+          "Name": "Banja Luka",
+          "R": 74,
+          "G": 28,
+          "B": 93
+        }
+      ]
+    },
+    {
+      "RegionId": 66,
+      "Identifier": "Primorska",
+      "Name": "Banowina Primorska",
+      "Areas": [
+        {
+          "Identifier": "Split",
+          "Name": "Split",
+          "R": 155,
+          "G": 132,
+          "B": 93
+        }
+      ]
+    },
+    {
+      "RegionId": 67,
+      "Identifier": "Dunavska",
+      "Name": "Banowina Dunajska",
+      "Areas": [
+        {
+          "Identifier": "Baranja",
+          "Name": "Żupania osijecko-barańska",
+          "R": 66,
+          "G": 147,
+          "B": 66
+        },
+        {
+          "Identifier": "Sremska",
+          "Name": "Sremska Mitrovica",
+          "R": 55,
+          "G": 147,
+          "B": 225
+        },
+        {
+          "Identifier": "NoviSad",
+          "Name": "Nowy Sad",
+          "R": 198,
+          "G": 147,
+          "B": 66
+        },
+        {
+          "Identifier": "WestBanat",
+          "Name": "Zachodni Banat",
+          "R": 124,
+          "G": 105,
+          "B": 82
+        },
+        {
+          "Identifier": "Pozarevac",
+          "Name": "Požarevac",
+          "R": 159,
+          "G": 150,
+          "B": 126
+        }
+      ]
+    },
+    {
+      "RegionId": 68,
+      "Identifier": "Drinska",
+      "Name": "Banowina Drińska",
+      "Areas": [
+        {
+          "Identifier": "Sarajevo",
+          "Name": "Sarajewo",
+          "R": 143,
+          "G": 51,
+          "B": 51
+        }
+      ]
+    },
+    {
+      "RegionId": 69,
+      "Identifier": "Zetska",
+      "Name": "Banowina Zetska",
+      "Areas": [
+        {
+          "Identifier": "Cetinje",
+          "Name": "Cetynia",
+          "R": 39,
+          "G": 35,
+          "B": 51
+        }
+      ]
+    },
+    {
+      "RegionId": 70,
+      "Identifier": "Moravska",
+      "Name": "Banowina Morawska",
+      "Areas": [
+        {
+          "Identifier": "Nis",
+          "Name": "Nisz",
+          "R": 28,
+          "G": 151,
+          "B": 182
+        },
+        {
+          "Identifier": "Pirot",
+          "Name": "Pirot",
+          "R": 147,
+          "G": 128,
+          "B": 120
+        }
+      ]
+    },
+    {
+      "RegionId": 71,
+      "Identifier": "Vardarska",
+      "Name": "Banowina Wardarska",
+      "Areas": [
+        {
+          "Identifier": "Skopje",
+          "Name": "Skopje",
+          "R": 198,
+          "G": 97,
+          "B": 174
+        },
+        {
+          "Identifier": "Debar",
+          "Name": "Debar",
+          "R": 82,
+          "G": 70,
+          "B": 174
+        },
+        {
+          "Identifier": "Bitola",
+          "Name": "Bitola",
+          "R": 155,
+          "G": 55,
+          "B": 173
+        },
+        {
+          "Identifier": "Bosilegrad",
+          "Name": "Bosilegrad",
+          "R": 253,
+          "G": 233,
+          "B": 213
+        }
+      ]
+    },
+    {
+      "RegionId": 72,
+      "Identifier": "Vrachan",
+      "Name": "Wraca",
+      "Areas": [
+        {
+          "Identifier": "Vratsa",
+          "Name": "Wraca",
+          "R": 143,
+          "G": 124,
+          "B": 190
+        }
+      ]
+    },
+    {
+      "RegionId": 73,
+      "Identifier": "Sofiya",
+      "Name": "Sofia",
+      "Areas": [
+        {
+          "Identifier": "Sofiya",
+          "Name": "Sofia",
+          "R": 79,
+          "G": 106,
+          "B": 65
+        }
+      ]
+    },
+    {
+      "RegionId": 74,
+      "Identifier": "Pleven",
+      "Name": "Plewen",
+      "Areas": [
+        {
+          "Identifier": "Pleven",
+          "Name": "Plewen",
+          "R": 174,
+          "G": 82,
+          "B": 85
+        }
+      ]
+    },
+    {
+      "RegionId": 75,
+      "Identifier": "Plovdiv",
+      "Name": "Płowdiw",
+      "Areas": [
+        {
+          "Identifier": "Plovdiv",
+          "Name": "Płowdiw",
+          "R": 194,
+          "G": 193,
+          "B": 155
+        }
+      ]
+    },
+    {
+      "RegionId": 76,
+      "Identifier": "StaraZagora",
+      "Name": "Stara Zagora",
+      "Areas": [
+        {
+          "Identifier": "StaraZagora",
+          "Name": "Stara Zagora",
+          "R": 201,
+          "G": 116,
+          "B": 67
+        }
+      ]
+    },
+    {
+      "RegionId": 77,
+      "Identifier": "Shumen",
+      "Name": "Szumen",
+      "Areas": [
+        {
+          "Identifier": "Shumen",
+          "Name": "Szumen",
+          "R": 81,
+          "G": 109,
+          "B": 66
+        },
+        {
+          "Identifier": "Ruse",
+          "Name": "Ruse",
+          "R": 159,
+          "G": 143,
+          "B": 66
+        }
+      ]
+    },
+    {
+      "RegionId": 78,
+      "Identifier": "Burgas",
+      "Name": "Burgas",
+      "Areas": [
+        {
+          "Identifier": "Burgas",
+          "Name": "Burgas",
+          "R": 174,
+          "G": 97,
+          "B": 151
+        }
+      ]
+    },
+    {
+      "RegionId": 79,
+      "Identifier": "Tirana",
+      "Name": "Tirana",
+      "Areas": [
+        {
+          "Identifier": "Tirana",
+          "Name": "Tirana",
+          "R": 187,
+          "G": 113,
+          "B": 155
         }
       ]
     }
