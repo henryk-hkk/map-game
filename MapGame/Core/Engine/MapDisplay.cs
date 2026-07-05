@@ -1,22 +1,31 @@
-﻿using MapGame.Core.Constants;
-using MapGame.Core.Utils;
+﻿using HelixToolkit.Maths;
+using HelixToolkit.SharpDX;
+using HelixToolkit.SharpDX.Core;
+using HelixToolkit.Wpf.SharpDX;
+using MapGame.Core.Constants;
 using MapGame.Core.Utils.Geographic;
 using MapGame.Core.Utils.Graphic;
 using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
+using System.Windows.Media.Animation;
 
 namespace MapGame.Core.Engine
 {
+    public class MapRenderData
+    {
+        public MeshGeometry3D TerrainGeometry { get; set; }
+        public MeshGeometry3D RiverGeometry { get; set; }
+        public Material BaseMaterial { get; set; }
+        public Material OverlayMaterial { get; set; }
+
+        public Material RiverMaterial { get; set; }
+    }
+
     public static class MapDisplay
     {
-
-        public static void ChangeAreaOwner(Color areaColor, int newRegionId)
+        public static void ChangeAreaOwner(System.Windows.Media.Color areaColor, int newRegionId)
         {
             PixelArea targetArea = Map.Areas[areaColor];
 
@@ -53,47 +62,59 @@ namespace MapGame.Core.Engine
             Int32Rect dirtyRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
 
             BorderTexturesGenerator.UpdateBorders(targetArea.BorderPixelSegments);
-
             CountryTexturesGenerator.RefreshCountryDirtyRect(dirtyRect);
+
+            OverlayCompositor.ComposeAndApply(dirtyRect);
         }
 
-        public static Model3DGroup GetMapDisplay(byte[] heightmap, int width, int height)
+        public static MapRenderData GetMapDisplay(byte[] heightmap, int width, int height)
         {
-            Model3DGroup mapGroup = new Model3DGroup();
+            var data = new MapRenderData();
 
-            var landModel = TerrainMeshGenerator.Generate3DMapModel(heightmap, width, height);
-            MaterialGroup landMaterials = new MaterialGroup();
+            data.TerrainGeometry = TerrainMeshGenerator.Generate3DMapModel(heightmap, width, height);
+            data.RiverGeometry = RiverMeshGenerator.GenerateRiverMesh(Map.RiverMask, heightmap);
 
-            BitmapImage baseTexture = Map.TextureMap;
-            landMaterials.Children.Add(new DiffuseMaterial(new ImageBrush(baseTexture)));
+            data.BaseMaterial = new PhongMaterial()
+            {
+                DiffuseMap = Map.TextureMap.ToTextureModel(),
+                DiffuseColor = HelixToolkit.Maths.Color4.White,
+                AmbientColor = HelixToolkit.Maths.Color4.White
+            };
 
-            if (Map.CountryMaterial == null)
+            if (Map.TextureMap == null)
+                throw new Exception("Tekstura bazowa nie została załadowana!");
+
+            if (Map.TextureMap.PixelWidth == 0)
+                throw new Exception("Tekstura ma wymiar 0!");
+
+            if (Map.OverlayMaterial == null)
             {
                 CountryTexturesGenerator.InitializeCountryRendering();
-            }
-            landMaterials.Children.Add(Map.CountryMaterial);
-
-            if (Map.SelectionMaterial == null)
-            {
-                SelectionTexturesGenerator.InitializeSelectionRendering();
-            }
-            landMaterials.Children.Add(Map.SelectionMaterial);
-
-            if (Map.RegionBordersMaterial == null)
-            {
                 BorderTexturesGenerator.InitializeBorderRendering(Map.BorderGraph);
+                SelectionTexturesGenerator.InitializeSelectionRendering();
+
+                OverlayCompositor.InitializeCompositor();
+
+                OverlayCompositor.ComposeAndApply(new Int32Rect(0, 0, width, height));
             }
-            landMaterials.Children.Add(Map.RegionBordersMaterial);
 
-            landModel.Material = landMaterials;
+            data.OverlayMaterial = Map.OverlayMaterial;
 
-            mapGroup.Children.Add(landModel);
+            data.RiverMaterial = new PhongMaterial()
+            {
+                DiffuseMap = Map.WaterTexture.ToTextureModel(),
+                DiffuseColor = HelixToolkit.Maths.Color4.White,
+                AmbientColor = HelixToolkit.Maths.Color4.White,
 
-            GeometryModel3D riversModel = RiverMeshGenerator.GenerateAnimatedRivers(Map.RiverMask, Map.WaterTexture, heightmap);
+                UVTransform = new HelixToolkit.SharpDX.UVTransform()
+                {
+                    Rotation = 0f,
+                    Scaling = new System.Numerics.Vector2(1f, 1f),
+                    Translation = new System.Numerics.Vector2(0f, 0f)
+                }
+            };
 
-            mapGroup.Children.Add(riversModel);
-
-            return mapGroup;
+            return data;
         }
     }
 }

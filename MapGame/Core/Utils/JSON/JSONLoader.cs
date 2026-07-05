@@ -47,8 +47,8 @@ namespace MapGame.Core.Utils.JSON
             {
                 if (region.Areas == null) continue;
 
-                Region mapRegion = new Region(region.RegionId, region.Identifier);
-                regionsDict.Add(region.RegionId, region.Identifier);
+                Region mapRegion = new Region(region.RegionId, region.Identifier, region.Name);
+                regionsDict.Add(region.RegionId, region.Name);
                 regions.Add(mapRegion);
 
                 foreach (var areaDef in region.Areas)
@@ -57,6 +57,7 @@ namespace MapGame.Core.Utils.JSON
 
                     if (Map.Areas.TryGetValue(targetColor, out PixelArea? actualArea))
                     {
+                        actualArea.Identifier = areaDef.Identifier;
                         actualArea.Name = areaDef.Name;
                         actualArea.ParentRegionId = region.RegionId;
                         mapRegion.Add(actualArea);

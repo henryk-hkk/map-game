@@ -84,7 +84,16 @@
       "G": 124,
       "B": 0,
       "OwnedRegionIds": [
-        "Romania"
+        "Somes",
+        "Timis",
+        "Mures",
+        "Olt",
+        "Bucegi",
+        "Suceava",
+        "Prut",
+        "Nistru",
+        "DunareaDeJos",
+        "Marii"
       ]
     },
     {

@@ -30,6 +30,8 @@ namespace MapGame.Core.Engine
             Map.Regions = JSONMapRead.Regions;
             Map.RegionNames = JSONMapRead.RegionDict;
             Map.Countries = JSONLoader.ReadJSONCountryData("Assets/Databases/countryData.json");
+
+            Map.GlobalRegionMap = MapUtils.GetRegionMap(Map.Width, Map.Height);
         }
     }
 }

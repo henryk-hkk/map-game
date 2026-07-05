@@ -1,34 +1,33 @@
-﻿using MapGame.Core.Constants;
+﻿using HelixToolkit.Geometry;
+using HelixToolkit.SharpDX;
+using MapGame.Core.Constants;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Media.Media3D;
+using System.Numerics;
 
 namespace MapGame.Core.Utils.Graphic
 {
     public static class TerrainMeshGenerator
     {
-
         private const int _step = 8;
         private const int _seaLevelPixelHeight = 0;
         private const double _heightScale = 0.3;
         private const byte _seaLevel = 143;
         private const int _landPixelHeightOffset = 0;
 
-        public static GeometryModel3D Generate3DMapModel(byte[] heightmap, int width, int height)
+        public static HelixToolkit.SharpDX.MeshGeometry3D Generate3DMapModel(byte[] heightmap, int width, int height)
         {
-            MeshGeometry3D mesh = new MeshGeometry3D();
+            var builder = new MeshBuilder(generateNormals: true, generateTexCoords: true);
+            builder.TextureCoordinates = [];
+            LoadPixelHeights(builder, heightmap, width, height);
+            GenerateTriangularTerrain(builder, width, height);
 
-            LoadPixelHeights(ref mesh, heightmap, width, height);
-            GenerateTriangularTerrain(ref mesh, width, height);
+            builder.ComputeNormalsAndTangents(MeshFaces.Default);
 
-            mesh.Freeze();
+            var mesh = builder.ToMeshGeometry3D();
 
-            GeometryModel3D model = new GeometryModel3D();
-            model.Geometry = mesh;
+            mesh.UpdateOctree();
 
-            return model;
+            return mesh;
         }
 
         public static double GetTerrainHeight(byte[] heightmap, int x, int y, int width, int height)
@@ -52,9 +51,8 @@ namespace MapGame.Core.Utils.Graphic
             return finalPixelHeight;
         }
 
-        private static void LoadPixelHeights(ref MeshGeometry3D mesh, byte[] heightmap, int width, int height)
+        private static void LoadPixelHeights(MeshBuilder builder, byte[] heightmap, int width, int height)
         {
-
             int cols = width / _step;
             int rows = height / _step;
 
@@ -65,16 +63,19 @@ namespace MapGame.Core.Utils.Graphic
                     int x = Math.Min(c * _step, width - 1);
                     int y = Math.Min(r * _step, height - 1);
 
-                    var pixelHeight = GetTerrainHeight(heightmap, x, y, width, height);
+                    float pixelHeight = (float)GetTerrainHeight(heightmap, x, y, width, height);
 
-                    mesh.Positions.Add(new Point3D(x, pixelHeight, y));
+                    builder.Positions.Add(new Vector3((float)x, pixelHeight, (float)y));
+                    float u = (float)x / (width - 1);
+                    float v = (float)y / (height - 1);
 
-                    mesh.TextureCoordinates.Add(new Point((double)x / width, (double)y / height));
+                    builder.TextureCoordinates.Add(new System.Numerics.Vector2(u, v));
+                    builder.Normals.Add(new System.Numerics.Vector3(0, 1, 0));
                 }
             }
         }
 
-        private static void GenerateTriangularTerrain(ref MeshGeometry3D mesh, int width, int height)
+        private static void GenerateTriangularTerrain(MeshBuilder builder, int width, int height)
         {
             int cols = width / _step;
             int rows = height / _step;
@@ -88,13 +89,13 @@ namespace MapGame.Core.Utils.Graphic
                     int bottomLeft = (r + 1) * (cols + 1) + c;
                     int bottomRight = bottomLeft + 1;
 
-                    mesh.TriangleIndices.Add(topLeft);
-                    mesh.TriangleIndices.Add(bottomLeft);
-                    mesh.TriangleIndices.Add(topRight);
+                    builder.TriangleIndices.Add(topLeft);
+                    builder.TriangleIndices.Add(bottomLeft);
+                    builder.TriangleIndices.Add(topRight);
 
-                    mesh.TriangleIndices.Add(topRight);
-                    mesh.TriangleIndices.Add(bottomLeft);
-                    mesh.TriangleIndices.Add(bottomRight);
+                    builder.TriangleIndices.Add(topRight);
+                    builder.TriangleIndices.Add(bottomLeft);
+                    builder.TriangleIndices.Add(bottomRight);
                 }
             }
         }
