@@ -25,6 +25,35 @@ namespace MapGame.Core.Utils.JSON
             string json = File.ReadAllText(jsonPath);
             return json;
         }
+        public static void ReadJSONAreaDefinitionData(string relativePath)
+        {
+            string jsonContent = GetJSONFileContent(relativePath);
+            if (jsonContent == null) return;
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            AreaJSONData config = JsonSerializer.Deserialize<AreaJSONData>(jsonContent, options);
+            if (config?.AreaDefinitions == null) return;
+
+            foreach(var areaDef in config.AreaDefinitions)
+            {
+                Color targetColor = areaDef.GetColor();
+
+                if (Map.AreaColors.TryGetValue(targetColor, out PixelArea? actualArea))
+                {
+                    actualArea.Identifier = areaDef.Identifier;
+                    actualArea.Name = areaDef.Name;
+                    System.Diagnostics.Debug.WriteLine($"Dodano Area o identyfikatorze {areaDef.Identifier}");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"OSTRZEŻENIE: Kolor {targetColor} zdefiniowany w JSON nie istnieje na mapie rastrowej!");
+                }
+            }
+        }
         public static (BidirectionalMap<int, string>? RegionDict, List<Region>? Regions) ReadJSONRegionData(string relativePath)
         {
 
@@ -51,21 +80,16 @@ namespace MapGame.Core.Utils.JSON
                 regionsDict.Add(region.RegionId, region.Name);
                 regions.Add(mapRegion);
 
-                foreach (var areaDef in region.Areas)
+                foreach (var areaId in region.Areas)
                 {
-                    Color targetColor = areaDef.GetColor();
-
-                    if (Map.Areas.TryGetValue(targetColor, out PixelArea? actualArea))
+                    Area area = Map.Areas.Find(a => a.Identifier == areaId);
+                    if (area == null)
                     {
-                        actualArea.Identifier = areaDef.Identifier;
-                        actualArea.Name = areaDef.Name;
-                        actualArea.ParentRegionId = region.RegionId;
-                        mapRegion.Add(actualArea);
+                        System.Diagnostics.Debug.WriteLine($"OSTRZEŻENIE: Area o identyfikatorze {areaId} zdefiniowana w regionie {region.Identifier} nie istnieje w słowniku!");
+                        continue;
                     }
-                    else
-                    {
-                        System.Diagnostics.Debug.WriteLine($"OSTRZEŻENIE: Kolor {targetColor} zdefiniowany w JSON nie istnieje na mapie rastrowej!");
-                    }
+                    area.ParentRegionId = region.RegionId;
+                    mapRegion.Add(area);
                 }
             }
             return (regionsDict, regions);

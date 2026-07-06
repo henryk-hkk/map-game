@@ -15,17 +15,6 @@ namespace MapGame.Core.Utils.JSON
         public int RegionId { get; set; }
         public string Identifier { get; set; }
         public string Name { get; set; }
-        public List<AreaDefinition> Areas { get; set; }
-    }
-
-    public class AreaDefinition
-    {
-        public string Identifier { get; set; }
-        public string Name { get; set; }
-        public byte R { get; set; }
-        public byte G { get; set; }
-        public byte B { get; set; }
-
-        public Color GetColor() => Color.FromRgb(R, G, B);
+        public List<string> Areas { get; set; }
     }
 }

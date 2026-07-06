@@ -205,7 +205,7 @@ namespace MapGame.MVVM.Views
 
                                         _currentPanelRegionColor = clickedColor;
 
-                                        if (Map.Areas.TryGetValue(clickedColor, out PixelArea clickedArea) &&
+                                        if (Map.AreaColors.TryGetValue(clickedColor, out PixelArea clickedArea) &&
                                             clickedArea.ParentRegionId.HasValue)
                                         {
                                             Region? clickedRegion = Map.Regions

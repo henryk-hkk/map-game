@@ -27,7 +27,7 @@ namespace MapGame.Core.Engine
     {
         public static void ChangeAreaOwner(System.Windows.Media.Color areaColor, int newRegionId)
         {
-            PixelArea targetArea = Map.Areas[areaColor];
+            PixelArea targetArea = Map.AreaColors[areaColor];
 
             int oldRegionId = (int)targetArea.ParentRegionId;
             Region oldRegion = Map.Regions.Find(r => r.Id == oldRegionId);

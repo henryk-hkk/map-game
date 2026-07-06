@@ -100,7 +100,7 @@ namespace MapGame.MVVM.ViewModels
         {
             SelectionTexturesGenerator.SelectRegionByAreaColor(areaColor);
 
-            if (Map.Areas.TryGetValue(areaColor, out var area))
+            if (Map.AreaColors.TryGetValue(areaColor, out var area))
             {
                 var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
                 SelectedRegionName = region != null ? region.Name : "Nieznany Region";

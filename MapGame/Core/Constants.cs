@@ -30,7 +30,8 @@ namespace MapGame.Core.Constants
         public static BitmapImage? TextureMap;
         public static BitmapImage? WaterTexture;
 
-        public static Dictionary<Color, PixelArea> Areas;
+        public static List<PixelArea> Areas;
+        public static Dictionary<Color, PixelArea> AreaColors;
         public static byte[] AreaPixels;
 
         public static List<Region> Regions = new List<Region>();

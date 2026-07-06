@@ -26,7 +26,7 @@ namespace MapGame.Core.Utils.Graphic
 
         public static void SelectRegionByAreaColor(Color areaColor)
         {
-            if (!Map.Areas.TryGetValue(areaColor, out PixelArea clickedArea)) return;
+            if (!Map.AreaColors.TryGetValue(areaColor, out PixelArea clickedArea)) return;
             if (clickedArea.ParentRegionId == null) return;
 
             int targetRegionId = (int)clickedArea.ParentRegionId;
@@ -41,7 +41,7 @@ namespace MapGame.Core.Utils.Graphic
 
             if (Map.CurrentlySelectedRegionId != -1)
             {
-                foreach (var area in Map.Areas.Values)
+                foreach (var area in Map.AreaColors.Values)
                 {
                     if (area.ParentRegionId == Map.CurrentlySelectedRegionId)
                     {
@@ -63,7 +63,7 @@ namespace MapGame.Core.Utils.Graphic
 
             Map.CurrentlySelectedRegionId = targetRegionId;
 
-            foreach (var area in Map.Areas.Values)
+            foreach (var area in Map.AreaColors.Values)
             {
                 if (area.ParentRegionId == targetRegionId)
                 {
@@ -145,7 +145,7 @@ namespace MapGame.Core.Utils.Graphic
             int maxX = int.MinValue, maxY = int.MinValue;
             bool anyChanges = false;
 
-            foreach (var area in Map.Areas.Values)
+            foreach (var area in Map.AreaColors.Values)
             {
                 if (area.ParentRegionId == Map.CurrentlySelectedRegionId)
                 {

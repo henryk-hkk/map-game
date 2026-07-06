@@ -34,7 +34,7 @@ namespace MapGame.Core.Utils.Geographic
                 }
 
                 Color c = Color.FromRgb(Map.AreaPixels[byteIndex + 2], Map.AreaPixels[byteIndex + 1], Map.AreaPixels[byteIndex]);
-                if (Map.Areas.TryGetValue(c, out PixelArea area))
+                if (Map.AreaColors.TryGetValue(c, out PixelArea area))
                 {
                     if (area.ParentRegionId.HasValue)
                     {
@@ -107,8 +107,8 @@ namespace MapGame.Core.Utils.Geographic
 
                                 borderGraph[segmentKey] = newSegment;
 
-                                Map.Areas[segmentKey.Item1].BorderPixelSegments.Add(newSegment);
-                                Map.Areas[segmentKey.Item2].BorderPixelSegments.Add(newSegment);
+                                Map.AreaColors[segmentKey.Item1].BorderPixelSegments.Add(newSegment);
+                                Map.AreaColors[segmentKey.Item2].BorderPixelSegments.Add(newSegment);
                             }
                             borderGraph[segmentKey].PixelIndices.Add(index);
                         }

@@ -24,12 +24,14 @@ namespace MapGame.Core.Engine
             Map.TextureMap = MapDataLoader.LoadTexture("Assets/Map/img/Colored.png");
             Map.WaterTexture = MapDataLoader.LoadTexture("Assets/Map/img/water.png");
             var AreasMapRead = MapDataLoader.LoadAreasFromColorMap("Assets/Map/img/Areas.bmp");
-            Map.AreaPixels = AreasMapRead.Pixels;
+            Map.AreaColors = AreasMapRead.AreaColors;
             Map.Areas = AreasMapRead.Areas;
-            var JSONMapRead = JSONLoader.ReadJSONRegionData("Assets/Databases/regionData.json");
+            Map.AreaPixels = AreasMapRead.Pixels;
+            JSONLoader.ReadJSONAreaDefinitionData("Assets/Databases/areaDefinition.json");
+            var JSONMapRead = JSONLoader.ReadJSONRegionData("Assets/Databases/1933/regionData.json");
             Map.Regions = JSONMapRead.Regions;
             Map.RegionNames = JSONMapRead.RegionDict;
-            Map.Countries = JSONLoader.ReadJSONCountryData("Assets/Databases/countryData.json");
+            Map.Countries = JSONLoader.ReadJSONCountryData("Assets/Databases/1933/countryData.json");
 
             Map.GlobalRegionMap = MapUtils.GetRegionMap(Map.Width, Map.Height);
         }

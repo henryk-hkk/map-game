@@ -45,7 +45,7 @@ namespace MapGame.Core.Utils.Graphic
                     }
 
                     Color c = Color.FromRgb(Map.AreaPixels[byteIdx + 2], Map.AreaPixels[byteIdx + 1], Map.AreaPixels[byteIdx]);
-                    if (Map.Areas.TryGetValue(c, out PixelArea area))
+                    if (Map.AreaColors.TryGetValue(c, out PixelArea area))
                     {
                         var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
                         if (region?.Owner != null)
@@ -106,8 +106,8 @@ namespace MapGame.Core.Utils.Graphic
             float originalThickness = SDFAgent.BorderThickness;
             float originalRadius = SDFAgent.SmoothRadiusMultiplier;
 
-            SDFAgent.BorderThickness = 0.3f;
-            SDFAgent.SmoothRadiusMultiplier = 1.5f;
+            SDFAgent.BorderThickness = 0.2f;
+            SDFAgent.SmoothRadiusMultiplier = 1f;
 
             var countrySdfPixels = SDFAgent.ComputeLocalSDF(Map.GlobalCountryMap, width, height, SdfScale, dirtyRect);
 

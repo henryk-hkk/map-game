@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Databases\areaDefinition.json" />
     <None Remove="Assets\Databases\countryData.json" />
     <None Remove="Assets\Map\Heightmap_Fullres.png" />
     <None Remove="Assets\Map\img\Areas.bmp" />
@@ -22,7 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Databases\countryData.json">
+    <Content Include="Assets\Databases\1933\countryData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Databases\areaDefinition.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Map\img\Areas.bmp">
@@ -43,7 +47,7 @@
     <Content Include="Assets\Map\img\water.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Databases\regionData.json">
+    <Content Include="Assets\Databases\1933\regionData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

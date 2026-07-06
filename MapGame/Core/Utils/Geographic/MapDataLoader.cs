@@ -100,7 +100,7 @@ namespace MapGame.Core.Utils.Geographic
             return GetGrayscaleMaskPixels(pixelData);
         }
 
-        public static (Dictionary<Color, PixelArea> Areas, byte[] Pixels) LoadAreasFromColorMap(string imagePath)
+        public static (Dictionary<Color, PixelArea> AreaColors, List<PixelArea> Areas, byte[] Pixels) LoadAreasFromColorMap(string imagePath)
         {
             BitmapImage colorMap = new BitmapImage();
             colorMap.BeginInit();
@@ -116,6 +116,7 @@ namespace MapGame.Core.Utils.Geographic
             convertedBitmap.CopyPixels(pixels, stride, 0);
 
             Dictionary<Color, PixelArea> areasDict = new Dictionary<Color, PixelArea>();
+            List<PixelArea> areas = [];
 
             for (int y = 0; y < Map.Height; y++)
             {
@@ -133,15 +134,18 @@ namespace MapGame.Core.Utils.Geographic
 
                     if (!areasDict.ContainsKey(pixelColor))
                     {
-                        areasDict[pixelColor] = new PixelArea();
+                        PixelArea a = new PixelArea();
+                        areas.Add(a);
+                        areasDict[pixelColor] = a;
                     }
 
                     areasDict[pixelColor].AddPixel(x, y);
+                    
                 }
             }
 
             System.Diagnostics.Debug.WriteLine($"Wczytano {areasDict.Count} unikalnych Areas.");
-            return (areasDict, pixels);
+            return (areasDict, areas, pixels);
         }
     }
 }
