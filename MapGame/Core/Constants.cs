@@ -49,6 +49,7 @@ namespace MapGame.Core.Constants
         public static int CurrentlySelectedRegionId = -1;
 
         public static byte[] SelectionPixelData;
+        public static int[] GlobalSelectionMask;
 
         public static HelixToolkit.Maths.Color4[] RegionBorderColorData;
         public static WriteableBitmap RegionBordersBitmap;
@@ -68,7 +69,11 @@ namespace MapGame.Core.Constants
         //public static PolygonArea Gdansk = new PolygonArea(posList);
 
     }
-    
+
+    public static class Graphic
+    {
+        public const int SdfScale = 2;
+    }
 
     //public static AreaList ImpassableAreas();
 

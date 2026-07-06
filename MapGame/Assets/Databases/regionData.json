@@ -850,7 +850,7 @@
     {
       "RegionId": 24,
       "Identifier": "Mecklenburg",
-      "Name": "Mecklenburg-Lübeck",
+      "Name": "Meklemburgia-Lubeka",
       "Areas": [
         {
           "Identifier": "Mecklenburg-Lubeck",
@@ -2054,6 +2054,202 @@
           "R": 187,
           "G": 113,
           "B": 155
+        },
+        {
+          "Identifier": "North Epirus",
+          "Name": "Gjirokastër",
+          "R": 124,
+          "G": 115,
+          "B": 158
+        }
+      ]
+    },
+    {
+      "RegionId": 80,
+      "Identifier": "WesternThrace",
+      "Name": "Tracja Zachodnia",
+      "Areas": [
+        {
+          "Identifier": "Alexandropoulis",
+          "Name": "Aleksandropolis",
+          "R": 199,
+          "G": 128,
+          "B": 206
+        },
+        {
+          "Identifier": "Komotini",
+          "Name": "Komotini",
+          "R": 1,
+          "G": 128,
+          "B": 206
+        }
+      ]
+    },
+    {
+      "RegionId": 81,
+      "Identifier": "Macedonia",
+      "Name": "Macedonia",
+      "Areas": [
+        {
+          "Identifier": "Serres",
+          "Name": "Seres",
+          "R": 254,
+          "G": 190,
+          "B": 186
+        },
+        {
+          "Identifier": "Thessaloniki",
+          "Name": "Saloniki",
+          "R": 1,
+          "G": 190,
+          "B": 186
+        }
+      ]
+    },
+    {
+      "RegionId": 82,
+      "Identifier": "Epirus",
+      "Name": "Epirus",
+      "Areas": [
+        {
+          "Identifier": "Ioannina",
+          "Name": "Janina",
+          "R": 232,
+          "G": 127,
+          "B": 205
+        }
+      ]
+    },
+    {
+      "RegionId": 83,
+      "Identifier": "Thessaly",
+      "Name": "Tesalia",
+      "Areas": [
+        {
+          "Identifier": "Larissa",
+          "Name": "Larisa",
+          "R": 28,
+          "G": 101,
+          "B": 78
+        },
+        {
+          "Identifier": "Olympus",
+          "Name": "Olimp",
+          "R": 198,
+          "G": 99,
+          "B": 77
+        },
+        {
+          "Identifier": "Sporades",
+          "Name": "Sporady",
+          "R": 101,
+          "G": 1,
+          "B": 139
+        }
+      ]
+    },
+    {
+      "RegionId": 84,
+      "Identifier": "CentralGreece",
+      "Name": "Grecja Środkowa i Eubea",
+      "Areas": [
+        {
+          "Identifier": "Athens",
+          "Name": "Ateny",
+          "R": 163,
+          "G": 147,
+          "B": 140
+        }
+      ]
+    },
+    {
+      "RegionId": 85,
+      "Identifier": "Peloponnese",
+      "Name": "Peloponez",
+      "Areas": [
+        {
+          "Identifier": "Peloponnese",
+          "Name": "Peloponez",
+          "R": 78,
+          "G": 149,
+          "B": 139
+        }
+      ]
+    },
+    {
+      "RegionId": 86,
+      "Identifier": "IonianIslands",
+      "Name": "Wyspy Jońskie",
+      "Areas": [
+        {
+          "Identifier": "IonianIslands",
+          "Name": "Wyspy Jońskie",
+          "R": 151,
+          "G": 163,
+          "B": 81
+        }
+      ]
+    },
+    {
+      "RegionId": 87,
+      "Identifier": "AegeanIslands",
+      "Name": "Wyspy Egejskie",
+      "Areas": [
+        {
+          "Identifier": "AegeanIslands",
+          "Name": "Wyspy Egejskie",
+          "R": 101,
+          "G": 113,
+          "B": 76
+        },
+        {
+          "Identifier": "Limnos",
+          "Name": "Limnos",
+          "R": 159,
+          "G": 113,
+          "B": 75
+        }
+      ]
+    },
+    {
+      "RegionId": 88,
+      "Identifier": "Cyclades",
+      "Name": "Cyklady",
+      "Areas": [
+        {
+          "Identifier": "Cyclades",
+          "Name": "Cyklady",
+          "R": 198,
+          "G": 144,
+          "B": 139
+        }
+      ]
+    },
+    {
+      "RegionId": 89,
+      "Identifier": "Crete",
+      "Name": "Kreta",
+      "Areas": [
+        {
+          "Identifier": "Crete",
+          "Name": "Kreta",
+          "R": 71,
+          "G": 76,
+          "B": 139
+        }
+      ]
+    },
+    {
+      "RegionId": 90,
+      "Identifier": "Dodecanese",
+      "Name": "Dodekanez",
+      "Areas": [
+        {
+          "Identifier": "Dodecanese",
+          "Name": "Dodekanez",
+          "R": 163,
+          "G": 101,
+          "B": 194
         }
       ]
     }

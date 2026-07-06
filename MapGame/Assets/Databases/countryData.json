@@ -139,7 +139,8 @@
       "B": 9,
       "OwnedRegionIds": [
         "AdriaticIslands",
-        "ItalianDalmatia"
+        "ItalianDalmatia",
+        "Dodecanese"
       ]
     },
     {
@@ -230,6 +231,25 @@
       "B": 12,
       "OwnedRegionIds": [
         "Tirana"
+      ]
+    },
+    {
+      "Identifier": "GREECE",
+      "DisplayName": "Kingdom of Greece",
+      "R": 3,
+      "G": 61,
+      "B": 252,
+      "OwnedRegionIds": [
+        "WesternThrace",
+        "Macedonia",
+        "Epirus",
+        "Thessaly",
+        "CentralGreece",
+        "Peloponnese",
+        "IonianIslands",
+        "AegeanIslands",
+        "Cyclades",
+        "Crete"
       ]
     }
   ]

@@ -11,7 +11,7 @@ namespace MapGame.Core.Utils.Graphic
 {
     public static class CountryTexturesGenerator
     {
-        private const int SdfScale = 2;
+        private const int SdfScale = Constants.Graphic.SdfScale;
 
         public static void InitializeCountryRendering()
         {
@@ -106,8 +106,8 @@ namespace MapGame.Core.Utils.Graphic
             float originalThickness = SDFAgent.BorderThickness;
             float originalRadius = SDFAgent.SmoothRadiusMultiplier;
 
-            SDFAgent.BorderThickness = 0.5f;
-            SDFAgent.SmoothRadiusMultiplier = 2.0f;
+            SDFAgent.BorderThickness = 0.3f;
+            SDFAgent.SmoothRadiusMultiplier = 1.5f;
 
             var countrySdfPixels = SDFAgent.ComputeLocalSDF(Map.GlobalCountryMap, width, height, SdfScale, dirtyRect);
 
@@ -147,7 +147,7 @@ namespace MapGame.Core.Utils.Graphic
                     if (!cache.ContainsKey(countryId))
                     {
                         Color c = region.Owner.DisplayColor ?? Color.FromArgb(0, 0, 0, 0);
-                        byte alpha = (byte)(c.A == 0 ? 0 : 70);
+                        byte alpha = (byte)(c.A == 0 ? 0 : 80);
                         cache[countryId] = new byte[] { c.B, c.G, c.R, alpha };
                     }
                 }
