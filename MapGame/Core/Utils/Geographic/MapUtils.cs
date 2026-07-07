@@ -57,8 +57,8 @@ namespace MapGame.Core.Utils.Geographic
         {
             var (width, height, stride) = MapUtils.GetBitmapParams();
 
-            byte[] borderPixels = new byte[height * stride];
-            List<int> borderPixelIndices = [];
+            //byte[] borderPixels = new byte[height * stride];
+            //List<int> borderPixelIndices = [];
             var borderGraph = new Dictionary<(Color, Color), BorderPixelSegment>();
 
             for (int y = 1; y < height - 1; y++)
@@ -75,12 +75,12 @@ namespace MapGame.Core.Utils.Geographic
                     byte r = Map.AreaPixels[index + 2];
                     Color color = Color.FromRgb(r, g, b);
 
-                    int[] neighborIndices = {
+                    int[] neighborIndices = [
                         index - stride, // Up
                         index + stride, // Down
                         index - 4,      // Left
                         index + 4       // Right
-                    };
+                    ];
 
                     foreach (int nIndex in neighborIndices)
                     {
@@ -99,7 +99,7 @@ namespace MapGame.Core.Utils.Geographic
 
                             if (!borderGraph.ContainsKey(segmentKey))
                             {
-                                BorderPixelSegment newSegment = new BorderPixelSegment
+                                BorderPixelSegment newSegment = new()
                                 {
                                     Area1 = segmentKey.Item1,
                                     Area2 = segmentKey.Item2

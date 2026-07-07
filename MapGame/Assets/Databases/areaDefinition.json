@@ -442,11 +442,18 @@
       "B": 98
     },
     {
-      "Identifier": "Wlodzimierz Wolynski",
+      "Identifier": "Wlodzimierz",
       "Name": "Włodzimierz Wołyński",
       "R": 96,
       "G": 53,
       "B": 0
+    },
+    {
+      "Identifier": "Sarny",
+      "Name": "Sarny",
+      "R": 159,
+      "G": 55,
+      "B": 20
     },
     {
       "Identifier": "Rzeszow",
@@ -960,34 +967,6 @@
       "B": 101
     },
     {
-      "Identifier": "Proskuriv",
-      "Name": "Płoskirów",
-      "R": 170,
-      "G": 194,
-      "B": 58
-    },
-    {
-      "Identifier": "Zhytomyr",
-      "Name": "Żytomierz",
-      "R": 159,
-      "G": 70,
-      "B": 31
-    },
-    {
-      "Identifier": "Transnistria",
-      "Name": "Naddniestrze",
-      "R": 255,
-      "G": 24,
-      "B": 255
-    },
-    {
-      "Identifier": "Balta-Tiraspol",
-      "Name": "Bałta-Tyraspol",
-      "R": 198,
-      "G": 162,
-      "B": 12
-    },
-    {
       "Identifier": "Cluj",
       "Name": "Kluż",
       "R": 193,
@@ -1323,6 +1302,19 @@
       "B": 178
     },
     {
+      "Identifier": "Maribor",
+      "R": 82,
+      "G": 78,
+      "B": 205
+    },
+    {
+      "Identifier": "Platak",
+      "Name": "Platak",
+      "R": 62,
+      "G": 91,
+      "B": 97
+    },
+    {
       "Identifier": "Prekmurje",
       "Name": "Prekmurje",
       "R": 93,
@@ -1348,13 +1340,6 @@
       "Name": "Banja Luka",
       "R": 74,
       "G": 28,
-      "B": 93
-    },
-    {
-      "Identifier": "Split",
-      "Name": "Split",
-      "R": 155,
-      "G": 132,
       "B": 93
     },
     {
@@ -1391,6 +1376,13 @@
       "R": 159,
       "G": 150,
       "B": 126
+    },
+    {
+      "Identifier": "Cacak",
+      "Name": "Čačak",
+      "R": 196,
+      "G": 219,
+      "B": 227
     },
     {
       "Identifier": "Sarajevo",
@@ -1433,6 +1425,97 @@
       "R": 82,
       "G": 70,
       "B": 174
+    },
+    {
+      "Identifier": "Prishtina",
+      "Name": "Prisztina",
+      "R": 191,
+      "G": 167,
+      "B": 49
+    },
+    {
+      "Identifier": "Ulcinj",
+      "Name": "Ulcinj",
+      "R": 89,
+      "G": 167,
+      "B": 49
+    },
+    {
+      "Identifier": "Rozaje",
+      "Name": "Rožaje",
+      "R": 189,
+      "G": 123,
+      "B": 51
+    },
+    {
+      "Identifier": "Tutin",
+      "Name": "Tutin",
+      "R": 39,
+      "G": 24,
+      "B": 170
+    },
+    {
+      "Identifier": "Vranje",
+      "Name": "Vranje",
+      "R": 89,
+      "G": 167,
+      "B": 50
+    },
+    {
+      "Identifier": "Mitrovica",
+      "Name": "Mitrowica",
+      "R": 132,
+      "G": 101,
+      "B": 136
+    },
+    {
+      "Identifier": "Tara",
+      "Name": "Tara",
+      "R": 132,
+      "G": 151,
+      "B": 213
+    },
+    {
+      "Identifier": "Mostar",
+      "Name": "Mostar",
+      "R": 155,
+      "G": 132,
+      "B": 93
+    },
+    {
+      "Identifier": "Split",
+      "Name": "Split",
+      "R": 47,
+      "G": 51,
+      "B": 221
+    },
+    {
+      "Identifier": "Dubrovnik",
+      "Name": "Dubrownik",
+      "R": 141,
+      "G": 174,
+      "B": 51
+    },
+    {
+      "Identifier": "Mljet",
+      "Name": "Mljet",
+      "R": 198,
+      "G": 221,
+      "B": 78
+    },
+    {
+      "Identifier": "VisKorcula",
+      "Name": "Vis i Korczula",
+      "R": 24,
+      "G": 201,
+      "B": 137
+    },
+    {
+      "Identifier": "Kotor",
+      "Name": "Kotor",
+      "R": 140,
+      "G": 191,
+      "B": 244
     },
     {
       "Identifier": "Bitola",
@@ -1629,6 +1712,118 @@
       "R": 163,
       "G": 101,
       "B": 194
+    },
+    {
+      "Identifier": "Proskuriv",
+      "Name": "Płoskirów",
+      "R": 170,
+      "G": 194,
+      "B": 58
+    },
+    {
+      "Identifier": "Shepietivka",
+      "Name": "Szepietówka",
+      "R": 101,
+      "G": 55,
+      "B": 109
+    },
+    {
+      "Identifier": "Berdichiv",
+      "Name": "Berdyczów",
+      "R": 47,
+      "G": 78,
+      "B": 178
+    },
+    {
+      "Identifier": "Zhitomir",
+      "Name": "Żytomierz",
+      "R": 163,
+      "G": 165,
+      "B": 209
+    },
+    {
+      "Identifier": "Tiraspol",
+      "Name": "Tyraspol",
+      "R": 255,
+      "G": 24,
+      "B": 255
+    },
+    {
+      "Identifier": "Birzula",
+      "Name": "Birzuła",
+      "R": 198,
+      "G": 162,
+      "B": 12
+    },
+    {
+      "Identifier": "Balta",
+      "Name": "Bałta",
+      "R": 74,
+      "G": 167,
+      "B": 78
+    },
+    {
+      "Identifier": "Rybnica",
+      "Name": "Rybnica",
+      "R": 70,
+      "G": 89,
+      "B": 58
+    },
+    {
+      "Identifier": "MohylivPodilskyi",
+      "Name": "Mohylów Podolski",
+      "R": 93,
+      "G": 55,
+      "B": 31
+    },
+    {
+      "Identifier": "Vinnitsa",
+      "Name": "Winnica",
+      "R": 163,
+      "G": 132,
+      "B": 39
+    },
+    {
+      "Identifier": "Sawran",
+      "Name": "Sawrań",
+      "R": 89,
+      "G": 85,
+      "B": 163
+    },
+    {
+      "Identifier": "Ulyanovka",
+      "Name": "Uljanowka",
+      "R": 182,
+      "G": 143,
+      "B": 58
+    },
+    {
+      "Identifier": "Hajsyn",
+      "Name": "Hajsyn",
+      "R": 155,
+      "G": 136,
+      "B": 143
+    },
+    {
+      "Identifier": "Cherkassy",
+      "Name": "Czerkasy",
+      "R": 62,
+      "G": 43,
+      "B": 159
+    },
+    {
+      "Identifier": "Kyiv",
+      "Name": "Kijów",
+      "R": 128,
+      "G": 116,
+      "B": 62
+    },
+    {
+      "Identifier": "Chernihiv",
+      "Name": "Czernihów",
+      "R": 159,
+      "G": 70,
+      "B": 31
     }
   ]
 }

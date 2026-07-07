@@ -104,7 +104,7 @@ namespace MapGame.Core.Utils.Graphic
                 maxX = Math.Min(width - 1, maxX + margin);
                 maxY = Math.Min(height - 1, maxY + margin);
 
-                Int32Rect updateRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
+                Int32Rect updateRect = new(minX, minY, maxX - minX + 1, maxY - minY + 1);
 
                 float origThickness = SDFAgent.BorderThickness;
                 float origRadius = SDFAgent.SmoothRadiusMultiplier;
@@ -173,7 +173,7 @@ namespace MapGame.Core.Utils.Graphic
                 maxX = Math.Min(width - 1, maxX + margin);
                 maxY = Math.Min(height - 1, maxY + margin);
 
-                Int32Rect updateRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
+                Int32Rect updateRect = new(minX, minY, maxX - minX + 1, maxY - minY + 1);
                 OverlayCompositor.ComposeAndApply(updateRect);
             }
         }

@@ -621,7 +621,8 @@
       "Name": "Banowina Drawska",
       "Areas": [
         "Ljubljana",
-        "Prekmurje"
+        "Prekmurje",
+        "Maribor"
       ]
     },
     {
@@ -630,7 +631,8 @@
       "Name": "Banowina Sawska",
       "Areas": [
         "Zagreb",
-        "Medimurje"
+        "Medimurje",
+        "Platak"
       ]
     },
     {
@@ -646,7 +648,9 @@
       "Identifier": "Primorska",
       "Name": "Banowina Primorska",
       "Areas": [
-        "Split"
+        "Split",
+        "Mostar",
+        "VisKorcula"
       ]
     },
     {
@@ -666,7 +670,9 @@
       "Identifier": "Drinska",
       "Name": "Banowina Drińska",
       "Areas": [
-        "Sarajevo"
+        "Sarajevo",
+        "Tara",
+        "Cacak"
       ]
     },
     {
@@ -674,7 +680,15 @@
       "Identifier": "Zetska",
       "Name": "Banowina Zetska",
       "Areas": [
-        "Cetinje"
+        "Cetinje",
+        "Prishtina",
+        "Mitrovica",
+        "Ulcinj",
+        "Kotor",
+        "Dubrovnik",
+        "Rozaje",
+        "Tutin",
+        "Mljet"
       ]
     },
     {
@@ -694,7 +708,8 @@
         "Skopje",
         "Debar",
         "Bitola",
-        "Bosilegrad"
+        "Bosilegrad",
+        "Vranje"
       ]
     },
     {
