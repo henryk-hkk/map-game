@@ -12,7 +12,7 @@ namespace MapGame
     {
         public App()
         {
-            GameManager gm = new GameManager();
+            GameManager gm = new();
             gm.Init();
         }
         

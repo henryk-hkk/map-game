@@ -13,17 +13,46 @@ namespace MapGame.Core.Utils.JSON
     public static class JSONLoader
     {
 
+        private static readonly JsonSerializerOptions _options = new()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
         private static string GetJSONFileContent(string relativePath)
         {
-            Uri fileUri = new Uri(relativePath, UriKind.Relative);
+            Uri fileUri = new(relativePath, UriKind.Relative);
             string jsonPath = fileUri.ToString();
             if (!File.Exists(jsonPath))
             {
                 System.Diagnostics.Debug.WriteLine($"BŁĄD: Nie znaleziono pliku konfiguracyjnego w {jsonPath}");
-                return null;
+                return "";
             }
             string json = File.ReadAllText(jsonPath);
             return json;
+        }
+        public static void ReadJSONAreaDefinitionData(string relativePath)
+        {
+            string jsonContent = GetJSONFileContent(relativePath);
+            if (jsonContent == null) return;
+
+            AreaJSONData config = JsonSerializer.Deserialize<AreaJSONData>(jsonContent, _options);
+            if (config?.AreaDefinitions == null) return;
+
+            foreach(var areaDef in config.AreaDefinitions)
+            {
+                Color targetColor = areaDef.GetColor();
+
+                if (Map.AreaColors.TryGetValue(targetColor, out PixelArea? actualArea))
+                {
+                    actualArea.Identifier = areaDef.Identifier;
+                    actualArea.Name = areaDef.Name;
+                    System.Diagnostics.Debug.WriteLine($"Dodano Area o identyfikatorze {areaDef.Identifier}");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"OSTRZEŻENIE: Kolor {targetColor} zdefiniowany w JSON nie istnieje na mapie rastrowej!");
+                }
+            }
         }
         public static (BidirectionalMap<int, string>? RegionDict, List<Region>? Regions) ReadJSONRegionData(string relativePath)
         {
@@ -31,12 +60,7 @@ namespace MapGame.Core.Utils.JSON
             string jsonContent = GetJSONFileContent(relativePath);
             if (jsonContent == null) return (null, null);
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            MapJSONData config = JsonSerializer.Deserialize<MapJSONData>(jsonContent, options);
+            MapJSONData config = JsonSerializer.Deserialize<MapJSONData>(jsonContent, _options);
 
             if (config?.Regions == null) return (null, null);
 
@@ -47,25 +71,20 @@ namespace MapGame.Core.Utils.JSON
             {
                 if (region.Areas == null) continue;
 
-                Region mapRegion = new Region(region.RegionId, region.Identifier, region.Name);
+                Region mapRegion = new(region.RegionId, region.Identifier, region.Name);
                 regionsDict.Add(region.RegionId, region.Name);
                 regions.Add(mapRegion);
 
-                foreach (var areaDef in region.Areas)
+                foreach (var areaId in region.Areas)
                 {
-                    Color targetColor = areaDef.GetColor();
-
-                    if (Map.Areas.TryGetValue(targetColor, out PixelArea? actualArea))
+                    Area area = Map.Areas.Find(a => a.Identifier == areaId);
+                    if (area == null)
                     {
-                        actualArea.Identifier = areaDef.Identifier;
-                        actualArea.Name = areaDef.Name;
-                        actualArea.ParentRegionId = region.RegionId;
-                        mapRegion.Add(actualArea);
+                        System.Diagnostics.Debug.WriteLine($"OSTRZEŻENIE: Area o identyfikatorze {areaId} zdefiniowana w regionie {region.Identifier} nie istnieje w słowniku!");
+                        continue;
                     }
-                    else
-                    {
-                        System.Diagnostics.Debug.WriteLine($"OSTRZEŻENIE: Kolor {targetColor} zdefiniowany w JSON nie istnieje na mapie rastrowej!");
-                    }
+                    area.ParentRegionId = region.RegionId;
+                    mapRegion.Add(area);
                 }
             }
             return (regionsDict, regions);
@@ -74,27 +93,24 @@ namespace MapGame.Core.Utils.JSON
         public static List<Country> ReadJSONCountryData(string relativePath)
         {
             string jsonContent = GetJSONFileContent(relativePath);
-            if (jsonContent == null) return (null);
+            if (jsonContent == null) return [];
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            CountryJSONData config = JsonSerializer.Deserialize<CountryJSONData>(jsonContent, _options);
 
-            CountryJSONData config = JsonSerializer.Deserialize<CountryJSONData>(jsonContent, options);
-
-            if (config?.Countries == null) return null;
+            if (config?.Countries == null) return [];
             List<Country> countries = [];
             foreach (var country in config.Countries)
             {
-                Country mapCountry = new Country(country.Identifier);
-                mapCountry.DisplayColor = country.GetColor();
+                Country mapCountry = new(country.Identifier)
+                {
+                    DisplayColor = country.GetColor()
+                };
                 if (country.DisplayName != null) mapCountry.DisplayName = country.DisplayName;
 
                 countries.Add(mapCountry);
                 foreach(var ownedRegionId in country.OwnedRegionIds)
                 {
-                    Region region = Map.Regions.Find(r => r.Identifier == ownedRegionId);
+                    var region = Map.Regions.Find(r => r.Identifier == ownedRegionId);
                     if (region == null) continue;
                     region.Owner = mapCountry;
                     mapCountry.OwnedRegions.Add(region);

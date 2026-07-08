@@ -2,6 +2,7 @@
 using HelixToolkit.Wpf.SharpDX;
 using MapGame.Core.Constants;
 using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Engine; // Dodano dla SDFAgent
 using System;
 using System.Windows;
 using System.Windows.Media;
@@ -10,7 +11,7 @@ namespace MapGame.Core.Utils.Graphic
 {
     public static class SelectionTexturesGenerator
     {
-        private const int SdfScale = 2;
+        private const int SdfScale = Constants.Graphic.SdfScale;
 
         public static void InitializeSelectionRendering()
         {
@@ -20,11 +21,13 @@ namespace MapGame.Core.Utils.Graphic
             int scaledStride = scaledWidth * 4;
 
             Map.SelectionPixelData = new byte[scaledHeight * scaledStride];
+            Map.GlobalSelectionMask = new int[width * height];
         }
 
         public static void SelectRegionByAreaColor(Color areaColor)
         {
-            if (!Map.Areas.TryGetValue(areaColor, out PixelArea clickedArea)) return;
+            if (!Map.AreaColors.TryGetValue(areaColor, out PixelArea clickedArea)) return;
+            if (clickedArea.ParentRegionId == null) return;
 
             int targetRegionId = (int)clickedArea.ParentRegionId;
             if (targetRegionId == Map.CurrentlySelectedRegionId) return;
@@ -38,12 +41,14 @@ namespace MapGame.Core.Utils.Graphic
 
             if (Map.CurrentlySelectedRegionId != -1)
             {
-                foreach (var area in Map.Areas.Values)
+                foreach (var area in Map.AreaColors.Values)
                 {
                     if (area.ParentRegionId == Map.CurrentlySelectedRegionId)
                     {
                         foreach (var pixel in area.Pixels)
                         {
+                            Map.GlobalSelectionMask[(pixel.Y * width) + pixel.X] = 0;
+
                             if (pixel.X < minX) minX = pixel.X;
                             if (pixel.X > maxX) maxX = pixel.X;
                             if (pixel.Y < minY) minY = pixel.Y;
@@ -58,12 +63,14 @@ namespace MapGame.Core.Utils.Graphic
 
             Map.CurrentlySelectedRegionId = targetRegionId;
 
-            foreach (var area in Map.Areas.Values)
+            foreach (var area in Map.AreaColors.Values)
             {
                 if (area.ParentRegionId == targetRegionId)
                 {
                     foreach (var pixel in area.Pixels)
                     {
+                        Map.GlobalSelectionMask[(pixel.Y * width) + pixel.X] = 1;
+
                         int baseX = pixel.X * SdfScale;
                         int baseY = pixel.Y * SdfScale;
 
@@ -76,7 +83,7 @@ namespace MapGame.Core.Utils.Graphic
                                 Map.SelectionPixelData[idx] = 255;     // B
                                 Map.SelectionPixelData[idx + 1] = 255; // G
                                 Map.SelectionPixelData[idx + 2] = 255; // R
-                                Map.SelectionPixelData[idx + 3] = 50;  // A
+                                Map.SelectionPixelData[idx + 3] = 40;  // A
                             }
                         }
 
@@ -91,12 +98,40 @@ namespace MapGame.Core.Utils.Graphic
 
             if (anyChanges)
             {
-                minX = Math.Max(0, minX - 1);
-                minY = Math.Max(0, minY - 1);
-                maxX = Math.Min(width - 1, maxX + 1);
-                maxY = Math.Min(height - 1, maxY + 1);
+                int margin = 8;
+                minX = Math.Max(0, minX - margin);
+                minY = Math.Max(0, minY - margin);
+                maxX = Math.Min(width - 1, maxX + margin);
+                maxY = Math.Min(height - 1, maxY + margin);
 
-                Int32Rect updateRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
+                Int32Rect updateRect = new(minX, minY, maxX - minX + 1, maxY - minY + 1);
+
+                float origThickness = SDFAgent.BorderThickness;
+                float origRadius = SDFAgent.SmoothRadiusMultiplier;
+
+                SDFAgent.BorderThickness = 0.2f;
+                SDFAgent.SmoothRadiusMultiplier = 1.5f;
+
+                var sdfPixels = SDFAgent.ComputeLocalSDF(Map.GlobalSelectionMask, width, height, SdfScale, updateRect);
+
+                SDFAgent.BorderThickness = origThickness;
+                SDFAgent.SmoothRadiusMultiplier = origRadius;
+                foreach (var p in sdfPixels)
+                {
+                    int idx = p.Index;
+                    if (idx >= 0 && idx + 3 < Map.SelectionPixelData.Length)
+                    {
+                        Map.SelectionPixelData[idx] = 255;
+                        Map.SelectionPixelData[idx + 1] = 255;
+                        Map.SelectionPixelData[idx + 2] = 255;
+
+                        byte glowAlpha = (byte)(p.Alpha * 0.7f);
+                        byte currentAlpha = Map.SelectionPixelData[idx + 3];
+
+                        Map.SelectionPixelData[idx + 3] = Math.Max(currentAlpha, glowAlpha);
+                    }
+                }
+
                 OverlayCompositor.ComposeAndApply(updateRect);
             }
         }
@@ -110,12 +145,14 @@ namespace MapGame.Core.Utils.Graphic
             int maxX = int.MinValue, maxY = int.MinValue;
             bool anyChanges = false;
 
-            foreach (var area in Map.Areas.Values)
+            foreach (var area in Map.AreaColors.Values)
             {
                 if (area.ParentRegionId == Map.CurrentlySelectedRegionId)
                 {
                     foreach (var pixel in area.Pixels)
                     {
+                        Map.GlobalSelectionMask[(pixel.Y * width) + pixel.X] = 0;
+
                         if (pixel.X < minX) minX = pixel.X;
                         if (pixel.X > maxX) maxX = pixel.X;
                         if (pixel.Y < minY) minY = pixel.Y;
@@ -130,12 +167,13 @@ namespace MapGame.Core.Utils.Graphic
 
             if (anyChanges)
             {
-                minX = Math.Max(0, minX - 1);
-                minY = Math.Max(0, minY - 1);
-                maxX = Math.Min(width - 1, maxX + 1);
-                maxY = Math.Min(height - 1, maxY + 1);
+                int margin = 8;
+                minX = Math.Max(0, minX - margin);
+                minY = Math.Max(0, minY - margin);
+                maxX = Math.Min(width - 1, maxX + margin);
+                maxY = Math.Min(height - 1, maxY + margin);
 
-                Int32Rect updateRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
+                Int32Rect updateRect = new(minX, minY, maxX - minX + 1, maxY - minY + 1);
                 OverlayCompositor.ComposeAndApply(updateRect);
             }
         }

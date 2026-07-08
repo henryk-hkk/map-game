@@ -9,7 +9,7 @@ namespace MapGame.Core.Utils.Graphic
 {
     public static class OverlayCompositor
     {
-        private const int SdfScale = 2;
+        private const int SdfScale = Constants.Graphic.SdfScale;
 
         public static void InitializeCompositor()
         {

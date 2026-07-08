@@ -89,22 +89,17 @@ namespace MapGame.MVVM.ViewModels
             RiverGeometry = mapData.RiverGeometry;
 
             TerrainGeometry.UpdateOctree();
-            if (RiverGeometry != null) RiverGeometry.UpdateOctree();
+            RiverGeometry?.UpdateOctree();
 
             TerrainBaseMaterial = mapData.BaseMaterial;
             OverlayMaterial = mapData.OverlayMaterial;
             RiverMaterial = mapData.RiverMaterial;
         }
 
-        public void SelectRegion(Color areaColor)
+        public void SelectRegion(Color areaColor, string regionName)
         {
             SelectionTexturesGenerator.SelectRegionByAreaColor(areaColor);
-
-            if (Map.Areas.TryGetValue(areaColor, out var area))
-            {
-                var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
-                SelectedRegionName = region != null ? region.Name : "Nieznany Region";
-            }
+            SelectedRegionName = regionName;
         }
 
         private void OnGameUpdate(object sender, EventArgs e)
@@ -139,13 +134,13 @@ namespace MapGame.MVVM.ViewModels
             SelectionTexturesGenerator.ClearSelection();
         }
 
-        public void AnnexSelectedArea(Color areaColor, int newRegionId)
+        public static void AnnexSelectedArea(Color areaColor, int newRegionId)
         {
             MapDisplay.ChangeAreaOwner(areaColor, newRegionId);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

@@ -11,7 +11,7 @@ namespace MapGame.Core.Utils.Graphic
 {
     public static class BorderTexturesGenerator
     {
-        private const int SdfScale = 2;
+        private const int SdfScale = Constants.Graphic.SdfScale;
 
         public static void InitializeBorderRendering(Dictionary<(Color, Color), BorderPixelSegment> borderGraph)
         {

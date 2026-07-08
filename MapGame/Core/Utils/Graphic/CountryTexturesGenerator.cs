@@ -11,11 +11,11 @@ namespace MapGame.Core.Utils.Graphic
 {
     public static class CountryTexturesGenerator
     {
-        private const int SdfScale = 2;
+        private const int SdfScale = Constants.Graphic.SdfScale;
 
         public static void InitializeCountryRendering()
         {
-            var (width, height, stride) = MapUtils.GetBitmapParams();
+            var (width, height, _) = MapUtils.GetBitmapParams();
             int scaledWidth = width * SdfScale;
             int scaledHeight = height * SdfScale;
             int scaledStride = scaledWidth * 4;
@@ -45,7 +45,7 @@ namespace MapGame.Core.Utils.Graphic
                     }
 
                     Color c = Color.FromRgb(Map.AreaPixels[byteIdx + 2], Map.AreaPixels[byteIdx + 1], Map.AreaPixels[byteIdx]);
-                    if (Map.Areas.TryGetValue(c, out PixelArea area))
+                    if (Map.AreaColors.TryGetValue(c, out PixelArea area))
                     {
                         var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
                         if (region?.Owner != null)
@@ -65,7 +65,6 @@ namespace MapGame.Core.Utils.Graphic
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
             int scaledWidth = width * SdfScale;
-            int scaledHeight = height * SdfScale;
             int scaledStride = scaledWidth * 4;
 
             int startX_scaled = dirtyRect.X * SdfScale;
@@ -106,8 +105,8 @@ namespace MapGame.Core.Utils.Graphic
             float originalThickness = SDFAgent.BorderThickness;
             float originalRadius = SDFAgent.SmoothRadiusMultiplier;
 
-            SDFAgent.BorderThickness = 0.5f;
-            SDFAgent.SmoothRadiusMultiplier = 2.0f;
+            SDFAgent.BorderThickness = 0.2f;
+            SDFAgent.SmoothRadiusMultiplier = 1f;
 
             var countrySdfPixels = SDFAgent.ComputeLocalSDF(Map.GlobalCountryMap, width, height, SdfScale, dirtyRect);
 
@@ -133,10 +132,11 @@ namespace MapGame.Core.Utils.Graphic
 
         private static Dictionary<int, byte[]> BuildCountryColorsCache()
         {
-            var cache = new Dictionary<int, byte[]>();
-
-            cache[-1] = new byte[] { 0, 0, 0, 0 };
-            cache[-2] = new byte[] { 0, 0, 0, 0 };
+            var cache = new Dictionary<int, byte[]>
+            {
+                [-1] = [0, 0, 0, 0],
+                [-2] = [0, 0, 0, 0]
+            };
 
             foreach (var region in Map.Regions)
             {
@@ -147,8 +147,8 @@ namespace MapGame.Core.Utils.Graphic
                     if (!cache.ContainsKey(countryId))
                     {
                         Color c = region.Owner.DisplayColor ?? Color.FromArgb(0, 0, 0, 0);
-                        byte alpha = (byte)(c.A == 0 ? 0 : 70);
-                        cache[countryId] = new byte[] { c.B, c.G, c.R, alpha };
+                        byte alpha = (byte)(c.A == 0 ? 0 : 80);
+                        cache[countryId] = [c.B, c.G, c.R, alpha];
                     }
                 }
             }

@@ -24,7 +24,7 @@ namespace MapGame.Core.Utils.Graphic
             SnapTributaries(stitchedRivers, 4.0f);
 
             var builder = new MeshBuilder(generateNormals: true, generateTexCoords: true);
-            float riverWidth = 3.0f;
+            float riverWidth = 2.0f;
 
             foreach (List<Vector2> rawRiverPath in stitchedRivers)
             {

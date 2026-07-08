@@ -11,7 +11,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MapGame.Core.Utils.Geographic;
 using System.Windows.Media.Animation;
 using System.Linq;
 
@@ -32,7 +31,7 @@ namespace MapGame.MVVM.Views
         {
             RegionInfoPanel.Visibility = Visibility.Visible;
 
-            DoubleAnimation slideIn = new DoubleAnimation
+            DoubleAnimation slideIn = new()
             {
                 From = -340,
                 To = 0,
@@ -44,7 +43,7 @@ namespace MapGame.MVVM.Views
 
         private void HideRegionPanel()
         {
-            DoubleAnimation slideOut = new DoubleAnimation
+            DoubleAnimation slideOut = new()
             {
                 From = 0,
                 To = -340,
@@ -58,7 +57,7 @@ namespace MapGame.MVVM.Views
 
             RegionInfoPanelTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
         }
-        private int _lastHoveredRegionId = -2;
+        //private int _lastHoveredRegionId = -2;
 
         private void OnViewportMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
@@ -72,60 +71,61 @@ namespace MapGame.MVVM.Views
             if (hits != null && hits.Count > 0)
             {
                 var firstHit = hits[0];
-
-                if (firstHit.ModelHit is MeshGeometryModel3D hitModel)
+                if (firstHit.ModelHit is not MeshGeometryModel3D)
                 {
-                    CursorTransform.X = mousePos.X + 15;
-                    CursorTransform.Y = mousePos.Y + 15;
-
-                    var hitPoint = firstHit.PointHit;
-                    int mapX = (int)hitPoint.X;
-                    int mapY = (int)hitPoint.Z;
-
-                    Position mousePosition = new Position(hitPoint.X, hitPoint.Z);
-
-                    Region? hoveredRegion = null;
-
-                    foreach (Region region in Map.Regions)
-                    {
-                        if (region.Includes(mousePosition))
-                        {
-                            hoveredRegion = region;
-                            break;
-                        }
-                    }
-
-                    if (hoveredRegion != null)
-                    {
-                        CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {Map.RegionNames[hoveredRegion.Id]} ({hoveredRegion.Id})";
-                    }
-                    else
-                    {
-                        CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: brak";
-                    }
-
-                    //int index1D = (mapY * Map.Width) + mapX;
-
-
-                    //if (index1D >= 0 && Map.GlobalRegionMap != null && index1D < Map.GlobalRegionMap.Length)
-                    //{
-                    //    int hoveredRegionId = Map.GlobalRegionMap[index1D];
-                    //    if (hoveredRegionId == -1)
-                    //    {
-                    //        CursorCoordsText.Text = string.Empty;
-                    //        return;
-                    //    }
-
-                    //    if (hoveredRegionId >= 0 && hoveredRegionId < Map.RegionNames.Count)
-                    //    {
-                    //        string? regionName = Map.RegionNames[hoveredRegionId];
-                    //        if (regionName != null)
-                    //        {
-                    //            CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {regionName} ({hoveredRegionId})";
-                    //        }
-                    //    }
-                    //}
+                    return;
                 }
+
+                CursorTransform.X = mousePos.X + 15;
+                CursorTransform.Y = mousePos.Y + 15;
+
+                var hitPoint = firstHit.PointHit;
+                int mapX = (int)hitPoint.X;
+                int mapY = (int)hitPoint.Z;
+
+                Position mousePosition = new(hitPoint.X, hitPoint.Z);
+
+                Region? hoveredRegion = null;
+
+                foreach (Region region in Map.Regions)
+                {
+                    if (region.Includes(mousePosition))
+                    {
+                        hoveredRegion = region;
+                        break;
+                    }
+                }
+
+                if (hoveredRegion != null)
+                {
+                    CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {Map.RegionNames[hoveredRegion.Id]} ({hoveredRegion.Id})";
+                }
+                else
+                {
+                    CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: brak";
+                }
+
+                //int index1D = (mapY * Map.Width) + mapX;
+
+
+                //if (index1D >= 0 && Map.GlobalRegionMap != null && index1D < Map.GlobalRegionMap.Length)
+                //{
+                //    int hoveredRegionId = Map.GlobalRegionMap[index1D];
+                //    if (hoveredRegionId == -1)
+                //    {
+                //        CursorCoordsText.Text = string.Empty;
+                //        return;
+                //    }
+
+                //    if (hoveredRegionId >= 0 && hoveredRegionId < Map.RegionNames.Count)
+                //    {
+                //        string? regionName = Map.RegionNames[hoveredRegionId];
+                //        if (regionName != null)
+                //        {
+                //            CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {regionName} ({hoveredRegionId})";
+                //        }
+                //    }
+                //}
             }
             else
             {
@@ -201,17 +201,20 @@ namespace MapGame.MVVM.Views
 
                                     if (this.DataContext is MapViewModel viewModel)
                                     {
-                                        viewModel.SelectRegion(clickedColor);
+                                        
 
                                         _currentPanelRegionColor = clickedColor;
 
-                                        if (Map.Areas.TryGetValue(clickedColor, out PixelArea clickedArea) &&
+                                        if (Map.AreaColors.TryGetValue(clickedColor, out PixelArea clickedArea) &&
                                             clickedArea.ParentRegionId.HasValue)
                                         {
                                             Region? clickedRegion = Map.Regions
                                             .FirstOrDefault(region => region.Id == clickedArea.ParentRegionId.Value);
 
-                                            RegionNameText.Text = clickedRegion?.Name ?? "Nieznany region";
+                                            string regionName = clickedRegion?.Name ?? "Nieznany region";
+                                            viewModel.SelectRegion(clickedColor, regionName);
+
+                                            RegionNameText.Text = regionName;
                                         }   
                                         else
                                         {
