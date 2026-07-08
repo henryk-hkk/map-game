@@ -14,15 +14,16 @@
         "WilnoRegion",
         "Polesia",
         "Volyhnia",
-        "EasternLesserPoland",
+        "LwowRegion",
         "LublinRegion",
         "LodzRegion",
         "Masovia",
         "Pomerelia",
         "GreaterPoland",
         "HolyCross",
-        "Galicia",
-        "NowogrodekArea"
+        "StanislawowRegion",
+        "NowogrodekRegion",
+        "TarnopolRegion"
       ]
     },
     {
@@ -44,18 +45,28 @@
       "G": 0,
       "B": 0,
       "OwnedRegionIds": [
-        "Belarus"
+        "MinskOblast",
+        "PolesiaOblast",
+        "GomelOblast",
+        "MahilouOblast",
+        "VitebskOblast"
       ]
     },
     {
-      "Identifier": "UkSSR",
+      "Identifier": "UKSSR",
       "DisplayName": "Ukrainian SSR",
       "R": 82,
       "G": 0,
       "B": 0,
       "OwnedRegionIds": [
-        "WesternUkraine",
-        "MoldovanASSR"
+        "MoldovanASSR",
+        "VinnitsaOblast",
+        "KyivOblast",
+        "OdessaOblast",
+        "DniproOblast",
+        "StalinoOblast",
+        "KharkovOblast",
+        "ChernihovOblast"
       ]
     },
     {

@@ -456,6 +456,13 @@
       "B": 20
     },
     {
+      "Identifier": "Hlynne",
+      "Name": "Hlynne",
+      "R": 85,
+      "G": 185,
+      "B": 148
+    },
+    {
       "Identifier": "Rzeszow",
       "Name": "Rzeszów",
       "R": 0,
@@ -488,6 +495,13 @@
       "Name": "Stanisławów",
       "R": 101,
       "G": 97,
+      "B": 120
+    },
+    {
+      "Identifier": "Tarnopol",
+      "Name": "Tarnopol",
+      "R": 194,
+      "G": 51,
       "B": 120
     },
     {
@@ -937,34 +951,6 @@
       "R": 0,
       "G": 255,
       "B": 255
-    },
-    {
-      "Identifier": "Minsk",
-      "Name": "Mińsk",
-      "R": 255,
-      "G": 205,
-      "B": 174
-    },
-    {
-      "Identifier": "Polatsk",
-      "Name": "Połock",
-      "R": 255,
-      "G": 143,
-      "B": 174
-    },
-    {
-      "Identifier": "Mahilyow",
-      "Name": "Mohylew",
-      "R": 255,
-      "G": 143,
-      "B": 62
-    },
-    {
-      "Identifier": "Mazyr",
-      "Name": "Mozyrz",
-      "R": 151,
-      "G": 186,
-      "B": 101
     },
     {
       "Identifier": "Cluj",
@@ -1735,7 +1721,7 @@
       "B": 178
     },
     {
-      "Identifier": "Zhitomir",
+      "Identifier": "Zhytomyr",
       "Name": "Żytomierz",
       "R": 163,
       "G": 165,
@@ -1763,7 +1749,7 @@
       "B": 78
     },
     {
-      "Identifier": "Rybnica",
+      "Identifier": "Rybnitsa",
       "Name": "Rybnica",
       "R": 70,
       "G": 89,
@@ -1784,7 +1770,7 @@
       "B": 39
     },
     {
-      "Identifier": "Sawran",
+      "Identifier": "Savran",
       "Name": "Sawrań",
       "R": 89,
       "G": 85,
@@ -1805,11 +1791,25 @@
       "B": 143
     },
     {
-      "Identifier": "Cherkassy",
+      "Identifier": "Odessa",
+      "Name": "Odessa",
+      "R": 116,
+      "G": 89,
+      "B": 170
+    },
+    {
+      "Identifier": "Cherkasy",
       "Name": "Czerkasy",
       "R": 62,
       "G": 43,
       "B": 159
+    },
+    {
+      "Identifier": "Mykolaiv",
+      "Name": "Mikołajów",
+      "R": 209,
+      "G": 182,
+      "B": 24
     },
     {
       "Identifier": "Kyiv",
@@ -1819,11 +1819,206 @@
       "B": 62
     },
     {
+      "Identifier": "Brovary",
+      "Name": "Browary",
+      "R": 78,
+      "G": 190,
+      "B": 62
+    },
+    {
       "Identifier": "Chernihiv",
       "Name": "Czernihów",
       "R": 159,
       "G": 70,
       "B": 31
+    },
+    {
+      "Identifier": "Putivl",
+      "Name": "Putywl",
+      "R": 89,
+      "G": 35,
+      "B": 47
+    },
+    {
+      "Identifier": "Kharkiv",
+      "Name": "Charków",
+      "R": 82,
+      "G": 70,
+      "B": 55
+    },
+    {
+      "Identifier": "Poltava",
+      "Name": "Połtawa",
+      "R": 174,
+      "G": 155,
+      "B": 31
+    },
+    {
+      "Identifier": "Donetsk",
+      "Name": "Donieck",
+      "R": 62,
+      "G": 136,
+      "B": 143
+    },
+    {
+      "Identifier": "Dolzhansk",
+      "Name": "Dołżańsk",
+      "R": 172,
+      "G": 224,
+      "B": 158
+    },
+    {
+      "Identifier": "Stanitsa",
+      "Name": "Stanica Ługańska",
+      "R": 190,
+      "G": 70,
+      "B": 143
+    },
+    {
+      "Identifier": "Zaporozhe",
+      "Name": "Zaporoże",
+      "R": 204,
+      "G": 1,
+      "B": 255
+    },
+    {
+      "Identifier": "Minsk",
+      "Name": "Mińsk",
+      "R": 182,
+      "G": 66,
+      "B": 101
+    },
+    {
+      "Identifier": "Asipovichy",
+      "Name": "Osipowicze",
+      "R": 213,
+      "G": 201,
+      "B": 159
+    },
+    {
+      "Identifier": "Krupki",
+      "Name": "Krupki",
+      "R": 97,
+      "G": 205,
+      "B": 58
+    },
+    {
+      "Identifier": "Biahoml",
+      "Name": "Biehomla",
+      "R": 182,
+      "G": 128,
+      "B": 78
+    },
+    {
+      "Identifier": "Mahilou",
+      "Name": "Mohylew",
+      "R": 255,
+      "G": 205,
+      "B": 174
+    },
+    {
+      "Identifier": "Vitebsk",
+      "Name": "Witebsk",
+      "R": 20,
+      "G": 35,
+      "B": 198
+    },
+    {
+      "Identifier": "Polatsk",
+      "Name": "Połock",
+      "R": 255,
+      "G": 143,
+      "B": 174
+    },
+    {
+      "Identifier": "Krychau",
+      "Name": "Krzyczew",
+      "R": 255,
+      "G": 143,
+      "B": 62
+    },
+    {
+      "Identifier": "Mazyr",
+      "Name": "Mozyrz",
+      "R": 151,
+      "G": 186,
+      "B": 101
+    },
+    {
+      "Identifier": "Parychy",
+      "Name": "Parycze",
+      "R": 66,
+      "G": 228,
+      "B": 159
+    },
+    {
+      "Identifier": "Rechytsa",
+      "Name": "Rzeczyca",
+      "R": 182,
+      "G": 182,
+      "B": 159
+    },
+    {
+      "Identifier": "Zhlobin",
+      "Name": "Żłobin",
+      "R": 113,
+      "G": 82,
+      "B": 159
+    },
+    {
+      "Identifier": "Gomel",
+      "Name": "Homiel",
+      "R": 93,
+      "G": 109,
+      "B": 221
+    },
+    {
+      "Identifier": "Dovsk",
+      "Name": "Dowsk",
+      "R": 78,
+      "G": 194,
+      "B": 132
+    },
+    {
+      "Identifier": "Dubrovna",
+      "Name": "Dubrowna",
+      "R": 39,
+      "G": 174,
+      "B": 113
+    },
+    {
+      "Identifier": "Belgorod",
+      "Name": "Biełgorod",
+      "R": 128,
+      "G": 47,
+      "B": 201
+    },
+    {
+      "Identifier": "Klintsy",
+      "Name": "Starodubszczyzna",
+      "R": 78,
+      "G": 163,
+      "B": 167
+    },
+    {
+      "Identifier": "Shumiachi",
+      "Name": "Szumiaczi",
+      "R": 120,
+      "G": 146,
+      "B": 130
+    },
+    {
+      "Identifier": "Rudnya",
+      "Name": "Rudnia",
+      "R": 230,
+      "G": 101,
+      "B": 147
+    },
+    {
+      "Identifier": "Nevel",
+      "R": 155,
+      "G": 147,
+      "B": 182
     }
   ]
 }

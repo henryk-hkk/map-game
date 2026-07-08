@@ -11,7 +11,7 @@
     {
       "RegionId": 2,
       "Identifier": "Pomerelia",
-      "Name": "Pomorze Gdańskie",
+      "Name": "Woj. Pomorskie",
       "Areas": [
         "Gdynia",
         "Zlotow",
@@ -21,7 +21,7 @@
     {
       "RegionId": 3,
       "Identifier": "GreaterPoland",
-      "Name": "Wielkopolska",
+      "Name": "Woj. Poznańskie",
       "Areas": [
         "Poznan",
         "Kepno",
@@ -31,7 +31,7 @@
     {
       "RegionId": 4,
       "Identifier": "Masovia",
-      "Name": "Mazowsze",
+      "Name": "Woj. Warszawskie",
       "Areas": [
         "Warszawa",
         "Plock",
@@ -41,7 +41,7 @@
     {
       "RegionId": 5,
       "Identifier": "LodzRegion",
-      "Name": "Sieradz",
+      "Name": "Woj. Łódzkie",
       "Areas": [
         "Piotrkow",
         "Lodz",
@@ -52,7 +52,7 @@
     {
       "RegionId": 6,
       "Identifier": "HolyCross",
-      "Name": "Świętokrzyskie",
+      "Name": "Woj. Kieleckie",
       "Areas": [
         "Zawiercie",
         "Kielce",
@@ -63,7 +63,7 @@
     {
       "RegionId": 7,
       "Identifier": "LublinRegion",
-      "Name": "Lubelszczyzna",
+      "Name": "Woj. Lubelskie",
       "Areas": [
         "Chelm",
         "Lublin",
@@ -73,7 +73,7 @@
     {
       "RegionId": 8,
       "Identifier": "LesserPoland",
-      "Name": "Małopolska",
+      "Name": "Woj. Krakowskie",
       "Areas": [
         "Oswiecim",
         "Sacz",
@@ -85,7 +85,7 @@
     {
       "RegionId": 9,
       "Identifier": "PolishSilesia",
-      "Name": "Polski Śląsk",
+      "Name": "Woj. Śląskie",
       "Areas": [
         "Bielsko",
         "Katowice"
@@ -94,7 +94,7 @@
     {
       "RegionId": 10,
       "Identifier": "Podlachia",
-      "Name": "Podlasie",
+      "Name": "Woj. Białostockie",
       "Areas": [
         "Bialystok",
         "Sokolka",
@@ -114,7 +114,7 @@
     {
       "RegionId": 11,
       "Identifier": "WilnoRegion",
-      "Name": "Wileńszczyzna",
+      "Name": "Woj. Wileńskie",
       "Areas": [
         "Wilno",
         "Oszmiana",
@@ -126,8 +126,8 @@
     },
     {
       "RegionId": 12,
-      "Identifier": "NowogrodekArea",
-      "Name": "Nowogródek",
+      "Identifier": "NowogrodekRegion",
+      "Name": "Woj. Nowogródzkie",
       "Areas": [
         "Baranowicze",
         "Lida",
@@ -141,7 +141,7 @@
     {
       "RegionId": 14,
       "Identifier": "Polesia",
-      "Name": "Polesie",
+      "Name": "Woj. Poleskie",
       "Areas": [
         "Brzesc",
         "Pinsk",
@@ -157,15 +157,17 @@
     {
       "RegionId": 15,
       "Identifier": "Volyhnia",
-      "Name": "Wołyń",
+      "Name": "Woj. Wołyńskie",
       "Areas": [
-        "Wlodzimierz Wolynski"
+        "Wlodzimierz",
+        "Sarny",
+        "Hlynne"
       ]
     },
     {
       "RegionId": 16,
-      "Identifier": "EasternLesserPoland",
-      "Name": "Małopolska Wschodnia",
+      "Identifier": "LwowRegion",
+      "Name": "Woj. Lwowskie",
       "Areas": [
         "Rzeszow",
         "Przemysl",
@@ -175,10 +177,18 @@
     },
     {
       "RegionId": 17,
-      "Identifier": "Galicia",
-      "Name": "Galicja",
+      "Identifier": "StanislawowRegion",
+      "Name": "Woj. Stanisławowskie",
       "Areas": [
         "Stanislawow"
+      ]
+    },
+    {
+      "RegionId": 999,
+      "Identifier": "TarnopolRegion",
+      "Name": "Woj. Tarnopolskie",
+      "Areas": [
+        "Tarnopol"
       ]
     },
     {
@@ -383,35 +393,6 @@
       "Name": "Estonia",
       "Areas": [
         "Tallinn"
-      ]
-    },
-    {
-      "RegionId": 38,
-      "Identifier": "Belarus",
-      "Name": "Białoruś",
-      "Areas": [
-        "Minsk",
-        "Polatsk",
-        "Mahilyow",
-        "Mazyr"
-      ]
-    },
-    {
-      "RegionId": 39,
-      "Identifier": "WesternUkraine",
-      "Name": "Western Ukraine",
-      "Areas": [
-        "Proskuriv",
-        "Zhytomyr"
-      ]
-    },
-    {
-      "RegionId": 40,
-      "Identifier": "MoldovanASSR",
-      "Name": "Moldovan ASSR",
-      "Areas": [
-        "Transnistria",
-        "Balta-Tiraspol"
       ]
     },
     {
@@ -869,6 +850,138 @@
       "Name": "Dodekanez",
       "Areas": [
         "Dodecanese"
+      ]
+    },
+    {
+      "RegionId": 91,
+      "Identifier": "MoldovanASSR",
+      "Name": "Mołdawska ASSR",
+      "Areas": [
+        "Tiraspol",
+        "Birzula",
+        "Balta",
+        "Rybnitsa"
+      ]
+    },
+    {
+      "RegionId": 92,
+      "Identifier": "VinnitsaOblast",
+      "Name": "Obwód Winnicki",
+      "Areas": [
+        "Proskuriv",
+        "Shepietivka",
+        "Berdichiv",
+        "MohylivPodilskyi",
+        "Vinnitsa",
+        "Hajsyn"
+      ]
+    },
+    {
+      "RegionId": 93,
+      "Identifier": "KyivOblast",
+      "Name": "Obwód Kijowski",
+      "Areas": [
+        "Zhytomyr",
+        "Cherkasy",
+        "Kyiv",
+        "Brovary"
+      ]
+    },
+    {
+      "RegionId": 94,
+      "Identifier": "OdessaOblast",
+      "Name": "Obwód Odesski",
+      "Areas": [
+        "Savran",
+        "Ulyanovka",
+        "Odessa",
+        "Mykolaiv"
+      ]
+    },
+    {
+      "RegionId": 95,
+      "Identifier": "DniproOblast",
+      "Name": "Obwód Dniepropietrowski",
+      "Areas": [
+        "Zaporozhe"
+      ]
+    },
+    {
+      "RegionId": 96,
+      "Identifier": "StalinoOblast",
+      "Name": "Obwód Doniecki",
+      "Areas": [
+        "Donetsk",
+        "Dolzhansk",
+        "Stanitsa"
+      ]
+    },
+    {
+      "RegionId": 97,
+      "Identifier": "KharkovOblast",
+      "Name": "Obwód Charkowski",
+      "Areas": [
+        "Kharkiv",
+        "Poltava"
+      ]
+    },
+    {
+      "RegionId": 98,
+      "Identifier": "ChernihovOblast",
+      "Name": "Obwód Czernihowski",
+      "Areas": [
+        "Chernihiv",
+        "Putivl"
+      ]
+    },
+    {
+      "RegionId": 99,
+      "Identifier": "MinskOblast",
+      "Name": "Obwód Miński",
+      "Areas": [
+        "Minsk",
+        "Krupki",
+        "Biahoml",
+        "Asipovichy"
+      ]
+    },
+    {
+      "RegionId": 100,
+      "Identifier": "PolesiaOblast",
+      "Name": "Obwód Poleski",
+      "Areas": [
+        "Mazyr",
+        "Parychy"
+      ]
+    },
+    {
+      "RegionId": 101,
+      "Identifier": "GomelOblast",
+      "Name": "Obwód Homielski",
+      "Areas": [
+        "Gomel",
+        "Zhlobin",
+        "Rechytsa",
+        "Dovsk"
+      ]
+    },
+    {
+      "RegionId": 102,
+      "Identifier": "MahilouOblast",
+      "Name": "Obwód Mohylewski",
+      "Areas": [
+        "Mahilou",
+        "Krychau"
+      ]
+    },
+    {
+      "RegionId": 103,
+      "Identifier": "VitebskOblast",
+      "Name": "Obwód Witebski",
+      "Areas": [
+        "Vitebsk",
+        "Polatsk",
+        "Dubrovna"
       ]
     }
   ]
