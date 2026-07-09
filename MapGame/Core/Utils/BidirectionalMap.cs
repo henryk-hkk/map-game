@@ -6,8 +6,8 @@ namespace MapGame.Core.Utils
 {
     public class BidirectionalMap<TFirst,TSecond>
     {
-        private readonly Dictionary<TFirst, TSecond> _forward = new();
-        private readonly Dictionary<TSecond, TFirst> _reverse = new();
+        private readonly Dictionary<TFirst, TSecond> _forward = [];
+        private readonly Dictionary<TSecond, TFirst> _reverse = [];
 
         public TSecond this[TFirst first] => _forward[first];
         public TFirst this[TSecond second] => _reverse[second];

@@ -1,23 +1,22 @@
 ﻿using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Constants;
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 
 namespace MapGame.Core.Engine
 {
-    public class MapCameraController
+    public class MapCameraController(HelixToolkit.Wpf.SharpDX.PerspectiveCamera camera)
     {
-        private HelixToolkit.Wpf.SharpDX.PerspectiveCamera _camera;
+        private HelixToolkit.Wpf.SharpDX.PerspectiveCamera _camera = camera;
 
         public double Speed { get; set; } = 1000.0;
         public double ZoomSpeed { get; set; } = 1.5;
 
-        private double[] acceleration = { 0.0, 0.0, 0.0 };
+        private double[] acceleration = [0.0, 0.0, 0.0];
 
         private const double FovMarginFactor = 0.43;
 
-        private const double LookDirectionChangeYTreshhold = 350;
+        private const double LookDirectionChangeYTreshhold = 150;
 
         private const double DefaultZLookDirection = -0.01;
         private const double MaxZLookDirection = -1.0;
@@ -25,14 +24,9 @@ namespace MapGame.Core.Engine
         public double MinY { get; set; } = 50;
         public double MaxY { get; set; } = 1920 / FovMarginFactor;
 
-        public MapCameraController(HelixToolkit.Wpf.SharpDX.PerspectiveCamera camera)
-        {
-            _camera = camera;
-        }
-
         public void Zoom(double delta)
         {
-            Vector3D zoomVector = new Vector3D(0, -1, -0.5);
+            Vector3D zoomVector = new(0, -1, -0.5);
             zoomVector.Normalize();
 
             double moveDistance = delta * ZoomSpeed;
@@ -111,8 +105,8 @@ namespace MapGame.Core.Engine
 
             double fovMargin = currentPos.Y * FovMarginFactor;
 
-            double minZ = Map.MinY + fovMargin;
-            double maxZ = Map.MaxY - fovMargin;
+            double minZ = MapContext.MinY + fovMargin;
+            double maxZ = MapContext.MaxY - fovMargin;
 
             if (currentPos.Z < minZ)
             {

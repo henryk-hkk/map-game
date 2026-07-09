@@ -6,12 +6,12 @@ namespace MapGame.Core.Utils.Graphic
 {
     public static class RiverPathTracer
     {
-        private static readonly int[] Dx = { 0, 1, 1, 1, 0, -1, -1, -1 };
-        private static readonly int[] Dy = { -1, -1, 0, 1, 1, 1, 0, -1 };
+        private static readonly int[] Dx = [0, 1, 1, 1, 0, -1, -1, -1];
+        private static readonly int[] Dy = [-1, -1, 0, 1, 1, 1, 0, -1];
 
         public static List<List<Vector2>> TraceAllRivers(bool[] thinnedMask, int width, int height)
         {
-            List<List<Vector2>> allRivers = new List<List<Vector2>>();
+            List<List<Vector2>> allRivers = [];
 
             bool[] visited = new bool[thinnedMask.Length];
             Array.Copy(thinnedMask, visited, thinnedMask.Length);
@@ -54,7 +54,7 @@ namespace MapGame.Core.Utils.Graphic
 
         private static List<Vector2> TraceSingleRiver(bool[] visited, bool[] originalMask, int startX, int startY, int width, int height)
         {
-            List<Vector2> path = new List<Vector2>();
+            List<Vector2> path = [];
             int cx = startX;
             int cy = startY;
             bool pathContinues = true;
@@ -111,7 +111,7 @@ namespace MapGame.Core.Utils.Graphic
                                         bool isRecentPixel = false;
                                         for (int p = 1; p <= Math.Min(3, path.Count); p++)
                                         {
-                                            Vector2 prev = path[path.Count - p];
+                                            Vector2 prev = path[^p];
                                             if (prev.X == nx && prev.Y == ny) { isRecentPixel = true; break; }
                                         }
 

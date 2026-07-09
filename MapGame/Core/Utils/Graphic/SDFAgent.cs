@@ -11,16 +11,16 @@ namespace MapGame.Core.Utils.Graphic
 
         public static float BorderThickness = 0.1f;
         public static float SmoothRadiusMultiplier = 1f;
+        private const int _scale = GraphicContext.SdfScale;
 
         public static List<(int Index, byte Alpha)> ComputeLocalSDF(
             int[] regionMap,
             int mapWidth,
             int mapHeight,
-            int scale,
             Int32Rect updateRect)
         {
-            float maxDistance = BorderThickness + (scale * SmoothRadiusMultiplier);
-            int margin = (int)Math.Ceiling(maxDistance) + scale;
+            float maxDistance = BorderThickness + (_scale * SmoothRadiusMultiplier);
+            int margin = (int)Math.Ceiling(maxDistance) + _scale;
 
             int startX = Math.Max(0, updateRect.X - margin);
             int startY = Math.Max(0, updateRect.Y - margin);
@@ -30,24 +30,24 @@ namespace MapGame.Core.Utils.Graphic
             int localWidth = endX - startX;
             int localHeight = endY - startY;
 
-            int scaledLocalWidth = localWidth * scale;
-            int scaledLocalHeight = localHeight * scale;
+            int scaledLocalWidth = localWidth * _scale;
+            int scaledLocalHeight = localHeight * _scale;
             int scaledTotal = scaledLocalWidth * scaledLocalHeight;
 
             float[] localDistances = new float[scaledTotal];
             Array.Fill(localDistances, float.MaxValue);
 
-            MarkLocalBorderPixels(regionMap, localDistances, mapWidth, startX, startY, endX, endY, scale, scaledLocalWidth);
+            MarkLocalBorderPixels(regionMap, localDistances, mapWidth, startX, startY, endX, endY, scaledLocalWidth);
 
             ChamferDistanceTransform(localDistances, scaledLocalWidth, scaledLocalHeight);
 
-            ApplyBlur(localDistances, scaledTotal, scaledLocalWidth, scaledLocalHeight, scale);
+            ApplyBlur(localDistances, scaledTotal, scaledLocalWidth, scaledLocalHeight);
 
-            return ExtractSDFPixels(localDistances, startX, startY, mapWidth, scale, scaledLocalWidth, scaledLocalHeight);
+            return ExtractSDFPixels(localDistances, startX, startY, mapWidth, scaledLocalWidth, scaledLocalHeight);
         }
 
 
-        private static void MarkLocalBorderPixels(int[] regionMap, float[] distances, int globalWidth, int startX, int startY, int endX, int endY, int scale, int scaledLocalWidth)
+        private static void MarkLocalBorderPixels(int[] regionMap, float[] distances, int globalWidth, int startX, int startY, int endX, int endY, int scaledLocalWidth)
         { //Marks the border pixels as distance = 0
             for (int y = startY; y < endY - 1; y++)
             {
@@ -66,16 +66,16 @@ namespace MapGame.Core.Utils.Graphic
 
                     if (currentRegion != rightRegion)
                     {
-                        int sx = (localX + 1) * scale;
-                        for (int dy = 0; dy < scale; dy++)
-                            distances[(localY * scale + dy) * scaledLocalWidth + sx] = 0f;
+                        int sx = (localX + 1) * _scale;
+                        for (int dy = 0; dy < _scale; dy++)
+                            distances[(localY * _scale + dy) * scaledLocalWidth + sx] = 0f;
                     }
 
                     if (currentRegion != bottomRegion)
                     {
-                        int sy = (localY + 1) * scale;
-                        for (int dx = 0; dx < scale; dx++)
-                            distances[sy * scaledLocalWidth + (localX * scale + dx)] = 0f;
+                        int sy = (localY + 1) * _scale;
+                        for (int dx = 0; dx < _scale; dx++)
+                            distances[sy * scaledLocalWidth + (localX * _scale + dx)] = 0f;
                     }
                 }
             }
@@ -130,10 +130,10 @@ namespace MapGame.Core.Utils.Graphic
             }
         }
 
-        private static void ApplyBlur(float[] distances, int totalScaledPixels, int scaledWidth, int scaledHeight, int scale)
+        private static void ApplyBlur(float[] distances, int totalScaledPixels, int scaledWidth, int scaledHeight)
         {
 
-            int blurRadius = scale;
+            int blurRadius = _scale;
             float[] blurredDistances = new float[totalScaledPixels];
 
             // Horizontal pass
@@ -206,11 +206,11 @@ namespace MapGame.Core.Utils.Graphic
                 }
             });
         }
-        private static List<(int, byte)> ExtractSDFPixels(float[] distances, int startX, int startY, int globalWidth, int scale, int scaledLocalWidth, int scaledLocalHeight)
+        private static List<(int, byte)> ExtractSDFPixels(float[] distances, int startX, int startY, int globalWidth, int scaledLocalWidth, int scaledLocalHeight)
         {
-            List<(int, byte)> sdfResults = new List<(int, byte)>();
+            List<(int, byte)> sdfResults = [];
 
-            float smoothRadius = scale * SmoothRadiusMultiplier;
+            float smoothRadius = _scale * SmoothRadiusMultiplier;
             float maxDistance = BorderThickness + smoothRadius;
 
             for (int y = 0; y < scaledLocalHeight; y++)
@@ -222,7 +222,7 @@ namespace MapGame.Core.Utils.Graphic
 
                     if (dist >= maxDistance) continue;
 
-                    byte alpha = 0;
+                    byte alpha;
 
                     if (dist <= BorderThickness)
                     {
@@ -238,10 +238,10 @@ namespace MapGame.Core.Utils.Graphic
                     if (alpha > 0)
                     {
                         // local window index -> global index
-                        int globalY = (startY * scale) + y;
-                        int globalX = (startX * scale) + x;
+                        int globalY = (startY * _scale) + y;
+                        int globalX = (startX * _scale) + x;
 
-                        int globalScaledWidth = globalWidth * scale;
+                        int globalScaledWidth = globalWidth * _scale;
                         int globalByteIndex = ((globalY * globalScaledWidth) + globalX) * 4;
 
                         sdfResults.Add((globalByteIndex, alpha));

@@ -1,5 +1,4 @@
 ﻿using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Constants;
 using MapGame.Core.Utils.Geographic;
 using System;
 using System.Threading.Tasks;
@@ -9,29 +8,23 @@ namespace MapGame.Core.Utils.Graphic
 {
     public static class OverlayCompositor
     {
-        private const int SdfScale = Constants.Graphic.SdfScale;
+        private const int SdfScale = GraphicContext.SdfScale;
 
         public static void InitializeCompositor()
         {
-            var (width, height, _) = MapUtils.GetBitmapParams();
-            int scaledWidth = width * SdfScale;
-            int scaledHeight = height * SdfScale;
-            int scaledStride = scaledWidth * 4;
+            var (_, scaledHeight, scaledStride) = MapUtils.GetScaledBitmapParams();
 
-            Map.MasterOverlayPixelData = new byte[scaledHeight * scaledStride];
+            GraphicContext.MasterOverlayPixelData = new byte[scaledHeight * scaledStride];
 
-            Map.OverlayMaterial = new PhongMaterial()
-            {
+            GraphicContext.OverlayMaterial = new PhongMaterial()
+            { 
                 AmbientColor = new HelixToolkit.Maths.Color4(1, 1, 1, 0)
             };
         }
 
         public static void ComposeAndApply(Int32Rect dirtyRect)
         {
-            var (width, height, _) = MapUtils.GetBitmapParams();
-            int scaledWidth = width * SdfScale;
-            int scaledHeight = height * SdfScale;
-            int scaledStride = scaledWidth * 4;
+            var (scaledWidth, scaledHeight, scaledStride) = MapUtils.GetScaledBitmapParams();
 
             int startX = dirtyRect.X * SdfScale;
             int startY = dirtyRect.Y * SdfScale;
@@ -43,10 +36,10 @@ namespace MapGame.Core.Utils.Graphic
             endX = Math.Min(scaledWidth, endX);
             endY = Math.Min(scaledHeight, endY);
 
-            byte[] dest = Map.MasterOverlayPixelData;
-            byte[] countries = Map.CountryPixelData;
-            byte[] borders = Map.RegionBorderPixelData;
-            byte[] selections = Map.SelectionPixelData;
+            byte[] dest = GraphicContext.MasterOverlayPixelData;
+            byte[] countries = GraphicContext.CountryPixelData;
+            byte[] borders = GraphicContext.RegionBorderPixelData;
+            byte[] selections = GraphicContext.SelectionPixelData;
 
             Parallel.For(startY, endY, y =>
             {
@@ -56,22 +49,19 @@ namespace MapGame.Core.Utils.Graphic
 
                 for (int i = startIdx; i < endIdx; i += 4)
                 {
-                    // Warstwa bazowa: Countries
                     float bC = countries[i], gC = countries[i + 1], rC = countries[i + 2], aC = countries[i + 3] / 255f;
 
-                    // Mieszanie Borders na Countries
                     float aB = borders[i + 3] / 255f;
                     float alpha1 = aB + aC * (1 - aB);
 
                     float r1 = 0, g1 = 0, b1 = 0;
-                    if (alpha1 > 0) // Zabezpieczenie przed dzieleniem przez zero i wyciekiem bieli
+                    if (alpha1 > 0)
                     {
                         r1 = (borders[i + 2] * aB + rC * aC * (1 - aB)) / alpha1;
                         g1 = (borders[i + 1] * aB + gC * aC * (1 - aB)) / alpha1;
                         b1 = (borders[i] * aB + bC * aC * (1 - aB)) / alpha1;
                     }
 
-                    // Mieszanie Selections
                     float aS = selections[i + 3] / 255f;
                     float alphaFinal = aS + alpha1 * (1 - aS);
 
@@ -83,7 +73,6 @@ namespace MapGame.Core.Utils.Graphic
                         bFinal = (selections[i] * aS + b1 * alpha1 * (1 - aS)) / alphaFinal;
                     }
 
-                    // Zapis do tablicy docelowej
                     dest[i] = (byte)bFinal;
                     dest[i + 1] = (byte)gFinal;
                     dest[i + 2] = (byte)rFinal;
@@ -91,7 +80,7 @@ namespace MapGame.Core.Utils.Graphic
                 }
             });
 
-            if (Map.OverlayMaterial is PhongMaterial phong)
+            if (GraphicContext.OverlayMaterial is PhongMaterial phong)
             {
                 phong.DiffuseMap = dest.ToFastDynamicTextureModel(scaledWidth, scaledHeight);
             }

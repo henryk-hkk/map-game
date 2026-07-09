@@ -1,6 +1,6 @@
 ﻿using HelixToolkit.SharpDX;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Constants;
+using MapGame.Core;
 using MapGame.Core.Engine;
 using MapGame.Core.Utils.Graphic;
 using System;
@@ -83,7 +83,7 @@ namespace MapGame.MVVM.ViewModels
 
         private void Initialize3DMap()
         {
-            var mapData = MapDisplay.GetMapDisplay(Map.HeightMap, Map.Width, Map.Height);
+            var mapData = MapDisplay.GetMapDisplay(MapContext.HeightMap, MapContext.Width, MapContext.Height);
 
             TerrainGeometry = mapData.TerrainGeometry;
             RiverGeometry = mapData.RiverGeometry;

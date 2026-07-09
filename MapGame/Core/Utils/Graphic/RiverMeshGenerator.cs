@@ -2,7 +2,6 @@
 using HelixToolkit.SharpDX;
 using HelixToolkit.SharpDX.Core;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Constants;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -13,8 +12,8 @@ namespace MapGame.Core.Utils.Graphic
     {
         public static HelixToolkit.SharpDX.MeshGeometry3D GenerateRiverMesh(bool[] riverMask, byte[] heightmap)
         {
-            int width = Map.Width;
-            int height = Map.Height;
+            int width = MapContext.Width;
+            int height = MapContext.Height;
 
             var thinnedMask = GetThinnedMask(riverMask, width, height);
 
@@ -31,10 +30,10 @@ namespace MapGame.Core.Utils.Graphic
                 if (rawRiverPath.Count < 4) continue;
 
                 Vector2 pStart = rawRiverPath[0];
-                Vector2 pEnd = rawRiverPath[rawRiverPath.Count - 1];
+                Vector2 pEnd = rawRiverPath[^1];
 
-                double hStart = TerrainMeshGenerator.GetTerrainHeight(heightmap, (int)pStart.X, (int)pStart.Y, width, height);
-                double hEnd = TerrainMeshGenerator.GetTerrainHeight(heightmap, (int)pEnd.X, (int)pEnd.Y, width, height);
+                double hStart = TerrainMeshGenerator.GetTerrainHeight(heightmap, (int)pStart.X, (int)pStart.Y, width);
+                double hEnd = TerrainMeshGenerator.GetTerrainHeight(heightmap, (int)pEnd.X, (int)pEnd.Y, width);
 
                 if (hStart < hEnd)
                 {
@@ -65,7 +64,7 @@ namespace MapGame.Core.Utils.Graphic
                     int safeX = Math.Max(0, Math.Min((int)pCurrent.X, width - 1));
                     int safeY = Math.Max(0, Math.Min((int)pCurrent.Y, height - 1));
 
-                    float h = (float)TerrainMeshGenerator.GetTerrainHeight(heightmap, safeX, safeY, width, height);
+                    float h = (float)TerrainMeshGenerator.GetTerrainHeight(heightmap, safeX, safeY, width);
 
                     int currentIndex = builder.Positions.Count;
 
@@ -98,12 +97,11 @@ namespace MapGame.Core.Utils.Graphic
         private static List<Vector2> SmoothRiverPath(List<Vector2> path, int iterations)
         {
             if (path.Count < 3) return path;
-            List<Vector2> smoothed = new List<Vector2>(path);
+            List<Vector2> smoothed = [.. path];
 
             for (int it = 0; it < iterations; it++)
             {
-                List<Vector2> temp = new List<Vector2>();
-                temp.Add(smoothed[0]);
+                List<Vector2> temp = [smoothed[0]];
 
                 for (int i = 1; i < smoothed.Count - 1; i++)
                 {
@@ -112,7 +110,7 @@ namespace MapGame.Core.Utils.Graphic
                     temp.Add(new Vector2(nx, ny));
                 }
 
-                temp.Add(smoothed[smoothed.Count - 1]);
+                temp.Add(smoothed[^1]);
                 smoothed = temp;
             }
             return smoothed;
@@ -120,7 +118,7 @@ namespace MapGame.Core.Utils.Graphic
 
         private static List<List<Vector2>> StitchBrokenPaths(List<List<Vector2>> paths, float maxDistance)
         {
-            List<List<Vector2>> currentPaths = new List<List<Vector2>>(paths);
+            List<List<Vector2>> currentPaths = [.. paths];
 
             for (int i = 0; i < currentPaths.Count; i++)
             {
@@ -139,9 +137,9 @@ namespace MapGame.Core.Utils.Graphic
                         if (pathB.Count == 0) continue;
 
                         Vector2 aStart = pathA[0];
-                        Vector2 aEnd = pathA[pathA.Count - 1];
+                        Vector2 aEnd = pathA[^1];
                         Vector2 bStart = pathB[0];
-                        Vector2 bEnd = pathB[pathB.Count - 1];
+                        Vector2 bEnd = pathB[^1];
 
                         bool connected = false;
 
@@ -192,7 +190,7 @@ namespace MapGame.Core.Utils.Graphic
                 if (path.Count == 0) continue;
 
                 Vector2 start = path[0];
-                Vector2 end = path[path.Count - 1];
+                Vector2 end = path[^1];
 
                 Vector2? bestStartSnap = null;
                 float bestStartDist = maxDistance;
@@ -237,7 +235,7 @@ namespace MapGame.Core.Utils.Graphic
                 changed = false;
                 for (int step = 0; step < 2; step++)
                 {
-                    List<int> pixelsToRemove = new List<int>();
+                    List<int> pixelsToRemove = [];
 
                     for (int y = 1; y < height - 1; y++)
                     {

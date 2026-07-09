@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using MapGame.Core;
 using MapGame.Core.Engine;
 
 namespace MapGame
@@ -13,7 +14,7 @@ namespace MapGame
         public App()
         {
             GameManager gm = new();
-            gm.Init();
+            gm.Init(Scenario.His_PreWar1933);
         }
         
         
