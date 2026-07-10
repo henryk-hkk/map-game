@@ -20,7 +20,6 @@ namespace MapGame.Core.Utils.Geographic
             }
             return true;
         }
-
         public static BitmapImage LoadTexture(string relativePath)
         {
             BitmapImage bitmap = new();
@@ -35,8 +34,6 @@ namespace MapGame.Core.Utils.Geographic
 
             return bitmap;
         }
-
-        
         public static byte[] LoadGrayscaleMap(string relativePath, bool validateSize = false)
         {
             Uri fileUri = new(relativePath, UriKind.Relative);

@@ -45,6 +45,7 @@ namespace MapGame.Core.Engine
             MapContext.Countries = JSONLoader.ReadJSONCountryData(databaseFolderPath + "countryData.json");
 
             MapContext.GlobalRegionMap = MapUtils.GetRegionMap(MapContext.Width, MapContext.Height);
+            MapContext.GlobalCountryMap = MapUtils.GetCountryMap(MapContext.Width, MapContext.Height);
         }
 
         private static string GetScenarioFolderPath(Scenario scenario)

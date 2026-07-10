@@ -98,7 +98,7 @@ namespace MapGame.MVVM.ViewModels
 
         public void SelectRegion(Color areaColor, string regionName)
         {
-            SelectionTexturesGenerator.SelectRegionByAreaColor(areaColor);
+            MapDisplay.SelectRegionByAreaColor(areaColor);
             SelectedRegionName = regionName;
         }
 
@@ -131,7 +131,7 @@ namespace MapGame.MVVM.ViewModels
         public void DeselectRegion()
         {
             SelectedRegionName = "Brak wyboru";
-            SelectionTexturesGenerator.ClearSelection();
+            MapDisplay.ClearSelection();
         }
 
         public static void AnnexSelectedArea(Color areaColor, int newRegionId)

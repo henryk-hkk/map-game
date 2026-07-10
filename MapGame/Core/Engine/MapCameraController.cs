@@ -7,12 +7,12 @@ namespace MapGame.Core.Engine
 {
     public class MapCameraController(HelixToolkit.Wpf.SharpDX.PerspectiveCamera camera)
     {
-        private HelixToolkit.Wpf.SharpDX.PerspectiveCamera _camera = camera;
+        private readonly HelixToolkit.Wpf.SharpDX.PerspectiveCamera _camera = camera;
 
         public double Speed { get; set; } = 1000.0;
         public double ZoomSpeed { get; set; } = 1.5;
 
-        private double[] acceleration = [0.0, 0.0, 0.0];
+        private readonly double[] acceleration = [0.0, 0.0, 0.0];
 
         private const double FovMarginFactor = 0.43;
 

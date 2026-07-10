@@ -8,58 +8,21 @@ using System.Windows.Media;
 
 namespace MapGame.Core.Utils.Graphic
 {
-    public static class CountryTexturesGenerator
+    public class CountryTexturesGenerator : ITexturesGenerator
     {
-        private const int SdfScale = GraphicContext.SdfScale;
+        private const int SdfScale = ITexturesGenerator.SdfScale;
 
-        public static void InitializeCountryRendering()
+        public static void Initialize()
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
             var (_, scaledHeight, scaledStride) = MapUtils.GetScaledBitmapParams();
 
             GraphicContext.CountryPixelData = new byte[scaledHeight * scaledStride];
 
-            MapContext.GlobalCountryMap = new int[width * height];
-            BuildGlobalCountryMap(width, height);
-
-            RefreshCountryDirtyRect(new Int32Rect(0, 0, width, height));
+            RefreshDirtyRect(new Int32Rect(0, 0, width, height));
         }
 
-        private static void BuildGlobalCountryMap(int width, int height)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    int idx = (y * width) + x;
-                    int stride = width * 4;
-                    int byteIdx = (y * stride) + (x * 4);
-
-                    if (GraphicContext.AreaPixels[byteIdx] == 0 && GraphicContext.AreaPixels[byteIdx + 1] == 0 && GraphicContext.AreaPixels[byteIdx + 2] == 0)
-                    {
-                        MapContext.GlobalCountryMap[idx] = -1;
-                        continue;
-                    }
-
-                    Color c = Color.FromRgb(GraphicContext.AreaPixels[byteIdx + 2], GraphicContext.AreaPixels[byteIdx + 1], GraphicContext.AreaPixels[byteIdx]);
-                    if (!GraphicContext.AreaColors.TryGetValue(c, out PixelArea? area)) continue;
-                    if (area == null || area.ParentRegionId == null) continue;
-
-                    var region = MapContext.RegionIds[(int)area.ParentRegionId];
-
-                    if (region?.Owner != null)
-                    {
-                        MapContext.GlobalCountryMap[idx] = region.Owner.Identifier.GetHashCode();
-                    }
-                    else
-                    {
-                        MapContext.GlobalCountryMap[idx] = -2;
-                    }
-                }
-            }
-        }
-
-        public static void RefreshCountryDirtyRect(Int32Rect dirtyRect)
+        public static void RefreshDirtyRect(Int32Rect dirtyRect)
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
             var (_, _, scaledStride) = MapUtils.GetScaledBitmapParams();

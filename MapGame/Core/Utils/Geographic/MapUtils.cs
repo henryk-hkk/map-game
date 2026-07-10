@@ -153,5 +153,42 @@ namespace MapGame.Core.Utils.Geographic
 
             return val1 < val2 ? (c1, c2) : (c2, c1);
         }
+
+        public static int[] GetCountryMap(int width, int height)
+        {
+            int[] countryMap = [width * height];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int idx = (y * width) + x;
+                    int stride = width * 4;
+                    int byteIdx = (y * stride) + (x * 4);
+
+                    if (GraphicContext.AreaPixels[byteIdx] == 0 && GraphicContext.AreaPixels[byteIdx + 1] == 0 && GraphicContext.AreaPixels[byteIdx + 2] == 0)
+                    {
+                        countryMap[idx] = -1;
+                        continue;
+                    }
+
+                    Color c = Color.FromRgb(GraphicContext.AreaPixels[byteIdx + 2], GraphicContext.AreaPixels[byteIdx + 1], GraphicContext.AreaPixels[byteIdx]);
+                    if (!GraphicContext.AreaColors.TryGetValue(c, out PixelArea? area)) continue;
+                    if (area == null || area.ParentRegionId == null) continue;
+
+                    var region = MapContext.RegionIds[(int)area.ParentRegionId];
+
+                    if (region?.Owner != null)
+                    {
+                        countryMap[idx] = region.Owner.Identifier.GetHashCode();
+                    }
+                    else
+                    {
+                        countryMap[idx] = -2;
+                    }
+                }
+            }
+            return countryMap;
+        }
     }
 }

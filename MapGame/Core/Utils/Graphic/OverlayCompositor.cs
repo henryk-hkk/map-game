@@ -9,6 +9,7 @@ namespace MapGame.Core.Utils.Graphic
     public static class OverlayCompositor
     {
         private const int SdfScale = GraphicContext.SdfScale;
+        private const float inv255 = 1f / 255f;
 
         public static void InitializeCompositor()
         {
@@ -49,28 +50,31 @@ namespace MapGame.Core.Utils.Graphic
 
                 for (int i = startIdx; i < endIdx; i += 4)
                 {
-                    float bC = countries[i], gC = countries[i + 1], rC = countries[i + 2], aC = countries[i + 3] / 255f;
+                    float bC = countries[i], gC = countries[i + 1], rC = countries[i + 2], aC = countries[i + 3] * inv255;
 
-                    float aB = borders[i + 3] / 255f;
+                    float aB = borders[i + 3] * inv255;
                     float alpha1 = aB + aC * (1 - aB);
 
                     float r1 = 0, g1 = 0, b1 = 0;
                     if (alpha1 > 0)
                     {
-                        r1 = (borders[i + 2] * aB + rC * aC * (1 - aB)) / alpha1;
-                        g1 = (borders[i + 1] * aB + gC * aC * (1 - aB)) / alpha1;
-                        b1 = (borders[i] * aB + bC * aC * (1 - aB)) / alpha1;
+                        float invAlpha1 = 1f / alpha1;
+
+                        r1 = (borders[i + 2] * aB + rC * aC * (1 - aB)) * invAlpha1;
+                        g1 = (borders[i + 1] * aB + gC * aC * (1 - aB)) * invAlpha1;
+                        b1 = (borders[i] * aB + bC * aC * (1 - aB)) * invAlpha1;
                     }
 
-                    float aS = selections[i + 3] / 255f;
+                    float aS = selections[i + 3] * inv255;
                     float alphaFinal = aS + alpha1 * (1 - aS);
 
                     float rFinal = 0, gFinal = 0, bFinal = 0;
                     if (alphaFinal > 0)
                     {
-                        rFinal = (selections[i + 2] * aS + r1 * alpha1 * (1 - aS)) / alphaFinal;
-                        gFinal = (selections[i + 1] * aS + g1 * alpha1 * (1 - aS)) / alphaFinal;
-                        bFinal = (selections[i] * aS + b1 * alpha1 * (1 - aS)) / alphaFinal;
+                        float invAlphaFinal = 1f / alphaFinal;
+                        rFinal = (selections[i + 2] * aS + r1 * alpha1 * (1 - aS)) * invAlphaFinal;
+                        gFinal = (selections[i + 1] * aS + g1 * alpha1 * (1 - aS)) * invAlphaFinal;
+                        bFinal = (selections[i] * aS + b1 * alpha1 * (1 - aS)) * invAlphaFinal;
                     }
 
                     dest[i] = (byte)bFinal;

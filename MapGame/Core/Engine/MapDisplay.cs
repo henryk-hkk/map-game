@@ -18,7 +18,6 @@ namespace MapGame.Core.Engine
         public MeshGeometry3D RiverGeometry { get; set; }
         public Material BaseMaterial { get; set; }
         public Material OverlayMaterial { get; set; }
-
         public Material RiverMaterial { get; set; }
     }
 
@@ -28,9 +27,14 @@ namespace MapGame.Core.Engine
         {
             PixelArea targetArea = GraphicContext.AreaColors[areaColor];
 
-            int oldRegionId = (int)targetArea.ParentRegionId;
-            Region oldRegion = MapContext.RegionIds[oldRegionId];
-            oldRegion?.Remove(targetArea);
+            if (targetArea.ParentRegionId.HasValue) 
+            {
+                int oldRegionId = (int)targetArea.ParentRegionId;
+                Region oldRegion = MapContext.RegionIds[oldRegionId];
+                oldRegion?.Remove(targetArea);
+            }
+
+            if (targetArea.ParentRegionId == newRegionId) return;
 
             targetArea.ParentRegionId = newRegionId;
             Region newRegion = MapContext.RegionIds[newRegionId];
@@ -54,18 +58,43 @@ namespace MapGame.Core.Engine
             }
 
             int margin = 6;
-            minX = Math.Max(0, minX - margin);
-            minY = Math.Max(0, minY - margin);
-            maxX = Math.Min(MapContext.Width - 1, maxX + margin);
-            maxY = Math.Min(MapContext.Height - 1, maxY + margin);
 
-            Int32Rect dirtyRect = new(minX, minY, maxX - minX + 1, maxY - minY + 1);
+            Int32Rect dirtyRect = GraphicUtils.GetDirtyRect(minX, maxX, minY, maxY, margin);
 
             BorderTexturesGenerator.UpdateBorders(targetArea.BorderPixelSegments);
-            CountryTexturesGenerator.RefreshCountryDirtyRect(dirtyRect);
+            CountryTexturesGenerator.RefreshDirtyRect(dirtyRect);
 
             OverlayCompositor.ComposeAndApply(dirtyRect);
         }
+
+        public static void SelectRegionByAreaColor(System.Windows.Media.Color areaColor)
+        {
+            if (!GraphicContext.AreaColors.TryGetValue(areaColor, out PixelArea clickedArea)) return;
+            if (clickedArea.ParentRegionId == null) return;
+
+            int targetRegionId = (int)clickedArea.ParentRegionId;
+            if (targetRegionId == MapContext.CurrentlySelectedRegionId) return;
+
+            ClearSelection();
+
+            MapContext.CurrentlySelectedRegionId = targetRegionId;
+
+            var updateRect = SelectionTexturesGenerator.GetSelectionUpdateDirtyRect(targetRegionId);
+            if (updateRect.IsEmpty) return;
+
+            SelectionTexturesGenerator.RefreshDirtyRect(updateRect);
+            OverlayCompositor.ComposeAndApply(updateRect);
+        }
+
+        public static void ClearSelection()
+        {
+            if (MapContext.CurrentlySelectedRegionId == -1) return;
+
+            SelectionTexturesGenerator.ClearSelection();
+            var selectionRect = SelectionTexturesGenerator.GetClearedSelectionDirtyRect();
+            if (!selectionRect.IsEmpty) OverlayCompositor.ComposeAndApply(selectionRect);
+        }
+
 
         public static MapRenderData GetMapDisplay(byte[] heightmap, int width, int height)
         {
@@ -90,9 +119,9 @@ namespace MapGame.Core.Engine
 
             if (GraphicContext.OverlayMaterial == null)
             {
-                CountryTexturesGenerator.InitializeCountryRendering();
-                BorderTexturesGenerator.InitializeBorderRendering(GraphicContext.BorderGraph);
-                SelectionTexturesGenerator.InitializeSelectionRendering();
+                CountryTexturesGenerator.Initialize();
+                BorderTexturesGenerator.Initialize();
+                SelectionTexturesGenerator.Initialize();
 
                 OverlayCompositor.InitializeCompositor();
 

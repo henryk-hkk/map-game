@@ -8,11 +8,10 @@ using System.Windows.Media;
 
 namespace MapGame.Core.Utils.Graphic
 {
-    public static class BorderTexturesGenerator
+    public class BorderTexturesGenerator : ITexturesGenerator
     {
-        private const int SdfScale = GraphicContext.SdfScale;
-
-        public static void InitializeBorderRendering(Dictionary<(Color, Color), BorderPixelSegment> borderGraph)
+        private const int SdfScale = ITexturesGenerator.SdfScale;
+        public static void Initialize()
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
 
@@ -23,12 +22,12 @@ namespace MapGame.Core.Utils.Graphic
             GraphicContext.RegionBorderPixelData = new byte[scaledHeight * scaledStride];
 
             Int32Rect fullMapRect = new(0, 0, width, height);
-            RefreshDirtyRectSDF(fullMapRect);
+            RefreshDirtyRect(fullMapRect);
         }
 
         public static void UpdateBorders(IEnumerable<BorderPixelSegment> segmentsToUpdate)
         {
-            var (width, height, _) = MapUtils.GetBitmapParams();
+            var (width, _, _) = MapUtils.GetBitmapParams();
 
             int minX = int.MaxValue, minY = int.MaxValue;
             int maxX = int.MinValue, maxY = int.MinValue;
@@ -55,17 +54,12 @@ namespace MapGame.Core.Utils.Graphic
             float maxSdfDistance = SDFAgent.BorderThickness + (SdfScale * SDFAgent.SmoothRadiusMultiplier);
             int margin = (int)Math.Ceiling(maxSdfDistance) + SdfScale + 2;
 
-            minX = Math.Max(0, minX - margin);
-            minY = Math.Max(0, minY - margin);
-            maxX = Math.Min(width - 1, maxX + margin);
-            maxY = Math.Min(height - 1, maxY + margin);
+            Int32Rect dirtyRect = GraphicUtils.GetDirtyRect(minX, maxX, minY, maxY, margin);
 
-            Int32Rect dirtyRect = new(minX, minY, maxX - minX + 1, maxY - minY + 1);
-
-            RefreshDirtyRectSDF(dirtyRect);
+            RefreshDirtyRect(dirtyRect);
         }
 
-        private static void RefreshDirtyRectSDF(Int32Rect dirtyRect)
+        public static void RefreshDirtyRect(Int32Rect dirtyRect)
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
             var (_, _, scaledStride) = MapUtils.GetScaledBitmapParams();

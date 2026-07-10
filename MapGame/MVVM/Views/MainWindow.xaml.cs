@@ -132,7 +132,7 @@ namespace MapGame.MVVM.Views
                     RegionNameText.Text = "Nieznany region";
                 }
                 
-                if (oldRegionName == RegionNameText.Text) return;
+                if (oldRegionName == RegionNameText.Text && RegionInfoPanel.Visibility == Visibility.Visible) return; 
                 
                 ShowRegionPanel();
             }
