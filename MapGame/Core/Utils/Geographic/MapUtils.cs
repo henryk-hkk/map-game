@@ -156,7 +156,7 @@ namespace MapGame.Core.Utils.Geographic
 
         public static int[] GetCountryMap(int width, int height)
         {
-            int[] countryMap = [width * height];
+            int[] countryMap = new int[width * height];
 
             for (int y = 0; y < height; y++)
             {
