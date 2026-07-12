@@ -1,4 +1,5 @@
-﻿using MapGame.Core.Utils.Geographic;
+﻿using MapGame.Core.Engine;
+using MapGame.Core.Utils.Geographic;
 using MapGame.MVVM.Models;
 using System;
 using System.Collections.Generic;
@@ -111,7 +112,7 @@ namespace MapGame.Core.Utils.JSON
                 countries.Add(mapCountry);
                 foreach(var ownedRegionIdentifier in country.OwnedRegionIds)
                 {
-                    var region = MapContext.Regions.Find(r => r.Identifier == ownedRegionIdentifier);
+                    var region = Commands.GetRegionByIdentifier(ownedRegionIdentifier);
                     if (region == null) continue;
                     region.Owner = mapCountry;
                     mapCountry.OwnedRegions.Add(region);

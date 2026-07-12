@@ -25,32 +25,17 @@ namespace MapGame.Core.Engine
 
     public static class MapDisplay
     {
-        public static void ChangeAreaOwner(System.Windows.Media.Color areaColor, int newRegionId)
+        public static void ChangeAreaOwner(PixelArea area, Region newRegion)
         {
-            PixelArea targetArea = GraphicContext.AreaColors[areaColor];
-
-            if (targetArea.ParentRegionId.HasValue) 
-            {
-                int oldRegionId = (int)targetArea.ParentRegionId;
-                Region oldRegion = MapContext.RegionIds[oldRegionId];
-                oldRegion?.Remove(targetArea);
-            }
-
-            if (targetArea.ParentRegionId == newRegionId) return;
-
-            targetArea.ParentRegionId = newRegionId;
-            Region newRegion = MapContext.RegionIds[newRegionId];
-            newRegion?.Add(targetArea);
-
             int newCountryId = newRegion?.Owner != null ? newRegion.Owner.Identifier.GetHashCode() : -2;
 
             int minX = int.MaxValue, minY = int.MaxValue;
             int maxX = int.MinValue, maxY = int.MinValue;
 
-            foreach (var pixel in targetArea.Pixels)
+            foreach (var pixel in area.Pixels)
             {
                 int index1D = (pixel.Y * MapContext.Width) + pixel.X;
-                MapContext.GlobalRegionMap[index1D] = newRegionId;
+                MapContext.GlobalRegionMap[index1D] = newRegion.Id;
                 MapContext.GlobalCountryMap[index1D] = newCountryId;
 
                 if (pixel.X < minX) minX = pixel.X;
@@ -63,7 +48,7 @@ namespace MapGame.Core.Engine
 
             Int32Rect dirtyRect = GraphicUtils.GetDirtyRect(minX, maxX, minY, maxY, margin);
 
-            BorderTexturesGenerator.UpdateBorders(targetArea.BorderPixelSegments);
+            BorderTexturesGenerator.UpdateBorders(area.BorderPixelSegments);
             CountryTexturesGenerator.RefreshDirtyRect(dirtyRect);
 
             OverlayCompositor.ComposeAndApply(dirtyRect);

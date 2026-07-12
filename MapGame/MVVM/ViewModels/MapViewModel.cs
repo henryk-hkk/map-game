@@ -181,7 +181,7 @@ namespace MapGame.MVVM.ViewModels
 
         public static void AnnexSelectedArea(Color areaColor, int newRegionId)
         {
-            MapDisplay.ChangeAreaOwner(areaColor, newRegionId);
+            Commands.SetAreaParent(areaColor, newRegionId);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
