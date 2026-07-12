@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapGame.Core.Constants;
 
 namespace MapGame.Core.Utils.Geographic
 {
-    public class Position
+    public class Position(double x = 0, double y = 0, bool isLand = false)
     {
-        public double X { get; private set; }
-        public double Y { get; private set; }
-        public bool IsLandPosition {  get; private set; }
-        public Position(double x = 0, double y = 0, bool isLand = false)
+        public double X { get; private set; } = x;
+        public double Y { get; private set; } = y;
+        public bool IsLandPosition { get; private set; } = isLand;
+        public bool IsOutOfMap
         {
-            X = x;
-            Y = y;
-            this.IsLandPosition = isLand;
+            get => OutOfMap(X, Y);
         }
+
         public void MoveTo(double newX, double newY)
         {
             X = newX;
@@ -34,8 +32,8 @@ namespace MapGame.Core.Utils.Geographic
         }
 
         protected bool OutOfMap(double x, double y) {
-            if (x < Map.MinX || x > Map.MaxX) { return true; }
-            if (y < Map.MinY || y < Map.MaxY) { return true; }
+            if (x < MapContext.MinX || x > MapContext.MaxX) { return true; }
+            if (y < MapContext.MinY || y > MapContext.MaxY) { return true; }
             return false;
         }
 
@@ -43,9 +41,9 @@ namespace MapGame.Core.Utils.Geographic
         {
             int pxY = (int)Math.Ceiling(y);
             int pxX = (int)Math.Ceiling(x);
-            int index = pxY * Map.Width + pxX;
+            int index = pxY * MapContext.Width + pxX;
 
-            return (Map.LandMask != null && Map.LandMask[index]);
+            return (MapContext.LandMask != null && MapContext.LandMask[index]);
         }
 
         //private bool Impassable(double x, double y)

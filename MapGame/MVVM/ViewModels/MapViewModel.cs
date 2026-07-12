@@ -1,6 +1,6 @@
 ﻿using HelixToolkit.SharpDX;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Constants;
+using MapGame.Core;
 using MapGame.Core.Engine;
 using MapGame.Core.Utils.Graphic;
 using System;
@@ -15,6 +15,8 @@ namespace MapGame.MVVM.ViewModels
     {
         private string _selectedRegionName = "Brak wyboru";
         private float _riverScrollY = 0f;
+        private float _lakeScrollX = 0f;
+        private float _lakeScrollY = 0f;
 
         public IEffectsManager EffectsManager { get; }
 
@@ -34,6 +36,12 @@ namespace MapGame.MVVM.ViewModels
         {
             get => _riverGeometry;
             set { _riverGeometry = value; OnPropertyChanged(); }
+        }
+        private HelixToolkit.SharpDX.MeshGeometry3D _lakeGeometry;
+        public HelixToolkit.SharpDX.MeshGeometry3D LakeGeometry
+        {
+            get => _lakeGeometry;
+            set { _lakeGeometry = value; OnPropertyChanged(); }
         }
 
         private HelixToolkit.Wpf.SharpDX.Material _terrainBaseMaterial;
@@ -55,6 +63,13 @@ namespace MapGame.MVVM.ViewModels
         {
             get => _riverMaterial;
             set { _riverMaterial = value; OnPropertyChanged(); }
+        }
+
+        private HelixToolkit.Wpf.SharpDX.Material _lakeMaterial;
+        public HelixToolkit.Wpf.SharpDX.Material LakeMaterial
+        {
+            get => _lakeMaterial;
+            set { _lakeMaterial = value; OnPropertyChanged(); }
         }
 
         public string SelectedRegionName
@@ -83,22 +98,25 @@ namespace MapGame.MVVM.ViewModels
 
         private void Initialize3DMap()
         {
-            var mapData = MapDisplay.GetMapDisplay(Map.HeightMap, Map.Width, Map.Height);
+            var mapData = MapDisplay.GetMapDisplay(MapContext.HeightMap, MapContext.Width, MapContext.Height);
 
             TerrainGeometry = mapData.TerrainGeometry;
             RiverGeometry = mapData.RiverGeometry;
+            LakeGeometry = mapData.LakeGeometry;
 
             TerrainGeometry.UpdateOctree();
             RiverGeometry?.UpdateOctree();
+            LakeGeometry?.UpdateOctree();
 
             TerrainBaseMaterial = mapData.BaseMaterial;
             OverlayMaterial = mapData.OverlayMaterial;
             RiverMaterial = mapData.RiverMaterial;
+            LakeMaterial = mapData.LakeMaterial;
         }
 
         public void SelectRegion(Color areaColor, string regionName)
         {
-            SelectionTexturesGenerator.SelectRegionByAreaColor(areaColor);
+            MapDisplay.SelectRegionByAreaColor(areaColor);
             SelectedRegionName = regionName;
         }
 
@@ -113,13 +131,20 @@ namespace MapGame.MVVM.ViewModels
                 CameraController.Update(deltaTime);
             }
 
+            AnimateRivers();
+
+            AnimateLakes();
+        }
+
+        private void AnimateRivers()
+        {
             _riverScrollY -= 0.002f;
             if (_riverScrollY < -1.0f) _riverScrollY += 1.0f;
 
-            if (RiverMaterial is HelixToolkit.Wpf.SharpDX.PhongMaterial wpfMaterial &&
+            if (RiverMaterial is PhongMaterial wpfMaterial &&
                 wpfMaterial.Core is HelixToolkit.SharpDX.Model.PhongMaterialCore coreMaterial)
             {
-                coreMaterial.UVTransform = new HelixToolkit.SharpDX.UVTransform()
+                coreMaterial.UVTransform = new UVTransform()
                 {
                     Rotation = 0f,
                     Scaling = new Vector2(1f, 1f),
@@ -128,10 +153,30 @@ namespace MapGame.MVVM.ViewModels
             }
         }
 
+        private void AnimateLakes()
+        {
+            _lakeScrollX += 0.0005f;
+            _lakeScrollY += 0.0008f;
+
+            if (_lakeScrollX > 1.0f) _lakeScrollX -= 1.0f;
+            if (_lakeScrollY > 1.0f) _lakeScrollY -= 1.0f;
+
+            if (LakeMaterial is PhongMaterial wpfLakeMat &&
+                wpfLakeMat.Core is HelixToolkit.SharpDX.Model.PhongMaterialCore coreLakeMat)
+            {
+                coreLakeMat.UVTransform = new UVTransform()
+                {
+                    Rotation = 0f,
+                    Scaling = new Vector2(1f, 1f),
+                    Translation = new Vector2(_lakeScrollX, _lakeScrollY)
+                };
+            }
+        }
+
         public void DeselectRegion()
         {
             SelectedRegionName = "Brak wyboru";
-            SelectionTexturesGenerator.ClearSelection();
+            MapDisplay.ClearSelection();
         }
 
         public static void AnnexSelectedArea(Color areaColor, int newRegionId)

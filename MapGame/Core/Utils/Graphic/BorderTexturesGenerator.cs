@@ -1,6 +1,5 @@
 ﻿using HelixToolkit.SharpDX;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Constants;
 using MapGame.Core.Utils.Geographic;
 using System;
 using System.Collections.Generic;
@@ -9,11 +8,10 @@ using System.Windows.Media;
 
 namespace MapGame.Core.Utils.Graphic
 {
-    public static class BorderTexturesGenerator
+    public class BorderTexturesGenerator : ITexturesGenerator
     {
-        private const int SdfScale = Constants.Graphic.SdfScale;
-
-        public static void InitializeBorderRendering(Dictionary<(Color, Color), BorderPixelSegment> borderGraph)
+        private const int SdfScale = ITexturesGenerator.SdfScale;
+        public static void Initialize()
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
 
@@ -21,15 +19,15 @@ namespace MapGame.Core.Utils.Graphic
             int scaledHeight = height * SdfScale;
             int scaledStride = scaledWidth * 4;
 
-            Map.RegionBorderPixelData = new byte[scaledHeight * scaledStride];
+            GraphicContext.RegionBorderPixelData = new byte[scaledHeight * scaledStride];
 
-            Int32Rect fullMapRect = new Int32Rect(0, 0, width, height);
-            RefreshDirtyRectSDF(fullMapRect);
+            Int32Rect fullMapRect = new(0, 0, width, height);
+            RefreshDirtyRect(fullMapRect);
         }
 
         public static void UpdateBorders(IEnumerable<BorderPixelSegment> segmentsToUpdate)
         {
-            var (width, height, _) = MapUtils.GetBitmapParams();
+            var (width, _, _) = MapUtils.GetBitmapParams();
 
             int minX = int.MaxValue, minY = int.MaxValue;
             int maxX = int.MinValue, maxY = int.MinValue;
@@ -56,22 +54,16 @@ namespace MapGame.Core.Utils.Graphic
             float maxSdfDistance = SDFAgent.BorderThickness + (SdfScale * SDFAgent.SmoothRadiusMultiplier);
             int margin = (int)Math.Ceiling(maxSdfDistance) + SdfScale + 2;
 
-            minX = Math.Max(0, minX - margin);
-            minY = Math.Max(0, minY - margin);
-            maxX = Math.Min(width - 1, maxX + margin);
-            maxY = Math.Min(height - 1, maxY + margin);
+            Int32Rect dirtyRect = GraphicUtils.GetDirtyRect(minX, maxX, minY, maxY, margin);
 
-            Int32Rect dirtyRect = new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1);
-
-            RefreshDirtyRectSDF(dirtyRect);
+            RefreshDirtyRect(dirtyRect);
         }
 
-        private static void RefreshDirtyRectSDF(Int32Rect dirtyRect)
+        public static void RefreshDirtyRect(Int32Rect dirtyRect)
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
-            int scaledWidth = width * SdfScale;
-            int scaledHeight = height * SdfScale;
-            int scaledStride = scaledWidth * 4;
+            var (_, _, scaledStride) = MapUtils.GetScaledBitmapParams();
+
 
             int startX_scaled = dirtyRect.X * SdfScale;
             int startY_scaled = dirtyRect.Y * SdfScale;
@@ -82,22 +74,22 @@ namespace MapGame.Core.Utils.Graphic
             for (int y = startY_scaled; y < endY_scaled; y++)
             {
                 int startByteIdx = (y * scaledStride) + (startX_scaled * 4);
-                Array.Clear(Map.RegionBorderPixelData, startByteIdx, rowByteLength);
+                Array.Clear(GraphicContext.RegionBorderPixelData, startByteIdx, rowByteLength);
             }
 
-            var sdfPixels = SDFAgent.ComputeLocalSDF(Map.GlobalRegionMap, width, height, SdfScale, dirtyRect);
+            var sdfPixels = SDFAgent.ComputeLocalSDF(MapContext.GlobalRegionMap, width, height, dirtyRect);
 
             foreach (var pixel in sdfPixels)
             {
                 int byteIdx = pixel.Index;
                 byte alpha = pixel.Alpha;
 
-                if (byteIdx >= 0 && byteIdx + 3 < Map.RegionBorderPixelData.Length)
+                if (byteIdx >= 0 && byteIdx + 3 < GraphicContext.RegionBorderPixelData.Length)
                 {
-                    Map.RegionBorderPixelData[byteIdx] = 50;     // B
-                    Map.RegionBorderPixelData[byteIdx + 1] = 50; // G
-                    Map.RegionBorderPixelData[byteIdx + 2] = 50; // R
-                    Map.RegionBorderPixelData[byteIdx + 3] = (byte)(alpha * 0.8f); // Alpha
+                    GraphicContext.RegionBorderPixelData[byteIdx] = 50;     // B
+                    GraphicContext.RegionBorderPixelData[byteIdx + 1] = 50; // G
+                    GraphicContext.RegionBorderPixelData[byteIdx + 2] = 50; // R
+                    GraphicContext.RegionBorderPixelData[byteIdx + 3] = (byte)(alpha * 0.8f); // Alpha
                 }
             }
         }
@@ -139,10 +131,9 @@ namespace MapGame.Core.Utils.Graphic
 
         public static byte[] GetScaledRegionBorderPixels(int[] regionMap, int scale)
         {
-            var (width, height, stride) = MapUtils.GetBitmapParams();
-            int scaledWidth = width * scale;
-            int scaledHeight = height * scale;
-            int scaledStride = scaledWidth * 4;
+            var (width, height, _) = MapUtils.GetBitmapParams();
+            var (scaledWidth, scaledHeight, scaledStride) = MapUtils.GetScaledBitmapParams();
+
 
             byte[] borderPixels = new byte[scaledHeight * scaledStride];
 

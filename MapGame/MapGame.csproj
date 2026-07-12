@@ -13,11 +13,14 @@
     <None Remove="Assets\Databases\countryData.json" />
     <None Remove="Assets\Map\Heightmap_Fullres.png" />
     <None Remove="Assets\Map\img\Areas.bmp" />
-    <None Remove="Assets\Map\img\Colored.png" />
     <None Remove="Assets\Map\img\Heightmap.png" />
+    <None Remove="Assets\Map\img\LakeMask.png" />
+    <None Remove="Assets\Map\img\LakeTexture.jpg" />
+    <None Remove="Assets\Map\img\LakeTexture.png" />
     <None Remove="Assets\Map\img\LandMask.png" />
     <None Remove="Assets\Map\img\RiverMask.png" />
-    <None Remove="Assets\Map\img\water.png" />
+    <None Remove="Assets\Map\img\RiverTexture.jpg" />
+    <None Remove="Assets\Map\img\RiverTexture.png" />
     <None Remove="Contour.png" />
     <None Remove="Heightmap.png" />
   </ItemGroup>
@@ -32,7 +35,16 @@
     <Content Include="Assets\Map\img\Areas.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Map\img\Colored.png">
+    <Content Include="Assets\Map\img\LakeMask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Map\img\LakeTexture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Map\img\RiverTexture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Map\img\TextureMap.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Map\img\Heightmap.png">
@@ -44,7 +56,7 @@
     <Content Include="Assets\Map\img\RiverMask.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Map\img\water.png">
+    <Content Include="Assets\Map\img\WaterTexture.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Databases\1933\regionData.json">

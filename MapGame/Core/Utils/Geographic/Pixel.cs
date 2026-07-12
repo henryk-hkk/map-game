@@ -4,11 +4,8 @@ using System.Text;
 
 namespace MapGame.Core.Utils.Geographic
 {
-    public class Pixel
+    public class Pixel(int x, int y)
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public Pixel(int x, int y) { X = x; Y = y; }
+        public int X { get; set; } = x; public int Y { get; set; } = y;
     }
 }

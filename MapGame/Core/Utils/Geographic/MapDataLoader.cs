@@ -1,5 +1,4 @@
-﻿using MapGame.Core.Constants;
-using MapGame.Core.Utils.Geographic;
+﻿using MapGame.Core.Utils.Geographic;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,16 +14,15 @@ namespace MapGame.Core.Utils.Geographic
 
         private static bool IsCorrectSize(BitmapImage bitmap)
         {
-            if (Map.Width != bitmap.PixelWidth || Map.Height != bitmap.PixelHeight)
+            if (MapContext.Width != bitmap.PixelWidth || MapContext.Height != bitmap.PixelHeight)
             {
                 return false;
             }
             return true;
         }
-
         public static BitmapImage LoadTexture(string relativePath)
         {
-            BitmapImage bitmap = new BitmapImage();
+            BitmapImage bitmap = new();
             bitmap.BeginInit();
             bitmap.UriSource = new Uri(relativePath, UriKind.Relative);
 
@@ -36,13 +34,11 @@ namespace MapGame.Core.Utils.Geographic
 
             return bitmap;
         }
-
-        
         public static byte[] LoadGrayscaleMap(string relativePath, bool validateSize = false)
         {
-            Uri fileUri = new Uri(relativePath, UriKind.Relative);
+            Uri fileUri = new(relativePath, UriKind.Relative);
 
-            BitmapImage bitmap = new BitmapImage(fileUri);
+            BitmapImage bitmap = new(fileUri);
             if(validateSize)
             {
                 if (!IsCorrectSize(bitmap)) {
@@ -51,15 +47,15 @@ namespace MapGame.Core.Utils.Geographic
             }
             else
             {
-                Map.Width = bitmap.PixelWidth;
-                Map.Height = bitmap.PixelHeight;
+                MapContext.Width = bitmap.PixelWidth;
+                MapContext.Height = bitmap.PixelHeight;
             }
 
-            FormatConvertedBitmap grayBitmap = new FormatConvertedBitmap(bitmap, PixelFormats.Gray8, null, 0);
+            FormatConvertedBitmap grayBitmap = new(bitmap, PixelFormats.Gray8, null, 0);
 
-            byte[] pixelData = new byte[Map.Width * Map.Height];
+            byte[] pixelData = new byte[MapContext.Width * MapContext.Height];
 
-            int stride = Map.Width;
+            int stride = MapContext.Width;
 
             grayBitmap.CopyPixels(pixelData, stride, 0);
 
@@ -80,20 +76,20 @@ namespace MapGame.Core.Utils.Geographic
         }
         public static bool[] LoadMask(string relativePath)
         {
-            Uri fileUri = new Uri(relativePath, UriKind.Relative);
+            Uri fileUri = new(relativePath, UriKind.Relative);
 
-            BitmapImage bitmap = new BitmapImage(fileUri);
+            BitmapImage bitmap = new(fileUri);
 
             if (!IsCorrectSize(bitmap))
             {
                 throw new Exception("Wymiary mapy w silniku nie pokrywają się z wymiarem assetów");
             }
 
-            FormatConvertedBitmap grayBitmap = new FormatConvertedBitmap(bitmap, PixelFormats.Gray8, null, 0);
+            FormatConvertedBitmap grayBitmap = new(bitmap, PixelFormats.Gray8, null, 0);
 
-            byte[] pixelData = new byte[Map.Width * Map.Height];
+            byte[] pixelData = new byte[MapContext.Width * MapContext.Height];
 
-            int stride = Map.Width;
+            int stride = MapContext.Width;
 
             grayBitmap.CopyPixels(pixelData, stride, 0);
 
@@ -102,25 +98,25 @@ namespace MapGame.Core.Utils.Geographic
 
         public static (Dictionary<Color, PixelArea> AreaColors, List<PixelArea> Areas, byte[] Pixels) LoadAreasFromColorMap(string imagePath)
         {
-            BitmapImage colorMap = new BitmapImage();
+            BitmapImage colorMap = new();
             colorMap.BeginInit();
             colorMap.UriSource = new Uri(imagePath, UriKind.Relative);
             colorMap.CreateOptions = BitmapCreateOptions.IgnoreColorProfile;
             colorMap.EndInit();
 
-            FormatConvertedBitmap convertedBitmap = new FormatConvertedBitmap(colorMap, PixelFormats.Bgra32, null, 0);
+            FormatConvertedBitmap convertedBitmap = new(colorMap, PixelFormats.Bgra32, null, 0);
 
-            int stride = Map.Width * 4;
+            int stride = MapContext.Width * 4;
 
-            byte[] pixels = new byte[Map.Height * stride];
+            byte[] pixels = new byte[MapContext.Height * stride];
             convertedBitmap.CopyPixels(pixels, stride, 0);
 
-            Dictionary<Color, PixelArea> areasDict = new Dictionary<Color, PixelArea>();
+            Dictionary<Color, PixelArea> areasDict = [];
             List<PixelArea> areas = [];
 
-            for (int y = 0; y < Map.Height; y++)
+            for (int y = 0; y < MapContext.Height; y++)
             {
-                for (int x = 0; x < Map.Width; x++)
+                for (int x = 0; x < MapContext.Width; x++)
                 {
                     int index = (y * stride) + (x * 4);
 
@@ -132,14 +128,15 @@ namespace MapGame.Core.Utils.Geographic
 
                     Color pixelColor = Color.FromRgb(r, g, b);
 
-                    if (!areasDict.ContainsKey(pixelColor))
+                    if (!areasDict.TryGetValue(pixelColor, out PixelArea? value))
                     {
-                        PixelArea a = new PixelArea();
+                        PixelArea a = new();
                         areas.Add(a);
-                        areasDict[pixelColor] = a;
+                        value = a;
+                        areasDict[pixelColor] = value;
                     }
 
-                    areasDict[pixelColor].AddPixel(x, y);
+                    value.AddPixel(x, y);
                     
                 }
             }

@@ -6,18 +6,12 @@ using System.Windows.Media.Media3D;
 
 namespace MapGame.Core.Utils.Geographic
 {
-    public class Region : List<Area>
+    public class Region(int id, string identifier, string? name = null) : List<Area>
     {
-        public Region(int id, string identifier, string? name = null)
-        {
-            Id = id;
-            Identifier = identifier;
-            Name = name;
-        }
-        public int Id { get; private set; }
-        public string Identifier { get; private set; }
-        public string? Name { get; private set; }
-        public Country Owner { get; set; }
+        public int Id { get; private set; } = id;
+        public string Identifier { get; private set; } = identifier;
+        public string? Name { get; private set; } = name;
+        public Country? Owner { get; set; }
         public bool Includes(Position pos)
         {
             foreach (Area area in this)

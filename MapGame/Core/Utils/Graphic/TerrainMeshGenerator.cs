@@ -1,6 +1,5 @@
 ﻿using HelixToolkit.Geometry;
 using HelixToolkit.SharpDX;
-using MapGame.Core.Constants;
 using System;
 using System.Numerics;
 
@@ -16,8 +15,10 @@ namespace MapGame.Core.Utils.Graphic
 
         public static HelixToolkit.SharpDX.MeshGeometry3D Generate3DMapModel(byte[] heightmap, int width, int height)
         {
-            var builder = new MeshBuilder(generateNormals: true, generateTexCoords: true);
-            builder.TextureCoordinates = [];
+            var builder = new MeshBuilder(generateNormals: true, generateTexCoords: true)
+            {
+                TextureCoordinates = []
+            };
             LoadPixelHeights(builder, heightmap, width, height);
             GenerateTriangularTerrain(builder, width, height);
 
@@ -30,11 +31,11 @@ namespace MapGame.Core.Utils.Graphic
             return mesh;
         }
 
-        public static double GetTerrainHeight(byte[] heightmap, int x, int y, int width, int height)
+        public static double GetTerrainHeight(byte[] heightmap, int x, int y, int width)
         {
             int index = y * width + x;
             byte z = heightmap[index];
-            bool isLand = Map.LandMask[index];
+            bool isLand = MapContext.LandMask[index];
 
             double finalPixelHeight;
 
@@ -63,7 +64,7 @@ namespace MapGame.Core.Utils.Graphic
                     int x = Math.Min(c * _step, width - 1);
                     int y = Math.Min(r * _step, height - 1);
 
-                    float pixelHeight = (float)GetTerrainHeight(heightmap, x, y, width, height);
+                    float pixelHeight = (float)GetTerrainHeight(heightmap, x, y, width);
 
                     builder.Positions.Add(new Vector3((float)x, pixelHeight, (float)y));
                     float u = (float)x / (width - 1);

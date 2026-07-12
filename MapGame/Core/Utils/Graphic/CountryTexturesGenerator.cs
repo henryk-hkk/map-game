@@ -1,6 +1,5 @@
 ﻿using HelixToolkit.SharpDX;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Constants;
 using MapGame.Core.Utils.Geographic;
 using System;
 using System.Collections.Generic;
@@ -9,63 +8,25 @@ using System.Windows.Media;
 
 namespace MapGame.Core.Utils.Graphic
 {
-    public static class CountryTexturesGenerator
+    public class CountryTexturesGenerator : ITexturesGenerator
     {
-        private const int SdfScale = Constants.Graphic.SdfScale;
+        private const int SdfScale = ITexturesGenerator.SdfScale;
 
-        public static void InitializeCountryRendering()
+        public static void Initialize()
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
-            int scaledWidth = width * SdfScale;
-            int scaledHeight = height * SdfScale;
-            int scaledStride = scaledWidth * 4;
+            var (_, scaledHeight, scaledStride) = MapUtils.GetScaledBitmapParams();
 
-            Map.CountryPixelData = new byte[scaledHeight * scaledStride];
+            GraphicContext.CountryPixelData = new byte[scaledHeight * scaledStride];
 
-            Map.GlobalCountryMap = new int[width * height];
-            BuildGlobalCountryMap(width, height);
-
-            RefreshCountryDirtyRect(new Int32Rect(0, 0, width, height));
+            RefreshDirtyRect(new Int32Rect(0, 0, width, height));
         }
 
-        private static void BuildGlobalCountryMap(int width, int height)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    int idx = (y * width) + x;
-                    int stride = width * 4;
-                    int byteIdx = (y * stride) + (x * 4);
-
-                    if (Map.AreaPixels[byteIdx] == 0 && Map.AreaPixels[byteIdx + 1] == 0 && Map.AreaPixels[byteIdx + 2] == 0)
-                    {
-                        Map.GlobalCountryMap[idx] = -1;
-                        continue;
-                    }
-
-                    Color c = Color.FromRgb(Map.AreaPixels[byteIdx + 2], Map.AreaPixels[byteIdx + 1], Map.AreaPixels[byteIdx]);
-                    if (Map.AreaColors.TryGetValue(c, out PixelArea area))
-                    {
-                        var region = Map.Regions.Find(r => r.Id == area.ParentRegionId);
-                        if (region?.Owner != null)
-                        {
-                            Map.GlobalCountryMap[idx] = region.Owner.Identifier.GetHashCode();
-                        }
-                        else
-                        {
-                            Map.GlobalCountryMap[idx] = -2;
-                        }
-                    }
-                }
-            }
-        }
-
-        public static void RefreshCountryDirtyRect(Int32Rect dirtyRect)
+        public static void RefreshDirtyRect(Int32Rect dirtyRect)
         {
             var (width, height, _) = MapUtils.GetBitmapParams();
-            int scaledWidth = width * SdfScale;
-            int scaledStride = scaledWidth * 4;
+            var (_, _, scaledStride) = MapUtils.GetScaledBitmapParams();
+
 
             int startX_scaled = dirtyRect.X * SdfScale;
             int startY_scaled = dirtyRect.Y * SdfScale;
@@ -83,21 +44,21 @@ namespace MapGame.Core.Utils.Graphic
                     int logicIdx = (globalY * width) + globalX;
                     int byteIdx = (y * scaledStride) + (x * 4);
 
-                    int countryId = Map.GlobalCountryMap[logicIdx];
+                    int countryId = MapContext.GlobalCountryMap[logicIdx];
 
                     if (countryColorsCache.TryGetValue(countryId, out byte[] bgra))
                     {
-                        Map.CountryPixelData[byteIdx] = bgra[0];
-                        Map.CountryPixelData[byteIdx + 1] = bgra[1];
-                        Map.CountryPixelData[byteIdx + 2] = bgra[2];
-                        Map.CountryPixelData[byteIdx + 3] = bgra[3];
+                        GraphicContext.CountryPixelData[byteIdx] = bgra[0];
+                        GraphicContext.CountryPixelData[byteIdx + 1] = bgra[1];
+                        GraphicContext.CountryPixelData[byteIdx + 2] = bgra[2];
+                        GraphicContext.CountryPixelData[byteIdx + 3] = bgra[3];
                     }
                     else
                     {
-                        Map.CountryPixelData[byteIdx] = 0;
-                        Map.CountryPixelData[byteIdx + 1] = 0;
-                        Map.CountryPixelData[byteIdx + 2] = 0;
-                        Map.CountryPixelData[byteIdx + 3] = 0;
+                        GraphicContext.CountryPixelData[byteIdx] = 0;
+                        GraphicContext.CountryPixelData[byteIdx + 1] = 0;
+                        GraphicContext.CountryPixelData[byteIdx + 2] = 0;
+                        GraphicContext.CountryPixelData[byteIdx + 3] = 0;
                     }
                 }
             }
@@ -108,7 +69,7 @@ namespace MapGame.Core.Utils.Graphic
             SDFAgent.BorderThickness = 0.2f;
             SDFAgent.SmoothRadiusMultiplier = 1f;
 
-            var countrySdfPixels = SDFAgent.ComputeLocalSDF(Map.GlobalCountryMap, width, height, SdfScale, dirtyRect);
+            var countrySdfPixels = SDFAgent.ComputeLocalSDF(MapContext.GlobalCountryMap, width, height, dirtyRect);
 
             SDFAgent.BorderThickness = originalThickness;
             SDFAgent.SmoothRadiusMultiplier = originalRadius;
@@ -118,14 +79,14 @@ namespace MapGame.Core.Utils.Graphic
                 int idx = pixel.Index;
                 byte borderAlpha = pixel.Alpha;
 
-                if (idx >= 0 && idx + 3 < Map.CountryPixelData.Length)
+                if (idx >= 0 && idx + 3 < GraphicContext.CountryPixelData.Length)
                 {
-                    byte currentAlpha = Map.CountryPixelData[idx + 3];
+                    byte currentAlpha = GraphicContext.CountryPixelData[idx + 3];
 
-                    Map.CountryPixelData[idx] = (byte)Math.Max(0, Map.CountryPixelData[idx] - borderAlpha);
-                    Map.CountryPixelData[idx + 1] = (byte)Math.Max(0, Map.CountryPixelData[idx + 1] - borderAlpha);
-                    Map.CountryPixelData[idx + 2] = (byte)Math.Max(0, Map.CountryPixelData[idx + 2] - borderAlpha);
-                    Map.CountryPixelData[idx + 3] = Math.Max(currentAlpha, borderAlpha);
+                    GraphicContext.CountryPixelData[idx] = (byte)Math.Max(0, GraphicContext.CountryPixelData[idx] - borderAlpha);
+                    GraphicContext.CountryPixelData[idx + 1] = (byte)Math.Max(0, GraphicContext.CountryPixelData[idx + 1] - borderAlpha);
+                    GraphicContext.CountryPixelData[idx + 2] = (byte)Math.Max(0, GraphicContext.CountryPixelData[idx + 2] - borderAlpha);
+                    GraphicContext.CountryPixelData[idx + 3] = Math.Max(currentAlpha, borderAlpha);
                 }
             }
         }
@@ -138,7 +99,7 @@ namespace MapGame.Core.Utils.Graphic
                 [-2] = [0, 0, 0, 0]
             };
 
-            foreach (var region in Map.Regions)
+            foreach (var region in MapContext.Regions)
             {
                 if (region.Owner != null)
                 {
@@ -152,7 +113,6 @@ namespace MapGame.Core.Utils.Graphic
                     }
                 }
             }
-
             return cache;
         }
     }

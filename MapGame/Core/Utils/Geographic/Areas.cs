@@ -46,7 +46,7 @@ namespace MapGame.Core.Utils.Geographic
 
         public PolygonArea(Position[] vertices)
         {
-            if (vertices.Count() <= 2) throw new Exception("Tried to initialize a polygon area with less than three vertices.");
+            if (vertices.Length <= 2) throw new Exception("Tried to initialize a polygon area with less than three vertices.");
             Vertices = [.. vertices];
         }
 
@@ -85,13 +85,13 @@ namespace MapGame.Core.Utils.Geographic
 
     public class PixelArea : Area
     {
-        public List<Pixel> Pixels = new List<Pixel>();
+        public List<Pixel> Pixels = [];
         public void AddPixel(int x, int y)
         {
-            Pixel pixel = new Pixel(x, y);
+            Pixel pixel = new(x, y);
             Pixels.Add(pixel);
         }
-        public List<BorderPixelSegment> BorderPixelSegments { get; set; } = new List<BorderPixelSegment>();
+        public List<BorderPixelSegment> BorderPixelSegments { get; set; } = [];
         public override bool Includes(Position pos)
         {
             int pxX = (int)Math.Ceiling(pos.X);

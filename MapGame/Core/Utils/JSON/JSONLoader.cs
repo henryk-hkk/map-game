@@ -1,5 +1,4 @@
-﻿using MapGame.Core.Constants;
-using MapGame.Core.Utils.Geographic;
+﻿using MapGame.Core.Utils.Geographic;
 using MapGame.MVVM.Models;
 using System;
 using System.Collections.Generic;
@@ -42,7 +41,7 @@ namespace MapGame.Core.Utils.JSON
             {
                 Color targetColor = areaDef.GetColor();
 
-                if (Map.AreaColors.TryGetValue(targetColor, out PixelArea? actualArea))
+                if (GraphicContext.AreaColors.TryGetValue(targetColor, out PixelArea? actualArea))
                 {
                     actualArea.Identifier = areaDef.Identifier;
                     actualArea.Name = areaDef.Name;
@@ -54,17 +53,18 @@ namespace MapGame.Core.Utils.JSON
                 }
             }
         }
-        public static (BidirectionalMap<int, string>? RegionDict, List<Region>? Regions) ReadJSONRegionData(string relativePath)
+        public static (BidirectionalMap<int, string>? RegionDict, Dictionary<int, Region>? RegionIds, List<Region>? Regions) ReadJSONRegionData(string relativePath)
         {
 
             string jsonContent = GetJSONFileContent(relativePath);
-            if (jsonContent == null) return (null, null);
+            if (jsonContent == null) return (null, null, null);
 
             MapJSONData config = JsonSerializer.Deserialize<MapJSONData>(jsonContent, _options);
 
-            if (config?.Regions == null) return (null, null);
+            if (config?.Regions == null) return (null, null, null);
 
             BidirectionalMap<int, string> regionsDict = new();
+            Dictionary<int, Region> regionIds = [];
             List<Region> regions = [];
 
             foreach (var region in config.Regions)
@@ -74,10 +74,11 @@ namespace MapGame.Core.Utils.JSON
                 Region mapRegion = new(region.RegionId, region.Identifier, region.Name);
                 regionsDict.Add(region.RegionId, region.Name);
                 regions.Add(mapRegion);
+                regionIds.Add(region.RegionId, mapRegion);
 
                 foreach (var areaId in region.Areas)
                 {
-                    Area area = Map.Areas.Find(a => a.Identifier == areaId);
+                    Area area = MapContext.Areas.Find(a => a.Identifier == areaId);
                     if (area == null)
                     {
                         System.Diagnostics.Debug.WriteLine($"OSTRZEŻENIE: Area o identyfikatorze {areaId} zdefiniowana w regionie {region.Identifier} nie istnieje w słowniku!");
@@ -87,7 +88,7 @@ namespace MapGame.Core.Utils.JSON
                     mapRegion.Add(area);
                 }
             }
-            return (regionsDict, regions);
+            return (regionsDict, regionIds, regions);
         }
 
         public static List<Country> ReadJSONCountryData(string relativePath)
@@ -108,16 +109,14 @@ namespace MapGame.Core.Utils.JSON
                 if (country.DisplayName != null) mapCountry.DisplayName = country.DisplayName;
 
                 countries.Add(mapCountry);
-                foreach(var ownedRegionId in country.OwnedRegionIds)
+                foreach(var ownedRegionIdentifier in country.OwnedRegionIds)
                 {
-                    var region = Map.Regions.Find(r => r.Identifier == ownedRegionId);
+                    var region = MapContext.Regions.Find(r => r.Identifier == ownedRegionIdentifier);
                     if (region == null) continue;
                     region.Owner = mapCountry;
                     mapCountry.OwnedRegions.Add(region);
                 }
-
             }
-
             return countries;
         }
     }

@@ -11,7 +11,7 @@ namespace MapGame.Core.Utils.Geographic
         public Color Area1 { get; set; }
         public Color Area2 { get; set; }
 
-        public List<int> PixelIndices = new List<int>();
+        public List<int> PixelIndices = [];
 
         public Int32Rect BoundingBox;
     }

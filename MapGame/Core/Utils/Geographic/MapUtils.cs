@@ -1,6 +1,6 @@
-﻿using MapGame.Core.Constants;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -10,11 +10,39 @@ namespace MapGame.Core.Utils.Geographic
     public static class MapUtils
     {
         private const int _strideFactor = 4;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (int width, int height, int stride) GetBitmapParams()
         {
-            return (Map.Width, Map.Height, Map.Width * _strideFactor);
+            return (MapContext.Width, MapContext.Height, MapContext.Width * _strideFactor);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static (int scaledWidth, int scaledHeight, int scaledStride) GetScaledBitmapParams()
+        {
+            return
+                (MapContext.Width * GraphicContext.SdfScale,
+                MapContext.Height * GraphicContext.SdfScale,
+                MapContext.Width * _strideFactor * GraphicContext.SdfScale);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Color GetColorByPosition(Position pos)
+        {
+            Color def = Color.FromArgb(0, 0, 0, 0);
+            if (pos == null) return def;
+            if (pos.IsOutOfMap) return def;
+
+            int stride = MapContext.Width * 4;
+            int index = ((int)pos.Y * stride) + ((int)pos.X * 4);
+
+            byte b = GraphicContext.AreaPixels[index];
+            byte g = GraphicContext.AreaPixels[index + 1];
+            byte r = GraphicContext.AreaPixels[index + 2];
+            byte a = GraphicContext.AreaPixels[index + 3];
+
+            return Color.FromArgb(a, r, g, b);
+        }
         public static int[] GetRegionMap(int width, int height)
         {
             int totalPixels = width * height;
@@ -26,15 +54,15 @@ namespace MapGame.Core.Utils.Geographic
             {
                 int byteIndex = i * 4;
 
-                // Jeśli to czarna woda, oznaczamy ją jako StateID = -1
-                if (Map.AreaPixels[byteIndex] == 0 && Map.AreaPixels[byteIndex + 1] == 0 && Map.AreaPixels[byteIndex + 2] == 0)
+                // Jeśli to woda, oznaczamy ją jako id = -1
+                if (GraphicContext.AreaPixels[byteIndex] == 0 && GraphicContext.AreaPixels[byteIndex + 1] == 0 && GraphicContext.AreaPixels[byteIndex + 2] == 0)
                 {
                     regionMap[i] = -1;
                     continue;
                 }
 
-                Color c = Color.FromRgb(Map.AreaPixels[byteIndex + 2], Map.AreaPixels[byteIndex + 1], Map.AreaPixels[byteIndex]);
-                if (Map.AreaColors.TryGetValue(c, out PixelArea area))
+                Color c = Color.FromRgb(GraphicContext.AreaPixels[byteIndex + 2], GraphicContext.AreaPixels[byteIndex + 1], GraphicContext.AreaPixels[byteIndex]);
+                if (GraphicContext.AreaColors.TryGetValue(c, out PixelArea area))
                 {
                     if (area.ParentRegionId.HasValue)
                     {
@@ -55,10 +83,8 @@ namespace MapGame.Core.Utils.Geographic
 
         public static Dictionary<(Color, Color), BorderPixelSegment> GetAreaBorderPixels()
         {
-            var (width, height, stride) = MapUtils.GetBitmapParams();
+            var (width, height, stride) = GetBitmapParams();
 
-            //byte[] borderPixels = new byte[height * stride];
-            //List<int> borderPixelIndices = [];
             var borderGraph = new Dictionary<(Color, Color), BorderPixelSegment>();
 
             for (int y = 1; y < height - 1; y++)
@@ -67,12 +93,12 @@ namespace MapGame.Core.Utils.Geographic
                 {
                     int index = (y * stride) + (x * 4);
 
-                    if (Map.AreaPixels[index] == 0 && Map.AreaPixels[index + 1] == 0 && Map.AreaPixels[index + 2] == 0) // Ignore #000 (Water)
+                    if (GraphicContext.AreaPixels[index] == 0 && GraphicContext.AreaPixels[index + 1] == 0 && GraphicContext.AreaPixels[index + 2] == 0) // Ignore #000 (Water)
                         continue;
 
-                    byte b = Map.AreaPixels[index];
-                    byte g = Map.AreaPixels[index + 1];
-                    byte r = Map.AreaPixels[index + 2];
+                    byte b = GraphicContext.AreaPixels[index];
+                    byte g = GraphicContext.AreaPixels[index + 1];
+                    byte r = GraphicContext.AreaPixels[index + 2];
                     Color color = Color.FromRgb(r, g, b);
 
                     int[] neighborIndices = [
@@ -84,12 +110,12 @@ namespace MapGame.Core.Utils.Geographic
 
                     foreach (int nIndex in neighborIndices)
                     {
-                        if (Map.AreaPixels[nIndex] == 0 && Map.AreaPixels[nIndex + 1] == 0 && Map.AreaPixels[nIndex + 2] == 0)
+                        if (GraphicContext.AreaPixels[nIndex] == 0 && GraphicContext.AreaPixels[nIndex + 1] == 0 && GraphicContext.AreaPixels[nIndex + 2] == 0)
                             continue;
 
-                        byte nB = Map.AreaPixels[nIndex];
-                        byte nG = Map.AreaPixels[nIndex + 1];
-                        byte nR = Map.AreaPixels[nIndex + 2];
+                        byte nB = GraphicContext.AreaPixels[nIndex];
+                        byte nG = GraphicContext.AreaPixels[nIndex + 1];
+                        byte nR = GraphicContext.AreaPixels[nIndex + 2];
 
                         if (nR != r || nG != g || nB != b)
                         {
@@ -97,20 +123,21 @@ namespace MapGame.Core.Utils.Geographic
 
                             var segmentKey = CreateSortedKey(color, neighborColor);
 
-                            if (!borderGraph.ContainsKey(segmentKey))
+                            if (!borderGraph.TryGetValue(segmentKey, out BorderPixelSegment? value))
                             {
                                 BorderPixelSegment newSegment = new()
                                 {
                                     Area1 = segmentKey.Item1,
                                     Area2 = segmentKey.Item2
                                 };
+                                value = newSegment;
+                                borderGraph[segmentKey] = value;
 
-                                borderGraph[segmentKey] = newSegment;
-
-                                Map.AreaColors[segmentKey.Item1].BorderPixelSegments.Add(newSegment);
-                                Map.AreaColors[segmentKey.Item2].BorderPixelSegments.Add(newSegment);
+                                GraphicContext.AreaColors[segmentKey.Item1].BorderPixelSegments.Add(newSegment);
+                                GraphicContext.AreaColors[segmentKey.Item2].BorderPixelSegments.Add(newSegment);
                             }
-                            borderGraph[segmentKey].PixelIndices.Add(index);
+
+                            value.PixelIndices.Add(index);
                         }
                     }
                 }
@@ -123,6 +150,43 @@ namespace MapGame.Core.Utils.Geographic
             int val2 = (c2.R << 16) | (c2.G << 8) | c2.B;
 
             return val1 < val2 ? (c1, c2) : (c2, c1);
+        }
+
+        public static int[] GetCountryMap(int width, int height)
+        {
+            int[] countryMap = new int[width * height];
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int idx = (y * width) + x;
+                    int stride = width * 4;
+                    int byteIdx = (y * stride) + (x * 4);
+
+                    if (GraphicContext.AreaPixels[byteIdx] == 0 && GraphicContext.AreaPixels[byteIdx + 1] == 0 && GraphicContext.AreaPixels[byteIdx + 2] == 0)
+                    {
+                        countryMap[idx] = -1;
+                        continue;
+                    }
+
+                    Color c = Color.FromRgb(GraphicContext.AreaPixels[byteIdx + 2], GraphicContext.AreaPixels[byteIdx + 1], GraphicContext.AreaPixels[byteIdx]);
+                    if (!GraphicContext.AreaColors.TryGetValue(c, out PixelArea? area)) continue;
+                    if (area == null || area.ParentRegionId == null) continue;
+
+                    var region = MapContext.RegionIds[(int)area.ParentRegionId];
+
+                    if (region?.Owner != null)
+                    {
+                        countryMap[idx] = region.Owner.Identifier.GetHashCode();
+                    }
+                    else
+                    {
+                        countryMap[idx] = -2;
+                    }
+                }
+            }
+            return countryMap;
         }
     }
 }
