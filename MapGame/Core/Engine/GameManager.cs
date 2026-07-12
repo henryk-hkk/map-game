@@ -24,9 +24,11 @@ namespace MapGame.Core.Engine
             MapContext.HeightMap = MapDataLoader.LoadGrayscaleMap(_mapAssetsFolderPath + "Heightmap.png");
             MapContext.LandMask = MapDataLoader.LoadMask(_mapAssetsFolderPath + "LandMask.png");
             MapContext.RiverMask = MapDataLoader.LoadMask(_mapAssetsFolderPath + "RiverMask.png");
+            MapContext.LakeMask = MapDataLoader.LoadMask(_mapAssetsFolderPath + "LakeMask.png");
 
             GraphicContext.TextureMap = MapDataLoader.LoadTexture(_mapAssetsFolderPath + "TextureMap.png");
-            GraphicContext.WaterTexture = MapDataLoader.LoadTexture(_mapAssetsFolderPath + "WaterTexture.png");
+            GraphicContext.RiverTexture = MapDataLoader.LoadTexture(_mapAssetsFolderPath + "RiverTexture.png");
+            GraphicContext.LakeTexture = MapDataLoader.LoadTexture(_mapAssetsFolderPath + "LakeTexture.png");
 
             var (AreaColors, Areas, Pixels) = MapDataLoader.LoadAreasFromColorMap(_mapAssetsFolderPath + "Areas.bmp");
             GraphicContext.AreaColors = AreaColors;

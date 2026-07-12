@@ -54,7 +54,7 @@ namespace MapGame.Core.Utils.Geographic
             {
                 int byteIndex = i * 4;
 
-                // Jeśli to czarna woda, oznaczamy ją jako StateID = -1
+                // Jeśli to woda, oznaczamy ją jako id = -1
                 if (GraphicContext.AreaPixels[byteIndex] == 0 && GraphicContext.AreaPixels[byteIndex + 1] == 0 && GraphicContext.AreaPixels[byteIndex + 2] == 0)
                 {
                     regionMap[i] = -1;
@@ -83,10 +83,8 @@ namespace MapGame.Core.Utils.Geographic
 
         public static Dictionary<(Color, Color), BorderPixelSegment> GetAreaBorderPixels()
         {
-            var (width, height, stride) = MapUtils.GetBitmapParams();
+            var (width, height, stride) = GetBitmapParams();
 
-            //byte[] borderPixels = new byte[height * stride];
-            //List<int> borderPixelIndices = [];
             var borderGraph = new Dictionary<(Color, Color), BorderPixelSegment>();
 
             for (int y = 1; y < height - 1; y++)

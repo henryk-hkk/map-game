@@ -16,9 +16,11 @@ namespace MapGame.Core.Engine
     {
         public MeshGeometry3D TerrainGeometry { get; set; }
         public MeshGeometry3D RiverGeometry { get; set; }
+        public MeshGeometry3D LakeGeometry { get; set; }
         public Material BaseMaterial { get; set; }
         public Material OverlayMaterial { get; set; }
         public Material RiverMaterial { get; set; }
+        public Material LakeMaterial { get; set; }
     }
 
     public static class MapDisplay
@@ -102,6 +104,7 @@ namespace MapGame.Core.Engine
             {
                 TerrainGeometry = TerrainMeshGenerator.Generate3DMapModel(heightmap, width, height),
                 RiverGeometry = RiverMeshGenerator.GenerateRiverMesh(MapContext.RiverMask, heightmap),
+                LakeGeometry = LakeMeshGenerator.GenerateLakeMesh(MapContext.LakeMask, heightmap, false),
 
                 BaseMaterial = new PhongMaterial()
                 {
@@ -132,7 +135,21 @@ namespace MapGame.Core.Engine
 
             data.RiverMaterial = new PhongMaterial()
             {
-                DiffuseMap = GraphicContext.WaterTexture.ToTextureModel(),
+                DiffuseMap = GraphicContext.RiverTexture.ToTextureModel(),
+                DiffuseColor = HelixToolkit.Maths.Color4.White,
+                AmbientColor = HelixToolkit.Maths.Color4.White,
+
+                UVTransform = new HelixToolkit.SharpDX.UVTransform()
+                {
+                    Rotation = 0f,
+                    Scaling = new System.Numerics.Vector2(1f, 1f),
+                    Translation = new System.Numerics.Vector2(0f, 0f)
+                }
+            };
+
+            data.LakeMaterial = new PhongMaterial()
+            {
+                DiffuseMap = GraphicContext.LakeTexture.ToTextureModel(),
                 DiffuseColor = HelixToolkit.Maths.Color4.White,
                 AmbientColor = HelixToolkit.Maths.Color4.White,
 

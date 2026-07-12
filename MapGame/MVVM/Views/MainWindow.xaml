@@ -31,19 +31,26 @@
                             MouseDown3D="OnTerrainMouseDown"
                             CullMode="Back" />
 
-            <hx:MeshGeometryModel3D Geometry="{Binding TerrainGeometry}" 
-                            Material="{Binding OverlayMaterial}" 
-                            IsHitTestVisible="False"
-                            IsTransparent="True" 
-                            DepthBias="-10"
-                            CullMode="Back" />
-
             <hx:MeshGeometryModel3D Geometry="{Binding RiverGeometry}" 
                             Material="{Binding RiverMaterial}" 
                             IsHitTestVisible="False"
                             IsTransparent="True" 
                             DepthBias="-50"
                             CullMode="None" />
+
+            <hx:MeshGeometryModel3D Geometry="{Binding LakeGeometry}" 
+                            Material="{Binding LakeMaterial}" 
+                            IsHitTestVisible="False"
+                            IsTransparent="True" 
+                            DepthBias="-50"
+                            CullMode="None" />
+            
+            <hx:MeshGeometryModel3D Geometry="{Binding TerrainGeometry}" 
+                            Material="{Binding OverlayMaterial}" 
+                            IsHitTestVisible="False"
+                            IsTransparent="True" 
+                            DepthBias="-10"
+                            CullMode="Back" />
         </hx:Viewport3DX>
 
         <Canvas IsHitTestVisible="False">

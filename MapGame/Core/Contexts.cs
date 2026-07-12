@@ -27,6 +27,7 @@ namespace MapGame.Core
         public static byte[]? HeightMap;
         public static bool[]? LandMask;
         public static bool[]? RiverMask;
+        public static bool[]? LakeMask;
 
         public static List<PixelArea> Areas;
         public static List<Region> Regions;
@@ -50,7 +51,8 @@ namespace MapGame.Core
     {
         public const int SdfScale = 2;
         public static BitmapImage? TextureMap;
-        public static BitmapImage? WaterTexture;
+        public static BitmapImage? RiverTexture;
+        public static BitmapImage? LakeTexture;
 
         public static Dictionary<Color, PixelArea> AreaColors;
         public static byte[] AreaPixels;
