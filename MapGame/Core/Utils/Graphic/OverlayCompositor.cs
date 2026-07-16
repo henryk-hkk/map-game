@@ -1,5 +1,5 @@
 ﻿using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Utils.Map;
 using System;
 using System.Threading.Tasks;
 using System.Windows;

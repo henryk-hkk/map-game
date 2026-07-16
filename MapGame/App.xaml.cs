@@ -14,7 +14,7 @@ namespace MapGame
         public App()
         {
             GameManager gm = new();
-            gm.Init(Scenario.His_PreWar1933);
+            gm.Init(Scenario.His_PreWar1933, Language.Polish);
         }
         
         

@@ -1,4 +1,4 @@
-﻿using MapGame.Core.Utils.Geographic;
+﻿using MapGame.Core.Geographic;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace MapGame.Core.Utils.Geographic
+namespace MapGame.Core.Utils.Map
 {
     public static class MapDataLoader
     {

@@ -1,6 +1,6 @@
 ﻿using HelixToolkit.SharpDX;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Utils.Map;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -77,7 +77,7 @@ namespace MapGame.Core.Utils.Graphic
                 Array.Clear(GraphicContext.RegionBorderPixelData, startByteIdx, rowByteLength);
             }
 
-            var sdfPixels = SDFAgent.ComputeLocalSDF(MapContext.GlobalRegionMap, width, height, dirtyRect);
+            var sdfPixels = SDFAgent.ComputeLocalSDF(MapLogicContext.GlobalRegionMap, width, height, dirtyRect);
 
             foreach (var pixel in sdfPixels)
             {

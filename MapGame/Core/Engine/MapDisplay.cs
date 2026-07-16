@@ -2,7 +2,7 @@
 using HelixToolkit.SharpDX;
 using HelixToolkit.SharpDX.Core;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Geographic;
 using MapGame.Core.Utils.Graphic;
 using System;
 using System.IO;
@@ -35,8 +35,8 @@ namespace MapGame.Core.Engine
             foreach (var pixel in area.Pixels)
             {
                 int index1D = (pixel.Y * MapContext.Width) + pixel.X;
-                MapContext.GlobalRegionMap[index1D] = newRegion.Id;
-                MapContext.GlobalCountryMap[index1D] = newCountryId;
+                MapLogicContext.GlobalRegionMap[index1D] = newRegion.Id;
+                MapLogicContext.GlobalCountryMap[index1D] = newCountryId;
 
                 if (pixel.X < minX) minX = pixel.X;
                 if (pixel.X > maxX) maxX = pixel.X;
@@ -60,11 +60,11 @@ namespace MapGame.Core.Engine
             if (clickedArea.ParentRegionId == null) return;
 
             int targetRegionId = (int)clickedArea.ParentRegionId;
-            if (targetRegionId == MapContext.CurrentlySelectedRegionId) return;
+            if (targetRegionId == MapLogicContext.CurrentlySelectedRegionId) return;
 
             ClearSelection();
 
-            MapContext.CurrentlySelectedRegionId = targetRegionId;
+            MapLogicContext.CurrentlySelectedRegionId = targetRegionId;
 
             var updateRect = SelectionTexturesGenerator.GetSelectionUpdateDirtyRect(targetRegionId);
             if (updateRect.IsEmpty) return;
@@ -75,7 +75,7 @@ namespace MapGame.Core.Engine
 
         public static void ClearSelection()
         {
-            if (MapContext.CurrentlySelectedRegionId == -1) return;
+            if (MapLogicContext.CurrentlySelectedRegionId == -1) return;
 
             SelectionTexturesGenerator.ClearSelection();
             var selectionRect = SelectionTexturesGenerator.GetClearedSelectionDirtyRect();

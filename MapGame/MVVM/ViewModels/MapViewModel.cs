@@ -17,12 +17,12 @@ namespace MapGame.MVVM.ViewModels
         private float _riverScrollY = 0f;
         private float _lakeScrollX = 0f;
         private float _lakeScrollY = 0f;
+        private TimeSpan _lastRenderTime = TimeSpan.Zero;
 
         public IEffectsManager EffectsManager { get; }
 
         public PerspectiveCamera MainCamera { get; }
         public MapCameraController CameraController { get; }
-        private TimeSpan _lastRenderTime = TimeSpan.Zero;
 
         private HelixToolkit.SharpDX.MeshGeometry3D _terrainGeometry;
         public HelixToolkit.SharpDX.MeshGeometry3D TerrainGeometry

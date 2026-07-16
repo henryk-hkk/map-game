@@ -1,22 +1,43 @@
-﻿using MapGame.Core.Utils.JSON;
-using MapGame.Core.Utils.Geographic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media.Imaging;
+using MapGame.Core.JSON;
+using MapGame.Core.Utils.Map;
 
 namespace MapGame.Core.Engine
 {
+    public enum Scenario
+    {
+        His_PreWar1910,
+        His_War1914,
+        His_PreWar1933,
+        His_Asia1937,
+        His_War1939,
+        Alt_KR1936
+    }
+
+    public enum Language
+    {
+        English,
+        Polish
+    }
     public class GameManager
     {
         private const string _mapAssetsFolderPath = "Assets/Map/img/";
         private const string _databaseAssetsFolderPath = "Assets/Databases/";
+        private const string _languageAssetsFolderPath = _databaseAssetsFolderPath + "Languages/";
         private string _scenarioFolderPath = "";
-        public void Init(Scenario scenario)
+        private string _languageFolderPath = "";
+        public void Init(Scenario scenario, Language language)
         {
             LoadMaps();
+
             _scenarioFolderPath = GetScenarioFolderPath(scenario);
+            _languageFolderPath = GetLanguageFolderPath(language);
+            
             LoadRegionData(_databaseAssetsFolderPath + _scenarioFolderPath);
+            LoadLanguageData(_languageAssetsFolderPath + _languageFolderPath);
         }
 
         private static void LoadMaps()
@@ -31,23 +52,35 @@ namespace MapGame.Core.Engine
             GraphicContext.LakeTexture = MapDataLoader.LoadTexture(_mapAssetsFolderPath + "LakeTexture.png");
 
             var (AreaColors, Areas, Pixels) = MapDataLoader.LoadAreasFromColorMap(_mapAssetsFolderPath + "Areas.bmp");
-            GraphicContext.AreaColors = AreaColors;
             MapContext.Areas = Areas;
+
+            GraphicContext.AreaColors = AreaColors;
             GraphicContext.AreaPixels = Pixels;
 
-            JSONLoader.ReadJSONAreaDefinitionData("Assets/Databases/areaDefinition.json");
+            JSONLoader.ReadJSONAreaDefinitionData(_databaseAssetsFolderPath + "areaDefinition.json");
+            GraphicContext.CountryColorTags = JSONLoader.ReadJSONCountryColorTagData(_databaseAssetsFolderPath + "countryColorTags.json");
         }
 
-        private static void LoadRegionData(string databaseFolderPath)
+        private static void LoadRegionData(string scenarioFolderPath)
         {
-            var (RegionDict, RegionIds, Regions) = JSONLoader.ReadJSONRegionData(databaseFolderPath + "regionData.json");
-            MapContext.RegionNames = RegionDict;
-            MapContext.RegionIds = RegionIds;
-            MapContext.Regions = Regions;
-            MapContext.Countries = JSONLoader.ReadJSONCountryData(databaseFolderPath + "countryData.json");
+            var (Regions, RegionIds, RegionIdentifiers) = JSONLoader.ReadJSONRegionData(scenarioFolderPath + "regionData.json");
+            MapLogicContext.Regions = Regions;
+            MapLogicContext.RegionIds = RegionIds;
+            MapLogicContext.RegionIdentifiers = RegionIdentifiers;
 
-            MapContext.GlobalRegionMap = MapUtils.GetRegionMap(MapContext.Width, MapContext.Height);
-            MapContext.GlobalCountryMap = MapUtils.GetCountryMap(MapContext.Width, MapContext.Height);
+            var (Countries, CountryIdentifiers) = JSONLoader.ReadJSONCountryData(scenarioFolderPath + "countryData.json");
+            MapLogicContext.Countries = Countries;
+            MapLogicContext.CountryIdentifiers = CountryIdentifiers;
+
+            MapLogicContext.GlobalRegionMap = MapUtils.GetRegionMap(MapContext.Width, MapContext.Height);
+            MapLogicContext.GlobalCountryMap = MapUtils.GetCountryMap(MapContext.Width, MapContext.Height);
+        }
+
+        private static void LoadLanguageData(string languageFolderPath)
+        {
+            LanguageContext.AreaNames = JSONLoader.ReadJSONAreaNameData(languageFolderPath + "areas.json");
+            LanguageContext.RegionNameTags = JSONLoader.ReadJSONRegionNameTagData(languageFolderPath + "regionNameTags.json");
+            LanguageContext.CountryNameTags = JSONLoader.ReadJSONCountryNameTagData(languageFolderPath + "countryNameTags.json");
         }
 
         private static string GetScenarioFolderPath(Scenario scenario)
@@ -61,6 +94,16 @@ namespace MapGame.Core.Engine
                 Scenario.His_War1939 => "1939/",
                 Scenario.Alt_KR1936 => "KR1936/",
                 _ => "1933/"
+            };
+        }
+
+        private static string GetLanguageFolderPath(Language language)
+        {
+            return language switch
+            {
+                Language.English => "English/",
+                Language.Polish => "Polish/",
+                _ => "English/"
             };
         }
     }

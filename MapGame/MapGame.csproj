@@ -11,6 +11,8 @@
   <ItemGroup>
     <None Remove="Assets\Databases\areaDefinition.json" />
     <None Remove="Assets\Databases\countryData.json" />
+    <None Remove="Assets\Databases\Languages\Polish\areas.json" />
+    <None Remove="Assets\Databases\Languages\Polish\countryNameTags.json" />
     <None Remove="Assets\Map\Heightmap_Fullres.png" />
     <None Remove="Assets\Map\img\Areas.bmp" />
     <None Remove="Assets\Map\img\Heightmap.png" />
@@ -23,6 +25,24 @@
     <None Remove="Assets\Map\img\RiverTexture.png" />
     <None Remove="Contour.png" />
     <None Remove="Heightmap.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Databases\countryColorTags.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Databases\Languages\Polish\areas.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Databases\Languages\Polish\countryNameTags.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Databases\Languages\Polish\regionNameTags.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

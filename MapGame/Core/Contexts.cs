@@ -1,8 +1,9 @@
 ﻿
 using HelixToolkit.SharpDX.Utilities;
 using HelixToolkit.Wpf.SharpDX;
+using MapGame.Core.Geographic;
 using MapGame.Core.Utils;
-using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Utils.Map;
 using MapGame.MVVM.Models;
 using System;
 using System.Collections.Generic;
@@ -30,21 +31,34 @@ namespace MapGame.Core
         public static bool[]? LakeMask;
 
         public static List<PixelArea> Areas;
-        public static List<Region> Regions;
+
+        //public static Position Pos1 = new Position(3180, 966), Pos2 = new Position(3167, 1000), Pos3 = new Position(3186, 1002);
+        //public static Position[] posList = {Pos1,Pos2,Pos3 };
+        //public static PolygonArea Gdansk = new PolygonArea(posList);
+
+    }
+
+    public static class MapLogicContext
+    {
+        public static List<Region> Regions = [];
         public static Dictionary<int, Region> RegionIds = [];
-        public static BidirectionalMap<int, string> RegionNames;
-        public static List<Country> Countries;
+        public static Dictionary<string, Region> RegionIdentifiers = [];
+
+        public static List<Country> Countries = [];
+        public static Dictionary<string, Country> CountryIdentifiers = [];
 
         public static int[] GlobalRegionMap;
         public static int[] GlobalCountryMap;
         public static int[] GlobalSelectionMask;
 
         public static int CurrentlySelectedRegionId = -1;
+    }
 
-        //public static Position Pos1 = new Position(3180, 966), Pos2 = new Position(3167, 1000), Pos3 = new Position(3186, 1002);
-        //public static Position[] posList = {Pos1,Pos2,Pos3 };
-        //public static PolygonArea Gdansk = new PolygonArea(posList);
-
+    public static class LanguageContext
+    {
+        public static Dictionary<string, string> AreaNames = [];
+        public static Dictionary<string, string> RegionNameTags = [];
+        public static Dictionary<string, string> CountryNameTags = [];
     }
 
     public static class GraphicContext
@@ -77,16 +91,8 @@ namespace MapGame.Core
         public static byte[] MasterOverlayPixelData;
         public static PhongMaterial OverlayMaterial;
 
-    }
+        public static Dictionary<string, Color> CountryColorTags = [];
 
-    public enum Scenario
-    {
-        His_PreWar1910,
-        His_War1914,
-        His_PreWar1933,
-        His_Asia1937,
-        His_War1939,
-        Alt_KR1936
     }
 
     //public static AreaList ImpassableAreas();

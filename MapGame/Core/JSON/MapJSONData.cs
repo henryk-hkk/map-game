@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media;
 
-namespace MapGame.Core.Utils.JSON
+namespace MapGame.Core.JSON
 {
     public class MapJSONData
     {
@@ -14,7 +14,7 @@ namespace MapGame.Core.Utils.JSON
     {
         public int RegionId { get; set; }
         public string Identifier { get; set; }
-        public string Name { get; set; }
+        public string NameTag { get; set; }
         public List<string> Areas { get; set; }
     }
 }

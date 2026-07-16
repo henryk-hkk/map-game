@@ -1,9 +1,9 @@
-﻿using MapGame.Core.Utils.Geographic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Runtime.CompilerServices;
 using System.Text;
+using MapGame.Core.Geographic;
 
 namespace MapGame.Core.Utils
 {

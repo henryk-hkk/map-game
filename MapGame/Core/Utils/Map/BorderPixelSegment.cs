@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace MapGame.Core.Utils.Geographic
+namespace MapGame.Core.Utils.Map
 {
     public class BorderPixelSegment
     {

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MapGame.Core.Geographic;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
-namespace MapGame.Core.Utils.Geographic
+namespace MapGame.Core.Utils.Map
 {
     public static class MapUtils
     {
@@ -174,7 +175,7 @@ namespace MapGame.Core.Utils.Geographic
                     if (!GraphicContext.AreaColors.TryGetValue(c, out PixelArea? area)) continue;
                     if (area == null || area.ParentRegionId == null) continue;
 
-                    var region = MapContext.RegionIds[(int)area.ParentRegionId];
+                    var region = MapLogicContext.RegionIds[(int)area.ParentRegionId];
 
                     if (region?.Owner != null)
                     {

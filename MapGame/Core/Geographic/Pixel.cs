@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MapGame.Core.Utils.Geographic
+namespace MapGame.Core.Geographic
 {
     public class Pixel(int x, int y)
     {

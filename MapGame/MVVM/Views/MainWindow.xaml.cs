@@ -1,7 +1,8 @@
 ﻿using HelixToolkit.SharpDX;
 using HelixToolkit.Wpf.SharpDX;
 using MapGame.Core;
-using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Geographic;
+using MapGame.Core.Utils.Map;
 using MapGame.MVVM.ViewModels;
 using System.Diagnostics;
 using System.Linq;
@@ -22,7 +23,6 @@ namespace MapGame.MVVM.Views
     {
         private Color? _currentPanelRegionColor = null;
         private DateTime _lastMouseMoveTime;
-        private readonly TimeSpan _mouseMoveThrottle = TimeSpan.FromMilliseconds(33);
 
         public MainWindow()
         {
@@ -76,7 +76,7 @@ namespace MapGame.MVVM.Views
 
             Region? hoveredRegion = null;
 
-            foreach (Region region in MapContext.Regions)
+            foreach (Region region in MapLogicContext.Regions)
             {
                 if (region.Includes(mousePosition))
                 {
@@ -90,7 +90,7 @@ namespace MapGame.MVVM.Views
 
             if (hoveredRegion != null)
             {
-                CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {MapContext.RegionNames[hoveredRegion.Id]} ({hoveredRegion.Id})";
+                CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {LanguageContext.RegionNameTags[hoveredRegion.NameTag]} ({hoveredRegion.Id})";
             }
             else
             {
@@ -120,9 +120,9 @@ namespace MapGame.MVVM.Views
                     clickedArea != null &&
                     clickedArea.ParentRegionId.HasValue)
                 {
-                    Region? clickedRegion = MapContext.RegionIds[clickedArea.ParentRegionId.Value];
+                    Region? clickedRegion = MapLogicContext.RegionIds[clickedArea.ParentRegionId.Value];
 
-                    string regionName = clickedRegion?.Name ?? "Nieznany region";
+                    string regionName = clickedRegion?.DisplayName ?? "Nieznany region";
                     viewModel.SelectRegion(clickedColor, regionName);
 
                     RegionNameText.Text = regionName;
@@ -144,7 +144,7 @@ namespace MapGame.MVVM.Views
             }
         }
 
-        private void OnViewportMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        private void OnViewportMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (this.DataContext is not MapGame.MVVM.ViewModels.MapViewModel viewModel) return;
             viewModel.CameraController.Zoom(e.Delta);
@@ -152,7 +152,7 @@ namespace MapGame.MVVM.Views
             e.Handled = true;
         }
 
-        private Position? GetSimpleMousePosition(System.Windows.Input.MouseEventArgs e)
+        private Position? GetSimpleMousePosition(MouseEventArgs e)
         {
             Point mousePos = e.GetPosition(MainViewport);
 

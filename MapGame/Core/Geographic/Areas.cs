@@ -1,17 +1,23 @@
-﻿using System;
+﻿using MapGame.Core.Utils;
+using MapGame.Core.Utils.Map;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MapGame.Core.Utils.Geographic
+namespace MapGame.Core.Geographic
 {
     public abstract class Area
     {
         public abstract bool Includes(Position pos);
         public string? Identifier { get; set; }
-        public string? Name {  get; set; }
+        public string? Name {  get => GetDisplayName(); }
         public int? ParentRegionId { get; set; }
         public int? Population { get; set; }
 
+        protected string GetDisplayName()
+        {
+            return LanguageContext.AreaNames.TryGetValue(Identifier, out string name) ? name : "";
+        }
     }
 
     public class CircularArea : Area 
