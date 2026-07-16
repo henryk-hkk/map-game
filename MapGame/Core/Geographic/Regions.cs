@@ -10,7 +10,7 @@ namespace MapGame.Core.Geographic
     {
         public readonly int Id = id;
         public readonly string Identifier = identifier;
-        public string NameTag { get; private set; } = nameTag;
+        public string NameTag { get; set; } = nameTag;
         public string? DisplayName { get => GetDisplayName(); }
         public Country? Owner { get; set; }
         public int Population

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media.Imaging;
-using MapGame.Core.JSON;
+using MapGame.Core.Utils.JSON;
 using MapGame.Core.Utils.Map;
 
 namespace MapGame.Core.Engine

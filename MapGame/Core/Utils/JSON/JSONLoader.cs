@@ -8,16 +8,14 @@ using System.Text;
 using System.Text.Json;
 using System.Windows.Media;
 
-namespace MapGame.Core.JSON
+namespace MapGame.Core.Utils.JSON
 {
     public static class JSONLoader
     {
-
         private static readonly JsonSerializerOptions _options = new()
         {
             PropertyNameCaseInsensitive = true
         };
-
         private static string? GetJSONFileContent(string relativePath)
         {
             Uri fileUri = new(relativePath, UriKind.Relative);

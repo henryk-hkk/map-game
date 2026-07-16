@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Media;
 
-namespace MapGame.Core.JSON
+namespace MapGame.Core.Utils.JSON
 {
     public class MapJSONData
     {

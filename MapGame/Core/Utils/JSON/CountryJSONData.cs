@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using System.Text;
 
-namespace MapGame.Core.JSON
+namespace MapGame.Core.Utils.JSON
 {
     public class CountryJSONData
     {
