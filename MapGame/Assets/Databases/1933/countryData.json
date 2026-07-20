@@ -2,36 +2,31 @@
   "Countries": [
     {
       "Identifier": "POLAND",
-      "DisplayName": "Republic of Poland",
-      "R": 255,
-      "G": 74,
-      "B": 61,
+      "NameTag": "PolandRepublic",
+      "ColorTag": "PolandDefault",
       "OwnedRegionIds": [
-        "PolishSilesia",
-        "LesserPoland",
-        "Podlachia",
-        "GrodnoRegion",
-        "WilnoRegion",
-        "Polesia",
-        "Volyhnia",
-        "LwowRegion",
-        "LublinRegion",
-        "LodzRegion",
-        "Masovia",
-        "Pomerelia",
-        "GreaterPoland",
-        "HolyCross",
-        "StanislawowRegion",
-        "NowogrodekRegion",
-        "TarnopolRegion"
+        "PomeranianVoi",
+        "PoznanVoi",
+        "WarsawVoi",
+        "LodzVoi",
+        "KielceVoi",
+        "LublinVoi",
+        "CracowVoi",
+        "SilesianVoi",
+        "BialystokVoi",
+        "WilnoVoi",
+        "NowogrodekVoi",
+        "PolesianVoi",
+        "VolhynianVoi",
+        "LwowVoi",
+        "StanislawowVoi",
+        "TarnopolVoi"
       ]
     },
     {
       "Identifier": "LITHUANIA",
-      "DisplayName": "Republic of Lithuania",
-      "R": 255,
-      "G": 187,
-      "B": 51,
+      "NameTag": "LithuaniaRepublic",
+      "ColorTag": "LithuaniaDefault",
       "OwnedRegionIds": [
         "Aukstaitija",
         "Zemaitija",
@@ -39,11 +34,27 @@
       ]
     },
     {
-      "Identifier": "BSSR",
-      "DisplayName": "Belarussian SSR",
-      "R": 82,
-      "G": 0,
-      "B": 0,
+      "Identifier": "LATVIA",
+      "NameTag": "LatviaRepublic",
+      "ColorTag": "LatviaDefault",
+      "OwnedRegionIds": [
+        "Zemgale",
+        "Latgale",
+        "Kurzeme"
+      ]
+    },
+    {
+      "Identifier": "ESTONIA",
+      "NameTag": "EstoniaRepublic",
+      "ColorTag": "EstoniaDefault",
+      "OwnedRegionIds": [
+        "Estonia"
+      ]
+    },
+    {
+      "Identifier": "BELARUS",
+      "NameTag": "BelarusSSR",
+      "ColorTag": "SovietDefault",
       "OwnedRegionIds": [
         "MinskOblast",
         "PolesiaOblast",
@@ -53,11 +64,9 @@
       ]
     },
     {
-      "Identifier": "UKSSR",
-      "DisplayName": "Ukrainian SSR",
-      "R": 82,
-      "G": 0,
-      "B": 0,
+      "Identifier": "UKRAINE",
+      "NameTag": "UkraineSSR",
+      "ColorTag": "SovietDefault",
       "OwnedRegionIds": [
         "MoldovanASSR",
         "VinnitsaOblast",
@@ -71,48 +80,41 @@
     },
     {
       "Identifier": "GERMANY",
-      "DisplayName": "German Reich",
-      "R": 36,
-      "G": 36,
-      "B": 36,
+      "NameTag": "GermanReich",
+      "ColorTag": "GermanReich",
       "OwnedRegionIds": [
-        "Masuria",
-        "EastPrussia",
-        "Ostmark",
-        "Saxony",
-        "Silesia",
-        "Pomerania",
-        "Brandenburg",
-        "Halle",
-        "Mecklenburg",
-        "Berlin"
+        "EastPrussiaRG",
+        "OstmarkRG",
+        "SaxonyRG",
+        "SilesiaRG",
+        "PomeraniaRG",
+        "BrandenburgRG",
+        "HalleRG",
+        "MecklenburgRG",
+        "BerlinRG"
       ]
     },
     {
       "Identifier": "ROMANIA",
-      "DisplayName": "Kingdom of Romania",
-      "R": 181,
-      "G": 124,
-      "B": 0,
+      "NameTag": "RomaniaKingdom",
+      "ColorTag": "RomaniaDefault",
       "OwnedRegionIds": [
-        "Somes",
-        "Timis",
-        "Mures",
-        "Olt",
-        "Bucegi",
-        "Suceava",
-        "Prut",
-        "Nistru",
-        "DunareaDeJos",
-        "Marii"
+        "SomesLand",
+        "TimisLand",
+        "MuresLand",
+        "OltLand",
+        "BucegiLand",
+        "SuceavaLand",
+        "PrutLand",
+        "NistruLand",
+        "DunareaDeJosLand",
+        "MariiLand"
       ]
     },
     {
       "Identifier": "CZECHOSLOVAKIA",
-      "DisplayName": "Republic of Czechoslovakia",
-      "R": 0,
-      "G": 64,
-      "B": 166,
+      "NameTag": "CzechoslovakiaRepublic",
+      "ColorTag": "CzechoslovakiaDefault",
       "OwnedRegionIds": [
         "Bohemia",
         "MoraviaSilesia",
@@ -121,33 +123,9 @@
       ]
     },
     {
-      "Identifier": "LATVIA",
-      "DisplayName": "Republic of Latvia",
-      "R": 94,
-      "G": 50,
-      "B": 168,
-      "OwnedRegionIds": [
-        "Zemgale",
-        "Latgale",
-        "Kurzeme"
-      ]
-    },
-    {
-      "Identifier": "ESTONIA",
-      "DisplayName": "Republic of Estonia",
-      "R": 56,
-      "G": 146,
-      "B": 255,
-      "OwnedRegionIds": [
-        "Estonia"
-      ]
-    },
-    {
       "Identifier": "ITALY",
-      "DisplayName": "Kingdom of Italy",
-      "R": 0,
-      "G": 89,
-      "B": 9,
+      "NameTag": "ItalyKingdom",
+      "ColorTag": "ItalyDefault",
       "OwnedRegionIds": [
         "AdriaticIslands",
         "ItalianDalmatia",
@@ -156,10 +134,8 @@
     },
     {
       "Identifier": "AUSTRIA",
-      "DisplayName": "Republic of Austria",
-      "R": 210,
-      "G": 210,
-      "B": 210,
+      "NameTag": "AustriaRepublic",
+      "ColorTag": "AustriaDefault",
       "OwnedRegionIds": [
         "LowerAustria",
         "Styria",
@@ -172,58 +148,48 @@
     },
     {
       "Identifier": "LIECHTENSTEIN",
-      "DisplayName": "Duchy of Liechtenstein",
-      "R": 85,
-      "G": 51,
-      "B": 221,
+      "NameTag": "LiechtensteinDuchy",
+      "ColorTag": "LiechtensteinDefault",
       "OwnedRegionIds": [
         "Liechtenstein"
       ]
     },
     {
       "Identifier": "SWITZERLAND",
-      "DisplayName": "Republic of Switzerland",
-      "R": 255,
-      "G": 0,
-      "B": 0,
+      "NameTag": "SwitzerlandRepublic",
+      "ColorTag": "SwitzerlandDefault",
       "OwnedRegionIds": [
         "Switzerland"
       ]
     },
     {
       "Identifier": "HUNGARY",
-      "DisplayName": "Kingdom of Hungary",
-      "R": 57,
-      "G": 84,
-      "B": 39,
+      "NameTag": "HungaryKingdom",
+      "ColorTag": "HungaryDefault",
       "OwnedRegionIds": [
         "Hungary"
       ]
     },
     {
       "Identifier": "YUGOSLAVIA",
-      "DisplayName": "Kingdom of Yugoslavia",
-      "R": 34,
-      "G": 0,
-      "B": 84,
+      "NameTag": "YugoslaviaKingdom",
+      "ColorTag": "YugoslaviaDefault",
       "OwnedRegionIds": [
-        "Dravska",
-        "Savska",
-        "Vrbaska",
-        "Primorska",
-        "Dunavska",
-        "Drinska",
-        "Zetska",
-        "Moravska",
-        "Vardarska"
+        "DravskaBan",
+        "SavskaBan",
+        "VrbaskaBan",
+        "PrimorskaBan",
+        "DunavskaBan",
+        "DrinskaBan",
+        "ZetskaBan",
+        "MoravskaBan",
+        "VardarskaBan"
       ]
     },
     {
       "Identifier": "BULGARIA",
-      "DisplayName": "Tsardom of Bulgaria",
-      "R": 0,
-      "G": 48,
-      "B": 12,
+      "NameTag": "BulgariaTsardom",
+      "ColorTag": "BulgariaDefault",
       "OwnedRegionIds": [
         "Vrachan",
         "Sofiya",
@@ -236,20 +202,16 @@
     },
     {
       "Identifier": "ALBANIA",
-      "DisplayName": "Kingdom of Albania",
-      "R": 46,
-      "G": 0,
-      "B": 12,
+      "NameTag": "AlbaniaKingdom",
+      "ColorTag": "AlbaniaDefault",
       "OwnedRegionIds": [
         "Tirana"
       ]
     },
     {
       "Identifier": "GREECE",
-      "DisplayName": "Kingdom of Greece",
-      "R": 3,
-      "G": 61,
-      "B": 252,
+      "NameTag": "GreeceKingdom",
+      "ColorTag": "GreeceDefault",
       "OwnedRegionIds": [
         "WesternThrace",
         "Macedonia",

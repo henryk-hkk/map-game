@@ -2,1190 +2,1212 @@
   "AreaDefinitions": [
     {
       "Identifier": "Danzig",
-      "Name": "Gdańsk",
       "R": 33,
       "G": 0,
       "B": 127
     },
     {
       "Identifier": "Gdynia",
-      "Name": "Gdynia",
       "R": 255,
       "G": 99,
       "B": 43
     },
     {
       "Identifier": "Zlotow",
-      "Name": "Złotów",
       "R": 120,
       "G": 140,
       "B": 101
     },
     {
       "Identifier": "Torun",
-      "Name": "Toruń",
       "R": 209,
       "G": 124,
       "B": 101
     },
     {
       "Identifier": "Poznan",
-      "Name": "Poznań",
       "R": 221,
       "G": 211,
       "B": 95
     },
     {
+      "Identifier": "Wolsztyn",
+      "R": 205,
+      "G": 163,
+      "B": 57
+    },
+    {
+      "Identifier": "Chodziez",
+      "R": 140,
+      "G": 124,
+      "B": 163
+    },
+    {
       "Identifier": "Kepno",
-      "Name": "Kępno",
       "R": 178,
       "G": 205,
       "B": 93
     },
     {
       "Identifier": "Bydgoszcz",
-      "Name": "Bydgoszcz",
       "R": 109,
       "G": 47,
       "B": 97
     },
     {
-      "Identifier": "Warszawa",
-      "Name": "Warszawa",
+      "Identifier": "Inowroclaw",
+      "R": 167,
+      "G": 170,
+      "B": 62
+    },
+    {
+      "Identifier": "Lowicz",
       "R": 137,
       "G": 42,
       "B": 69
     },
     {
+      "Identifier": "Skierniewice",
+      "R": 120,
+      "G": 182,
+      "B": 174
+    },
+    {
+      "Identifier": "OstrowMazowiecka",
+      "R": 140,
+      "G": 39,
+      "B": 69
+    },
+    {
+      "Identifier": "Ostroleka",
+      "R": 167,
+      "G": 37,
+      "B": 66
+    },
+    {
+      "Identifier": "Wyszkow",
+      "R": 74,
+      "G": 136,
+      "B": 43
+    },
+    {
+      "Identifier": "Warszawa",
+      "R": 174,
+      "G": 124,
+      "B": 43
+    },
+    {
+      "Identifier": "Radzymin",
+      "R": 163,
+      "G": 174,
+      "B": 39
+    },
+    {
+      "Identifier": "Leoncin",
+      "R": 66,
+      "G": 113,
+      "B": 42
+    },
+    {
       "Identifier": "Plock",
-      "Name": "Płock",
+      "R": 136,
+      "G": 182,
+      "B": 85
+    },
+    {
+      "Identifier": "Ciechanow",
       "R": 198,
       "G": 140,
       "B": 160
     },
     {
-      "Identifier": "Inowroclaw",
-      "Name": "Inowrocław",
+      "Identifier": "Wloclawek",
       "R": 113,
       "G": 155,
       "B": 159
     },
     {
       "Identifier": "Piotrkow",
-      "Name": "Piotrków",
       "R": 255,
       "G": 62,
       "B": 43
     },
     {
-      "Identifier": "Lodz",
-      "Name": "Łódź",
+      "Identifier": "Wielun",
       "R": 113,
       "G": 93,
       "B": 160
     },
     {
+      "Identifier": "Lodz",
+      "R": 78,
+      "G": 147,
+      "B": 101
+    },
+    {
+      "Identifier": "Gostynin",
+      "R": 85,
+      "G": 167,
+      "B": 116
+    },
+    {
       "Identifier": "Kalisz",
-      "Name": "Kalisz",
       "R": 143,
       "G": 62,
       "B": 78
     },
     {
       "Identifier": "Turek",
-      "Name": "Turek",
       "R": 142,
       "G": 47,
       "B": 134
     },
     {
       "Identifier": "Zawiercie",
-      "Name": "Zawiercie",
       "R": 163,
       "G": 101,
       "B": 0
     },
     {
       "Identifier": "Kielce",
-      "Name": "Kielce",
       "R": 183,
       "G": 88,
       "B": 131
     },
     {
       "Identifier": "Zaglebie",
-      "Name": "Zagłębie",
       "R": 174,
       "G": 190,
       "B": 0
     },
     {
       "Identifier": "Czestochowa",
-      "Name": "Częstochowa",
       "R": 255,
       "G": 143,
       "B": 116
     },
     {
       "Identifier": "Chelm",
-      "Name": "Chełm",
       "R": 116,
       "G": 224,
       "B": 172
     },
     {
       "Identifier": "Lublin",
-      "Name": "Lublin",
       "R": 232,
       "G": 82,
       "B": 132
     },
     {
+      "Identifier": "Wlodawa",
+      "R": 132,
+      "G": 89,
+      "B": 93
+    },
+    {
+      "Identifier": "Garwolin",
+      "R": 62,
+      "G": 66,
+      "B": 155
+    },
+    {
       "Identifier": "Biala Podlaska",
-      "Name": "Biała Podlaska",
       "R": 28,
       "G": 109,
       "B": 43
     },
     {
       "Identifier": "Oswiecim",
-      "Name": "Oświęcim",
       "R": 255,
       "G": 116,
       "B": 0
     },
     {
       "Identifier": "Sacz",
-      "Name": "Sącz",
       "R": 255,
       "G": 0,
       "B": 0
     },
     {
+      "Identifier": "Tarnobrzeg",
+      "R": 213,
+      "G": 1,
+      "B": 1
+    },
+    {
       "Identifier": "Spisz i Orawa",
-      "Name": "Spisz i Orawa",
       "R": 112,
       "G": 119,
       "B": 160
     },
     {
       "Identifier": "Krakow",
-      "Name": "Kraków",
       "R": 201,
       "G": 70,
       "B": 74
     },
     {
       "Identifier": "Chrzanow",
-      "Name": "Chrzanów",
       "R": 89,
       "G": 0,
       "B": 0
     },
     {
       "Identifier": "Bielsko",
-      "Name": "Bielsko",
       "R": 24,
       "G": 81,
       "B": 0
     },
     {
       "Identifier": "Katowice",
-      "Name": "Katowice",
       "R": 142,
       "G": 255,
       "B": 140
     },
     {
       "Identifier": "Bialystok",
-      "Name": "Białystok",
       "R": 85,
       "G": 170,
       "B": 155
     },
     {
-      "Identifier": "Sokolka",
-      "Name": "Sokółka",
+      "Identifier": "Bialowieza",
       "R": 52,
       "G": 99,
       "B": 99
     },
     {
+      "Identifier": "Sokolka",
+      "R": 170,
+      "G": 182,
+      "B": 43
+    },
+    {
+      "Identifier": "Odelsk",
+      "R": 47,
+      "G": 28,
+      "B": 182
+    },
+    {
       "Identifier": "Wschodnie Grodno",
-      "Name": "Wschodnie Grodno",
       "R": 255,
       "G": 255,
       "B": 255
     },
     {
       "Identifier": "Zachodnie Grodno",
-      "Name": "Zachodnie Grodno",
       "R": 104,
       "G": 181,
       "B": 74
     },
     {
       "Identifier": "Wolkowysk",
-      "Name": "Wołkowysk",
       "R": 113,
       "G": 217,
       "B": 180
     },
     {
       "Identifier": "Alekszyce",
-      "Name": "Alekszyce",
       "R": 101,
       "G": 128,
       "B": 170
     },
     {
       "Identifier": "Druskieniki",
-      "Name": "Druskieniki",
       "R": 35,
       "G": 132,
       "B": 128
     },
     {
       "Identifier": "Marcinkance",
-      "Name": "Marcinkańce",
       "R": 170,
       "G": 74,
       "B": 198
     },
     {
-      "Identifier": "Lomza",
-      "Name": "Łomża",
+      "Identifier": "Kolno",
       "R": 120,
       "G": 186,
       "B": 128
     },
     {
+      "Identifier": "Lomza",
+      "R": 55,
+      "G": 51,
+      "B": 132
+    },
+    {
       "Identifier": "Suwalki",
-      "Name": "Suwałki",
       "R": 88,
       "G": 0,
       "B": 130
     },
     {
       "Identifier": "Augustow",
-      "Name": "Augustów",
       "R": 175,
       "G": 78,
       "B": 224
     },
     {
       "Identifier": "DabrowaBialostocka",
-      "Name": "Dąbrowa Białostocka",
       "R": 132,
       "G": 78,
       "B": 163
     },
     {
       "Identifier": "Sopockinie",
-      "Name": "Sopoćkinie",
       "R": 143,
       "G": 167,
       "B": 78
     },
     {
       "Identifier": "Wilno",
-      "Name": "Wilno",
       "R": 127,
       "G": 51,
       "B": 0
     },
     {
+      "Identifier": "Swieciany",
+      "R": 198,
+      "G": 171,
+      "B": 56
+    },
+    {
+      "Identifier": "Ostrowiec",
+      "R": 194,
+      "G": 194,
+      "B": 28
+    },  
+    {
       "Identifier": "Oszmiana",
-      "Name": "Oszmiana",
       "R": 56,
       "G": 86,
       "B": 45
     },
     {
       "Identifier": "Dukszty",
-      "Name": "Dukszty",
       "R": 107,
       "G": 101,
       "B": 76
     },
     {
       "Identifier": "Braslaw",
-      "Name": "Brasław",
       "R": 112,
       "G": 25,
       "B": 25
     },
     {
       "Identifier": "Orany",
-      "Name": "Orany",
       "R": 163,
       "G": 120,
       "B": 155
     },
     {
       "Identifier": "Wilejka",
-      "Name": "Wilejka",
       "R": 209,
       "G": 85,
       "B": 178
     },
     {
       "Identifier": "Baranowicze",
-      "Name": "Baranowicze",
       "R": 211,
       "G": 179,
       "B": 179
     },
     {
       "Identifier": "Lida",
-      "Name": "Lida",
       "R": 255,
       "G": 178,
       "B": 178
     },
     {
-      "Identifier": "Ejszyszki",
-      "Name": "Ejszyszki",
+      "Identifier": "Dziewieszniki",
       "R": 107,
       "G": 89,
       "B": 0
     },
     {
+      "Identifier": "Ejszyszki",
+      "R": 170,
+      "G": 182,
+      "B": 1
+    },
+    {
       "Identifier": "Molodeczno",
-      "Name": "Mołodeczno",
       "R": 173,
       "G": 102,
       "B": 102
     },
     {
       "Identifier": "Nowogrodek",
-      "Name": "Nowogródek",
       "R": 120,
       "G": 151,
       "B": 136
     },
     {
       "Identifier": "Ostryna",
-      "Name": "Ostryna",
       "R": 151,
       "G": 116,
       "B": 113
     },
     {
       "Identifier": "Dubicze",
-      "Name": "Dubicze",
       "R": 89,
       "G": 167,
       "B": 105
     },
     {
       "Identifier": "Brzesc",
-      "Name": "Brześć",
       "R": 143,
       "G": 136,
       "B": 58
     },
     {
+      "Identifier": "Lelikow",
+      "R": 190,
+      "G": 159,
+      "B": 57
+    },
+    {
+      "Identifier": "Samary",
+      "R": 190,
+      "G": 182,
+      "B": 85
+    },
+    {
       "Identifier": "Pinsk",
-      "Name": "Pińsk",
       "R": 35,
       "G": 70,
       "B": 132
     },
     {
-      "Identifier": "Kowel",
-      "Name": "Kowel",
+      "Identifier": "KamienKoszyrski",
       "R": 147,
       "G": 132,
       "B": 186
     },
     {
       "Identifier": "Pohost Zarzeczny",
-      "Name": "Pohost Zarzeczny",
       "R": 151,
       "G": 120,
       "B": 66
     },
     {
       "Identifier": "Pruzana",
-      "Name": "Prużana",
       "R": 101,
       "G": 93,
       "B": 128
     },
     {
       "Identifier": "Bereza Kartuska",
-      "Name": "Bereza Kartuska",
       "R": 116,
       "G": 151,
       "B": 113
     },
     {
       "Identifier": "Swislocz",
-      "Name": "Świsłocz",
       "R": 140,
       "G": 66,
       "B": 140
     },
     {
       "Identifier": "Wysokie Litewskie",
-      "Name": "Wysokie Litewskie",
       "R": 205,
       "G": 99,
       "B": 99
     },
     {
       "Identifier": "Hancewicze",
-      "Name": "Hancewicze",
       "R": 209,
       "G": 109,
       "B": 98
     },
     {
-      "Identifier": "Wlodzimierz",
-      "Name": "Włodzimierz Wołyński",
+      "Identifier": "Kowel",
       "R": 96,
       "G": 53,
       "B": 0
     },
     {
+      "Identifier": "Luboml",
+      "R": 167,
+      "G": 136,
+      "B": 0
+    },
+    {
       "Identifier": "Sarny",
-      "Name": "Sarny",
       "R": 159,
       "G": 55,
       "B": 20
     },
     {
       "Identifier": "Hlynne",
-      "Name": "Hlynne",
       "R": 85,
       "G": 185,
       "B": 148
     },
     {
       "Identifier": "Rzeszow",
-      "Name": "Rzeszów",
       "R": 0,
       "G": 107,
       "B": 58
     },
     {
+      "Identifier": "Narol",
+      "R": 174,
+      "G": 106,
+      "B": 57
+    },
+    {
       "Identifier": "Przemysl",
-      "Name": "Przemyśl",
       "R": 0,
       "G": 107,
       "B": 143
     },
     {
       "Identifier": "Lwow",
-      "Name": "Lwów",
       "R": 153,
       "G": 0,
       "B": 0
     },
     {
       "Identifier": "Krystynopol",
-      "Name": "Krystynopol",
       "R": 61,
       "G": 0,
       "B": 0
     },
     {
+      "Identifier": "UstrzykiDolne",
+      "R": 93,
+      "G": 85,
+      "B": 93
+    },
+    {
       "Identifier": "Stanislawow",
-      "Name": "Stanisławów",
       "R": 101,
       "G": 97,
       "B": 120
     },
     {
+      "Identifier": "Mielnica",
+      "R": 93,
+      "G": 24,
+      "B": 159
+    },
+    {
       "Identifier": "Tarnopol",
-      "Name": "Tarnopol",
       "R": 194,
       "G": 51,
       "B": 120
     },
     {
+      "Identifier": "Sokal",
+      "R": 97,
+      "G": 155,
+      "B": 0
+    },
+    {
+      "Identifier": "Bobrka",
+      "R": 70,
+      "G": 132,
+      "B": 28
+    },
+    {
       "Identifier": "Konigsberg",
-      "Name": "Królewiec",
       "R": 128,
       "G": 128,
       "B": 128
     },
     {
       "Identifier": "Lyck",
-      "Name": "Ełk",
       "R": 38,
       "G": 165,
       "B": 53
     },
     {
       "Identifier": "Tilse",
-      "Name": "Tylża",
       "R": 159,
       "G": 178,
       "B": 147
     },
     {
-      "Identifier": "Ermland",
-      "Name": "Warmia",
+      "Identifier": "Lautenburg",
       "R": 101,
       "G": 109,
       "B": 205
     },
     {
+      "Identifier": "Elbing",
+      "R": 151,
+      "G": 55,
+      "B": 205
+    },
+    {
+      "Identifier": "PreussischEylau",
+      "R": 70,
+      "G": 151,
+      "B": 130
+    },
+    {
       "Identifier": "Heilingbeil",
-      "Name": "Święta Siekierka",
       "R": 78,
       "G": 101,
       "B": 116
     },
     {
       "Identifier": "Allenstein",
-      "Name": "Olsztyn",
       "R": 74,
       "G": 124,
       "B": 159
     },
     {
       "Identifier": "Marienburg",
-      "Name": "Malbork",
       "R": 136,
       "G": 198,
       "B": 155
     },
     {
+      "Identifier": "Marienwerder",
+      "R": 168,
+      "G": 133,
+      "B": 176
+    },
+    {
       "Identifier": "Preussisch Holland",
-      "Name": "Holąd Pruski",
       "R": 128,
       "G": 70,
       "B": 105
     },
     {
       "Identifier": "Koslin",
-      "Name": "Koszalin",
       "R": 178,
       "G": 0,
       "B": 255
     },
     {
       "Identifier": "Stralsund",
-      "Name": "Stralsund",
       "R": 116,
       "G": 105,
       "B": 167
     },
     {
       "Identifier": "LauenburgButow",
-      "Name": "Lębork-Bytów",
       "R": 194,
       "G": 144,
       "B": 139
     },
     {
       "Identifier": "Stettin",
-      "Name": "Szczecin",
       "R": 105,
       "G": 78,
       "B": 147
     },
     {
       "Identifier": "Breslau",
-      "Name": "Wrocław",
       "R": 76,
       "G": 255,
       "B": 0
     },
     {
       "Identifier": "Gleiwitz",
-      "Name": "Gliwice",
       "R": 195,
       "G": 89,
       "B": 193
     },
     {
       "Identifier": "Oppeln",
-      "Name": "Opole",
       "R": 124,
       "G": 120,
       "B": 0
     },
     {
       "Identifier": "Hoyerswerda",
-      "Name": "Hoyerswerda",
       "R": 76,
       "G": 78,
       "B": 128
     },
     {
       "Identifier": "Glatz",
-      "Name": "Kładzko",
       "R": 113,
       "G": 199,
       "B": 170
     },
     {
       "Identifier": "Gorlitz",
-      "Name": "Zgorzelec",
       "R": 147,
       "G": 159,
       "B": 93
     },
     {
       "Identifier": "Leobschutz",
-      "Name": "Głubczyce",
       "R": 159,
       "G": 155,
       "B": 51
     },
     {
       "Identifier": "Namslau",
-      "Name": "Namysłów",
       "R": 186,
       "G": 116,
       "B": 0
     },
     {
       "Identifier": "Meseritz",
-      "Name": "Międzyrzecz",
       "R": 182,
       "G": 116,
       "B": 52
     },
     {
       "Identifier": "Schneidemull",
-      "Name": "Piła",
       "R": 78,
       "G": 85,
       "B": 140
     },
     {
       "Identifier": "DeutschKrone",
-      "Name": "Korona Niemiecka",
       "R": 143,
       "G": 51,
       "B": 23
     },
     {
+      "Identifier": "Tempelburg",
+      "R": 194,
+      "G": 43,
+      "B": 12
+    },
+    {
       "Identifier": "Konitz",
-      "Name": "Chojnice",
       "R": 124,
       "G": 144,
       "B": 139
     },
     {
       "Identifier": "Lubusch",
-      "Name": "Lubusz",
       "R": 57,
       "G": 50,
       "B": 255
     },
     {
       "Identifier": "Cottbus",
-      "Name": "Chociebuż",
       "R": 145,
       "G": 255,
       "B": 158
     },
     {
       "Identifier": "Angermunde",
-      "Name": "Angermünde",
       "R": 39,
       "G": 140,
       "B": 74
     },
     {
       "Identifier": "Grunberg",
-      "Name": "Zielona Góra",
       "R": 170,
       "G": 128,
       "B": 143
     },
     {
       "Identifier": "Brandenburg",
-      "Name": "Brandenburgia",
       "R": 255,
       "G": 0,
       "B": 110
     },
     {
       "Identifier": "Berlin",
-      "Name": "Berlin",
       "R": 160,
       "G": 255,
       "B": 173
     },
     {
       "Identifier": "Lubeck",
-      "Name": "Lubeka",
       "R": 193,
       "G": 106,
       "B": 48
     },
     {
       "Identifier": "Dresden",
-      "Name": "Drezno",
       "R": 120,
       "G": 163,
       "B": 174
     },
     {
       "Identifier": "Reichenau",
-      "Name": "Bogatynia",
       "R": 76,
       "G": 155,
       "B": 147
     },
     {
       "Identifier": "Zittau",
-      "Name": "Żytawa",
       "R": 167,
       "G": 124,
       "B": 132
     },
     {
       "Identifier": "Halle-Merseburg",
-      "Name": "Halle-Merseburg",
       "R": 255,
       "G": 214,
       "B": 165
     },
     {
       "Identifier": "Praha",
-      "Name": "Praga",
       "R": 0,
       "G": 19,
       "B": 127
     },
     {
       "Identifier": "Usti nad Labem",
-      "Name": "Uście nad Łabą",
       "R": 140,
       "G": 170,
       "B": 128
     },
     {
       "Identifier": "Krumlov",
-      "Name": "Krumlow",
       "R": 140,
       "G": 105,
       "B": 178
     },
     {
       "Identifier": "Lanskroun",
-      "Name": "Lanckorona",
       "R": 147,
       "G": 136,
       "B": 208
     },
     {
       "Identifier": "Morava",
-      "Name": "Morawy",
       "R": 140,
       "G": 159,
       "B": 127
     },
     {
       "Identifier": "NovyJicin",
-      "Name": "Nowy Jiczyn",
       "R": 124,
       "G": 62,
       "B": 128
     },
     {
       "Identifier": "Zaolzie",
-      "Name": "Zaolzie",
       "R": 175,
       "G": 163,
       "B": 102
     },
     {
       "Identifier": "CeskeSlezsko",
-      "Name": "Czeski Śląsk",
       "R": 178,
       "G": 163,
       "B": 143
     },
     {
       "Identifier": "FrydekMistek",
-      "Name": "Frydek-Mistek",
       "R": 93,
       "G": 132,
       "B": 155
     },
     {
       "Identifier": "Svitava",
-      "Name": "Switawa",
       "R": 186,
       "G": 132,
       "B": 128
     },
     {
       "Identifier": "Znojmo",
-      "Name": "Znojmo",
       "R": 74,
       "G": 159,
       "B": 178
     },
     {
       "Identifier": "Hlucin",
-      "Name": "Hulczyn",
       "R": 105,
       "G": 120,
       "B": 101
     },
     {
       "Identifier": "SlovenskeZaolzie",
-      "Name": "Słowackie Zaolzie",
       "R": 175,
       "G": 148,
       "B": 10
     },
     {
       "Identifier": "Bratislava",
-      "Name": "Bratysława",
       "R": 0,
       "G": 38,
       "B": 255
     },
     {
       "Identifier": "Trencin",
-      "Name": "Trenczyn",
       "R": 109,
       "G": 89,
       "B": 205
     },
     {
       "Identifier": "Kosice",
-      "Name": "Koszyce",
       "R": 170,
       "G": 178,
       "B": 186
     },
     {
       "Identifier": "Sobrance",
-      "Name": "Sobrance",
       "R": 174,
       "G": 182,
       "B": 97
     },
     {
       "Identifier": "Zakarpattia",
-      "Name": "Zakarpacie",
       "R": 43,
       "G": 43,
       "B": 89
     },
     {
       "Identifier": "Uzhorod",
-      "Name": "Użhorod",
       "R": 97,
       "G": 101,
       "B": 147
     },
     {
       "Identifier": "Zemaitija",
-      "Name": "Żmudź",
       "R": 205,
       "G": 170,
       "B": 147
     },
     {
       "Identifier": "Klaipeda",
-      "Name": "Kłajpeda",
       "R": 127,
       "G": 106,
       "B": 0
     },
     {
       "Identifier": "Aukstaitija",
-      "Name": "Auksztota",
       "R": 255,
       "G": 216,
       "B": 0
     },
     {
       "Identifier": "Suduva",
-      "Name": "Jaćwież",
       "R": 255,
       "G": 35,
       "B": 163
     },
     {
       "Identifier": "Alytus",
-      "Name": "Olita",
       "R": 255,
       "G": 120,
       "B": 163
     },
     {
       "Identifier": "Dzukija",
-      "Name": "Dzukia",
       "R": 205,
       "G": 167,
       "B": 0
     },
     {
       "Identifier": "Kurzeme",
-      "Name": "Kurlandia",
       "R": 87,
       "G": 0,
       "B": 127
     },
     {
       "Identifier": "Zemgale",
-      "Name": "Semigalia",
       "R": 38,
       "G": 127,
       "B": 0
     },
     {
       "Identifier": "Latgale",
-      "Name": "Łatgalia",
       "R": 16,
       "G": 53,
       "B": 0
     },
     {
       "Identifier": "Tallinn",
-      "Name": "Tallinn",
       "R": 0,
       "G": 255,
       "B": 255
     },
     {
       "Identifier": "Cluj",
-      "Name": "Kluż",
       "R": 193,
       "G": 62,
       "B": 32
     },
     {
       "Identifier": "Salonta",
-      "Name": "Salonta",
       "R": 213,
       "G": 136,
       "B": 1
     },
     {
       "Identifier": "AlbaIulia",
-      "Name": "Alba Iulia",
       "R": 69,
       "G": 36,
       "B": 73
     },
     {
       "Identifier": "TirguMures",
-      "Name": "Tîrgu Mureș",
       "R": 119,
       "G": 104,
       "B": 124
     },
     {
       "Identifier": "Timisoara",
-      "Name": "Timișoara",
       "R": 66,
       "G": 58,
       "B": 140
     },
     {
       "Identifier": "Craiova",
-      "Name": "Krajowa",
       "R": 219,
       "G": 210,
       "B": 175
     },
     {
       "Identifier": "Bucuresti",
-      "Name": "Bukareszt",
       "R": 255,
       "G": 174,
       "B": 55
     },
     {
       "Identifier": "TarguSecuiesc",
-      "Name": "Târgu Secuiesc",
       "R": 160,
       "G": 124,
       "B": 66
     },
     {
       "Identifier": "Brasov",
-      "Name": "Braszów",
       "R": 140,
       "G": 89,
       "B": 78
     },
     {
       "Identifier": "Hotin",
-      "Name": "Chocim",
       "R": 160,
       "G": 111,
       "B": 174
     },
     {
       "Identifier": "Cernauti",
-      "Name": "Czerniowice",
       "R": 255,
       "G": 221,
       "B": 173
     },
     {
       "Identifier": "Suceava",
-      "Name": "Suczawa",
       "R": 255,
       "G": 168,
       "B": 122
     },
     {
       "Identifier": "Dorohoi",
-      "Name": "Dorohoi",
       "R": 135,
       "G": 119,
       "B": 255
     },
     {
       "Identifier": "Briceni",
-      "Name": "Bryczany",
       "R": 194,
       "G": 82,
       "B": 113
     },
     {
       "Identifier": "Balti",
-      "Name": "Bielce",
       "R": 91,
       "G": 183,
       "B": 166
     },
     {
       "Identifier": "Iasi",
-      "Name": "Jassy",
       "R": 85,
       "G": 155,
       "B": 59
     },
     {
-      "Identifier": "MiercureaCiuc",
-      "Name": "Miercurea Ciuc",
-      "R": 186,
-      "G": 209,
-      "B": 174
-    },
-    {
       "Identifier": "Chisinau",
-      "Name": "Kiszyniów",
       "R": 255,
       "G": 151,
       "B": 255
     },
     {
       "Identifier": "CetateaAlba",
-      "Name": "Akerman",
       "R": 89,
       "G": 132,
       "B": 167
     },
     {
       "Identifier": "Ismail",
-      "Name": "Izmaił",
       "R": 155,
       "G": 74,
       "B": 194
     },
     {
       "Identifier": "Tulcea",
-      "Name": "Tulcza",
       "R": 70,
       "G": 182,
       "B": 178
     },
     {
       "Identifier": "Cahul",
-      "Name": "Kaguł",
       "R": 167,
       "G": 93,
       "B": 116
     },
     {
       "Identifier": "Galati",
-      "Name": "Gałacz",
       "R": 213,
       "G": 43,
       "B": 124
     },
     {
-      "Identifier": "IntorsuraBuzaului",
-      "Name": "Întorsura Buzăului",
-      "R": 186,
-      "G": 51,
-      "B": 198
-    },
-    {
       "Identifier": "Constanta",
-      "Name": "Konstanca",
       "R": 128,
       "G": 174,
       "B": 55
     },
     {
       "Identifier": "Calarasi",
-      "Name": "Călărași ",
       "R": 89,
       "G": 62,
       "B": 51
     },
     {
       "Identifier": "Bazargic",
-      "Name": "Bazardżik",
       "R": 198,
       "G": 55,
       "B": 89
     },
     {
       "Identifier": "Silistra",
-      "Name": "Silistra",
       "R": 120,
       "G": 51,
       "B": 66
     },
     {
       "Identifier": "Lastovo",
-      "Name": "Lagosta",
       "R": 155,
       "G": 201,
       "B": 137
     },
     {
       "Identifier": "CresLosinj",
-      "Name": "Cherso-Lussino",
       "R": 159,
       "G": 105,
       "B": 28
     },
     {
       "Identifier": "Zara",
-      "Name": "Zara",
       "R": 162,
       "G": 188,
       "B": 145
     },
     {
       "Identifier": "Eisenstadt",
-      "Name": "Eisenstadt",
       "R": 163,
       "G": 113,
       "B": 35
     },
     {
       "Identifier": "SanktPolten",
-      "Name": "Sankt Pölten",
       "R": 62,
       "G": 70,
       "B": 58
     },
     {
       "Identifier": "Graz",
-      "Name": "Graz",
       "R": 66,
       "G": 55,
       "B": 128
@@ -1198,91 +1220,78 @@
     },
     {
       "Identifier": "Klagenfurt",
-      "Name": "Klagenfurt",
       "R": 58,
       "G": 78,
       "B": 78
     },
     {
       "Identifier": "Linz",
-      "Name": "Linz",
       "R": 89,
       "G": 105,
       "B": 109
     },
     {
       "Identifier": "Salzburg",
-      "Name": "Salzburg",
       "R": 78,
       "G": 51,
       "B": 16
     },
     {
       "Identifier": "Lienz",
-      "Name": "Lienz",
       "R": 186,
       "G": 140,
       "B": 1
     },
     {
       "Identifier": "Innsbruck",
-      "Name": "Innsbruck",
       "R": 163,
       "G": 85,
       "B": 93
     },
     {
       "Identifier": "Voralberg",
-      "Name": "Voralberg",
       "R": 254,
       "G": 254,
       "B": 233
     },
     {
       "Identifier": "Wien",
-      "Name": "Wiedeń",
       "R": 140,
       "G": 93,
       "B": 16
     },
     {
       "Identifier": "Liechtenstein",
-      "Name": "Liechtenstein",
       "R": 85,
       "G": 51,
       "B": 221
     },
     {
       "Identifier": "Schweiz",
-      "Name": "Szwajcaria",
       "R": 85,
       "G": 51,
       "B": 62
     },
     {
       "Identifier": "Alfold",
-      "Name": "Wielka Nizina Węgierska",
       "R": 174,
       "G": 170,
       "B": 85
     },
     {
       "Identifier": "Transdanubia",
-      "Name": "Kraj Zadunajski",
       "R": 78,
       "G": 167,
       "B": 170
     },
     {
       "Identifier": "Tiszantul",
-      "Name": "Kraj Zacisański",
       "R": 136,
       "G": 109,
       "B": 85
     },
     {
       "Identifier": "Ljubljana",
-      "Name": "Lublana",
       "R": 140,
       "G": 140,
       "B": 178
@@ -1295,721 +1304,618 @@
     },
     {
       "Identifier": "Platak",
-      "Name": "Platak",
       "R": 62,
       "G": 91,
       "B": 97
     },
     {
       "Identifier": "Prekmurje",
-      "Name": "Prekmurje",
       "R": 93,
       "G": 82,
       "B": 70
     },
     {
       "Identifier": "Zagreb",
-      "Name": "Zagrzeb",
       "R": 101,
       "G": 66,
       "B": 163
     },
     {
       "Identifier": "Medimurje",
-      "Name": "Żupania medzimurska",
       "R": 51,
       "G": 39,
       "B": 128
     },
     {
       "Identifier": "BanjaLuka",
-      "Name": "Banja Luka",
       "R": 74,
       "G": 28,
       "B": 93
     },
     {
       "Identifier": "Baranja",
-      "Name": "Żupania osijecko-barańska",
       "R": 66,
       "G": 147,
       "B": 66
     },
     {
       "Identifier": "Sremska",
-      "Name": "Sremska Mitrovica",
       "R": 55,
       "G": 147,
       "B": 225
     },
     {
       "Identifier": "NoviSad",
-      "Name": "Nowy Sad",
       "R": 198,
       "G": 147,
       "B": 66
     },
     {
       "Identifier": "WestBanat",
-      "Name": "Zachodni Banat",
       "R": 124,
       "G": 105,
       "B": 82
     },
     {
       "Identifier": "Pozarevac",
-      "Name": "Požarevac",
       "R": 159,
       "G": 150,
       "B": 126
     },
     {
       "Identifier": "Cacak",
-      "Name": "Čačak",
       "R": 196,
       "G": 219,
       "B": 227
     },
     {
       "Identifier": "Sarajevo",
-      "Name": "Sarajewo",
       "R": 143,
       "G": 51,
       "B": 51
     },
     {
       "Identifier": "Cetinje",
-      "Name": "Cetynia",
       "R": 39,
       "G": 35,
       "B": 51
     },
     {
       "Identifier": "Nis",
-      "Name": "Nisz",
       "R": 28,
       "G": 151,
       "B": 182
     },
     {
       "Identifier": "Pirot",
-      "Name": "Pirot",
       "R": 147,
       "G": 128,
       "B": 120
     },
     {
       "Identifier": "Skopje",
-      "Name": "Skopje",
       "R": 198,
       "G": 97,
       "B": 174
     },
     {
       "Identifier": "Debar",
-      "Name": "Debar",
       "R": 82,
       "G": 70,
       "B": 174
     },
     {
       "Identifier": "Prishtina",
-      "Name": "Prisztina",
       "R": 191,
       "G": 167,
       "B": 49
     },
     {
       "Identifier": "Ulcinj",
-      "Name": "Ulcinj",
       "R": 89,
       "G": 167,
       "B": 49
     },
     {
       "Identifier": "Rozaje",
-      "Name": "Rožaje",
       "R": 189,
       "G": 123,
       "B": 51
     },
     {
       "Identifier": "Tutin",
-      "Name": "Tutin",
       "R": 39,
       "G": 24,
       "B": 170
     },
     {
       "Identifier": "Vranje",
-      "Name": "Vranje",
       "R": 89,
       "G": 167,
       "B": 50
     },
     {
       "Identifier": "Mitrovica",
-      "Name": "Mitrowica",
       "R": 132,
       "G": 101,
       "B": 136
     },
     {
       "Identifier": "Tara",
-      "Name": "Tara",
       "R": 132,
       "G": 151,
       "B": 213
     },
     {
       "Identifier": "Mostar",
-      "Name": "Mostar",
       "R": 155,
       "G": 132,
       "B": 93
     },
     {
       "Identifier": "Split",
-      "Name": "Split",
       "R": 47,
       "G": 51,
       "B": 221
     },
     {
       "Identifier": "Dubrovnik",
-      "Name": "Dubrownik",
       "R": 141,
       "G": 174,
       "B": 51
     },
     {
       "Identifier": "Mljet",
-      "Name": "Mljet",
       "R": 198,
       "G": 221,
       "B": 78
     },
     {
       "Identifier": "VisKorcula",
-      "Name": "Vis i Korczula",
       "R": 24,
       "G": 201,
       "B": 137
     },
     {
       "Identifier": "Kotor",
-      "Name": "Kotor",
       "R": 140,
       "G": 191,
       "B": 244
     },
     {
       "Identifier": "Bitola",
-      "Name": "Bitola",
       "R": 155,
       "G": 55,
       "B": 173
     },
     {
       "Identifier": "Bosilegrad",
-      "Name": "Bosilegrad",
       "R": 253,
       "G": 233,
       "B": 213
     },
     {
       "Identifier": "Vratsa",
-      "Name": "Wraca",
       "R": 143,
       "G": 124,
       "B": 190
     },
     {
       "Identifier": "Sofiya",
-      "Name": "Sofia",
       "R": 79,
       "G": 106,
       "B": 65
     },
     {
       "Identifier": "Pleven",
-      "Name": "Plewen",
       "R": 174,
       "G": 82,
       "B": 85
     },
     {
       "Identifier": "Plovdiv",
-      "Name": "Płowdiw",
       "R": 194,
       "G": 193,
       "B": 155
     },
     {
       "Identifier": "StaraZagora",
-      "Name": "Stara Zagora",
       "R": 201,
       "G": 116,
       "B": 67
     },
     {
       "Identifier": "Shumen",
-      "Name": "Szumen",
       "R": 81,
       "G": 109,
       "B": 66
     },
     {
       "Identifier": "Ruse",
-      "Name": "Ruse",
       "R": 159,
       "G": 143,
       "B": 66
     },
     {
       "Identifier": "Burgas",
-      "Name": "Burgas",
       "R": 174,
       "G": 97,
       "B": 151
     },
     {
       "Identifier": "Tirana",
-      "Name": "Tirana",
       "R": 187,
       "G": 113,
       "B": 155
     },
     {
       "Identifier": "North Epirus",
-      "Name": "Gjirokastër",
       "R": 124,
       "G": 115,
       "B": 158
     },
     {
       "Identifier": "Alexandropoulis",
-      "Name": "Aleksandropolis",
       "R": 199,
       "G": 128,
       "B": 206
     },
     {
       "Identifier": "Komotini",
-      "Name": "Komotini",
       "R": 1,
       "G": 128,
       "B": 206
     },
     {
       "Identifier": "Serres",
-      "Name": "Seres",
       "R": 254,
       "G": 190,
       "B": 186
     },
     {
       "Identifier": "Thessaloniki",
-      "Name": "Saloniki",
       "R": 1,
       "G": 190,
       "B": 186
     },
     {
       "Identifier": "Ioannina",
-      "Name": "Janina",
       "R": 232,
       "G": 127,
       "B": 205
     },
     {
       "Identifier": "Larissa",
-      "Name": "Larisa",
       "R": 28,
       "G": 101,
       "B": 78
     },
     {
       "Identifier": "Olympus",
-      "Name": "Olimp",
       "R": 198,
       "G": 99,
       "B": 77
     },
     {
       "Identifier": "Sporades",
-      "Name": "Sporady",
       "R": 101,
       "G": 1,
       "B": 139
     },
     {
       "Identifier": "Athens",
-      "Name": "Ateny",
       "R": 163,
       "G": 147,
       "B": 140
     },
     {
       "Identifier": "Peloponnese",
-      "Name": "Peloponez",
       "R": 78,
       "G": 149,
       "B": 139
     },
     {
       "Identifier": "IonianIslands",
-      "Name": "Wyspy Jońskie",
       "R": 151,
       "G": 163,
       "B": 81
     },
     {
       "Identifier": "AegeanIslands",
-      "Name": "Wyspy Egejskie",
       "R": 101,
       "G": 113,
       "B": 76
     },
     {
       "Identifier": "Limnos",
-      "Name": "Limnos",
       "R": 159,
       "G": 113,
       "B": 75
     },
     {
       "Identifier": "Cyclades",
-      "Name": "Cyklady",
       "R": 198,
       "G": 144,
       "B": 139
     },
     {
       "Identifier": "Crete",
-      "Name": "Kreta",
       "R": 71,
       "G": 76,
       "B": 139
     },
     {
       "Identifier": "Dodecanese",
-      "Name": "Dodekanez",
       "R": 163,
       "G": 101,
       "B": 194
     },
     {
       "Identifier": "Proskuriv",
-      "Name": "Płoskirów",
       "R": 170,
       "G": 194,
       "B": 58
     },
     {
       "Identifier": "Shepietivka",
-      "Name": "Szepietówka",
       "R": 101,
       "G": 55,
       "B": 109
     },
     {
       "Identifier": "Berdichiv",
-      "Name": "Berdyczów",
       "R": 47,
       "G": 78,
       "B": 178
     },
     {
       "Identifier": "Zhytomyr",
-      "Name": "Żytomierz",
       "R": 163,
       "G": 165,
       "B": 209
     },
     {
       "Identifier": "Tiraspol",
-      "Name": "Tyraspol",
       "R": 255,
       "G": 24,
       "B": 255
     },
     {
       "Identifier": "Birzula",
-      "Name": "Birzuła",
       "R": 198,
       "G": 162,
       "B": 12
     },
     {
       "Identifier": "Balta",
-      "Name": "Bałta",
       "R": 74,
       "G": 167,
       "B": 78
     },
     {
       "Identifier": "Rybnitsa",
-      "Name": "Rybnica",
       "R": 70,
       "G": 89,
       "B": 58
     },
     {
       "Identifier": "MohylivPodilskyi",
-      "Name": "Mohylów Podolski",
       "R": 93,
       "G": 55,
       "B": 31
     },
     {
       "Identifier": "Vinnitsa",
-      "Name": "Winnica",
       "R": 163,
       "G": 132,
       "B": 39
     },
     {
       "Identifier": "Savran",
-      "Name": "Sawrań",
       "R": 89,
       "G": 85,
       "B": 163
     },
     {
       "Identifier": "Ulyanovka",
-      "Name": "Uljanowka",
       "R": 182,
       "G": 143,
       "B": 58
     },
     {
       "Identifier": "Hajsyn",
-      "Name": "Hajsyn",
       "R": 155,
       "G": 136,
       "B": 143
     },
     {
       "Identifier": "Odessa",
-      "Name": "Odessa",
       "R": 116,
       "G": 89,
       "B": 170
     },
     {
       "Identifier": "Cherkasy",
-      "Name": "Czerkasy",
       "R": 62,
       "G": 43,
       "B": 159
     },
     {
       "Identifier": "Mykolaiv",
-      "Name": "Mikołajów",
       "R": 209,
       "G": 182,
       "B": 24
     },
     {
       "Identifier": "Kyiv",
-      "Name": "Kijów",
       "R": 128,
       "G": 116,
       "B": 62
     },
     {
       "Identifier": "Brovary",
-      "Name": "Browary",
       "R": 78,
       "G": 190,
       "B": 62
     },
     {
       "Identifier": "Chernihiv",
-      "Name": "Czernihów",
       "R": 159,
       "G": 70,
       "B": 31
     },
     {
       "Identifier": "Putivl",
-      "Name": "Putywl",
       "R": 89,
       "G": 35,
       "B": 47
     },
     {
       "Identifier": "Kharkiv",
-      "Name": "Charków",
       "R": 82,
       "G": 70,
       "B": 55
     },
     {
       "Identifier": "Poltava",
-      "Name": "Połtawa",
       "R": 174,
       "G": 155,
       "B": 31
     },
     {
       "Identifier": "Donetsk",
-      "Name": "Donieck",
       "R": 62,
       "G": 136,
       "B": 143
     },
     {
       "Identifier": "Dolzhansk",
-      "Name": "Dołżańsk",
       "R": 172,
       "G": 224,
       "B": 158
     },
     {
       "Identifier": "Stanitsa",
-      "Name": "Stanica Ługańska",
       "R": 190,
       "G": 70,
       "B": 143
     },
     {
       "Identifier": "Zaporozhe",
-      "Name": "Zaporoże",
       "R": 204,
       "G": 1,
       "B": 255
     },
     {
       "Identifier": "Minsk",
-      "Name": "Mińsk",
       "R": 182,
       "G": 66,
       "B": 101
     },
     {
       "Identifier": "Asipovichy",
-      "Name": "Osipowicze",
       "R": 213,
       "G": 201,
       "B": 159
     },
     {
       "Identifier": "Krupki",
-      "Name": "Krupki",
       "R": 97,
       "G": 205,
       "B": 58
     },
     {
       "Identifier": "Biahoml",
-      "Name": "Biehomla",
       "R": 182,
       "G": 128,
       "B": 78
     },
     {
       "Identifier": "Mahilou",
-      "Name": "Mohylew",
       "R": 255,
       "G": 205,
       "B": 174
     },
     {
       "Identifier": "Vitebsk",
-      "Name": "Witebsk",
       "R": 20,
       "G": 35,
       "B": 198
     },
     {
       "Identifier": "Polatsk",
-      "Name": "Połock",
       "R": 255,
       "G": 143,
       "B": 174
     },
     {
       "Identifier": "Krychau",
-      "Name": "Krzyczew",
       "R": 255,
       "G": 143,
       "B": 62
     },
     {
       "Identifier": "Mazyr",
-      "Name": "Mozyrz",
       "R": 151,
       "G": 186,
       "B": 101
     },
     {
       "Identifier": "Parychy",
-      "Name": "Parycze",
       "R": 66,
       "G": 228,
       "B": 159
     },
     {
       "Identifier": "Rechytsa",
-      "Name": "Rzeczyca",
       "R": 182,
       "G": 182,
       "B": 159
     },
     {
       "Identifier": "Zhlobin",
-      "Name": "Żłobin",
       "R": 113,
       "G": 82,
       "B": 159
     },
     {
       "Identifier": "Gomel",
-      "Name": "Homiel",
       "R": 93,
       "G": 109,
       "B": 221
     },
     {
       "Identifier": "Dovsk",
-      "Name": "Dowsk",
       "R": 78,
       "G": 194,
       "B": 132
     },
     {
       "Identifier": "Dubrovna",
-      "Name": "Dubrowna",
       "R": 39,
       "G": 174,
       "B": 113
     },
     {
       "Identifier": "Belgorod",
-      "Name": "Biełgorod",
       "R": 128,
       "G": 47,
       "B": 201
     },
     {
       "Identifier": "Klintsy",
-      "Name": "Starodubszczyzna",
       "R": 78,
       "G": 163,
       "B": 167
     },
     {
       "Identifier": "Shumiachi",
-      "Name": "Szumiaczi",
       "R": 120,
       "G": 146,
       "B": 130
     },
     {
       "Identifier": "Rudnya",
-      "Name": "Rudnia",
       "R": 230,
       "G": 101,
       "B": 147

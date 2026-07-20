@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows;
 using MapGame.Core;
 using MapGame.Core.Engine;
+using MapGame.Core.Utils.JSON;
 
 namespace MapGame
 {
@@ -13,8 +14,9 @@ namespace MapGame
     {
         public App()
         {
-            GameManager gm = new();
-            gm.Init(Scenario.His_PreWar1933);
+            IJsonReader jsonReader = new JsonReader();
+            GameManager gm = new(jsonReader);
+            gm.Init(Scenario.His_PreWar1933, Language.Polish);
         }
         
         

@@ -1,9 +1,10 @@
-﻿using MapGame.Core.Utils.Geographic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Runtime.CompilerServices;
 using System.Text;
+using MapGame.Core.Geographic;
+using System.Reflection.Metadata;
 
 namespace MapGame.Core.Utils
 {
@@ -34,6 +35,26 @@ namespace MapGame.Core.Utils
                 double yDifferenceSq = p2.Y - p1.Y;
                 return Math.Sqrt(xDifferenceSq * xDifferenceSq + yDifferenceSq * yDifferenceSq);
             }
+        }
+        public static (TFirst? key, int? value) GetMaxValuePair<TFirst>(Dictionary<TFirst, int> dict) where TFirst : notnull
+        {
+            if (dict is null || dict.Count == 0) return (default, null);
+            var maxPair = dict.MaxBy(x => x.Value);
+            return (maxPair.Key, maxPair.Value);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void AdjustPercentage<TFirst>(Dictionary<TFirst,int> dict) where TFirst : notnull
+        {
+            if (dict.Count == 0) return;
+
+            int totalPercentage = dict.Values.Sum();
+            if (totalPercentage == 100) return;
+
+            int percentageDif = 100 - totalPercentage;
+
+            var maxKey = dict.OrderByDescending(x => x.Value).First().Key;
+            dict[maxKey] += percentageDif;
         }
     }
 }

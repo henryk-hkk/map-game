@@ -1,0 +1,404 @@
+﻿{
+  "RegionNameTags": [
+    {
+      "NameTag": "Danzig",
+      "Name": "Gdańsk"
+    },
+    {
+      "NameTag": "PomeranianVoi",
+      "Name": "Woj. Pomorskie"
+    },
+    {
+      "NameTag": "PoznanVoi",
+      "Name": "Woj. Poznańskie"
+    },
+    {
+      "NameTag": "WarsawVoi",
+      "Name": "Woj. Warszawskie"
+    },
+    {
+      "NameTag": "LodzVoi",
+      "Name": "Woj. Łódzkie"
+    },
+    {
+      "NameTag": "KielceVoi",
+      "Name": "Woj. Kieleckie"
+    },
+    {
+      "NameTag": "LublinVoi",
+      "Name": "Woj. Lubelskie"
+    },
+    {
+      "NameTag": "CracowVoi",
+      "Name": "Woj. Krakowskie"
+    },
+    {
+      "NameTag": "SilesianVoi",
+      "Name": "Woj. Śląskie"
+    },
+    {
+      "NameTag": "BialystokVoi",
+      "Name": "Woj. Białostockie"
+    },
+    {
+      "NameTag": "WilnoVoi",
+      "Name": "Woj. Wileńskie"
+    },
+    {
+      "NameTag": "NowogrodekVoi",
+      "Name": "Woj. Nowogródzkie"
+    },
+    {
+      "NameTag": "PolesianVoi",
+      "Name": "Woj. Poleskie"
+    },
+    {
+      "NameTag": "VolhynianVoi",
+      "Name": "Woj. Wołyńskie"
+    },
+    {
+      "NameTag": "LwowVoi",
+      "Name": "Woj. Lwowskie"
+    },
+    {
+      "NameTag": "StanislawowVoi",
+      "Name": "Woj. Stanisławowskie"
+    },
+    {
+      "NameTag": "TarnopolVoi",
+      "Name": "Woj. Tarnopolskie"
+    },
+    {
+      "NameTag": "EastPrussiaRG",
+      "Name": "Prusy Wschodnie"
+    },
+    {
+      "NameTag": "PomeraniaRG",
+      "Name": "Pomorze"
+    },
+    {
+      "NameTag": "SilesiaRG",
+      "Name": "Śląsk"
+    },
+    {
+      "NameTag": "OstmarkRG",
+      "Name": "Marchia Wschodnia"
+    },
+    {
+      "NameTag": "BrandenburgRG",
+      "Name": "Brandenburgia"
+    },
+    {
+      "NameTag": "BerlinRG",
+      "Name": "Berlin"
+    },
+    {
+      "NameTag": "MecklenburgRG",
+      "Name": "Meklemburgia-Lubeka"
+    },
+    {
+      "NameTag": "SaxonyRG",
+      "Name": "Saksonia"
+    },
+    {
+      "NameTag": "HalleRG",
+      "Name": "Halle-Merseburg"
+    },
+    {
+      "NameTag": "Bohemia",
+      "Name": "Czechy"
+    },
+    {
+      "NameTag": "MoraviaSilesia",
+      "Name": "Morawy-Śląsk"
+    },
+    {
+      "NameTag": "Slovakia",
+      "Name": "Słowacja"
+    },
+    {
+      "NameTag": "Transcarpathia",
+      "Name": "Zakarpacie"
+    },
+    {
+      "NameTag": "Zemaitija",
+      "Name": "Żmudź"
+    },
+    {
+      "NameTag": "Aukstaitija",
+      "Name": "Auksztota"
+    },
+    {
+      "NameTag": "Dzukija",
+      "Name": "Dajnawa"
+    },
+    {
+      "NameTag": "Kurzeme",
+      "Name": "Kurlandia"
+    },
+    {
+      "NameTag": "Zemgale",
+      "Name": "Semigalia"
+    },
+    {
+      "NameTag": "Latgale",
+      "Name": "Łatgalia"
+    },
+    {
+      "NameTag": "Estonia",
+      "Name": "Estonia"
+    },
+    {
+      "NameTag": "SomesLand",
+      "Name": "Samosz"
+    },
+    {
+      "NameTag": "MuresLand",
+      "Name": "Marusza"
+    },
+    {
+      "NameTag": "TimisLand",
+      "Name": "Temesz"
+    },
+    {
+      "NameTag": "OltLand",
+      "Name": "Aluta"
+    },
+    {
+      "NameTag": "BucegiLand",
+      "Name": "Bucegi"
+    },
+    {
+      "NameTag": "SuceavaLand",
+      "Name": "Suczawa"
+    },
+    {
+      "NameTag": "PrutLand",
+      "Name": "Prut"
+    },
+    {
+      "NameTag": "NistruLand",
+      "Name": "Nistru"
+    },
+    {
+      "NameTag": "DunareaDeJosLand",
+      "Name": "Dolny dunaj"
+    },
+    {
+      "NameTag": "MariiLand",
+      "Name": "Marii"
+    },
+    {
+      "NameTag": "AdriaticIslands",
+      "Name": "Włoskie Wyspy Adriatyckie"
+    },
+    {
+      "NameTag": "ItalianDalmatia",
+      "Name": "Zara"
+    },
+    {
+      "NameTag": "LowerAustria",
+      "Name": "Dolna Austria"
+    },
+    {
+      "NameTag": "Styria",
+      "Name": "Styria"
+    },
+    {
+      "NameTag": "Carinthia",
+      "Name": "Karyntia"
+    },
+    {
+      "NameTag": "UpperAustria",
+      "Name": "Górna Austria"
+    },
+    {
+      "NameTag": "Salzburg",
+      "Name": "Salzburg"
+    },
+    {
+      "NameTag": "Tyrol",
+      "Name": "Tyrol-Voralberg"
+    },
+    {
+      "NameTag": "Vienna",
+      "Name": "Wiedeń"
+    },
+    {
+      "NameTag": "Liechtenstein",
+      "Name": "Liechtenstein"
+    },
+    {
+      "NameTag": "Switzerland",
+      "Name": "Szwajcaria"
+    },
+    {
+      "NameTag": "Hungary",
+      "Name": "Węgry"
+    },
+    {
+      "NameTag": "DravskaBan",
+      "Name": "Banowina Drawska"
+    },
+    {
+      "NameTag": "SavskaBan",
+      "Name": "Banowina Sawska"
+    },
+    {
+      "NameTag": "VrbaskaBan",
+      "Name": "Banowina Vrbaska"
+    },
+    {
+      "NameTag": "PrimorskaBan",
+      "Name": "Banowina Primorska"
+    },
+    {
+      "NameTag": "DunavskaBan",
+      "Name": "Banowina Dunajska"
+    },
+    {
+      "NameTag": "DrinskaBan",
+      "Name": "Banowina Drińska"
+    },
+    {
+      "NameTag": "ZetskaBan",
+      "Name": "Banowina Zetska"
+    },
+    {
+      "NameTag": "MoravskaBan",
+      "Name": "Banowina Morawska"
+    },
+    {
+      "NameTag": "VardarskaBan",
+      "Name": "Banowina Wardarska"
+    },
+    {
+      "NameTag": "Vrachan",
+      "Name": "Wraca"
+    },
+    {
+      "NameTag": "Sofiya",
+      "Name": "Sofia"
+    },
+    {
+      "NameTag": "Pleven",
+      "Name": "Plewen"
+    },
+    {
+      "NameTag": "Plovdiv",
+      "Name": "Płowdiw"
+    },
+    {
+      "NameTag": "StaraZagora",
+      "Name": "Stara Zagora"
+    },
+    {
+      "NameTag": "Shumen",
+      "Name": "Szumen"
+    },
+    {
+      "NameTag": "Burgas",
+      "Name": "Burgas"
+    },
+    {
+      "NameTag": "Tirana",
+      "Name": "Tirana"
+    },
+    {
+      "NameTag": "WesternThrace",
+      "Name": "Tracja Zachodnia"
+    },
+    {
+      "NameTag": "Macedonia",
+      "Name": "Macedonia"
+    },
+    {
+      "NameTag": "Epirus",
+      "Name": "Epirus"
+    },
+    {
+      "NameTag": "Thessaly",
+      "Name": "Tesalia"
+    },
+    {
+      "NameTag": "CentralGreece",
+      "Name": "Grecja Środkowa i Eubea"
+    },
+    {
+      "NameTag": "Peloponnese",
+      "Name": "Peloponez"
+    },
+    {
+      "NameTag": "IonianIslands",
+      "Name": "Wyspy Jońskie"
+    },
+    {
+      "NameTag": "AegeanIslands",
+      "Name": "Wyspy Egejskie"
+    },
+    {
+      "NameTag": "Cyclades",
+      "Name": "Cyklady"
+    },
+    {
+      "NameTag": "Crete",
+      "Name": "Kreta"
+    },
+    {
+      "NameTag": "Dodecanese",
+      "Name": "Dodekanez"
+    },
+    {
+      "NameTag": "MoldovanASSR",
+      "Name": "Mołdawska ASSR"
+    },
+    {
+      "NameTag": "VinnitsaOblast",
+      "Name": "Obwód Winnicki"
+    },
+    {
+      "NameTag": "KyivOblast",
+      "Name": "Obwód Kijowski"
+    },
+    {
+      "NameTag": "OdessaOblast",
+      "Name": "Obwód Odesski"
+    },
+    {
+      "NameTag": "DniproOblast",
+      "Name": "Obwód Dniepropietrowski"
+    },
+    {
+      "NameTag": "StalinoOblast",
+      "Name": "Obwód Stalinowski"
+    },
+    {
+      "NameTag": "KharkovOblast",
+      "Name": "Obwód Charkowski"
+    },
+    {
+      "NameTag": "ChernihovOblast",
+      "Name": "Obwód Czernihowski"
+    },
+    {
+      "NameTag": "MinskOblast",
+      "Name": "Obwód Miński"
+    },
+    {
+      "NameTag": "PolesiaOblast",
+      "Name": "Obwód Poleski"
+    },
+    {
+      "NameTag": "GomelOblast",
+      "Name": "Obwód Homielski"
+    },
+    {
+      "NameTag": "MahilouOblast",
+      "Name": "Obwód Mohylewski"
+    },
+    {
+      "NameTag": "VitebskOblast",
+      "Name": "Obwód Witebski"
+    }
+  ]
+}

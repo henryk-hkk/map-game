@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MapGame.Core.Utils
 {
-    public class BidirectionalMap<TFirst,TSecond>
+    public class BidirectionalMap<TFirst,TSecond> where TFirst : notnull where TSecond: notnull
     {
         private readonly Dictionary<TFirst, TSecond> _forward = [];
         private readonly Dictionary<TSecond, TFirst> _reverse = [];

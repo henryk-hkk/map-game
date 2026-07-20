@@ -3,986 +3,602 @@
     {
       "RegionId": 1,
       "Identifier": "Danzig",
-      "Name": "Gdańsk",
-      "Areas": [
-        "Danzig"
-      ]
+      "NameTag": "Danzig",
+      "Areas": [ "Danzig" ]
     },
     {
       "RegionId": 2,
-      "Identifier": "Pomerelia",
-      "Name": "Woj. Pomorskie",
-      "Areas": [
-        "Gdynia",
-        "Zlotow",
-        "Torun"
-      ]
+      "Identifier": "PomeranianVoi",
+      "NameTag": "PomeranianVoi",
+      "Areas": [ "Gdynia", "Zlotow", "Torun" ]
     },
     {
       "RegionId": 3,
-      "Identifier": "GreaterPoland",
-      "Name": "Woj. Poznańskie",
-      "Areas": [
-        "Poznan",
-        "Kepno",
-        "Bydgoszcz"
-      ]
+      "Identifier": "PoznanVoi",
+      "NameTag": "PoznanVoi",
+      "Areas": [ "Poznan", "Kepno", "Bydgoszcz", "Inowroclaw", "Wolsztyn", "Chodziez" ]
     },
     {
       "RegionId": 4,
-      "Identifier": "Masovia",
-      "Name": "Woj. Warszawskie",
-      "Areas": [
-        "Warszawa",
-        "Plock",
-        "Inowroclaw"
-      ]
+      "Identifier": "WarsawVoi",
+      "NameTag": "WarsawVoi",
+      "Areas": [ "Warszawa", "Plock", "Wloclawek", "OstrowMazowiecka", "Ostroleka", "Leoncin", "Wyszkow", "Lowicz", "Radzymin", "Skierniewice", "Ciechanow", "Gostynin" ]
     },
     {
       "RegionId": 5,
-      "Identifier": "LodzRegion",
-      "Name": "Woj. Łódzkie",
-      "Areas": [
-        "Piotrkow",
-        "Lodz",
-        "Kalisz",
-        "Turek"
-      ]
+      "Identifier": "LodzVoi",
+      "NameTag": "LodzVoi",
+      "Areas": [ "Piotrkow", "Lodz", "Kalisz", "Turek", "Wielun" ]
     },
     {
       "RegionId": 6,
-      "Identifier": "HolyCross",
-      "Name": "Woj. Kieleckie",
-      "Areas": [
-        "Zawiercie",
-        "Kielce",
-        "Zaglebie",
-        "Czestochowa"
-      ]
+      "Identifier": "KielceVoi",
+      "NameTag": "KielceVoi",
+      "Areas": [ "Zawiercie", "Kielce", "Zaglebie", "Czestochowa" ]
     },
     {
       "RegionId": 7,
-      "Identifier": "LublinRegion",
-      "Name": "Woj. Lubelskie",
-      "Areas": [
-        "Chelm",
-        "Lublin",
-        "Biala Podlaska"
-      ]
+      "Identifier": "LublinVoi",
+      "NameTag": "LublinVoi",
+      "Areas": [ "Chelm", "Lublin", "Biala Podlaska", "Wlodawa", "Garwolin" ]
     },
     {
       "RegionId": 8,
-      "Identifier": "LesserPoland",
-      "Name": "Woj. Krakowskie",
-      "Areas": [
-        "Oswiecim",
-        "Sacz",
-        "Spisz i Orawa",
-        "Krakow",
-        "Chrzanow"
-      ]
+      "Identifier": "CracowVoi",
+      "NameTag": "CracowVoi",
+      "Areas": [ "Oswiecim", "Sacz", "Spisz i Orawa", "Krakow", "Chrzanow" ]
     },
     {
       "RegionId": 9,
-      "Identifier": "PolishSilesia",
-      "Name": "Woj. Śląskie",
-      "Areas": [
-        "Bielsko",
-        "Katowice"
-      ]
+      "Identifier": "SilesianVoi",
+      "NameTag": "SilesianVoi",
+      "Areas": [ "Bielsko", "Katowice" ]
     },
     {
       "RegionId": 10,
-      "Identifier": "Podlachia",
-      "Name": "Woj. Białostockie",
-      "Areas": [
-        "Bialystok",
-        "Sokolka",
-        "Wschodnie Grodno",
-        "Zachodnie Grodno",
-        "Wolkowysk",
-        "Alekszyce",
-        "Druskieniki",
-        "Marcinkance",
-        "Lomza",
-        "Suwalki",
-        "Augustow",
-        "DabrowaBialostocka",
-        "Sopockinie"
-      ]
+      "Identifier": "BialystokVoi",
+      "NameTag": "BialystokVoi",
+      "Areas": [ "Bialystok", "Sokolka", "Wschodnie Grodno", "Zachodnie Grodno", "Wolkowysk", "Alekszyce", "Druskieniki", "Marcinkance", "Lomza", "Suwalki", "Augustow", "DabrowaBialostocka", "Sopockinie", "Bialowieza", "Odelsk", "Kolno" ]
     },
     {
       "RegionId": 11,
-      "Identifier": "WilnoRegion",
-      "Name": "Woj. Wileńskie",
-      "Areas": [
-        "Wilno",
-        "Oszmiana",
-        "Dukszty",
-        "Braslaw",
-        "Orany",
-        "Wilejka"
-      ]
+      "Identifier": "WilnoVoi",
+      "NameTag": "WilnoVoi",
+      "Areas": [ "Wilno", "Oszmiana", "Dukszty", "Braslaw", "Orany", "Wilejka", "Swieciany", "Ostrowiec" ]
     },
     {
       "RegionId": 12,
-      "Identifier": "NowogrodekRegion",
-      "Name": "Woj. Nowogródzkie",
-      "Areas": [
-        "Baranowicze",
-        "Lida",
-        "Ejszyszki",
-        "Molodeczno",
-        "Nowogrodek",
-        "Ostryna",
-        "Dubicze"
-      ]
+      "Identifier": "NowogrodekVoi",
+      "NameTag": "NowogrodekVoi",
+      "Areas": [ "Baranowicze", "Lida", "Ejszyszki", "Molodeczno", "Nowogrodek", "Ostryna", "Dubicze", "Dziewieszniki" ]
     },
     {
       "RegionId": 14,
-      "Identifier": "Polesia",
-      "Name": "Woj. Poleskie",
-      "Areas": [
-        "Brzesc",
-        "Pinsk",
-        "Kowel",
-        "Pohost Zarzeczny",
-        "Pruzana",
-        "Bereza Kartuska",
-        "Swislocz",
-        "Wysokie Litewskie",
-        "Hancewicze"
-      ]
+      "Identifier": "PolesianVoi",
+      "NameTag": "PolesianVoi",
+      "Areas": [ "Brzesc", "Pinsk", "KamienKoszyrski", "Pohost Zarzeczny", "Pruzana", "Bereza Kartuska", "Swislocz", "Wysokie Litewskie", "Hancewicze", "Samary", "Lelikow" ]
     },
     {
       "RegionId": 15,
-      "Identifier": "Volyhnia",
-      "Name": "Woj. Wołyńskie",
-      "Areas": [
-        "Wlodzimierz",
-        "Sarny",
-        "Hlynne"
-      ]
+      "Identifier": "VolhynianVoi",
+      "NameTag": "VolhynianVoi",
+      "Areas": [ "Luboml", "Sarny", "Hlynne", "Kowel" ]
     },
     {
       "RegionId": 16,
-      "Identifier": "LwowRegion",
-      "Name": "Woj. Lwowskie",
-      "Areas": [
-        "Rzeszow",
-        "Przemysl",
-        "Lwow",
-        "Krystynopol"
-      ]
+      "Identifier": "LwowVoi",
+      "NameTag": "LwowVoi",
+      "Areas": [ "Rzeszow", "Przemysl", "Lwow", "Krystynopol", "Sokal", "Bobrka", "UstrzykiDolne", "Narol", "Tarnobrzeg" ]
     },
     {
       "RegionId": 17,
-      "Identifier": "StanislawowRegion",
-      "Name": "Woj. Stanisławowskie",
-      "Areas": [
-        "Stanislawow"
-      ]
+      "Identifier": "StanislawowVoi",
+      "NameTag": "StanislawowVoi",
+      "Areas": [ "Stanislawow" ]
     },
     {
       "RegionId": 999,
-      "Identifier": "TarnopolRegion",
-      "Name": "Woj. Tarnopolskie",
-      "Areas": [
-        "Tarnopol"
-      ]
+      "Identifier": "TarnopolVoi",
+      "NameTag": "TarnopolVoi",
+      "Areas": [ "Tarnopol", "Mielnica" ]
     },
     {
       "RegionId": 18,
-      "Identifier": "EastPrussia",
-      "Name": "Prusy Wschodnie",
-      "Areas": [
-        "Konigsberg",
-        "Lyck",
-        "Tilse",
-        "Ermland",
-        "Heilingbeil",
-        "Allenstein",
-        "Marienburg",
-        "Preussisch Holland"
-      ]
+      "Identifier": "EastPrussiaRG",
+      "NameTag": "EastPrussiaRG",
+      "Areas": [ "Konigsberg", "Lyck", "Tilse", "PreussischEylau", "Heilingbeil", "Allenstein", "Marienburg", "Preussisch Holland", "Marienwerder", "Lautenburg", "Elbing" ]
     },
     {
       "RegionId": 19,
-      "Identifier": "Pomerania",
-      "Name": "Pomorze",
-      "Areas": [
-        "Koslin",
-        "Stralsund",
-        "LauenburgButow",
-        "Stettin"
-      ]
+      "Identifier": "PomeraniaRG",
+      "NameTag": "PomeraniaRG",
+      "Areas": [ "Koslin", "Stralsund", "LauenburgButow", "Stettin", "Tempelburg" ]
     },
     {
       "RegionId": 20,
-      "Identifier": "Silesia",
-      "Name": "Śląsk",
-      "Areas": [
-        "Breslau",
-        "Gleiwitz",
-        "Oppeln",
-        "Hoyerswerda",
-        "Glatz",
-        "Gorlitz",
-        "Leobschutz",
-        "Namslau"
-      ]
+      "Identifier": "SilesiaRG",
+      "NameTag": "SilesiaRG",
+      "Areas": [ "Breslau", "Gleiwitz", "Oppeln", "Hoyerswerda", "Glatz", "Gorlitz", "Leobschutz", "Namslau" ]
     },
     {
       "RegionId": 21,
-      "Identifier": "Ostmark",
-      "Name": "Marchia Wschodnia",
-      "Areas": [
-        "Meseritz",
-        "Schneidemull",
-        "DeutschKrone",
-        "Konitz",
-        "Lubusch",
-        "Cottbus",
-        "Angermunde",
-        "Grunberg"
-      ]
+      "Identifier": "OstmarkRG",
+      "NameTag": "OstmarkRG",
+      "Areas": [ "Meseritz", "Schneidemull", "DeutschKrone", "Konitz", "Lubusch", "Cottbus", "Angermunde", "Grunberg" ]
     },
     {
       "RegionId": 22,
-      "Identifier": "Brandenburg",
-      "Name": "Brandenburgia",
-      "Areas": [
-        "Brandenburg"
-      ]
+      "Identifier": "BrandenburgRG",
+      "NameTag": "BrandenburgRG",
+      "Areas": [ "Brandenburg" ]
     },
     {
       "RegionId": 23,
-      "Identifier": "Berlin",
-      "Name": "Berlin",
-      "Areas": [
-        "Berlin"
-      ]
+      "Identifier": "BerlinRG",
+      "NameTag": "BerlinRG",
+      "Areas": [ "Berlin" ]
     },
     {
       "RegionId": 24,
-      "Identifier": "Mecklenburg",
-      "Name": "Meklemburgia-Lubeka",
-      "Areas": [
-        "Lubeck"
-      ]
+      "Identifier": "MecklenburgRG",
+      "NameTag": "MecklenburgRG",
+      "Areas": [ "Lubeck" ]
     },
     {
       "RegionId": 25,
-      "Identifier": "Saxony",
-      "Name": "Saksonia",
-      "Areas": [
-        "Dresden",
-        "Reichenau",
-        "Zittau"
-      ]
+      "Identifier": "SaxonyRG",
+      "NameTag": "SaxonyRG",
+      "Areas": [ "Dresden", "Reichenau", "Zittau" ]
     },
     {
       "RegionId": 26,
-      "Identifier": "Halle",
-      "Name": "Halle-Merseburg",
-      "Areas": [
-        "Halle-Merseburg"
-      ]
+      "Identifier": "HalleRG",
+      "NameTag": "HalleRG",
+      "Areas": [ "Halle-Merseburg" ]
     },
     {
       "RegionId": 27,
       "Identifier": "Bohemia",
-      "Name": "Bohemia",
-      "Areas": [
-        "Praha",
-        "Usti nad Labem",
-        "Krumlov",
-        "Lanskroun"
-      ]
+      "NameTag": "Bohemia",
+      "Areas": [ "Praha", "Usti nad Labem", "Krumlov", "Lanskroun" ]
     },
     {
       "RegionId": 28,
       "Identifier": "MoraviaSilesia",
-      "Name": "Morawy-Śląsk",
-      "Areas": [
-        "Morava",
-        "NovyJicin",
-        "Zaolzie",
-        "CeskeSlezsko",
-        "FrydekMistek",
-        "Svitava",
-        "Znojmo",
-        "Hlucin"
-      ]
+      "NameTag": "MoraviaSilesia",
+      "Areas": [ "Morava", "NovyJicin", "Zaolzie", "CeskeSlezsko", "FrydekMistek", "Svitava", "Znojmo", "Hlucin" ]
     },
     {
       "RegionId": 29,
       "Identifier": "Slovakia",
-      "Name": "Słowacja",
-      "Areas": [
-        "SlovenskeZaolzie",
-        "Bratislava",
-        "Trencin",
-        "Kosice",
-        "Sobrance"
-      ]
+      "NameTag": "Slovakia",
+      "Areas": [ "SlovenskeZaolzie", "Bratislava", "Trencin", "Kosice", "Sobrance" ]
     },
     {
       "RegionId": 30,
       "Identifier": "Transcarpathia",
-      "Name": "Zakarpacie",
-      "Areas": [
-        "Zakarpattia",
-        "Uzhorod"
-      ]
+      "NameTag": "Transcarpathia",
+      "Areas": [ "Zakarpattia", "Uzhorod" ]
     },
     {
       "RegionId": 31,
       "Identifier": "Zemaitija",
-      "Name": "Żmudź",
-      "Areas": [
-        "Zemaitija",
-        "Klaipeda"
-      ]
+      "NameTag": "Zemaitija",
+      "Areas": [ "Zemaitija", "Klaipeda" ]
     },
     {
       "RegionId": 32,
       "Identifier": "Aukstaitija",
-      "Name": "Auksztota",
-      "Areas": [
-        "Aukstaitija"
-      ]
+      "NameTag": "Aukstaitija",
+      "Areas": [ "Aukstaitija" ]
     },
     {
       "RegionId": 33,
       "Identifier": "Dzukija",
-      "Name": "Dajnawa",
-      "Areas": [
-        "Suduva",
-        "Alytus",
-        "Dzukija"
-      ]
+      "NameTag": "Dzukija",
+      "Areas": [ "Suduva", "Alytus", "Dzukija" ]
     },
     {
       "RegionId": 34,
       "Identifier": "Kurzeme",
-      "Name": "Kurlandia",
-      "Areas": [
-        "Kurzeme"
-      ]
+      "NameTag": "Kurzeme",
+      "Areas": [ "Kurzeme" ]
     },
     {
       "RegionId": 35,
       "Identifier": "Zemgale",
-      "Name": "Semigalia",
-      "Areas": [
-        "Zemgale"
-      ]
+      "NameTag": "Zemgale",
+      "Areas": [ "Zemgale" ]
     },
     {
       "RegionId": 36,
       "Identifier": "Latgale",
-      "Name": "Łatgalia",
-      "Areas": [
-        "Latgale"
-      ]
+      "NameTag": "Latgale",
+      "Areas": [ "Latgale" ]
     },
     {
       "RegionId": 37,
       "Identifier": "Estonia",
-      "Name": "Estonia",
-      "Areas": [
-        "Tallinn"
-      ]
+      "NameTag": "Estonia",
+      "Areas": [ "Tallinn" ]
     },
     {
       "RegionId": 41,
-      "Identifier": "Somes",
-      "Name": "Samosz",
-      "Areas": [
-        "Cluj",
-        "Salonta"
-      ]
+      "Identifier": "SomesLand",
+      "NameTag": "SomesLand",
+      "Areas": [ "Cluj", "Salonta" ]
     },
     {
       "RegionId": 42,
-      "Identifier": "Mures",
-      "Name": "Marusza",
-      "Areas": [
-        "AlbaIulia",
-        "TirguMures"
-      ]
+      "Identifier": "MuresLand",
+      "NameTag": "MuresLand",
+      "Areas": [ "AlbaIulia", "TirguMures" ]
     },
     {
       "RegionId": 43,
-      "Identifier": "Timis",
-      "Name": "Temesz",
-      "Areas": [
-        "Timisoara"
-      ]
+      "Identifier": "TimisLand",
+      "NameTag": "TimisLand",
+      "Areas": [ "Timisoara" ]
     },
     {
       "RegionId": 44,
-      "Identifier": "Olt",
-      "Name": "Aluta",
-      "Areas": [
-        "Craiova"
-      ]
+      "Identifier": "OltLand",
+      "NameTag": "OltLand",
+      "Areas": [ "Craiova" ]
     },
     {
       "RegionId": 45,
-      "Identifier": "Bucegi",
-      "Name": "Bucegi",
-      "Areas": [
-        "Bucuresti",
-        "TarguSecuiesc",
-        "Brasov"
-      ]
+      "Identifier": "BucegiLand",
+      "NameTag": "BucegiLand",
+      "Areas": [ "Bucuresti", "TarguSecuiesc", "Brasov" ]
     },
     {
       "RegionId": 46,
-      "Identifier": "Suceava",
-      "Name": "Suczawa",
-      "Areas": [
-        "Hotin",
-        "Cernauti",
-        "Suceava",
-        "Dorohoi",
-        "Briceni"
-      ]
+      "Identifier": "SuceavaLand",
+      "NameTag": "SuceavaLand",
+      "Areas": [ "Hotin", "Cernauti", "Suceava", "Dorohoi", "Briceni" ]
     },
     {
       "RegionId": 47,
-      "Identifier": "Prut",
-      "Name": "Prut",
-      "Areas": [
-        "Balti",
-        "Iasi",
-        "MiercureaCiuc"
-      ]
+      "Identifier": "PrutLand",
+      "NameTag": "PrutLand",
+      "Areas": [ "Balti", "Iasi" ]
     },
     {
       "RegionId": 48,
-      "Identifier": "Nistru",
-      "Name": "Nistru",
-      "Areas": [
-        "Chisinau",
-        "CetateaAlba"
-      ]
+      "Identifier": "NistruLand",
+      "NameTag": "NistruLand",
+      "Areas": [ "Chisinau", "CetateaAlba" ]
     },
     {
       "RegionId": 49,
-      "Identifier": "DunareaDeJos",
-      "Name": "Dolny dunaj",
-      "Areas": [
-        "Ismail",
-        "Tulcea",
-        "Cahul",
-        "Galati",
-        "IntorsuraBuzaului"
-      ]
+      "Identifier": "DunareaDeJosLand",
+      "NameTag": "DunareaDeJosLand",
+      "Areas": [ "Ismail", "Tulcea", "Cahul", "Galati" ]
     },
     {
       "RegionId": 50,
-      "Identifier": "Marii",
-      "Name": "Marii",
-      "Areas": [
-        "Constanta",
-        "Calarasi",
-        "Bazargic",
-        "Silistra"
-      ]
+      "Identifier": "MariiLand",
+      "NameTag": "MariiLand",
+      "Areas": [ "Constanta", "Calarasi", "Bazargic", "Silistra" ]
     },
     {
       "RegionId": 51,
       "Identifier": "AdriaticIslands",
-      "Name": "Włoskie Wyspy Adriatyckie",
-      "Areas": [
-        "Lastovo",
-        "CresLosinj"
-      ]
+      "NameTag": "AdriaticIslands",
+      "Areas": [ "Lastovo", "CresLosinj" ]
     },
     {
       "RegionId": 52,
       "Identifier": "ItalianDalmatia",
-      "Name": "Zara",
-      "Areas": [
-        "Zara"
-      ]
+      "NameTag": "ItalianDalmatia",
+      "Areas": [ "Zara" ]
     },
     {
       "RegionId": 53,
       "Identifier": "LowerAustria",
-      "Name": "Dolna Austria",
-      "Areas": [
-        "Eisenstadt",
-        "SanktPolten"
-      ]
+      "NameTag": "LowerAustria",
+      "Areas": [ "Eisenstadt", "SanktPolten" ]
     },
     {
       "RegionId": 54,
       "Identifier": "Styria",
-      "Name": "Styria",
-      "Areas": [
-        "Graz",
-        "Oberwart"
-      ]
+      "NameTag": "Styria",
+      "Areas": [ "Graz", "Oberwart" ]
     },
     {
       "RegionId": 55,
       "Identifier": "Carinthia",
-      "Name": "Karyntia",
-      "Areas": [
-        "Klagenfurt"
-      ]
+      "NameTag": "Carinthia",
+      "Areas": [ "Klagenfurt" ]
     },
     {
       "RegionId": 56,
       "Identifier": "UpperAustria",
-      "Name": "Górna Austria",
-      "Areas": [
-        "Linz"
-      ]
+      "NameTag": "UpperAustria",
+      "Areas": [ "Linz" ]
     },
     {
       "RegionId": 57,
       "Identifier": "Salzburg",
-      "Name": "Salzburg",
-      "Areas": [
-        "Salzburg"
-      ]
+      "NameTag": "Salzburg",
+      "Areas": [ "Salzburg" ]
     },
     {
       "RegionId": 58,
       "Identifier": "Tyrol",
-      "Name": "Tyrol-Voralberg",
-      "Areas": [
-        "Lienz",
-        "Innsbruck",
-        "Voralberg"
-      ]
+      "NameTag": "Tyrol",
+      "Areas": [ "Lienz", "Innsbruck", "Voralberg" ]
     },
     {
       "RegionId": 59,
       "Identifier": "Vienna",
-      "Name": "Wiedeń",
-      "Areas": [
-        "Wien"
-      ]
+      "NameTag": "Vienna",
+      "Areas": [ "Wien" ]
     },
     {
       "RegionId": 60,
       "Identifier": "Liechtenstein",
-      "Name": "Liechtenstein",
-      "Areas": [
-        "Liechtenstein"
-      ]
+      "NameTag": "Liechtenstein",
+      "Areas": [ "Liechtenstein" ]
     },
     {
       "RegionId": 61,
       "Identifier": "Switzerland",
-      "Name": "Szwajcaria",
-      "Areas": [
-        "Schweiz"
-      ]
+      "NameTag": "Switzerland",
+      "Areas": [ "Schweiz" ]
     },
     {
       "RegionId": 62,
       "Identifier": "Hungary",
-      "Name": "Węgry",
-      "Areas": [
-        "Alfold",
-        "Transdanubia",
-        "Tiszantul"
-      ]
+      "NameTag": "Hungary",
+      "Areas": [ "Alfold", "Transdanubia", "Tiszantul" ]
     },
     {
       "RegionId": 63,
-      "Identifier": "Dravska",
-      "Name": "Banowina Drawska",
-      "Areas": [
-        "Ljubljana",
-        "Prekmurje",
-        "Maribor"
-      ]
+      "Identifier": "DravskaBan",
+      "NameTag": "DravskaBan",
+      "Areas": [ "Ljubljana", "Prekmurje", "Maribor" ]
     },
     {
       "RegionId": 64,
-      "Identifier": "Savska",
-      "Name": "Banowina Sawska",
-      "Areas": [
-        "Zagreb",
-        "Medimurje",
-        "Platak"
-      ]
+      "Identifier": "SavskaBan",
+      "NameTag": "SavskaBan",
+      "Areas": [ "Zagreb", "Medimurje", "Platak" ]
     },
     {
       "RegionId": 65,
-      "Identifier": "Vrbaska",
-      "Name": "Banowina Vrbaska",
-      "Areas": [
-        "BanjaLuka"
-      ]
+      "Identifier": "VrbaskaBan",
+      "NameTag": "VrbaskaBan",
+      "Areas": [ "BanjaLuka" ]
     },
     {
       "RegionId": 66,
-      "Identifier": "Primorska",
-      "Name": "Banowina Primorska",
-      "Areas": [
-        "Split",
-        "Mostar",
-        "VisKorcula"
-      ]
+      "Identifier": "PrimorskaBan",
+      "NameTag": "PrimorskaBan",
+      "Areas": [ "Split", "Mostar", "VisKorcula" ]
     },
     {
       "RegionId": 67,
-      "Identifier": "Dunavska",
-      "Name": "Banowina Dunajska",
-      "Areas": [
-        "Baranja",
-        "Sremska",
-        "NoviSad",
-        "WestBanat",
-        "Pozarevac"
-      ]
+      "Identifier": "DunavskaBan",
+      "NameTag": "DunavskaBan",
+      "Areas": [ "Baranja", "Sremska", "NoviSad", "WestBanat", "Pozarevac" ]
     },
     {
       "RegionId": 68,
-      "Identifier": "Drinska",
-      "Name": "Banowina Drińska",
-      "Areas": [
-        "Sarajevo",
-        "Tara",
-        "Cacak"
-      ]
+      "Identifier": "DrinskaBan",
+      "NameTag": "DrinskaBan",
+      "Areas": [ "Sarajevo", "Tara", "Cacak" ]
     },
     {
       "RegionId": 69,
-      "Identifier": "Zetska",
-      "Name": "Banowina Zetska",
-      "Areas": [
-        "Cetinje",
-        "Prishtina",
-        "Mitrovica",
-        "Ulcinj",
-        "Kotor",
-        "Dubrovnik",
-        "Rozaje",
-        "Tutin",
-        "Mljet"
-      ]
+      "Identifier": "ZetskaBan",
+      "NameTag": "ZetskaBan",
+      "Areas": [ "Cetinje", "Prishtina", "Mitrovica", "Ulcinj", "Kotor", "Dubrovnik", "Rozaje", "Tutin", "Mljet" ]
     },
     {
       "RegionId": 70,
-      "Identifier": "Moravska",
-      "Name": "Banowina Morawska",
-      "Areas": [
-        "Nis",
-        "Pirot"
-      ]
+      "Identifier": "MoravskaBan",
+      "NameTag": "MoravskaBan",
+      "Areas": [ "Nis", "Pirot" ]
     },
     {
       "RegionId": 71,
-      "Identifier": "Vardarska",
-      "Name": "Banowina Wardarska",
-      "Areas": [
-        "Skopje",
-        "Debar",
-        "Bitola",
-        "Bosilegrad",
-        "Vranje"
-      ]
+      "Identifier": "VardarskaBan",
+      "NameTag": "VardarskaBan",
+      "Areas": [ "Skopje", "Debar", "Bitola", "Bosilegrad", "Vranje" ]
     },
     {
       "RegionId": 72,
       "Identifier": "Vrachan",
-      "Name": "Wraca",
-      "Areas": [
-        "Vratsa"
-      ]
+      "NameTag": "Vrachan",
+      "Areas": [ "Vratsa" ]
     },
     {
       "RegionId": 73,
       "Identifier": "Sofiya",
-      "Name": "Sofia",
-      "Areas": [
-        "Sofiya"
-      ]
+      "NameTag": "Sofiya",
+      "Areas": [ "Sofiya" ]
     },
     {
       "RegionId": 74,
       "Identifier": "Pleven",
-      "Name": "Plewen",
-      "Areas": [
-        "Pleven"
-      ]
+      "NameTag": "Pleven",
+      "Areas": [ "Pleven" ]
     },
     {
       "RegionId": 75,
       "Identifier": "Plovdiv",
-      "Name": "Płowdiw",
-      "Areas": [
-        "Plovdiv"
-      ]
+      "NameTag": "Plovdiv",
+      "Areas": [ "Plovdiv" ]
     },
     {
       "RegionId": 76,
       "Identifier": "StaraZagora",
-      "Name": "Stara Zagora",
-      "Areas": [
-        "StaraZagora"
-      ]
+      "NameTag": "StaraZagora",
+      "Areas": [ "StaraZagora" ]
     },
     {
       "RegionId": 77,
       "Identifier": "Shumen",
-      "Name": "Szumen",
-      "Areas": [
-        "Shumen",
-        "Ruse"
-      ]
+      "NameTag": "Shumen",
+      "Areas": [ "Shumen", "Ruse" ]
     },
     {
       "RegionId": 78,
       "Identifier": "Burgas",
-      "Name": "Burgas",
-      "Areas": [
-        "Burgas"
-      ]
+      "NameTag": "Burgas",
+      "Areas": [ "Burgas" ]
     },
     {
       "RegionId": 79,
       "Identifier": "Tirana",
-      "Name": "Tirana",
-      "Areas": [
-        "Tirana",
-        "North Epirus"
-      ]
+      "NameTag": "Tirana",
+      "Areas": [ "Tirana", "North Epirus" ]
     },
     {
       "RegionId": 80,
       "Identifier": "WesternThrace",
-      "Name": "Tracja Zachodnia",
-      "Areas": [
-        "Alexandropoulis",
-        "Komotini"
-      ]
+      "NameTag": "WesternThrace",
+      "Areas": [ "Alexandropoulis", "Komotini" ]
     },
     {
       "RegionId": 81,
       "Identifier": "Macedonia",
-      "Name": "Macedonia",
-      "Areas": [
-        "Serres",
-        "Thessaloniki"
-      ]
+      "NameTag": "Macedonia",
+      "Areas": [ "Serres", "Thessaloniki" ]
     },
     {
       "RegionId": 82,
       "Identifier": "Epirus",
-      "Name": "Epirus",
-      "Areas": [
-        "Ioannina"
-      ]
+      "NameTag": "Epirus",
+      "Areas": [ "Ioannina" ]
     },
     {
       "RegionId": 83,
       "Identifier": "Thessaly",
-      "Name": "Tesalia",
-      "Areas": [
-        "Larissa",
-        "Olympus",
-        "Sporades"
-      ]
+      "NameTag": "Thessaly",
+      "Areas": [ "Larissa", "Olympus", "Sporades" ]
     },
     {
       "RegionId": 84,
       "Identifier": "CentralGreece",
-      "Name": "Grecja Środkowa i Eubea",
-      "Areas": [
-        "Athens"
-      ]
+      "NameTag": "CentralGreece",
+      "Areas": [ "Athens" ]
     },
     {
       "RegionId": 85,
       "Identifier": "Peloponnese",
-      "Name": "Peloponez",
-      "Areas": [
-        "Peloponnese"
-      ]
+      "NameTag": "Peloponnese",
+      "Areas": [ "Peloponnese" ]
     },
     {
       "RegionId": 86,
       "Identifier": "IonianIslands",
-      "Name": "Wyspy Jońskie",
-      "Areas": [
-        "IonianIslands"
-      ]
+      "NameTag": "IonianIslands",
+      "Areas": [ "IonianIslands" ]
     },
     {
       "RegionId": 87,
       "Identifier": "AegeanIslands",
-      "Name": "Wyspy Egejskie",
-      "Areas": [
-        "AegeanIslands",
-        "Limnos"
-      ]
+      "NameTag": "AegeanIslands",
+      "Areas": [ "AegeanIslands", "Limnos" ]
     },
     {
       "RegionId": 88,
       "Identifier": "Cyclades",
-      "Name": "Cyklady",
-      "Areas": [
-        "Cyclades"
-      ]
+      "NameTag": "Cyclades",
+      "Areas": [ "Cyclades" ]
     },
     {
       "RegionId": 89,
       "Identifier": "Crete",
-      "Name": "Kreta",
-      "Areas": [
-        "Crete"
-      ]
+      "NameTag": "Crete",
+      "Areas": [ "Crete" ]
     },
     {
       "RegionId": 90,
       "Identifier": "Dodecanese",
-      "Name": "Dodekanez",
-      "Areas": [
-        "Dodecanese"
-      ]
+      "NameTag": "Dodecanese",
+      "Areas": [ "Dodecanese" ]
     },
     {
       "RegionId": 91,
       "Identifier": "MoldovanASSR",
-      "Name": "Mołdawska ASSR",
-      "Areas": [
-        "Tiraspol",
-        "Birzula",
-        "Balta",
-        "Rybnitsa"
-      ]
+      "NameTag": "MoldovanASSR",
+      "Areas": [ "Tiraspol", "Birzula", "Balta", "Rybnitsa" ]
     },
     {
       "RegionId": 92,
       "Identifier": "VinnitsaOblast",
-      "Name": "Obwód Winnicki",
-      "Areas": [
-        "Proskuriv",
-        "Shepietivka",
-        "Berdichiv",
-        "MohylivPodilskyi",
-        "Vinnitsa",
-        "Hajsyn"
-      ]
+      "NameTag": "VinnitsaOblast",
+      "Areas": [ "Proskuriv", "Shepietivka", "Berdichiv", "MohylivPodilskyi", "Vinnitsa", "Hajsyn" ]
     },
     {
       "RegionId": 93,
       "Identifier": "KyivOblast",
-      "Name": "Obwód Kijowski",
-      "Areas": [
-        "Zhytomyr",
-        "Cherkasy",
-        "Kyiv",
-        "Brovary"
-      ]
+      "NameTag": "KyivOblast",
+      "Areas": [ "Zhytomyr", "Cherkasy", "Kyiv", "Brovary" ]
     },
     {
       "RegionId": 94,
       "Identifier": "OdessaOblast",
-      "Name": "Obwód Odesski",
-      "Areas": [
-        "Savran",
-        "Ulyanovka",
-        "Odessa",
-        "Mykolaiv"
-      ]
+      "NameTag": "OdessaOblast",
+      "Areas": [ "Savran", "Ulyanovka", "Odessa", "Mykolaiv" ]
     },
     {
       "RegionId": 95,
       "Identifier": "DniproOblast",
-      "Name": "Obwód Dniepropietrowski",
-      "Areas": [
-        "Zaporozhe"
-      ]
+      "NameTag": "DniproOblast",
+      "Areas": [ "Zaporozhe" ]
     },
     {
       "RegionId": 96,
       "Identifier": "StalinoOblast",
-      "Name": "Obwód Stalinowski",
-      "Areas": [
-        "Donetsk",
-        "Dolzhansk",
-        "Stanitsa"
-      ]
+      "NameTag": "StalinoOblast",
+      "Areas": [ "Donetsk", "Dolzhansk", "Stanitsa" ]
     },
     {
       "RegionId": 97,
       "Identifier": "KharkovOblast",
-      "Name": "Obwód Charkowski",
-      "Areas": [
-        "Kharkiv",
-        "Poltava"
-      ]
+      "NameTag": "KharkovOblast",
+      "Areas": [ "Kharkiv", "Poltava" ]
     },
     {
       "RegionId": 98,
       "Identifier": "ChernihovOblast",
-      "Name": "Obwód Czernihowski",
-      "Areas": [
-        "Chernihiv",
-        "Putivl"
-      ]
+      "NameTag": "ChernihovOblast",
+      "Areas": [ "Chernihiv", "Putivl" ]
     },
     {
       "RegionId": 99,
       "Identifier": "MinskOblast",
-      "Name": "Obwód Miński",
-      "Areas": [
-        "Minsk",
-        "Krupki",
-        "Biahoml",
-        "Asipovichy"
-      ]
+      "NameTag": "MinskOblast",
+      "Areas": [ "Minsk", "Krupki", "Biahoml", "Asipovichy" ]
     },
     {
       "RegionId": 100,
       "Identifier": "PolesiaOblast",
-      "Name": "Obwód Poleski",
-      "Areas": [
-        "Mazyr",
-        "Parychy"
-      ]
+      "NameTag": "PolesiaOblast",
+      "Areas": [ "Mazyr", "Parychy" ]
     },
     {
       "RegionId": 101,
       "Identifier": "GomelOblast",
-      "Name": "Obwód Homielski",
-      "Areas": [
-        "Gomel",
-        "Zhlobin",
-        "Rechytsa",
-        "Dovsk"
-      ]
+      "NameTag": "GomelOblast",
+      "Areas": [ "Gomel", "Zhlobin", "Rechytsa", "Dovsk" ]
     },
     {
       "RegionId": 102,
       "Identifier": "MahilouOblast",
-      "Name": "Obwód Mohylewski",
-      "Areas": [
-        "Mahilou",
-        "Krychau"
-      ]
+      "NameTag": "MahilouOblast",
+      "Areas": [ "Mahilou", "Krychau" ]
     },
     {
       "RegionId": 103,
       "Identifier": "VitebskOblast",
-      "Name": "Obwód Witebski",
-      "Areas": [
-        "Vitebsk",
-        "Polatsk",
-        "Dubrovna"
-      ]
+      "NameTag": "VitebskOblast",
+      "Areas": [ "Vitebsk", "Polatsk", "Dubrovna" ]
     }
   ]
 }

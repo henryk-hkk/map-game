@@ -13,13 +13,23 @@ namespace MapGame.Core.Utils.JSON
     public class CountryData
     {
         public string? Identifier { get; set; }
-        public string? DisplayName { get; set; }
+        public string? NameTag { get; set; }
+        public string? ColorTag { get; set; }
+
+        public List<string>? OwnedRegionIds { get; set; }
+    }
+
+    public class CountryColorTagJSONData
+    {
+        public List <CountryColorTagData>? CountryColorTags { get; set; }
+    }
+    public class CountryColorTagData
+    {
+        public string? ColorTag { get; set; }
 
         public byte R { get; set; }
         public byte G { get; set; }
         public byte B { get; set; }
-
-        public List<string>? OwnedRegionIds { get; set; }
 
         public Color GetColor() => Color.FromRgb(R, G, B);
     }

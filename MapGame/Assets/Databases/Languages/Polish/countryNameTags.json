@@ -1,0 +1,585 @@
+{
+  "CountryNameTags": [
+    {
+      "NameTag": "PolandRepublic",
+      "Name": "Rzeczpospolita Polska"
+    },
+    {
+      "NameTag": "PolandMilitaryJunta",
+      "Name": "Dyrektoriat Polski"
+    },
+    {
+      "NameTag": "PolandOZN",
+      "Name": "Państwo Polskie"
+    },
+    {
+      "NameTag": "PolandND",
+      "Name": "Rzeczpospolita Narodowa"
+    },
+    {
+      "NameTag": "PolandONR",
+      "Name": "Katolickie Państwo Narodu Polskiego"
+    },
+    {
+      "NameTag": "PolandAgrarian",
+      "Name": "Rzeczpospolita Ludowa"
+    },
+    {
+      "NameTag": "PolandCommunism",
+      "Name": "Polska Socjalistyczna Republika Rad"
+    },
+    {
+      "NameTag": "PolandUSSRPuppet",
+      "Name": "Polska Rzeczpospolita Ludowa"
+    },
+    {
+      "NameTag": "PolandSSR",
+      "Name": "Polska SRR"
+    },
+    {
+      "NameTag": "PolandAnarchist",
+      "Name": "Wolne Terytorium Polski"
+    },
+    {
+      "NameTag": "PolandGG",
+      "Name": "Generalne Gubernatorstwo"
+    },
+    {
+      "NameTag": "PolandRK",
+      "Name": "Komisariat Rzeszy Polska"
+    },
+    {
+      "NameTag": "PolandKingdom",
+      "Name": "Królestwo Polskie"
+    },
+    {
+      "NameTag": "PolandIntermarium",
+      "Name": "Federacja Międzymorza"
+    },
+    {
+      "NameTag": "PolandIntermariumHeg",
+      "Name": "Konfederacja Wolnych Narodów"
+    },
+    {
+      "NameTag": "PolandJagiellon",
+      "Name": "Rzeczpospolita Jagiellońska"
+    },
+    {
+      "NameTag": "Commonwealth",
+      "Name": "Rzeczpospolita"
+    },
+    {
+      "NameTag": "CommonwealthTwoNations",
+      "Name": "Rzeczpospolita Obojga Narodów"
+    },
+    {
+      "NameTag": "CommonwealthThreeNations",
+      "Name": "Rzeczpospolita Trojga Narodów"
+    },
+    {
+      "NameTag": "CommonwealthGreater",
+      "Name": "Wielka Rzeczpospolita"
+    },
+    {
+      "NameTag": "LithuaniaRepublic",
+      "Name": "Republika Litwy"
+    },
+    {
+      "NameTag": "LithuaniaFascist",
+      "Name": "Żelazna Litwa"
+    },
+    {
+      "NameTag": "LithuaniaKingdom",
+      "Name": "Królestwo Litwy"
+    },
+    {
+      "NameTag": "LithuaniaGrandDuchy",
+      "Name": "Wielkie Księstwo Litewskie"
+    },
+    {
+      "NameTag": "LithuaniaCommunist",
+      "Name": "Litewska Socjalistyczna Republika Rad"
+    },
+    {
+      "NameTag": "LatviaRepublikc",
+      "Name": "Republika Łotewska"
+    },
+    {
+      "NameTag": "LatviaFascist",
+      "Name": "Łotwa Grzmiącego Krzyża"
+    },
+    {
+      "NameTag": "LatviaAuthoritarian",
+      "Name": "Państwo Łotewskie"
+    },
+    {
+      "NameTag": "LatviaCommunist",
+      "Name": "Łotewska Socjalistyczna Republika Rad"
+    },
+    {
+      "NameTag": "LatviaSSR",
+      "Name": "Łotewska SRR"
+    },
+    {
+      "NameTag": "LivoniaDuchy",
+      "Name": "Duchy of Livonia"
+    },
+    {
+      "NameTag": "LivoniaKingdom",
+      "Name": "Kingdom of Livonia"
+    },
+    {
+      "NameTag": "EstoniaRepublic",
+      "Name": "Republika Estońska"
+    },
+    {
+      "NameTag": "EstoniaFascist",
+      "Name": "Estońskie Państwo Narodowe"
+    },
+    {
+      "NameTag": "EstoniaCommunist",
+      "Name": "Estońska Komuna Pracy"
+    },
+    {
+      "NameTag": "EstoniaSSR",
+      "Name": "Estońska SRR"
+    },
+    {
+      "NameTag": "BalticFederation",
+      "Name": "Federacja Bałtycka"
+    },
+    {
+      "NameTag": "BalticUnitedDuchy",
+      "Name": "Zjednoczone Księstwo Bałtyckie"
+    },
+    {
+      "NameTag": "OstlandRK",
+      "Name": "Komisariat Rzeszy Wschód"
+    },
+    {
+      "NameTag": "FinnougricFed",
+      "Name": "Federacja Ugrofińska"
+    },
+    {
+      "NameTag": "UkraineRepublic",
+      "Name": "Ukraińska Republika Ludowa"
+    },
+    {
+      "NameTag": "UkraineFascist",
+      "Name": "Ukraińskie Państwo Narodowe"
+    },
+    {
+      "NameTag": "UkraineMonarchist",
+      "Name": "Hetmanat Ukraiński"
+    },
+    {
+      "NameTag": "UkraineCommunist",
+      "Name": "Ukraińska Socjalistyczna Republika Rad"
+    },
+    {
+      "NameTag": "UkraineSSR",
+      "Name": "Ukraińska SRR"
+    },
+    {
+      "NameTag": "UkraineAnarchist",
+      "Name": "Wolne Terytorium"
+    },
+    {
+      "NameTag": "UkraineGreater",
+      "Name": "Wielka Ukraina"
+    },
+    {
+      "NameTag": "UkraineRK",
+      "Name": "Komisariat Rzeszy Ukraina"
+    },
+    {
+      "NameTag": "BelarusRepublic",
+      "Name": "Białoruska Republika Ludowa"
+    },
+    {
+      "NameTag": "BelarusFascist",
+      "Name": "Białoruska Centralna Rada"
+    },
+    {
+      "NameTag": "BelarusCommunist",
+      "Name": "Białoruska Socjalistyczna Republika Rad"
+    },
+    {
+      "NameTag": "BelarusSSR",
+      "Name": "Białoruska SRR"
+    },
+    {
+      "NameTag": "BelarusGrandDuchy",
+      "Name": "Wielkie Księstwo Ruskie"
+    },
+    {
+      "NameTag": "BelarusRK",
+      "Name": "Komisariat Rzeszy Ruś Biała"
+    },
+    {
+      "NameTag": "BelarusLithuaniaRepublic",
+      "Name": "Republika Litewsko-Białoruska"
+    },
+    {
+      "NameTag": "RussiaCommunist",
+      "Name": "Związek Socjalistycznych Republik Radzieckich"
+    },
+    {
+      "NameTag": "SovietUnion",
+      "Name": "ZSRR"
+    },
+    {
+      "NameTag": "RussiaRSFSR",
+      "Name": "Rosyjska Federacyjna SRR"
+    },
+    {
+      "NameTag": "RussiaDemocratic",
+      "Name": "Republika Rosyjska"
+    },
+    {
+      "NameTag": "RussiaFederation",
+      "Name": "Federacja Rosyjska"
+    },
+    {
+      "NameTag": "RussiaWhiteState",
+      "Name": "Państwo Rosyjskie"
+    },
+    {
+      "NameTag": "RussiaMonarchist",
+      "Name": "Imperium Rosyjskie"
+    },
+    {
+      "NameTag": "RussiaTsardom",
+      "Name": "Carstwo Rosyjskie"
+    },
+    {
+      "NameTag": "RussiaFascist",
+      "Name": "Rosyjskie Państwo Narodowe"
+    },
+    {
+      "NameTag": "RussiaRodzaevsky",
+      "Name": "Rosyjskie Imperium Faszystowskie"
+    },
+    {
+      "NameTag": "RussiaEurasian",
+      "Name": "Państwo Eurazjatyckie"
+    },
+    {
+      "NameTag": "RussiaTheocratic",
+      "Name": "Święta Ruś"
+    },
+    {
+      "NameTag": "RussiaRK",
+      "Name": "Komisariat Rzeszy Moskwa"
+    },
+    {
+      "NameTag": "RussiaAnarchist",
+      "Name": "Związek Wolnych Rad"
+    },
+    {
+      "NameTag": "GermanReich",
+      "Name": "Rzesza Niemiecka"
+    },
+    {
+      "NameTag": "GermanReichGreater",
+      "Name": "Rzesza Wielkogermańska Narodu Niemieckiego"
+    },
+    {
+      "NameTag": "GermanyWeimar",
+      "Name": "Republika Weimarska"
+    },
+    {
+      "NameTag": "GermanyDemocratic",
+      "Name": "Republika Niemiec"
+    },
+    {
+      "NameTag": "GermanyFederal",
+      "Name": "Republika Federalna Niemiec"
+    },
+    {
+      "NameTag": "GermanyEuropean",
+      "Name": "Unia Europejska"
+    },
+    {
+      "NameTag": "GermanyMonarchist",
+      "Name": "Cesarstwo Niemieckie"
+    },
+    {
+      "NameTag": "GermanyHRE",
+      "Name": "Święte Cesarstwo Rzymskie"
+    },
+    {
+      "NameTag": "GermanyMilitaryJunta",
+      "Name": "Niemiecki Rząd Wojskowy"
+    },
+    {
+      "NameTag": "GermanyMilitaryCivilwar",
+      "Name": "Tymczasowy Rząd Wojskowy Niemiec"
+    },
+    {
+      "NameTag": "GermanyCommunist",
+      "Name": "Niemiecka Republika Socjalistyczna"
+    },
+    {
+      "NameTag": "GermanyCommune",
+      "Name": "Komuna Niemiecka"
+    },
+    {
+      "NameTag": "GermanyDDR",
+      "Name": "Niemiecka Republika Demokratyczna"
+    },
+    {
+      "NameTag": "GermanyAnarchist",
+      "Name": "Niemieckie Terytorium Anarchistyczne"
+    },
+    {
+      "NameTag": "GermanyAlliedPuppet",
+      "Name": "Niemiecka Strefa Okupacyjna"
+    },
+    {
+      "NameTag": "GermanyPrussia",
+      "Name": "Królestwo Prus"
+    },
+    {
+      "NameTag": "BavariaSoviet",
+      "Name": "Bawarska Republika Rad"
+    },
+    {
+      "NameTag": "AustriaFederal",
+      "Name": "Austriackie Państwo Federalne"
+    },
+    {
+      "NameTag": "AustrianReich",
+      "Name": "Rzesza Austriacka"
+    },
+    {
+      "NameTag": "AustriaRepublic",
+      "Name": "Republika Austrii"
+    },
+    {
+      "NameTag": "AustriaCommunist",
+      "Name": "Austriacka Republika Rad"
+    },
+    {
+      "NameTag": "AustriaMonarchist",
+      "Name": "Cesarstwo Austrii"
+    },
+    {
+      "NameTag": "AustriaOstmark",
+      "Name": "Marchia Wschodnia"
+    },
+    {
+      "NameTag": "GermanAustriaRepublic",
+      "Name": "Republika Niemieckiej Austrii"
+    },
+    {
+      "NameTag": "GermanAustria",
+      "Name": "Niemiecka Austria"
+    },
+    {
+      "NameTag": "AustriaDanubian",
+      "Name": "Federacja Naddunajska"
+    },
+    {
+      "NameTag": "AustriaAlpine",
+      "Name": "Republika Alpejska"
+    },
+    {
+      "NameTag": "AustriaHungary",
+      "Name": "Monarchia Austro-Węgierska"
+    },
+    {
+      "NameTag": "HungaryKingdom",
+      "Name": "Królestwo Węgier"
+    },
+    {
+      "NameTag": "HungaryFascist",
+      "Name": "Państwo Narodowe Węgier"
+    },
+    {
+      "NameTag": "HungaryTuranian",
+      "Name": "Imperium Turańskie"
+    },
+    {
+      "NameTag": "HungaryMonarchist",
+      "Name": "Kraje Korony Świętego Stefana"
+    },
+    {
+      "NameTag": "HungaryRepublic",
+      "Name": "Republika Węgierska"
+    },
+    {
+      "NameTag": "HungaryCommunist",
+      "Name": "Węgierska Republika Rad"
+    },
+    {
+      "NameTag": "HungaryGreater",
+      "Name": "Wielkie Węgry"
+    },
+    {
+      "NameTag": "HungarySovietPuppet",
+      "Name": "Węgierska Republika Ludowa"
+    },
+    {
+      "NameTag": "RomaniaKingdom",
+      "Name": "Królestwo Rumunii"
+    },
+    {
+      "NameTag": "RomaniaFascist",
+      "Name": "Narodowe Państwo Legionowe Rumunii"
+    },
+    {
+      "NameTag": "RomaniaRepublic",
+      "Name": "Republika Rumunii"
+    },
+    {
+      "NameTag": "RomaniaCommunist",
+      "Name": "Socjalistyczna Republika Rumunii"
+    },
+    {
+      "NameTag": "RomaniaGreater",
+      "Name": "Wielka Rumunia"
+    },
+    {
+      "NameTag": "YugoslaviaKingdom",
+      "Name": "Królestwo Jugosławii"
+    },
+    {
+      "NameTag": "YugoslaviaDemocratic",
+      "Name": "Republika Jugosłowiańska"
+    },
+    {
+      "NameTag": "YugoslaviaCommunist",
+      "Name": "SFR Jugosławii"
+    },
+    {
+      "NameTag": "YugoslaviaFascist",
+      "Name": "Jugosłowiańskie Państwo Narodowe"
+    },
+    {
+      "NameTag": "SerbiaKingdom",
+      "Name": "Królestwo Serbii"
+    },
+    {
+      "NameTag": "SerbiaGreater",
+      "Name": "Wielka Serbia"
+    },
+    {
+      "NameTag": "SerbiaRK",
+      "Name": "Rząd Ocalenia Narodowego"
+    },
+    {
+      "NameTag": "CroatiaFascist",
+      "Name": "Niezależne Państwo Chorwackie"
+    },
+    {
+      "NameTag": "CroatiaRepublic",
+      "Name": "Republika Chorwacji"
+    },
+    {
+      "NameTag": "BalkanFederation",
+      "Name": "Federacja Bałkańska"
+    },
+    {
+      "NameTag": "Banat",
+      "Name": "Banat"
+    },
+    {
+      "NameTag": "GreeceMonarchist",
+      "Name": "Królestwo Grecji"
+    },
+    {
+      "NameTag": "GreeceSecondRepublic",
+      "Name": "Druga Republika Grecka"
+    },
+    {
+      "NameTag": "GreeceFascist",
+      "Name": "Państwo Greckie"
+    },
+    {
+      "NameTag": "GreeceCommunist",
+      "Name": "Socjalistyczna Republika Grecji"
+    },
+    {
+      "NameTag": "GreeceMegali",
+      "Name": "Wielka Grecja"
+    },
+    {
+      "NameTag": "GreeceByzantine",
+      "Name": "Cesarstwo Bizantyjskie"
+    },
+    {
+      "NameTag": "AlbaniaKingdom",
+      "Name": "Królestwo Albanii"
+    },
+    {
+      "NameTag": "AlbaniaRepublic",
+      "Name": "Republika Albanii"
+    },
+    {
+      "NameTag": "AlbaniaFascist",
+      "Name": "Wielka Albania"
+    },
+    {
+      "NameTag": "AlbaniaCommunist",
+      "Name": "Ludowa Republika Albanii"
+    },
+    {
+      "NameTag": "BulgariaTsardom",
+      "Name": "Carstwo Bułgarii"
+    },
+    {
+      "NameTag": "BulgariaRepublic",
+      "Name": "Republika Bułgarii"
+    },
+    {
+      "NameTag": "BulgariaFascist",
+      "Name": "Narodowe Państwo Bułgarskie"
+    },
+    {
+      "NameTag": "BulgariaCommunist",
+      "Name": "Ludowa Republika Bułgarii"
+    },
+    {
+      "NameTag": "BulgariaGreater",
+      "Name": "Wielka Bułgaria"
+    },
+    {
+      "NameTag": "ItalyKingdom",
+      "Name": "Królestwo Włoch"
+    },
+    {
+      "NameTag": "ItalyFascist",
+      "Name": "Imperium Włoch"
+    },
+    {
+      "NameTag": "ItalySocialRepublic",
+      "Name": "Włoska Republika Socjalna"
+    },
+    {
+      "NameTag": "ItalyRepublic",
+      "Name": "Republika Włoska"
+    },
+    {
+      "NameTag": "ItalyCommunist",
+      "Name": "Włoska Republika Ludowa"
+    },
+    {
+      "NameTag": "RomanEmpire",
+      "Name": "Cesarstwo Rzymskie"
+    },
+    {
+      "NameTag": "PapalState",
+      "Name": "Państwo Kościelne"
+    },
+    {
+      "NameTag": "TwoSicilies",
+      "Name": "Królestwo Obojga Sycylii"
+    },
+    {
+      "NameTag": "ItalyGreater",
+      "Name": "Wielkie Włochy"
+    }
+
+  ]
+}

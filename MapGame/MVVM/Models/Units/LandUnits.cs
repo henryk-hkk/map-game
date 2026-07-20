@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Geographic;
 
 namespace MapGame.MVVM.Models.Units
 {

@@ -1,0 +1,1162 @@
+{
+  "AreaNames": [
+    {
+      "Identifier": "Danzig",
+      "Name": "Gdańsk"
+    },
+    {
+      "Identifier": "Gdynia",
+      "Name": "Gdynia"
+    },
+    {
+      "Identifier": "Zlotow",
+      "Name": "Złotów"
+    },
+    {
+      "Identifier": "Torun",
+      "Name": "Toruń"
+    },
+    {
+      "Identifier": "Poznan",
+      "Name": "Poznań"
+    },
+    {
+      "Identifier": "Kepno",
+      "Name": "Kępno"
+    },
+    {
+      "Identifier": "Bydgoszcz",
+      "Name": "Bydgoszcz"
+    },
+    {
+      "Identifier": "Warszawa",
+      "Name": "Warszawa"
+    },
+    {
+      "Identifier": "Plock",
+      "Name": "Płock"
+    },
+    {
+      "Identifier": "Inowroclaw",
+      "Name": "Inowrocław"
+    },
+    {
+      "Identifier": "Piotrkow",
+      "Name": "Piotrków"
+    },
+    {
+      "Identifier": "Lodz",
+      "Name": "Łódź"
+    },
+    {
+      "Identifier": "Kalisz",
+      "Name": "Kalisz"
+    },
+    {
+      "Identifier": "Turek",
+      "Name": "Turek"
+    },
+    {
+      "Identifier": "Zawiercie",
+      "Name": "Zawiercie"
+    },
+    {
+      "Identifier": "Kielce",
+      "Name": "Kielce"
+    },
+    {
+      "Identifier": "Zaglebie",
+      "Name": "Zagłębie"
+    },
+    {
+      "Identifier": "Czestochowa",
+      "Name": "Częstochowa"
+    },
+    {
+      "Identifier": "Chelm",
+      "Name": "Chełm"
+    },
+    {
+      "Identifier": "Lublin",
+      "Name": "Lublin"
+    },
+    {
+      "Identifier": "Biala Podlaska",
+      "Name": "Biała Podlaska"
+    },
+    {
+      "Identifier": "Oswiecim",
+      "Name": "Oświęcim"
+    },
+    {
+      "Identifier": "Sacz",
+      "Name": "Sącz"
+    },
+    {
+      "Identifier": "Spisz i Orawa",
+      "Name": "Spisz i Orawa"
+    },
+    {
+      "Identifier": "Krakow",
+      "Name": "Kraków"
+    },
+    {
+      "Identifier": "Chrzanow",
+      "Name": "Chrzanów"
+    },
+    {
+      "Identifier": "Bielsko",
+      "Name": "Bielsko"
+    },
+    {
+      "Identifier": "Katowice",
+      "Name": "Katowice"
+    },
+    {
+      "Identifier": "Bialystok",
+      "Name": "Białystok"
+    },
+    {
+      "Identifier": "Sokolka",
+      "Name": "Sokółka"
+    },
+    {
+      "Identifier": "Wschodnie Grodno",
+      "Name": "Wschodnie Grodno"
+    },
+    {
+      "Identifier": "Zachodnie Grodno",
+      "Name": "Zachodnie Grodno"
+    },
+    {
+      "Identifier": "Wolkowysk",
+      "Name": "Wołkowysk"
+    },
+    {
+      "Identifier": "Alekszyce",
+      "Name": "Alekszyce"
+    },
+    {
+      "Identifier": "Druskieniki",
+      "Name": "Druskieniki"
+    },
+    {
+      "Identifier": "Marcinkance",
+      "Name": "Marcinkańce"
+    },
+    {
+      "Identifier": "Lomza",
+      "Name": "Łomża"
+    },
+    {
+      "Identifier": "Suwalki",
+      "Name": "Suwałki"
+    },
+    {
+      "Identifier": "Augustow",
+      "Name": "Augustów"
+    },
+    {
+      "Identifier": "DabrowaBialostocka",
+      "Name": "Dąbrowa Białostocka"
+    },
+    {
+      "Identifier": "Sopockinie",
+      "Name": "Sopoćkinie"
+    },
+    {
+      "Identifier": "Wilno",
+      "Name": "Wilno"
+    },
+    {
+      "Identifier": "Oszmiana",
+      "Name": "Oszmiana"
+    },
+    {
+      "Identifier": "Dukszty",
+      "Name": "Dukszty"
+    },
+    {
+      "Identifier": "Braslaw",
+      "Name": "Brasław"
+    },
+    {
+      "Identifier": "Orany",
+      "Name": "Orany"
+    },
+    {
+      "Identifier": "Wilejka",
+      "Name": "Wilejka"
+    },
+    {
+      "Identifier": "Baranowicze",
+      "Name": "Baranowicze"
+    },
+    {
+      "Identifier": "Lida",
+      "Name": "Lida"
+    },
+    {
+      "Identifier": "Ejszyszki",
+      "Name": "Ejszyszki"
+    },
+    {
+      "Identifier": "Molodeczno",
+      "Name": "Mołodeczno"
+    },
+    {
+      "Identifier": "Nowogrodek",
+      "Name": "Nowogródek"
+    },
+    {
+      "Identifier": "Ostryna",
+      "Name": "Ostryna"
+    },
+    {
+      "Identifier": "Dubicze",
+      "Name": "Dubicze"
+    },
+    {
+      "Identifier": "Brzesc",
+      "Name": "Brześć"
+    },
+    {
+      "Identifier": "Pinsk",
+      "Name": "Pińsk"
+    },
+    {
+      "Identifier": "Kowel",
+      "Name": "Kowel"
+    },
+    {
+      "Identifier": "Pohost Zarzeczny",
+      "Name": "Pohost Zarzeczny"
+    },
+    {
+      "Identifier": "Pruzana",
+      "Name": "Prużana"
+    },
+    {
+      "Identifier": "Bereza Kartuska",
+      "Name": "Bereza Kartuska"
+    },
+    {
+      "Identifier": "Swislocz",
+      "Name": "Świsłocz"
+    },
+    {
+      "Identifier": "Wysokie Litewskie",
+      "Name": "Wysokie Litewskie"
+    },
+    {
+      "Identifier": "Hancewicze",
+      "Name": "Hancewicze"
+    },
+    {
+      "Identifier": "Wlodzimierz",
+      "Name": "Włodzimierz Wołyński"
+    },
+    {
+      "Identifier": "Sarny",
+      "Name": "Sarny"
+    },
+    {
+      "Identifier": "Hlynne",
+      "Name": "Hlynne"
+    },
+    {
+      "Identifier": "Rzeszow",
+      "Name": "Rzeszów"
+    },
+    {
+      "Identifier": "Przemysl",
+      "Name": "Przemyśl"
+    },
+    {
+      "Identifier": "Lwow",
+      "Name": "Lwów"
+    },
+    {
+      "Identifier": "Krystynopol",
+      "Name": "Krystynopol"
+    },
+    {
+      "Identifier": "Stanislawow",
+      "Name": "Stanisławów"
+    },
+    {
+      "Identifier": "Tarnopol",
+      "Name": "Tarnopol"
+    },
+    {
+      "Identifier": "Sokal",
+      "Name": "Sokal"
+    },
+    {
+      "Identifier": "Bobrka",
+      "Name": "Bóbrka"
+    },
+    {
+      "Identifier": "Konigsberg",
+      "Name": "Królewiec"
+    },
+    {
+      "Identifier": "Lyck",
+      "Name": "Ełk"
+    },
+    {
+      "Identifier": "Tilse",
+      "Name": "Tylża"
+    },
+    {
+      "Identifier": "Ermland",
+      "Name": "Warmia"
+    },
+    {
+      "Identifier": "Heilingbeil",
+      "Name": "Święta Siekierka"
+    },
+    {
+      "Identifier": "Allenstein",
+      "Name": "Olsztyn"
+    },
+    {
+      "Identifier": "Marienburg",
+      "Name": "Malbork"
+    },
+    {
+      "Identifier": "Preussisch Holland",
+      "Name": "Holąd Pruski"
+    },
+    {
+      "Identifier": "Koslin",
+      "Name": "Koszalin"
+    },
+    {
+      "Identifier": "Stralsund",
+      "Name": "Stralsund"
+    },
+    {
+      "Identifier": "LauenburgButow",
+      "Name": "Lębork-Bytów"
+    },
+    {
+      "Identifier": "Stettin",
+      "Name": "Szczecin"
+    },
+    {
+      "Identifier": "Breslau",
+      "Name": "Wrocław"
+    },
+    {
+      "Identifier": "Gleiwitz",
+      "Name": "Gliwice"
+    },
+    {
+      "Identifier": "Oppeln",
+      "Name": "Opole"
+    },
+    {
+      "Identifier": "Hoyerswerda",
+      "Name": "Hoyerswerda"
+    },
+    {
+      "Identifier": "Glatz",
+      "Name": "Kładzko"
+    },
+    {
+      "Identifier": "Gorlitz",
+      "Name": "Zgorzelec"
+    },
+    {
+      "Identifier": "Leobschutz",
+      "Name": "Głubczyce"
+    },
+    {
+      "Identifier": "Namslau",
+      "Name": "Namysłów"
+    },
+    {
+      "Identifier": "Meseritz",
+      "Name": "Międzyrzecz"
+    },
+    {
+      "Identifier": "Schneidemull",
+      "Name": "Piła"
+    },
+    {
+      "Identifier": "DeutschKrone",
+      "Name": "Korona Niemiecka"
+    },
+    {
+      "Identifier": "Konitz",
+      "Name": "Chojnice"
+    },
+    {
+      "Identifier": "Lubusch",
+      "Name": "Lubusz"
+    },
+    {
+      "Identifier": "Cottbus",
+      "Name": "Chociebuż"
+    },
+    {
+      "Identifier": "Angermunde",
+      "Name": "Angermünde"
+    },
+    {
+      "Identifier": "Grunberg",
+      "Name": "Zielona Góra"
+    },
+    {
+      "Identifier": "Brandenburg",
+      "Name": "Brandenburgia"
+    },
+    {
+      "Identifier": "Berlin",
+      "Name": "Berlin"
+    },
+    {
+      "Identifier": "Lubeck",
+      "Name": "Lubeka"
+    },
+    {
+      "Identifier": "Dresden",
+      "Name": "Drezno"
+    },
+    {
+      "Identifier": "Reichenau",
+      "Name": "Bogatynia"
+    },
+    {
+      "Identifier": "Zittau",
+      "Name": "Żytawa"
+    },
+    {
+      "Identifier": "Halle-Merseburg",
+      "Name": "Halle-Merseburg"
+    },
+    {
+      "Identifier": "Praha",
+      "Name": "Praga"
+    },
+    {
+      "Identifier": "Usti nad Labem",
+      "Name": "Uście nad Łabą"
+    },
+    {
+      "Identifier": "Krumlov",
+      "Name": "Krumlow"
+    },
+    {
+      "Identifier": "Lanskroun",
+      "Name": "Lanckorona"
+    },
+    {
+      "Identifier": "Morava",
+      "Name": "Morawy"
+    },
+    {
+      "Identifier": "NovyJicin",
+      "Name": "Nowy Jiczyn"
+    },
+    {
+      "Identifier": "Zaolzie",
+      "Name": "Zaolzie"
+    },
+    {
+      "Identifier": "CeskeSlezsko",
+      "Name": "Czeski Śląsk"
+    },
+    {
+      "Identifier": "FrydekMistek",
+      "Name": "Frydek-Mistek"
+    },
+    {
+      "Identifier": "Svitava",
+      "Name": "Switawa"
+    },
+    {
+      "Identifier": "Znojmo",
+      "Name": "Znojmo"
+    },
+    {
+      "Identifier": "Hlucin",
+      "Name": "Hulczyn"
+    },
+    {
+      "Identifier": "SlovenskeZaolzie",
+      "Name": "Słowackie Zaolzie"
+    },
+    {
+      "Identifier": "Bratislava",
+      "Name": "Bratysława"
+    },
+    {
+      "Identifier": "Trencin",
+      "Name": "Trenczyn"
+    },
+    {
+      "Identifier": "Kosice",
+      "Name": "Koszyce"
+    },
+    {
+      "Identifier": "Sobrance",
+      "Name": "Sobrance"
+    },
+    {
+      "Identifier": "Zakarpattia",
+      "Name": "Zakarpacie"
+    },
+    {
+      "Identifier": "Uzhorod",
+      "Name": "Użhorod"
+    },
+    {
+      "Identifier": "Zemaitija",
+      "Name": "Żmudź"
+    },
+    {
+      "Identifier": "Klaipeda",
+      "Name": "Kłajpeda"
+    },
+    {
+      "Identifier": "Aukstaitija",
+      "Name": "Auksztota"
+    },
+    {
+      "Identifier": "Suduva",
+      "Name": "Jaćwież"
+    },
+    {
+      "Identifier": "Alytus",
+      "Name": "Olita"
+    },
+    {
+      "Identifier": "Dzukija",
+      "Name": "Dzukia"
+    },
+    {
+      "Identifier": "Kurzeme",
+      "Name": "Kurlandia"
+    },
+    {
+      "Identifier": "Zemgale",
+      "Name": "Semigalia"
+    },
+    {
+      "Identifier": "Latgale",
+      "Name": "Łatgalia"
+    },
+    {
+      "Identifier": "Tallinn",
+      "Name": "Tallinn"
+    },
+    {
+      "Identifier": "Cluj",
+      "Name": "Kluż"
+    },
+    {
+      "Identifier": "Salonta",
+      "Name": "Salonta"
+    },
+    {
+      "Identifier": "AlbaIulia",
+      "Name": "Alba Iulia"
+    },
+    {
+      "Identifier": "TirguMures",
+      "Name": "Tîrgu Mureș"
+    },
+    {
+      "Identifier": "Timisoara",
+      "Name": "Timișoara"
+    },
+    {
+      "Identifier": "Craiova",
+      "Name": "Krajowa"
+    },
+    {
+      "Identifier": "Bucuresti",
+      "Name": "Bukareszt"
+    },
+    {
+      "Identifier": "TarguSecuiesc",
+      "Name": "Târgu Secuiesc"
+    },
+    {
+      "Identifier": "Brasov",
+      "Name": "Braszów"
+    },
+    {
+      "Identifier": "Hotin",
+      "Name": "Chocim"
+    },
+    {
+      "Identifier": "Cernauti",
+      "Name": "Czerniowice"
+    },
+    {
+      "Identifier": "Suceava",
+      "Name": "Suczawa"
+    },
+    {
+      "Identifier": "Dorohoi",
+      "Name": "Dorohoi"
+    },
+    {
+      "Identifier": "Briceni",
+      "Name": "Bryczany"
+    },
+    {
+      "Identifier": "Balti",
+      "Name": "Bielce"
+    },
+    {
+      "Identifier": "Iasi",
+      "Name": "Jassy"
+    },
+    {
+      "Identifier": "MiercureaCiuc",
+      "Name": "Miercurea Ciuc"
+    },
+    {
+      "Identifier": "Chisinau",
+      "Name": "Kiszyniów"
+    },
+    {
+      "Identifier": "CetateaAlba",
+      "Name": "Akerman"
+    },
+    {
+      "Identifier": "Ismail",
+      "Name": "Izmaił"
+    },
+    {
+      "Identifier": "Tulcea",
+      "Name": "Tulcza"
+    },
+    {
+      "Identifier": "Cahul",
+      "Name": "Kaguł"
+    },
+    {
+      "Identifier": "Galati",
+      "Name": "Gałacz"
+    },
+    {
+      "Identifier": "IntorsuraBuzaului",
+      "Name": "Întorsura Buzăului"
+    },
+    {
+      "Identifier": "Constanta",
+      "Name": "Konstanca"
+    },
+    {
+      "Identifier": "Calarasi",
+      "Name": "Călărași "
+    },
+    {
+      "Identifier": "Bazargic",
+      "Name": "Bazardżik"
+    },
+    {
+      "Identifier": "Silistra",
+      "Name": "Silistra"
+    },
+    {
+      "Identifier": "Lastovo",
+      "Name": "Lagosta"
+    },
+    {
+      "Identifier": "CresLosinj",
+      "Name": "Cherso-Lussino"
+    },
+    {
+      "Identifier": "Zara",
+      "Name": "Zara"
+    },
+    {
+      "Identifier": "Eisenstadt",
+      "Name": "Eisenstadt"
+    },
+    {
+      "Identifier": "SanktPolten",
+      "Name": "Sankt Pölten"
+    },
+    {
+      "Identifier": "Graz",
+      "Name": "Graz"
+    },
+    { "Identifier": "Oberwart" },
+    {
+      "Identifier": "Klagenfurt",
+      "Name": "Klagenfurt"
+    },
+    {
+      "Identifier": "Linz",
+      "Name": "Linz"
+    },
+    {
+      "Identifier": "Salzburg",
+      "Name": "Salzburg"
+    },
+    {
+      "Identifier": "Lienz",
+      "Name": "Lienz"
+    },
+    {
+      "Identifier": "Innsbruck",
+      "Name": "Innsbruck"
+    },
+    {
+      "Identifier": "Voralberg",
+      "Name": "Voralberg"
+    },
+    {
+      "Identifier": "Wien",
+      "Name": "Wiedeń"
+    },
+    {
+      "Identifier": "Liechtenstein",
+      "Name": "Liechtenstein"
+    },
+    {
+      "Identifier": "Schweiz",
+      "Name": "Szwajcaria"
+    },
+    {
+      "Identifier": "Alfold",
+      "Name": "Wielka Nizina Węgierska"
+    },
+    {
+      "Identifier": "Transdanubia",
+      "Name": "Kraj Zadunajski"
+    },
+    {
+      "Identifier": "Tiszantul",
+      "Name": "Kraj Zacisański"
+    },
+    {
+      "Identifier": "Ljubljana",
+      "Name": "Lublana"
+    },
+    { "Identifier": "Maribor" },
+    {
+      "Identifier": "Platak",
+      "Name": "Platak"
+    },
+    {
+      "Identifier": "Prekmurje",
+      "Name": "Prekmurje"
+    },
+    {
+      "Identifier": "Zagreb",
+      "Name": "Zagrzeb"
+    },
+    {
+      "Identifier": "Medimurje",
+      "Name": "Żupania medzimurska"
+    },
+    {
+      "Identifier": "BanjaLuka",
+      "Name": "Banja Luka"
+    },
+    {
+      "Identifier": "Baranja",
+      "Name": "Żupania osijecko-barańska"
+    },
+    {
+      "Identifier": "Sremska",
+      "Name": "Sremska Mitrovica"
+    },
+    {
+      "Identifier": "NoviSad",
+      "Name": "Nowy Sad"
+    },
+    {
+      "Identifier": "WestBanat",
+      "Name": "Zachodni Banat"
+    },
+    {
+      "Identifier": "Pozarevac",
+      "Name": "Požarevac"
+    },
+    {
+      "Identifier": "Cacak",
+      "Name": "Čačak"
+    },
+    {
+      "Identifier": "Sarajevo",
+      "Name": "Sarajewo"
+    },
+    {
+      "Identifier": "Cetinje",
+      "Name": "Cetynia"
+    },
+    {
+      "Identifier": "Nis",
+      "Name": "Nisz"
+    },
+    {
+      "Identifier": "Pirot",
+      "Name": "Pirot"
+    },
+    {
+      "Identifier": "Skopje",
+      "Name": "Skopje"
+    },
+    {
+      "Identifier": "Debar",
+      "Name": "Debar"
+    },
+    {
+      "Identifier": "Prishtina",
+      "Name": "Prisztina"
+    },
+    {
+      "Identifier": "Ulcinj",
+      "Name": "Ulcinj"
+    },
+    {
+      "Identifier": "Rozaje",
+      "Name": "Rožaje"
+    },
+    {
+      "Identifier": "Tutin",
+      "Name": "Tutin"
+    },
+    {
+      "Identifier": "Vranje",
+      "Name": "Vranje"
+    },
+    {
+      "Identifier": "Mitrovica",
+      "Name": "Mitrowica"
+    },
+    {
+      "Identifier": "Tara",
+      "Name": "Tara"
+    },
+    {
+      "Identifier": "Mostar",
+      "Name": "Mostar"
+    },
+    {
+      "Identifier": "Split",
+      "Name": "Split"
+    },
+    {
+      "Identifier": "Dubrovnik",
+      "Name": "Dubrownik"
+    },
+    {
+      "Identifier": "Mljet",
+      "Name": "Mljet"
+    },
+    {
+      "Identifier": "VisKorcula",
+      "Name": "Vis i Korczula"
+    },
+    {
+      "Identifier": "Kotor",
+      "Name": "Kotor"
+    },
+    {
+      "Identifier": "Bitola",
+      "Name": "Bitola"
+    },
+    {
+      "Identifier": "Bosilegrad",
+      "Name": "Bosilegrad"
+    },
+    {
+      "Identifier": "Vratsa",
+      "Name": "Wraca"
+    },
+    {
+      "Identifier": "Sofiya",
+      "Name": "Sofia"
+    },
+    {
+      "Identifier": "Pleven",
+      "Name": "Plewen"
+    },
+    {
+      "Identifier": "Plovdiv",
+      "Name": "Płowdiw"
+    },
+    {
+      "Identifier": "StaraZagora",
+      "Name": "Stara Zagora"
+    },
+    {
+      "Identifier": "Shumen",
+      "Name": "Szumen"
+    },
+    {
+      "Identifier": "Ruse",
+      "Name": "Ruse"
+    },
+    {
+      "Identifier": "Burgas",
+      "Name": "Burgas"
+    },
+    {
+      "Identifier": "Tirana",
+      "Name": "Tirana"
+    },
+    {
+      "Identifier": "North Epirus",
+      "Name": "Gjirokastër"
+    },
+    {
+      "Identifier": "Alexandropoulis",
+      "Name": "Aleksandropolis"
+    },
+    {
+      "Identifier": "Komotini",
+      "Name": "Komotini"
+    },
+    {
+      "Identifier": "Serres",
+      "Name": "Seres"
+    },
+    {
+      "Identifier": "Thessaloniki",
+      "Name": "Saloniki"
+    },
+    {
+      "Identifier": "Ioannina",
+      "Name": "Janina"
+    },
+    {
+      "Identifier": "Larissa",
+      "Name": "Larisa"
+    },
+    {
+      "Identifier": "Olympus",
+      "Name": "Olimp"
+    },
+    {
+      "Identifier": "Sporades",
+      "Name": "Sporady"
+    },
+    {
+      "Identifier": "Athens",
+      "Name": "Ateny"
+    },
+    {
+      "Identifier": "Peloponnese",
+      "Name": "Peloponez"
+    },
+    {
+      "Identifier": "IonianIslands",
+      "Name": "Wyspy Jońskie"
+    },
+    {
+      "Identifier": "AegeanIslands",
+      "Name": "Wyspy Egejskie"
+    },
+    {
+      "Identifier": "Limnos",
+      "Name": "Limnos"
+    },
+    {
+      "Identifier": "Cyclades",
+      "Name": "Cyklady"
+    },
+    {
+      "Identifier": "Crete",
+      "Name": "Kreta"
+    },
+    {
+      "Identifier": "Dodecanese",
+      "Name": "Dodekanez"
+    },
+    {
+      "Identifier": "Proskuriv",
+      "Name": "Płoskirów"
+    },
+    {
+      "Identifier": "Shepietivka",
+      "Name": "Szepietówka"
+    },
+    {
+      "Identifier": "Berdichiv",
+      "Name": "Berdyczów"
+    },
+    {
+      "Identifier": "Zhytomyr",
+      "Name": "Żytomierz"
+    },
+    {
+      "Identifier": "Tiraspol",
+      "Name": "Tyraspol"
+    },
+    {
+      "Identifier": "Birzula",
+      "Name": "Birzuła"
+    },
+    {
+      "Identifier": "Balta",
+      "Name": "Bałta"
+    },
+    {
+      "Identifier": "Rybnitsa",
+      "Name": "Rybnica"
+    },
+    {
+      "Identifier": "MohylivPodilskyi",
+      "Name": "Mohylów Podolski"
+    },
+    {
+      "Identifier": "Vinnitsa",
+      "Name": "Winnica"
+    },
+    {
+      "Identifier": "Savran",
+      "Name": "Sawrań"
+    },
+    {
+      "Identifier": "Ulyanovka",
+      "Name": "Uljanowka"
+    },
+    {
+      "Identifier": "Hajsyn",
+      "Name": "Hajsyn"
+    },
+    {
+      "Identifier": "Odessa",
+      "Name": "Odessa"
+    },
+    {
+      "Identifier": "Cherkasy",
+      "Name": "Czerkasy"
+    },
+    {
+      "Identifier": "Mykolaiv",
+      "Name": "Mikołajów"
+    },
+    {
+      "Identifier": "Kyiv",
+      "Name": "Kijów"
+    },
+    {
+      "Identifier": "Brovary",
+      "Name": "Browary"
+    },
+    {
+      "Identifier": "Chernihiv",
+      "Name": "Czernihów"
+    },
+    {
+      "Identifier": "Putivl",
+      "Name": "Putywl"
+    },
+    {
+      "Identifier": "Kharkiv",
+      "Name": "Charków"
+    },
+    {
+      "Identifier": "Poltava",
+      "Name": "Połtawa"
+    },
+    {
+      "Identifier": "Donetsk",
+      "Name": "Donieck"
+    },
+    {
+      "Identifier": "Dolzhansk",
+      "Name": "Dołżańsk"
+    },
+    {
+      "Identifier": "Stanitsa",
+      "Name": "Stanica Ługańska"
+    },
+    {
+      "Identifier": "Zaporozhe",
+      "Name": "Zaporoże"
+    },
+    {
+      "Identifier": "Minsk",
+      "Name": "Mińsk"
+    },
+    {
+      "Identifier": "Asipovichy",
+      "Name": "Osipowicze"
+    },
+    {
+      "Identifier": "Krupki",
+      "Name": "Krupki"
+    },
+    {
+      "Identifier": "Biahoml",
+      "Name": "Biehomla"
+    },
+    {
+      "Identifier": "Mahilou",
+      "Name": "Mohylew"
+    },
+    {
+      "Identifier": "Vitebsk",
+      "Name": "Witebsk"
+    },
+    {
+      "Identifier": "Polatsk",
+      "Name": "Połock"
+    },
+    {
+      "Identifier": "Krychau",
+      "Name": "Krzyczew"
+    },
+    {
+      "Identifier": "Mazyr",
+      "Name": "Mozyrz"
+    },
+    {
+      "Identifier": "Parychy",
+      "Name": "Parycze"
+    },
+    {
+      "Identifier": "Rechytsa",
+      "Name": "Rzeczyca"
+    },
+    {
+      "Identifier": "Zhlobin",
+      "Name": "Żłobin"
+    },
+    {
+      "Identifier": "Gomel",
+      "Name": "Homiel"
+    },
+    {
+      "Identifier": "Dovsk",
+      "Name": "Dowsk"
+    },
+    {
+      "Identifier": "Dubrovna",
+      "Name": "Dubrowna"
+    },
+    {
+      "Identifier": "Belgorod",
+      "Name": "Biełgorod"
+    },
+    {
+      "Identifier": "Klintsy",
+      "Name": "Starodubszczyzna"
+    },
+    {
+      "Identifier": "Shumiachi",
+      "Name": "Szumiaczi"
+    },
+    {
+      "Identifier": "Rudnya",
+      "Name": "Rudnia"
+    },
+    {
+      "Identifier": "Nevel",
+      "Name": "Newel"
+    }
+  ]
+}

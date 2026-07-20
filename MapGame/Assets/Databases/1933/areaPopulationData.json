@@ -1,0 +1,1438 @@
+﻿{
+  "AreaPopulations": [
+    {
+      "Identifier": "Gdynia",
+      "Population": 154780,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "81%"
+        },
+        {
+          "Language": "German",
+          "Population": "19%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Zlotow",
+      "Population": 165030,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "85%"
+        },
+        {
+          "Language": "German",
+          "Population": "15%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Torun",
+      "Population": 615000,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "88%"
+        },
+        {
+          "Language": "German",
+          "Population": "12%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Poznan",
+      "Population": 1279530,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "91%"
+        },
+        {
+          "Language": "German",
+          "Population": "9%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Kepno",
+      "Population": 448130,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "95%"
+        },
+        {
+          "Language": "German",
+          "Population": "5%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Bydgoszcz",
+      "Population": 325260,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "85%"
+        },
+        {
+          "Language": "German",
+          "Population": "15%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Warszawa",
+      "Population": 2562500,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "90%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "German",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Plock",
+      "Population": 615000,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "90%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "German",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Inowroclaw",
+      "Population": 228650,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "92%"
+        },
+        {
+          "Language": "German",
+          "Population": "8%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Piotrkow",
+      "Population": 376310,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "91%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "9%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Lodz",
+      "Population": 1132030,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "75%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "15%"
+        },
+        {
+          "Language": "German",
+          "Population": "10%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Kalisz",
+      "Population": 530030,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "91%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "German",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Turek",
+      "Population": 419810,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "93%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "6%"
+        },
+        {
+          "Language": "German",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Zawiercie",
+      "Population": 184500,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "91%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "9%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Kielce",
+      "Population": 2050000,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "92%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Zaglebie",
+      "Population": 256250,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "88%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "11%"
+        },
+        {
+          "Language": "German",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Czestochowa",
+      "Population": 177330,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "92%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Chelm",
+      "Population": 813240,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "66%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "21%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "13%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Lublin",
+      "Population": 1012020,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "85%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "14%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Biala Podlaska",
+      "Population": 685010,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "84%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Oswiecim",
+      "Population": 373310,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "94%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "5%"
+        },
+        {
+          "Language": "German",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Sacz",
+      "Population": 349150,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "85%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "10%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "5%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Spisz i Orawa",
+      "Population": 135100,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "96%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "3%"
+        },
+        {
+          "Language": "Other",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Krakow",
+      "Population": 1143070,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "92%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Chrzanow",
+      "Population": 141550,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "90%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "10%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Bielsko",
+      "Population": 164000,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "75%"
+        },
+        {
+          "Language": "German",
+          "Population": "20%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "5%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Katowice",
+      "Population": 1127500,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "93%"
+        },
+        {
+          "Language": "German",
+          "Population": "7%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Bialystok",
+      "Population": 535760,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "68%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "13%"
+        },
+        {
+          "Language": "Other",
+          "Population": "4%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Sokolka",
+      "Population": 74000,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "90%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Wschodnie Grodno",
+      "Population": 87370,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "47%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "30%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "17%"
+        },
+        {
+          "Language": "Other",
+          "Population": "6%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Zachodnie Grodno",
+      "Population": 76450,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "47%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "30%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "17%"
+        },
+        {
+          "Language": "Other",
+          "Population": "6%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Wolkowysk",
+      "Population": 122930,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "50%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "42%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Alekszyce",
+      "Population": 30750,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "48%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "36%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "12%"
+        },
+        {
+          "Language": "Other",
+          "Population": "4%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Druskieniki",
+      "Population": 21840,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "47%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "30%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "17%"
+        },
+        {
+          "Language": "Other",
+          "Population": "6%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Marcinkance",
+      "Population": 32760,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "47%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "30%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "17%"
+        },
+        {
+          "Language": "Other",
+          "Population": "6%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Lomza",
+      "Population": 521430,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "89%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "11%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Suwalki",
+      "Population": 112880,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "78%"
+        },
+        {
+          "Language": "Other",
+          "Population": "15%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "7%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Augustow",
+      "Population": 58170,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "97%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "2%"
+        },
+        {
+          "Language": "Other",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "DabrowaBialostocka",
+      "Population": 31710,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "90%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Sopockinie",
+      "Population": 32760,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "47%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "30%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "17%"
+        },
+        {
+          "Language": "Other",
+          "Population": "6%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Wilno",
+      "Population": 487720,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "75%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Lithuanian",
+          "Population": "5%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "3%"
+        },
+        {
+          "Language": "Other",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Oszmiana",
+      "Population": 107230,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "81%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "10%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "6%"
+        },
+        {
+          "Language": "Lithuanian",
+          "Population": "3%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Dukszty",
+      "Population": 27980,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "50%"
+        },
+        {
+          "Language": "Lithuanian",
+          "Population": "32%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "6%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "6%"
+        },
+        {
+          "Language": "Other",
+          "Population": "6%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Braslaw",
+      "Population": 249140,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "58%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "29%"
+        },
+        {
+          "Language": "Other",
+          "Population": "9%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "4%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Orany",
+      "Population": 43970,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "84%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "Lithuanian",
+          "Population": "5%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "3%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Wilejka",
+      "Population": 298230,
+      "Languages": [
+        {
+          "Language": "Belarusian",
+          "Population": "50%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "42%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "6%"
+        },
+        {
+          "Language": "Other",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Baranowicze",
+      "Population": 384260,
+      "Languages": [
+        {
+          "Language": "Belarusian",
+          "Population": "50%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "41%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "Other",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Lida",
+      "Population": 243860,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "81%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "10%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "7%"
+        },
+        {
+          "Language": "Other",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Ejszyszki",
+      "Population": 37610,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "81%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "10%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "7%"
+        },
+        {
+          "Language": "Other",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Molodeczno",
+      "Population": 211980,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "54%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "40%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "5%"
+        },
+        {
+          "Language": "Other",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Nowogrodek",
+      "Population": 282950,
+      "Languages": [
+        {
+          "Language": "Belarusian",
+          "Population": "60%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "32%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "7%"
+        },
+        {
+          "Language": "Other",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Ostryna",
+      "Population": 16480,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "81%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "10%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "7%"
+        },
+        {
+          "Language": "Other",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Dubicze",
+      "Population": 20750,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "68%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "13%"
+        },
+        {
+          "Language": "Other",
+          "Population": "4%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Brzesc",
+      "Population": 393350,
+      "Languages": [
+        {
+          "Language": "Local",
+          "Population": "60%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "12%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "10%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "3%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Pinsk",
+      "Population": 334700,
+      "Languages": [
+        {
+          "Language": "Local",
+          "Population": "65%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "12%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "6%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Kowel",
+      "Population": 395770,
+      "Languages": [
+        {
+          "Language": "Ukrainian",
+          "Population": "73%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "10%"
+        },
+        {
+          "Language": "Other",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Pohost Zarzeczny",
+      "Population": 37780,
+      "Languages": [
+        {
+          "Language": "Local",
+          "Population": "65%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "12%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "6%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Pruzana",
+      "Population": 77910,
+      "Languages": [
+        {
+          "Language": "Local",
+          "Population": "52%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "22%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "17%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "9%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Bereza Kartuska",
+      "Population": 33390,
+      "Languages": [
+        {
+          "Language": "Local",
+          "Population": "52%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "22%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "17%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "9%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Swislocz",
+      "Population": 26340,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "50%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "42%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Wysokie Litewskie",
+      "Population": 44260,
+      "Languages": [
+        {
+          "Language": "Local",
+          "Population": "60%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "15%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "12%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "10%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "3%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Hancewicze",
+      "Population": 98580,
+      "Languages": [
+        {
+          "Language": "Local",
+          "Population": "69%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "13%"
+        },
+        {
+          "Language": "Belarusian",
+          "Population": "10%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "7%"
+        },
+        {
+          "Language": "Other",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Wlodzimierz",
+      "Population": 1012040,
+      "Languages": [
+        {
+          "Language": "Ukrainian",
+          "Population": "68%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "18%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "10%"
+        },
+        {
+          "Language": "German",
+          "Population": "3%"
+        },
+        {
+          "Language": "Other",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Sarny",
+      "Population": 735860,
+      "Languages": [
+        {
+          "Language": "Ukrainian",
+          "Population": "68%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "16%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "10%"
+        },
+        {
+          "Language": "German",
+          "Population": "3%"
+        },
+        {
+          "Language": "Other",
+          "Population": "3%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Hlynne",
+      "Population": 25630,
+      "Languages": [
+        {
+          "Language": "Ukrainian",
+          "Population": "68%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "16%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "10%"
+        },
+        {
+          "Language": "German",
+          "Population": "3%"
+        },
+        {
+          "Language": "Other",
+          "Population": "3%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Rzeszow",
+      "Population": 620660,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "94%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "5%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Przemysl",
+      "Population": 937020,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "60%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "30%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "German",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Lwow",
+      "Population": 1492980,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "45%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "40%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "13%"
+        },
+        {
+          "Language": "German",
+          "Population": "2%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Krystynopol",
+      "Population": 16780,
+      "Languages": [
+        {
+          "Language": "Ukrainian",
+          "Population": "55%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "39%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "6%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Stanislawow",
+      "Population": 1517290,
+      "Languages": [
+        {
+          "Language": "Ukrainian",
+          "Population": "69%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "22%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "8%"
+        },
+        {
+          "Language": "German",
+          "Population": "1%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Tarnopol",
+      "Population": 1640410,
+      "Languages": [
+        {
+          "Language": "Polish",
+          "Population": "49%"
+        },
+        {
+          "Language": "Ukrainian",
+          "Population": "46%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "5%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Sokal",
+      "Population": 95060,
+      "Languages": [
+        {
+          "Language": "Ukrainian",
+          "Population": "55%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "39%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "6%"
+        }
+      ]
+    },
+    {
+      "Identifier": "Bobrka",
+      "Population": 196490,
+      "Languages": [
+        {
+          "Language": "Ukrainian",
+          "Population": "68%"
+        },
+        {
+          "Language": "Polish",
+          "Population": "25%"
+        },
+        {
+          "Language": "Yiddish",
+          "Population": "6%"
+        },
+        {
+          "Language": "German",
+          "Population": "1%"
+        }
+      ]
+    }
+  ]
+}

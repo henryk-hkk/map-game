@@ -1,6 +1,6 @@
 ﻿using HelixToolkit.SharpDX;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Utils.Map;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -44,7 +44,7 @@ namespace MapGame.Core.Utils.Graphic
                     int logicIdx = (globalY * width) + globalX;
                     int byteIdx = (y * scaledStride) + (x * 4);
 
-                    int countryId = MapContext.GlobalCountryMap[logicIdx];
+                    int countryId = MapLogicContext.GlobalCountryMap[logicIdx];
 
                     if (countryColorsCache.TryGetValue(countryId, out byte[] bgra))
                     {
@@ -69,7 +69,7 @@ namespace MapGame.Core.Utils.Graphic
             SDFAgent.BorderThickness = 0.2f;
             SDFAgent.SmoothRadiusMultiplier = 1f;
 
-            var countrySdfPixels = SDFAgent.ComputeLocalSDF(MapContext.GlobalCountryMap, width, height, dirtyRect);
+            var countrySdfPixels = SDFAgent.ComputeLocalSDF(MapLogicContext.GlobalCountryMap, width, height, dirtyRect);
 
             SDFAgent.BorderThickness = originalThickness;
             SDFAgent.SmoothRadiusMultiplier = originalRadius;
@@ -99,7 +99,7 @@ namespace MapGame.Core.Utils.Graphic
                 [-2] = [0, 0, 0, 0]
             };
 
-            foreach (var region in MapContext.Regions)
+            foreach (var region in MapLogicContext.Regions)
             {
                 if (region.Owner != null)
                 {
@@ -107,7 +107,7 @@ namespace MapGame.Core.Utils.Graphic
 
                     if (!cache.ContainsKey(countryId))
                     {
-                        Color c = region.Owner.DisplayColor ?? Color.FromArgb(0, 0, 0, 0);
+                        Color c = region.Owner.DisplayColor;
                         byte alpha = (byte)(c.A == 0 ? 0 : 80);
                         cache[countryId] = [c.B, c.G, c.R, alpha];
                     }

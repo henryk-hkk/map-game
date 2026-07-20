@@ -1,6 +1,6 @@
 ﻿using HelixToolkit.SharpDX;
 using HelixToolkit.Wpf.SharpDX;
-using MapGame.Core.Utils.Geographic;
+using MapGame.Core.Utils.Map;
 using System;
 using System.Windows;
 using System.Windows.Media;
@@ -17,7 +17,7 @@ namespace MapGame.Core.Utils.Graphic
             var (_, scaledHeight, scaledStride) = MapUtils.GetScaledBitmapParams();
 
             GraphicContext.SelectionPixelData = new byte[scaledHeight * scaledStride];
-            MapContext.GlobalSelectionMask = new int[width * height];
+            MapLogicContext.GlobalSelectionMask = new int[width * height];
         }
 
         public static Int32Rect GetSelectionUpdateDirtyRect (int targetRegionId)
@@ -36,7 +36,7 @@ namespace MapGame.Core.Utils.Graphic
                 {
                     foreach (var pixel in area.Pixels)
                     {
-                        MapContext.GlobalSelectionMask[(pixel.Y * width) + pixel.X] = 1;
+                        MapLogicContext.GlobalSelectionMask[(pixel.Y * width) + pixel.X] = 1;
 
                         int baseX = pixel.X * SdfScale;
                         int baseY = pixel.Y * SdfScale;
@@ -81,7 +81,7 @@ namespace MapGame.Core.Utils.Graphic
             SDFAgent.BorderThickness = 0.2f;
             SDFAgent.SmoothRadiusMultiplier = 1.5f;
 
-            var sdfPixels = SDFAgent.ComputeLocalSDF(MapContext.GlobalSelectionMask, width, height, dirtyRect);
+            var sdfPixels = SDFAgent.ComputeLocalSDF(MapLogicContext.GlobalSelectionMask, width, height, dirtyRect);
 
             SDFAgent.BorderThickness = origThickness;
             SDFAgent.SmoothRadiusMultiplier = origRadius;
@@ -104,12 +104,12 @@ namespace MapGame.Core.Utils.Graphic
 
         public static void ClearSelection()
         {
-            if (MapContext.CurrentlySelectedRegionId == -1) return;
+            if (MapLogicContext.CurrentlySelectedRegionId == -1) return;
 
-            Array.Clear(MapContext.GlobalSelectionMask, 0, MapContext.GlobalSelectionMask.Length);
+            Array.Clear(MapLogicContext.GlobalSelectionMask, 0, MapLogicContext.GlobalSelectionMask.Length);
             Array.Clear(GraphicContext.SelectionPixelData, 0, GraphicContext.SelectionPixelData.Length);
 
-            MapContext.CurrentlySelectedRegionId = -1;
+            MapLogicContext.CurrentlySelectedRegionId = -1;
         }
 
         public static Int32Rect GetClearedSelectionDirtyRect()

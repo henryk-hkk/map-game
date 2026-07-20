@@ -1,0 +1,40 @@
+{
+  "HistoricalRegions": [
+    {
+      "Identifier": "LesserPoland",
+      "Areas": [ "Oswiecim", "Sacz", "Krakow", "Chrzanow", "Zawiercie", "Kielce", "Zaglebie", "Czestochowa", "Lublin", "Tarnobrzeg" ]
+    },
+    {
+      "Identifier": "GreaterPoland",
+      "Areas": [ "Poznan", "Bydgoszcz", "Inowroclaw", "Wolsztyn", "Chodziez", "Kalisz", "Meseritz", "Schneidemull", "DeutschKrone", "Tempelburg", "Zlotow" ]
+    },
+    {
+      "Identifier": "Pomerelia",
+      "Areas": [ "Torun", "Gdynia", "Danzig", "LauenburgButtow", "Konitz", "Elbing", "Marienburg" ]
+    },
+    {
+      "Identifier": "Sieradz",
+      "Areas": [ "Kepno", "Lodz", "Wielun" ]
+    },
+    {
+      "Identifier": "Masovia",
+      "Areas": [ "Warszawa", "Lowicz", "Skierniewice", "Gostynin", "Plock", "Ciechanow", "Ostroleka", "OstrowMazowiecka", "Leoncin", "Lomza", "Kolno" ]
+    },
+    {
+      "Identifier": "Kujawy",
+      "Areas": [ "Wloclawek", "Inowroclaw", "Bydgoszcz" ]
+    },
+    {
+      "Identifier": "Podlachia",
+      "Areas": [ "BialaPodlaska", "Bialystok" ]
+    },
+    {
+      "Identifier": "RedRuthenia",
+      "Areas": [ "Rzeszow", "Narol", "Przemysl", "UstrzykiDolne", "Krystynopol", "Chelm", "Lwow", "Sokal", "Bobrka", "Stanislawow", "Tarnopol", "Mielnica", "Luboml", "Lelikow", "Samary" ]
+    },
+    {
+      "Identifier": "Ermland",
+      "Areas": [ "Lautenburg", "Allenstein" ]
+    }
+  ]
+}
