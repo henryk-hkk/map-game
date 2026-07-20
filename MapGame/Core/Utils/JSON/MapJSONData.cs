@@ -17,4 +17,15 @@ namespace MapGame.Core.Utils.JSON
         public string NameTag { get; set; }
         public List<string> Areas { get; set; }
     }
+
+    public class HistoricalRegionsJSONData
+    {
+        public List<HistoricalRegionData> HistoricalRegions { get; set; }
+    }
+
+    public class HistoricalRegionData
+    {
+        public string Identifier { get; set; }
+        public List<string> Areas { get; set; }
+    }
 }

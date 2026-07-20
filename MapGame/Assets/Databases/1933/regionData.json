@@ -16,19 +16,19 @@
       "RegionId": 3,
       "Identifier": "PoznanVoi",
       "NameTag": "PoznanVoi",
-      "Areas": [ "Poznan", "Kepno", "Bydgoszcz" ]
+      "Areas": [ "Poznan", "Kepno", "Bydgoszcz", "Inowroclaw", "Wolsztyn", "Chodziez" ]
     },
     {
       "RegionId": 4,
       "Identifier": "WarsawVoi",
       "NameTag": "WarsawVoi",
-      "Areas": [ "Warszawa", "Plock", "Inowroclaw" ]
+      "Areas": [ "Warszawa", "Plock", "Wloclawek", "OstrowMazowiecka", "Ostroleka", "Leoncin", "Wyszkow", "Lowicz", "Radzymin", "Skierniewice", "Ciechanow", "Gostynin" ]
     },
     {
       "RegionId": 5,
       "Identifier": "LodzVoi",
       "NameTag": "LodzVoi",
-      "Areas": [ "Piotrkow", "Lodz", "Kalisz", "Turek" ]
+      "Areas": [ "Piotrkow", "Lodz", "Kalisz", "Turek", "Wielun" ]
     },
     {
       "RegionId": 6,
@@ -40,7 +40,7 @@
       "RegionId": 7,
       "Identifier": "LublinVoi",
       "NameTag": "LublinVoi",
-      "Areas": [ "Chelm", "Lublin", "Biala Podlaska" ]
+      "Areas": [ "Chelm", "Lublin", "Biala Podlaska", "Wlodawa", "Garwolin" ]
     },
     {
       "RegionId": 8,
@@ -58,37 +58,37 @@
       "RegionId": 10,
       "Identifier": "BialystokVoi",
       "NameTag": "BialystokVoi",
-      "Areas": [ "Bialystok", "Sokolka", "Wschodnie Grodno", "Zachodnie Grodno", "Wolkowysk", "Alekszyce", "Druskieniki", "Marcinkance", "Lomza", "Suwalki", "Augustow", "DabrowaBialostocka", "Sopockinie" ]
+      "Areas": [ "Bialystok", "Sokolka", "Wschodnie Grodno", "Zachodnie Grodno", "Wolkowysk", "Alekszyce", "Druskieniki", "Marcinkance", "Lomza", "Suwalki", "Augustow", "DabrowaBialostocka", "Sopockinie", "Bialowieza", "Odelsk", "Kolno" ]
     },
     {
       "RegionId": 11,
       "Identifier": "WilnoVoi",
       "NameTag": "WilnoVoi",
-      "Areas": [ "Wilno", "Oszmiana", "Dukszty", "Braslaw", "Orany", "Wilejka" ]
+      "Areas": [ "Wilno", "Oszmiana", "Dukszty", "Braslaw", "Orany", "Wilejka", "Swieciany", "Ostrowiec" ]
     },
     {
       "RegionId": 12,
       "Identifier": "NowogrodekVoi",
       "NameTag": "NowogrodekVoi",
-      "Areas": [ "Baranowicze", "Lida", "Ejszyszki", "Molodeczno", "Nowogrodek", "Ostryna", "Dubicze" ]
+      "Areas": [ "Baranowicze", "Lida", "Ejszyszki", "Molodeczno", "Nowogrodek", "Ostryna", "Dubicze", "Dziewieszniki" ]
     },
     {
       "RegionId": 14,
       "Identifier": "PolesianVoi",
       "NameTag": "PolesianVoi",
-      "Areas": [ "Brzesc", "Pinsk", "Kowel", "Pohost Zarzeczny", "Pruzana", "Bereza Kartuska", "Swislocz", "Wysokie Litewskie", "Hancewicze" ]
+      "Areas": [ "Brzesc", "Pinsk", "KamienKoszyrski", "Pohost Zarzeczny", "Pruzana", "Bereza Kartuska", "Swislocz", "Wysokie Litewskie", "Hancewicze", "Samary", "Lelikow" ]
     },
     {
       "RegionId": 15,
       "Identifier": "VolhynianVoi",
       "NameTag": "VolhynianVoi",
-      "Areas": [ "Wlodzimierz", "Sarny", "Hlynne" ]
+      "Areas": [ "Luboml", "Sarny", "Hlynne", "Kowel" ]
     },
     {
       "RegionId": 16,
       "Identifier": "LwowVoi",
       "NameTag": "LwowVoi",
-      "Areas": [ "Rzeszow", "Przemysl", "Lwow", "Krystynopol" ]
+      "Areas": [ "Rzeszow", "Przemysl", "Lwow", "Krystynopol", "Sokal", "Bobrka", "UstrzykiDolne", "Narol", "Tarnobrzeg" ]
     },
     {
       "RegionId": 17,
@@ -100,19 +100,19 @@
       "RegionId": 999,
       "Identifier": "TarnopolVoi",
       "NameTag": "TarnopolVoi",
-      "Areas": [ "Tarnopol" ]
+      "Areas": [ "Tarnopol", "Mielnica" ]
     },
     {
       "RegionId": 18,
       "Identifier": "EastPrussiaRG",
       "NameTag": "EastPrussiaRG",
-      "Areas": [ "Konigsberg", "Lyck", "Tilse", "Ermland", "Heilingbeil", "Allenstein", "Marienburg", "Preussisch Holland" ]
+      "Areas": [ "Konigsberg", "Lyck", "Tilse", "PreussischEylau", "Heilingbeil", "Allenstein", "Marienburg", "Preussisch Holland", "Marienwerder", "Lautenburg", "Elbing" ]
     },
     {
       "RegionId": 19,
       "Identifier": "PomeraniaRG",
       "NameTag": "PomeraniaRG",
-      "Areas": [ "Koslin", "Stralsund", "LauenburgButow", "Stettin" ]
+      "Areas": [ "Koslin", "Stralsund", "LauenburgButow", "Stettin", "Tempelburg" ]
     },
     {
       "RegionId": 20,
@@ -262,7 +262,7 @@
       "RegionId": 47,
       "Identifier": "PrutLand",
       "NameTag": "PrutLand",
-      "Areas": [ "Balti", "Iasi", "MiercureaCiuc" ]
+      "Areas": [ "Balti", "Iasi" ]
     },
     {
       "RegionId": 48,
@@ -274,7 +274,7 @@
       "RegionId": 49,
       "Identifier": "DunareaDeJosLand",
       "NameTag": "DunareaDeJosLand",
-      "Areas": [ "Ismail", "Tulcea", "Cahul", "Galati", "IntorsuraBuzaului" ]
+      "Areas": [ "Ismail", "Tulcea", "Cahul", "Galati" ]
     },
     {
       "RegionId": 50,

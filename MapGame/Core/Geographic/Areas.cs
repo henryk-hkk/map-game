@@ -9,14 +9,124 @@ namespace MapGame.Core.Geographic
     public abstract class Area
     {
         public abstract bool Includes(Position pos);
-        public string? Identifier { get; set; }
+        public string Identifier { get; set; } = string.Empty;
         public string? Name {  get => GetDisplayName(); }
         public int? ParentRegionId { get; set; }
-        public int? Population { get; set; }
+        public int Population { get => GetOverallPopulation(); set => SetOverallPopulation(value); }
+        private Dictionary<string, int> _languagePopulations = [];
+        private Dictionary<string, int> _languagePercentages = [];
+        public Dictionary<string, int> LanguagePopulations { get => _languagePopulations; set => SetLanguagePopulations(value); }
+        public Dictionary<string, int> LanguagePercentages { get => _languagePercentages; set => SetLanguagePercentages(value); }
+        public void InitPopulationData(int totalPopulation, Dictionary<string, int> percentages)
+        {
+            _languagePercentages = percentages ?? [];
+            _languagePopulations.Clear();
 
+            foreach (var language in _languagePercentages)
+            {
+                _languagePopulations[language.Key] = (int)(language.Value / 100.0 * totalPopulation);
+            }
+
+            AdjustLanguagePopulation(totalPopulation);
+        }
         protected string GetDisplayName()
         {
-            return LanguageContext.AreaNames.TryGetValue(Identifier, out string name) ? name : "";
+            return (!string.IsNullOrEmpty(Identifier) && LanguageContext.AreaNames.TryGetValue(Identifier, out string name)) ? name : "";
+        }
+
+        protected int GetOverallPopulation()
+        {
+            if (_languagePopulations == null || _languagePopulations.Count == 0) return 0;
+            return _languagePopulations.Values.Sum();
+        }
+
+        protected void SetOverallPopulation(int population)
+        {
+            if (population <= 0)
+            {
+                _languagePopulations.Clear();
+                _languagePercentages.Clear();
+                return;
+            }
+
+            int currentPopulation = GetOverallPopulation();
+            if (currentPopulation == 0)
+            {
+                _languagePopulations.Clear();
+                _languagePopulations.Add("Polish", population);
+                UpdateLanguagePercentages();
+                return;
+            }
+
+            int populationDif = population - currentPopulation;
+
+            var keys = _languagePopulations.Keys.ToList();
+            foreach (var key in keys)
+            {
+                if (_languagePercentages.TryGetValue(key, out int percentage))
+                {
+                    _languagePopulations[key] += (int)(percentage / 100.0 * populationDif);
+                }
+            }
+
+            AdjustLanguagePopulation(population);
+            UpdateLanguagePercentages();
+        }
+
+        protected void SetLanguagePopulations(Dictionary<string, int>? newPopulations)
+        {
+            _languagePopulations = newPopulations ?? [];
+            UpdateLanguagePercentages();
+        }
+
+        protected void SetLanguagePercentages(Dictionary<string, int>? newPercentages)
+        {
+            _languagePercentages = newPercentages ?? [];
+            UpdateLanguagePopulations();
+        }
+
+        protected void UpdateLanguagePopulations()
+        {
+            int wholePop = GetOverallPopulation();
+            if (wholePop == 0) return;
+
+            _languagePopulations.Clear();
+            foreach (var language in _languagePercentages)
+            {
+                _languagePopulations[language.Key] = (int)(language.Value / 100.0 * wholePop);
+            }
+
+            AdjustLanguagePopulation(wholePop);
+        }
+
+        protected void AdjustLanguagePopulation(int wantedPopulation)
+        {
+            if (_languagePopulations.Count == 0) return;
+            int currentPop = GetOverallPopulation();
+            if (currentPop == wantedPopulation) return;
+
+            int populationDif = wantedPopulation - currentPop;
+
+            var maxLanguage = _languagePopulations.OrderByDescending(x => x.Value).First().Key;
+            _languagePopulations[maxLanguage] += populationDif;
+        }
+
+        protected void UpdateLanguagePercentages()
+        {
+            int wholePop = GetOverallPopulation();
+            if (wholePop == 0)
+            {
+                _languagePercentages.Clear();
+                return;
+            }
+
+            _languagePercentages.Clear();
+            foreach (var language in _languagePopulations)
+            {
+                _languagePercentages[language.Key] = (int)((double)language.Value / wholePop * 100.0);
+            }
+
+            MathUtils.AdjustPercentage(_languagePercentages);
         }
     }
 

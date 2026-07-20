@@ -1,10 +1,12 @@
 ﻿
+using HelixToolkit.SharpDX;
 using HelixToolkit.SharpDX.Utilities;
 using HelixToolkit.Wpf.SharpDX;
 using MapGame.Core.Geographic;
 using MapGame.Core.Utils;
 using MapGame.Core.Utils.Map;
 using MapGame.MVVM.Models;
+using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,7 +32,10 @@ namespace MapGame.Core
         public static bool[]? RiverMask;
         public static bool[]? LakeMask;
 
-        public static List<PixelArea> Areas;
+        public static List<PixelArea> Areas = [];
+
+        public static List<HistoricalRegion> HistoricalRegions;
+        public static Dictionary<string, HistoricalRegion> HistoricalRegionIdentifiers;
 
         //public static Position Pos1 = new Position(3180, 966), Pos2 = new Position(3167, 1000), Pos3 = new Position(3186, 1002);
         //public static Position[] posList = {Pos1,Pos2,Pos3 };
@@ -63,6 +68,8 @@ namespace MapGame.Core
 
     public static class GraphicContext
     {
+        public static IEffectsManager? EffectsManager;
+
         public const int SdfScale = 2;
         public static BitmapImage? TextureMap;
         public static BitmapImage? RiverTexture;
@@ -90,6 +97,9 @@ namespace MapGame.Core
 
         public static byte[] MasterOverlayPixelData;
         public static PhongMaterial OverlayMaterial;
+
+        public static Texture2D? MasterOverlayD3DTexture;
+        public static ShaderResourceView? MasterOverlaySRV;
 
         public static Dictionary<string, Color> CountryColorTags = [];
 

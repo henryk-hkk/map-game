@@ -4,6 +4,7 @@ using MapGame.Core;
 using MapGame.Core.Geographic;
 using MapGame.Core.Utils.Map;
 using MapGame.MVVM.ViewModels;
+using MapGame.MVVM.Views.Components;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
@@ -21,26 +22,87 @@ namespace MapGame.MVVM.Views
 {
     public partial class MainWindow : Window
     {
-        private Color? _currentPanelRegionColor = null;
         private DateTime _lastMouseMoveTime;
+        private bool _isConsoleOpen = false;
+
+
+        private readonly DoubleAnimation _slideInFromLeft = new()
+        {
+            From = -340,
+            To = 0,
+            Duration = TimeSpan.FromMilliseconds(100)
+        };
 
         public MainWindow()
         {
             InitializeComponent();
+
+            var consoleViewModel = new DevConsoleViewModel();
+
+            consoleViewModel.OnLogRequested += DevConsoleControl.AppendLog;
+            consoleViewModel.OnClearRequested += DevConsoleControl.ClearConsole;
+
+            DevConsoleControl.DataContext = consoleViewModel;
+
+            //consoleViewModel.RequestLog("MapGame DevConsole", LogType.Normal);
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Oem3) // tylda ~
+            {
+                e.Handled = true;
+                ToggleConsole();
+            }
+        }
+
+        private void ToggleConsole()
+        {
+
+            double consoleWidth = DevConsoleControl.ActualWidth > 0 ? DevConsoleControl.ActualWidth : 400;
+
+            TranslateTransform transform = (TranslateTransform)DevConsoleControl.RenderTransform;
+
+            if (!_isConsoleOpen)
+            {
+                _isConsoleOpen = true;
+                DevConsoleControl.Visibility = Visibility.Visible;
+
+                DoubleAnimation slideInFromRight = new()
+                {
+                    From = consoleWidth,
+                    To = 0,
+                    Duration = TimeSpan.FromMilliseconds(100),
+                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
+                };
+
+                transform.BeginAnimation(TranslateTransform.XProperty, slideInFromRight);
+
+                // DevConsoleControl.FocusInput(); 
+            }
+            else
+            {
+                _isConsoleOpen = false;
+
+                DoubleAnimation slideOut = new()
+                {
+                    From = 0,
+                    To = consoleWidth,
+                    Duration = TimeSpan.FromMilliseconds(100),
+                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseIn }
+                };
+
+                slideOut.Completed += (s, e) => DevConsoleControl.Visibility = Visibility.Collapsed;
+
+                transform.BeginAnimation(TranslateTransform.XProperty, slideOut);
+            }
         }
 
         private void ShowRegionPanel()
         {
-            RegionInfoPanel.Visibility = Visibility.Visible;
+            RegionPanelControl.RegionInfoPanel.Visibility = Visibility.Visible;
 
-            DoubleAnimation slideIn = new()
-            {
-                From = -340,
-                To = 0,
-                Duration = TimeSpan.FromMilliseconds(100)
-            };
-
-            RegionInfoPanelTransform.BeginAnimation(TranslateTransform.XProperty, slideIn);
+            RegionPanelControl.RegionInfoPanelTransform.BeginAnimation(TranslateTransform.XProperty, _slideInFromLeft);
         }
 
         private void HideRegionPanel()
@@ -54,12 +116,12 @@ namespace MapGame.MVVM.Views
 
             slideOut.Completed += (sender, e) =>
             {
-                RegionInfoPanel.Visibility = Visibility.Collapsed;
+                RegionPanelControl.RegionInfoPanel.Visibility = Visibility.Collapsed;
             };
 
-            RegionInfoPanelTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
+            RegionPanelControl.RegionInfoPanelTransform.BeginAnimation(TranslateTransform.XProperty, slideOut);
         }
-        //private int _lastHoveredRegionId = -2;
+
 
         private void OnViewportMouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
@@ -74,23 +136,14 @@ namespace MapGame.MVVM.Views
                 return;
             }
 
-            Region? hoveredRegion = null;
-
-            foreach (Region region in MapLogicContext.Regions)
-            {
-                if (region.Includes(mousePosition))
-                {
-                    hoveredRegion = region;
-                    break;
-                }
-            }
+            Region? region = MapViewModel.GetRegionByMousePosition(mousePosition);
 
             int mapX = (int)mousePosition.X;
             int mapY = (int)mousePosition.Y;
 
-            if (hoveredRegion != null)
+            if (region != null)
             {
-                CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {LanguageContext.RegionNameTags[hoveredRegion.NameTag]} ({hoveredRegion.Id})";
+                CursorCoordsText.Text = $"X: {mapX} | Y: {mapY} | Region: {region.DisplayName} ({region.Id})";
             }
             else
             {
@@ -101,7 +154,7 @@ namespace MapGame.MVVM.Views
         private void OnTerrainMouseDown(object sender, RoutedEventArgs e)
         {
             if (e is not Mouse3DEventArgs mouseArgs) return;
-            if (this.DataContext is not MapViewModel viewModel) return;
+            if (DataContext is not MapViewModel viewModel) return;
 
 
             if (mouseArgs.OriginalInputEventArgs is MouseButtonEventArgs btnArgs && btnArgs.LeftButton == MouseButtonState.Pressed)
@@ -109,44 +162,21 @@ namespace MapGame.MVVM.Views
                 var mousePosition = GetBaricentricMousePosition(mouseArgs);
                 if (mousePosition == null) return;
 
-                Color clickedColor = MapUtils.GetColorByPosition(mousePosition);
+                Region? clickedRegion = MapViewModel.GetRegionByMousePosition(mousePosition);
 
-                if (clickedColor.R == 0 && clickedColor.G == 0 && clickedColor.B == 0) return;
-                _currentPanelRegionColor = clickedColor;
-
-                string oldRegionName = RegionNameText.Text;
-
-                if (GraphicContext.AreaColors.TryGetValue(clickedColor, out PixelArea? clickedArea) &&
-                    clickedArea != null &&
-                    clickedArea.ParentRegionId.HasValue)
-                {
-                    Region? clickedRegion = MapLogicContext.RegionIds[clickedArea.ParentRegionId.Value];
-
-                    string regionName = clickedRegion?.DisplayName ?? "Nieznany region";
-                    viewModel.SelectRegion(clickedColor, regionName);
-
-                    RegionNameText.Text = regionName;
-                }
-                else
-                {
-                    RegionNameText.Text = "Nieznany region";
-                }
-                
-                if (oldRegionName == RegionNameText.Text && RegionInfoPanel.Visibility == Visibility.Visible) return; 
-                
+                viewModel.SelectRegion(clickedRegion);
                 ShowRegionPanel();
             }
             else if (mouseArgs.OriginalInputEventArgs is MouseButtonEventArgs rightBtnArgs && rightBtnArgs.RightButton == MouseButtonState.Pressed)
             {
                 viewModel.DeselectRegion();
-                _currentPanelRegionColor = null;
                 HideRegionPanel();
             }
         }
 
         private void OnViewportMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (this.DataContext is not MapGame.MVVM.ViewModels.MapViewModel viewModel) return;
+            if (DataContext is not MapViewModel viewModel) return;
             viewModel.CameraController.Zoom(e.Delta);
 
             e.Handled = true;

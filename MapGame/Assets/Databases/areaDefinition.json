@@ -31,6 +31,18 @@
       "B": 95
     },
     {
+      "Identifier": "Wolsztyn",
+      "R": 205,
+      "G": 163,
+      "B": 57
+    },
+    {
+      "Identifier": "Chodziez",
+      "R": 140,
+      "G": 124,
+      "B": 163
+    },
+    {
       "Identifier": "Kepno",
       "R": 178,
       "G": 205,
@@ -43,19 +55,73 @@
       "B": 97
     },
     {
-      "Identifier": "Warszawa",
+      "Identifier": "Inowroclaw",
+      "R": 167,
+      "G": 170,
+      "B": 62
+    },
+    {
+      "Identifier": "Lowicz",
       "R": 137,
       "G": 42,
       "B": 69
     },
     {
+      "Identifier": "Skierniewice",
+      "R": 120,
+      "G": 182,
+      "B": 174
+    },
+    {
+      "Identifier": "OstrowMazowiecka",
+      "R": 140,
+      "G": 39,
+      "B": 69
+    },
+    {
+      "Identifier": "Ostroleka",
+      "R": 167,
+      "G": 37,
+      "B": 66
+    },
+    {
+      "Identifier": "Wyszkow",
+      "R": 74,
+      "G": 136,
+      "B": 43
+    },
+    {
+      "Identifier": "Warszawa",
+      "R": 174,
+      "G": 124,
+      "B": 43
+    },
+    {
+      "Identifier": "Radzymin",
+      "R": 163,
+      "G": 174,
+      "B": 39
+    },
+    {
+      "Identifier": "Leoncin",
+      "R": 66,
+      "G": 113,
+      "B": 42
+    },
+    {
       "Identifier": "Plock",
+      "R": 136,
+      "G": 182,
+      "B": 85
+    },
+    {
+      "Identifier": "Ciechanow",
       "R": 198,
       "G": 140,
       "B": 160
     },
     {
-      "Identifier": "Inowroclaw",
+      "Identifier": "Wloclawek",
       "R": 113,
       "G": 155,
       "B": 159
@@ -67,10 +133,22 @@
       "B": 43
     },
     {
-      "Identifier": "Lodz",
+      "Identifier": "Wielun",
       "R": 113,
       "G": 93,
       "B": 160
+    },
+    {
+      "Identifier": "Lodz",
+      "R": 78,
+      "G": 147,
+      "B": 101
+    },
+    {
+      "Identifier": "Gostynin",
+      "R": 85,
+      "G": 167,
+      "B": 116
     },
     {
       "Identifier": "Kalisz",
@@ -121,6 +199,18 @@
       "B": 132
     },
     {
+      "Identifier": "Wlodawa",
+      "R": 132,
+      "G": 89,
+      "B": 93
+    },
+    {
+      "Identifier": "Garwolin",
+      "R": 62,
+      "G": 66,
+      "B": 155
+    },
+    {
       "Identifier": "Biala Podlaska",
       "R": 28,
       "G": 109,
@@ -137,6 +227,12 @@
       "R": 255,
       "G": 0,
       "B": 0
+    },
+    {
+      "Identifier": "Tarnobrzeg",
+      "R": 213,
+      "G": 1,
+      "B": 1
     },
     {
       "Identifier": "Spisz i Orawa",
@@ -175,10 +271,22 @@
       "B": 155
     },
     {
-      "Identifier": "Sokolka",
+      "Identifier": "Bialowieza",
       "R": 52,
       "G": 99,
       "B": 99
+    },
+    {
+      "Identifier": "Sokolka",
+      "R": 170,
+      "G": 182,
+      "B": 43
+    },
+    {
+      "Identifier": "Odelsk",
+      "R": 47,
+      "G": 28,
+      "B": 182
     },
     {
       "Identifier": "Wschodnie Grodno",
@@ -217,10 +325,16 @@
       "B": 198
     },
     {
-      "Identifier": "Lomza",
+      "Identifier": "Kolno",
       "R": 120,
       "G": 186,
       "B": 128
+    },
+    {
+      "Identifier": "Lomza",
+      "R": 55,
+      "G": 51,
+      "B": 132
     },
     {
       "Identifier": "Suwalki",
@@ -252,6 +366,18 @@
       "G": 51,
       "B": 0
     },
+    {
+      "Identifier": "Swieciany",
+      "R": 198,
+      "G": 171,
+      "B": 56
+    },
+    {
+      "Identifier": "Ostrowiec",
+      "R": 194,
+      "G": 194,
+      "B": 28
+    },  
     {
       "Identifier": "Oszmiana",
       "R": 56,
@@ -295,10 +421,16 @@
       "B": 178
     },
     {
-      "Identifier": "Ejszyszki",
+      "Identifier": "Dziewieszniki",
       "R": 107,
       "G": 89,
       "B": 0
+    },
+    {
+      "Identifier": "Ejszyszki",
+      "R": 170,
+      "G": 182,
+      "B": 1
     },
     {
       "Identifier": "Molodeczno",
@@ -331,13 +463,25 @@
       "B": 58
     },
     {
+      "Identifier": "Lelikow",
+      "R": 190,
+      "G": 159,
+      "B": 57
+    },
+    {
+      "Identifier": "Samary",
+      "R": 190,
+      "G": 182,
+      "B": 85
+    },
+    {
       "Identifier": "Pinsk",
       "R": 35,
       "G": 70,
       "B": 132
     },
     {
-      "Identifier": "Kowel",
+      "Identifier": "KamienKoszyrski",
       "R": 147,
       "G": 132,
       "B": 186
@@ -379,9 +523,15 @@
       "B": 98
     },
     {
-      "Identifier": "Wlodzimierz",
+      "Identifier": "Kowel",
       "R": 96,
       "G": 53,
+      "B": 0
+    },
+    {
+      "Identifier": "Luboml",
+      "R": 167,
+      "G": 136,
       "B": 0
     },
     {
@@ -403,6 +553,12 @@
       "B": 58
     },
     {
+      "Identifier": "Narol",
+      "R": 174,
+      "G": 106,
+      "B": 57
+    },
+    {
       "Identifier": "Przemysl",
       "R": 0,
       "G": 107,
@@ -421,16 +577,40 @@
       "B": 0
     },
     {
+      "Identifier": "UstrzykiDolne",
+      "R": 93,
+      "G": 85,
+      "B": 93
+    },
+    {
       "Identifier": "Stanislawow",
       "R": 101,
       "G": 97,
       "B": 120
     },
     {
+      "Identifier": "Mielnica",
+      "R": 93,
+      "G": 24,
+      "B": 159
+    },
+    {
       "Identifier": "Tarnopol",
       "R": 194,
       "G": 51,
       "B": 120
+    },
+    {
+      "Identifier": "Sokal",
+      "R": 97,
+      "G": 155,
+      "B": 0
+    },
+    {
+      "Identifier": "Bobrka",
+      "R": 70,
+      "G": 132,
+      "B": 28
     },
     {
       "Identifier": "Konigsberg",
@@ -451,10 +631,22 @@
       "B": 147
     },
     {
-      "Identifier": "Ermland",
+      "Identifier": "Lautenburg",
       "R": 101,
       "G": 109,
       "B": 205
+    },
+    {
+      "Identifier": "Elbing",
+      "R": 151,
+      "G": 55,
+      "B": 205
+    },
+    {
+      "Identifier": "PreussischEylau",
+      "R": 70,
+      "G": 151,
+      "B": 130
     },
     {
       "Identifier": "Heilingbeil",
@@ -473,6 +665,12 @@
       "R": 136,
       "G": 198,
       "B": 155
+    },
+    {
+      "Identifier": "Marienwerder",
+      "R": 168,
+      "G": 133,
+      "B": 176
     },
     {
       "Identifier": "Preussisch Holland",
@@ -569,6 +767,12 @@
       "R": 143,
       "G": 51,
       "B": 23
+    },
+    {
+      "Identifier": "Tempelburg",
+      "R": 194,
+      "G": 43,
+      "B": 12
     },
     {
       "Identifier": "Konitz",
@@ -913,12 +1117,6 @@
       "B": 59
     },
     {
-      "Identifier": "MiercureaCiuc",
-      "R": 186,
-      "G": 209,
-      "B": 174
-    },
-    {
       "Identifier": "Chisinau",
       "R": 255,
       "G": 151,
@@ -953,12 +1151,6 @@
       "R": 213,
       "G": 43,
       "B": 124
-    },
-    {
-      "Identifier": "IntorsuraBuzaului",
-      "R": 186,
-      "G": 51,
-      "B": 198
     },
     {
       "Identifier": "Constanta",

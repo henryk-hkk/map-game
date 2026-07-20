@@ -2,7 +2,9 @@
 using HelixToolkit.Wpf.SharpDX;
 using MapGame.Core;
 using MapGame.Core.Engine;
+using MapGame.Core.Geographic;
 using MapGame.Core.Utils.Graphic;
+using MapGame.Core.Utils.Map;
 using System;
 using System.ComponentModel;
 using System.Numerics;
@@ -13,11 +15,11 @@ namespace MapGame.MVVM.ViewModels
 {
     public class MapViewModel : INotifyPropertyChanged
     {
-        private string _selectedRegionName = "Brak wyboru";
         private float _riverScrollY = 0f;
         private float _lakeScrollX = 0f;
         private float _lakeScrollY = 0f;
         private TimeSpan _lastRenderTime = TimeSpan.Zero;
+        private readonly Region _defaultRegion = new (0, "", "Brak wyboru");
 
         public IEffectsManager EffectsManager { get; }
 
@@ -72,11 +74,15 @@ namespace MapGame.MVVM.ViewModels
             set { _lakeMaterial = value; OnPropertyChanged(); }
         }
 
-        public string SelectedRegionName
+        private Region _selectedRegion;
+        public Region SelectedRegion
         {
-            get => _selectedRegionName;
-            set { _selectedRegionName = value; OnPropertyChanged(); }
+            get => _selectedRegion;
+            set { _selectedRegion = value; OnPropertyChanged(); OnPropertyChanged(nameof(RegionLanguagePercentages)); }
         }
+
+        public Dictionary<string, int> RegionLanguagePercentages =>
+            SelectedRegion?.LanguagePercentages ?? [];
 
         public MapViewModel()
         {
@@ -114,10 +120,21 @@ namespace MapGame.MVVM.ViewModels
             LakeMaterial = mapData.LakeMaterial;
         }
 
-        public void SelectRegion(Color areaColor, string regionName)
+        public static Region? GetRegionByMousePosition(Position mousePosition)
         {
-            MapDisplay.SelectRegionByAreaColor(areaColor);
-            SelectedRegionName = regionName;
+            Color clickedColor = MapUtils.GetColorByPosition(mousePosition);
+
+            if (clickedColor.R == 0 && clickedColor.G == 0 && clickedColor.B == 0) return null;
+
+            if (GraphicContext.AreaColors.TryGetValue(clickedColor, out PixelArea? clickedArea) &&
+                clickedArea != null &&
+                clickedArea.ParentRegionId.HasValue)
+            {
+                Region? clickedRegion = MapLogicContext.RegionIds[clickedArea.ParentRegionId.Value];
+
+                return clickedRegion;
+            }
+            return null;
         }
 
         private void OnGameUpdate(object sender, EventArgs e)
@@ -172,16 +189,25 @@ namespace MapGame.MVVM.ViewModels
                 };
             }
         }
-
+        public void SelectRegion(Region? region)
+        {
+            if (region == null)
+            {
+                DeselectRegion();
+                return;
+            }
+            MapDisplay.SelectRegion(region.Id);
+            SelectedRegion = region;
+        }
         public void DeselectRegion()
         {
-            SelectedRegionName = "Brak wyboru";
+            SelectedRegion = _defaultRegion;
             MapDisplay.ClearSelection();
         }
 
         public static void AnnexSelectedArea(Color areaColor, int newRegionId)
         {
-            Commands.SetAreaParent(areaColor, newRegionId);
+            EngineCommands.SetAreaParent(areaColor, newRegionId);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

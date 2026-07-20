@@ -4,6 +4,7 @@ using HelixToolkit.SharpDX.Core;
 using HelixToolkit.Wpf.SharpDX;
 using MapGame.Core.Geographic;
 using MapGame.Core.Utils.Graphic;
+using MapGame.MVVM.Models;
 using System;
 using System.IO;
 using System.Windows;
@@ -25,14 +26,15 @@ namespace MapGame.Core.Engine
 
     public static class MapDisplay
     {
-        public static void ChangeAreaOwner(PixelArea area, Region newRegion)
+        public static void ChangeAreaParent(Area area, Region newRegion)
         {
+            if (area is not PixelArea pArea) return;
             int newCountryId = newRegion?.Owner != null ? newRegion.Owner.Identifier.GetHashCode() : -2;
 
             int minX = int.MaxValue, minY = int.MaxValue;
             int maxX = int.MinValue, maxY = int.MinValue;
 
-            foreach (var pixel in area.Pixels)
+            foreach (var pixel in pArea.Pixels)
             {
                 int index1D = (pixel.Y * MapContext.Width) + pixel.X;
                 MapLogicContext.GlobalRegionMap[index1D] = newRegion.Id;
@@ -48,7 +50,102 @@ namespace MapGame.Core.Engine
 
             Int32Rect dirtyRect = GraphicUtils.GetDirtyRect(minX, maxX, minY, maxY, margin);
 
-            BorderTexturesGenerator.UpdateBorders(area.BorderPixelSegments);
+            BorderTexturesGenerator.UpdateBorders(pArea.BorderPixelSegments);
+            BorderTexturesGenerator.RefreshDirtyRect(dirtyRect);
+            CountryTexturesGenerator.RefreshDirtyRect(dirtyRect);
+
+            OverlayCompositor.ComposeAndApply(dirtyRect);
+        }
+        public static void ChangeAreasParent(IEnumerable<Area> areas, Region newRegion)
+        {
+            int newCountryId = newRegion?.Owner != null ? newRegion.Owner.Identifier.GetHashCode() : -2;
+            int minX = int.MaxValue, minY = int.MaxValue;
+            int maxX = int.MinValue, maxY = int.MinValue;
+
+            foreach (Area area in areas)
+            {
+                if (area is not PixelArea pArea) continue;
+                foreach (var pixel in pArea.Pixels)
+                {
+                    int index1D = (pixel.Y * MapContext.Width) + pixel.X;
+                    MapLogicContext.GlobalCountryMap[index1D] = newCountryId;
+
+                    if (pixel.X < minX) minX = pixel.X;
+                    if (pixel.X > maxX) maxX = pixel.X;
+                    if (pixel.Y < minY) minY = pixel.Y;
+                    if (pixel.Y > maxY) maxY = pixel.Y;
+                }
+
+                BorderTexturesGenerator.UpdateBorders(pArea.BorderPixelSegments);
+            }
+
+            int margin = 6;
+
+            Int32Rect dirtyRect = GraphicUtils.GetDirtyRect(minX, maxX, minY, maxY, margin);
+
+            BorderTexturesGenerator.RefreshDirtyRect(dirtyRect);
+            CountryTexturesGenerator.RefreshDirtyRect(dirtyRect);
+            OverlayCompositor.ComposeAndApply(dirtyRect);
+        }
+
+        public static void ChangeRegionOwner(Region region, Country newOwner)
+        {
+            int newCountryId = newOwner.Identifier.GetHashCode();
+
+            int minX = int.MaxValue, minY = int.MaxValue;
+            int maxX = int.MinValue, maxY = int.MinValue;
+
+            foreach (Area area in region)
+            {
+                if (area is not PixelArea pArea) continue;
+                foreach (var pixel in pArea.Pixels)
+                {
+                    int index1D = (pixel.Y * MapContext.Width) + pixel.X;
+                    MapLogicContext.GlobalCountryMap[index1D] = newCountryId;
+
+                    if (pixel.X < minX) minX = pixel.X;
+                    if (pixel.X > maxX) maxX = pixel.X;
+                    if (pixel.Y < minY) minY = pixel.Y;
+                    if (pixel.Y > maxY) maxY = pixel.Y;
+                }
+            }
+
+            int margin = 6;
+
+            Int32Rect dirtyRect = GraphicUtils.GetDirtyRect(minX, maxX, minY, maxY, margin);
+            CountryTexturesGenerator.RefreshDirtyRect(dirtyRect);
+
+            OverlayCompositor.ComposeAndApply(dirtyRect);
+        }
+
+        public static void AnnexRegions(IEnumerable<Region> regions, Country country)
+        {
+            int newCountryId = country.Identifier.GetHashCode();
+
+            int minX = int.MaxValue, minY = int.MaxValue;
+            int maxX = int.MinValue, maxY = int.MinValue;
+
+            foreach(Region region in regions)
+            {
+                foreach (Area area in region)
+                {
+                    if (area is not PixelArea pArea) continue;
+                    foreach (var pixel in pArea.Pixels)
+                    {
+                        int index1D = (pixel.Y * MapContext.Width) + pixel.X;
+                        MapLogicContext.GlobalCountryMap[index1D] = newCountryId;
+
+                        if (pixel.X < minX) minX = pixel.X;
+                        if (pixel.X > maxX) maxX = pixel.X;
+                        if (pixel.Y < minY) minY = pixel.Y;
+                        if (pixel.Y > maxY) maxY = pixel.Y;
+                    }
+                }
+            }
+
+            int margin = 6;
+
+            Int32Rect dirtyRect = GraphicUtils.GetDirtyRect(minX, maxX, minY, maxY, margin);
             CountryTexturesGenerator.RefreshDirtyRect(dirtyRect);
 
             OverlayCompositor.ComposeAndApply(dirtyRect);
@@ -60,13 +157,19 @@ namespace MapGame.Core.Engine
             if (clickedArea.ParentRegionId == null) return;
 
             int targetRegionId = (int)clickedArea.ParentRegionId;
-            if (targetRegionId == MapLogicContext.CurrentlySelectedRegionId) return;
+            SelectRegion(targetRegionId);
+        }
+
+        public static void SelectRegion(int regionId)
+        {
+            if (!EngineCommands.GetRegionById(regionId).Status) return;
+            if (regionId == MapLogicContext.CurrentlySelectedRegionId) return;
 
             ClearSelection();
 
-            MapLogicContext.CurrentlySelectedRegionId = targetRegionId;
+            MapLogicContext.CurrentlySelectedRegionId = regionId;
 
-            var updateRect = SelectionTexturesGenerator.GetSelectionUpdateDirtyRect(targetRegionId);
+            var updateRect = SelectionTexturesGenerator.GetSelectionUpdateDirtyRect(regionId);
             if (updateRect.IsEmpty) return;
 
             SelectionTexturesGenerator.RefreshDirtyRect(updateRect);
